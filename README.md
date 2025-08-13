@@ -1,5 +1,13 @@
 # engineering-schools-ast-prep-guide
 
+## Table of Contents
+
+- [Introduction](#introduction)  
+- [Roadmap](#roadmap)  
+- [Full Guide](#full-guide)
+
+## introduction
+
 As an AST student (Accès Sous Titre DEUG – MIP Informatique, mention Bien), I applied to several top engineering schools in Morocco.  
 After months of focused preparation, I successfully gained admission to some of them.  
 This repository shares the exact resources, roadmaps, and study strategies I used, to help other AST students achieve the same goal.
