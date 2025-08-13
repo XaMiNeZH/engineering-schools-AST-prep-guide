@@ -1,0 +1,224 @@
+<svg height="600" width="600" xmlns="http://www.w3.org/2000/svg">
+<title>Your Diagram Title</title>
+<!-- Generated with SankeyMATIC: 13/08/2025, 00:47:30 -->
+<rect height="600" width="600" fill="#ffffff"></rect>
+<g transform="translate(117.55558,18)">
+<g id="sankey_flows">
+<path id="flow1" d="M14 156.28671C58.50333 156.28671 51.91025 163.85789 96.41358 163.85789" fill="none" stroke-width="83.94737" stroke="#8c564b" opacity="0.5"><title>Applications → Rejected: 11</title></path>
+<path id="flow0" d="M14 79.97092C58.50333 79.97092 51.91025 76.50211 96.41358 76.50211" fill="none" stroke-width="68.68421" stroke="#8c564b" opacity="0.5"><title>Applications → Accepted to pass the contest: 9</title></path>
+<path id="flow3" d="M110.41358 68.87053C206.98024 68.87053 192.67407 112.17853 289.24073 112.17853" fill="none" stroke-width="53.42105" stroke="#e377c2" opacity="0.5"><title>Accepted to pass the contest → Not Interested: 7</title></path>
+<path id="flow42" d="M206.82716 224.53017C251.33049 224.53017 244.7374 157.968 289.24073 157.968" fill="none" stroke-width="38.15789" stroke="#17becf" opacity="0.5"><title>Accepted → Not Interested: 5</title></path>
+<path id="flow2" d="M110.41358 103.21263C154.91691 103.21263 148.32382 148.82538 192.82716 148.82538" fill="none" stroke-width="15.26316" stroke="#e377c2" opacity="0.5"><title>Accepted to pass the contest → Passed: 2</title></path>
+<path id="flow4" d="M206.82716 152.64117C251.33049 152.64117 244.7374 210.57432 289.24073 210.57432" fill="none" stroke-width="7.63158" stroke="#1f77b4" opacity="0.5"><title>Passed → Waitlisted: 1</title></path>
+<path id="flow5" d="M206.82716 145.00959C251.33049 145.00959 244.7374 191.90274 289.24073 191.90274" fill="none" stroke-width="7.63158" stroke="#ff7f0e" opacity="0.5"><title>Passed → No Admission: 1</title></path>
+<path id="flow6" d="M303.24073 206.75853v7.63158L385.65431 212.757v-7.63158z" fill="#2ca02c" stroke-width="0.5" stroke="#2ca02c" opacity="0.5"><title>Waitlisted → Admitted: 1</title></path>
+<path id="flow7" d="M14 372.49075C58.50333 372.49075 51.91025 377.69158 96.41358 377.69158" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>Applied cycles → ENSIAS: 1</title></path>
+<path id="flow8" d="M14 319.0697C58.50333 319.0697 51.91025 246.99053 96.41358 246.99053" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>Applied cycles → EMI/ECC: 1</title></path>
+<path id="flow9" d="M14 326.70128C58.50333 326.70128 51.91025 265.66211 96.41358 265.66211" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>Applied cycles → EHTP: 1</title></path>
+<path id="flow10" d="M14 380.12233C58.50333 380.12233 51.91025 396.36316 96.41358 396.36316" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>Applied cycles → INPT: 1</title></path>
+<path id="flow11" d="M14 387.75391C58.50333 387.75391 51.91025 415.03474 96.41358 415.03474" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>Applied cycles → ENSEM: 1</title></path>
+<path id="flow12" d="M14 334.33286C58.50333 334.33286 51.91025 284.33368 96.41358 284.33368" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>Applied cycles → ENIM/ENSMR: 1</title></path>
+<path id="flow13" d="M14 341.96443C58.50333 341.96443 51.91025 303.00526 96.41358 303.00526" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>Applied cycles → INSEA/ESI: 1</title></path>
+<path id="flow14" d="M14 311.43812C58.50333 311.43812 51.91025 228.31895 96.41358 228.31895" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>Applied cycles → ENSETM: 1</title></path>
+<path id="flow15" d="M14 349.59601C58.50333 349.59601 51.91025 321.67684 96.41358 321.67684" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>Applied cycles → ENSAMR: 1</title></path>
+<path id="flow16" d="M14 395.38549C58.50333 395.38549 51.91025 433.70632 96.41358 433.70632" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>Applied cycles → ENSAMM: 1</title></path>
+<path id="flow17" d="M14 403.01707C58.50333 403.01707 51.91025 452.37789 96.41358 452.37789" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>Applied cycles → ENSAJ: 1</title></path>
+<path id="flow18" d="M14 357.22759C58.50333 357.22759 51.91025 340.34842 96.41358 340.34842" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>Applied cycles → ENSAB: 1</title></path>
+<path id="flow19" d="M14 418.28022C58.50333 418.28022 51.91025 478.68105 96.41358 478.68105" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>Applied cycles → ENSAK: 1</title></path>
+<path id="flow20" d="M14 425.9118C58.50333 425.9118 51.91025 497.35263 96.41358 497.35263" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>Applied cycles → ENSAS: 1</title></path>
+<path id="flow21" d="M14 433.54338C58.50333 433.54338 51.91025 516.02421 96.41358 516.02421" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>Applied cycles → ENSAA: 1</title></path>
+<path id="flow22" d="M14 410.64865C58.50333 410.64865 51.91025 460.00947 96.41358 460.00947" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>Applied cycles → ENSAJ: 1</title></path>
+<path id="flow23" d="M14 364.85917C58.50333 364.85917 51.91025 359.02 96.41358 359.02" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>Applied cycles → ENIAD: 1</title></path>
+<path id="flow24" d="M110.41358 246.99053C154.91691 246.99053 148.32382 224.53017 192.82716 224.53017" fill="none" stroke-width="7.63158" stroke="#8c564b" opacity="0.5"><title>EMI/ECC → Accepted: 1</title></path>
+<path id="flow25" d="M110.41358 265.66211C154.91691 265.66211 148.32382 232.16175 192.82716 232.16175" fill="none" stroke-width="7.63158" stroke="#e377c2" opacity="0.5"><title>EHTP → Accepted: 1</title></path>
+<path id="flow26" d="M110.41358 220.68737C154.91691 220.68737 148.32382 209.26702 192.82716 209.26702" fill="none" stroke-width="7.63158" stroke="#ff7f0e" opacity="0.5"><title>ENSETM → Accepted: 1</title></path>
+<path id="flow27" d="M110.41358 321.67684C154.91691 321.67684 148.32382 255.05649 192.82716 255.05649" fill="none" stroke-width="7.63158" stroke="#2ca02c" opacity="0.5"><title>ENSAMR → Accepted: 1</title></path>
+<path id="flow28" d="M110.41358 284.33368C154.91691 284.33368 148.32382 239.79333 192.82716 239.79333" fill="none" stroke-width="7.63158" stroke="#17becf" opacity="0.5"><title>ENIM/ENSMR → Accepted: 1</title></path>
+<path id="flow29" d="M110.41358 303.00526C154.91691 303.00526 148.32382 247.42491 192.82716 247.42491" fill="none" stroke-width="7.63158" stroke="#1f77b4" opacity="0.5"><title>INSEA/ESI → Accepted: 1</title></path>
+<path id="flow30" d="M110.41358 228.31895C154.91691 228.31895 148.32382 216.89859 192.82716 216.89859" fill="none" stroke-width="7.63158" stroke="#ff7f0e" opacity="0.5"><title>ENSETM → Accepted: 1</title></path>
+<path id="flow31" d="M110.41358 359.02C154.91691 359.02 148.32382 270.31965 192.82716 270.31965" fill="none" stroke-width="7.63158" stroke="#17becf" opacity="0.5"><title>ENIAD → Accepted: 1</title></path>
+<path id="flow32" d="M110.41358 340.34842C154.91691 340.34842 148.32382 262.68807 192.82716 262.68807" fill="none" stroke-width="7.63158" stroke="#8c564b" opacity="0.5"><title>ENSAB → Accepted: 1</title></path>
+<path id="flow33" d="M110.41358 396.36316C154.91691 396.36316 148.32382 422.61483 192.82716 422.61483" fill="none" stroke-width="7.63158" stroke="#7f7f7f" opacity="0.5"><title>INPT → Rejected :/: 1</title></path>
+<path id="flow34" d="M110.41358 377.69158C154.91691 377.69158 148.32382 414.98325 192.82716 414.98325" fill="none" stroke-width="7.63158" stroke="#9467bd" opacity="0.5"><title>ENSIAS → Rejected :/: 1</title></path>
+<path id="flow35" d="M110.41358 415.03474C154.91691 415.03474 148.32382 430.24641 192.82716 430.24641" fill="none" stroke-width="7.63158" stroke="#bcbd22" opacity="0.5"><title>ENSEM → Rejected :/: 1</title></path>
+<path id="flow36" d="M110.41358 433.70632C154.91691 433.70632 148.32382 437.87799 192.82716 437.87799" fill="none" stroke-width="7.63158" stroke="#d62728" opacity="0.5"><title>ENSAMM → Rejected :/: 1</title></path>
+<path id="flow37" d="M110.41358 452.37789C154.91691 452.37789 148.32382 445.50957 192.82716 445.50957" fill="none" stroke-width="7.63158" stroke="#9467bd" opacity="0.5"><title>ENSAJ → Rejected :/: 1</title></path>
+<path id="flow38" d="M110.41358 478.68105C154.91691 478.68105 148.32382 453.14115 192.82716 453.14115" fill="none" stroke-width="7.63158" stroke="#e377c2" opacity="0.5"><title>ENSAK → Rejected :/: 1</title></path>
+<path id="flow39" d="M110.41358 497.35263C154.91691 497.35263 148.32382 460.77273 192.82716 460.77273" fill="none" stroke-width="7.63158" stroke="#7f7f7f" opacity="0.5"><title>ENSAS → Rejected :/: 1</title></path>
+<path id="flow40" d="M110.41358 516.02421C154.91691 516.02421 148.32382 468.40431 192.82716 468.40431" fill="none" stroke-width="7.63158" stroke="#bcbd22" opacity="0.5"><title>ENSAA → Rejected :/: 1</title></path>
+<path id="flow41" d="M206.82716 247.42491C251.33049 247.42491 244.7374 241.83586 289.24073 241.83586" fill="none" stroke-width="7.63158" stroke="#2ca02c" opacity="0.5"><title>Accepted → Admitted ENSETM: 1</title></path>
+</g>
+<g id="sankey_nodes">
+<g class="node" style="touch-action: none;">
+<rect id="r0" class="for_r0" x="0" y="45.62882" height="152.63158" width="14" fill="#8c564b" fill-opacity="1"><title>Applications:
+20</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r1" class="for_r1" x="96.41358" y="42.16" height="68.68421" width="14" fill="#e377c2" fill-opacity="1"><title>Accepted to pass the contest:
+9</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r2" class="for_r2" x="96.41358" y="121.88421" height="83.94737" width="14" fill="#7f7f7f" fill-opacity="1"><title>Rejected:
+11</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r3" class="for_r3" x="192.82716" y="141.1938" height="15.26316" width="14" fill="#bcbd22" fill-opacity="1"><title>Passed:
+2</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r4" class="for_r4" x="289.24073" y="85.468" height="91.57895" width="14" fill="#17becf" fill-opacity="1"><title>Not Interested:
+12</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r5" class="for_r5" x="289.24073" y="206.75853" height="7.63158" width="14" fill="#1f77b4" fill-opacity="1"><title>Waitlisted:
+1</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r6" class="for_r6" x="289.24073" y="188.08695" height="7.63158" width="14" fill="#ff7f0e" fill-opacity="1"><title>No Admission:
+1</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r7" class="for_r7" x="385.65431" y="205.12542" height="7.63158" width="14" fill="#2ca02c" fill-opacity="1"><title>Admitted:
+1</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r8" class="for_r8" x="0" y="307.62233" height="129.73684" width="14" fill="#d62728" fill-opacity="1"><title>Applied cycles:
+17</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r9" class="for_r9" x="96.41358" y="373.87579" height="7.63158" width="14" fill="#9467bd" fill-opacity="1"><title>ENSIAS:
+1</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r10" class="for_r10" x="96.41358" y="243.17474" height="7.63158" width="14" fill="#8c564b" fill-opacity="1"><title>EMI/ECC:
+1</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r11" class="for_r11" x="96.41358" y="261.84632" height="7.63158" width="14" fill="#e377c2" fill-opacity="1"><title>EHTP:
+1</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r12" class="for_r12" x="96.41358" y="392.54737" height="7.63158" width="14" fill="#7f7f7f" fill-opacity="1"><title>INPT:
+1</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r13" class="for_r13" x="96.41358" y="411.21895" height="7.63158" width="14" fill="#bcbd22" fill-opacity="1"><title>ENSEM:
+1</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r14" class="for_r14" x="96.41358" y="280.51789" height="7.63158" width="14" fill="#17becf" fill-opacity="1"><title>ENIM/ENSMR:
+1</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r15" class="for_r15" x="96.41358" y="299.18947" height="7.63158" width="14" fill="#1f77b4" fill-opacity="1"><title>INSEA/ESI:
+1</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r16" class="for_r16" x="96.41358" y="216.87158" height="15.26316" width="14" fill="#ff7f0e" fill-opacity="1"><title>ENSETM:
+2</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r17" class="for_r17" x="96.41358" y="317.86105" height="7.63158" width="14" fill="#2ca02c" fill-opacity="1"><title>ENSAMR:
+1</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r18" class="for_r18" x="96.41358" y="429.89053" height="7.63158" width="14" fill="#d62728" fill-opacity="1"><title>ENSAMM:
+1</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r19" class="for_r19" x="96.41358" y="448.56211" height="15.26316" width="14" fill="#9467bd" fill-opacity="1"><title>ENSAJ:
+2</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r20" class="for_r20" x="96.41358" y="336.53263" height="7.63158" width="14" fill="#8c564b" fill-opacity="1"><title>ENSAB:
+1</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r21" class="for_r21" x="96.41358" y="474.86526" height="7.63158" width="14" fill="#e377c2" fill-opacity="1"><title>ENSAK:
+1</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r22" class="for_r22" x="96.41358" y="493.53684" height="7.63158" width="14" fill="#7f7f7f" fill-opacity="1"><title>ENSAS:
+1</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r23" class="for_r23" x="96.41358" y="512.20842" height="7.63158" width="14" fill="#bcbd22" fill-opacity="1"><title>ENSAA:
+1</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r24" class="for_r24" x="96.41358" y="355.20421" height="7.63158" width="14" fill="#17becf" fill-opacity="1"><title>ENIAD:
+1</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r25" class="for_r25" x="192.82716" y="205.45123" height="68.68421" width="14" fill="#e377c2" fill-opacity="1"><title>Accepted:
+9</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r26" class="for_r26" x="192.82716" y="411.16746" height="61.05263" width="14" fill="#7f7f7f" fill-opacity="1"><title>Rejected :/:
+8</title></rect>
+</g>
+<g class="node" style="touch-action: none;">
+<rect id="r27" class="for_r27" x="289.24073" y="238.02007" height="7.63158" width="14" fill="#2ca02c" fill-opacity="1"><title>Admitted ENSETM:
+1</title></rect>
+</g>
+</g>
+<g id="sankey_labels" font-family="serif" font-size="16px" fill="#000000">
+<text text-anchor="middle" x="182.44442" y="577" font-size="12px" font-weight="400" fill="#336781">Made at SankeyMATIC.com</text>
+<rect id="label0_bg" class="for_r0" x="-91.80559" y="101.86644" width="90.49834" height="40.13333" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label0" class="for_r0" text-anchor="end" x="-5.66475" y="121.94461" font-weight="400" font-size="16px" dy="-3.67817">Applications<tspan x="-5.66475" dy="18.4" font-weight="400" font-size="16px">20</tspan></text>
+<rect id="label1_bg" class="for_r1" x="8.40608" y="56.42394" width="190.08167" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label1" class="for_r1" text-anchor="middle" x="103.41358" y="76.50211" font-weight="400" font-size="16px" dy="-3.67817">Accepted to pass the contest<tspan x="103.41358" dy="18.4" font-weight="400" font-size="16px">9</tspan></text>
+<rect id="label2_bg" class="for_r2" x="111.9387" y="143.83372" width="64.78167" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label2" class="for_r2" text-anchor="start" x="116.2962" y="163.85789" font-weight="400" font-size="16px" dy="-3.62417">Rejected<tspan x="116.2962" dy="18.4" font-weight="400" font-size="16px">11</tspan></text>
+<rect id="label3_bg" class="for_r3" x="173.68632" y="128.5987" width="52.38167" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label3" class="for_r3" text-anchor="middle" x="199.82716" y="148.82538" font-weight="400" font-size="16px" dy="-3.82667">Passed<tspan x="199.82716" dy="18.4" font-weight="400" font-size="16px">2</tspan></text>
+<rect id="label4_bg" class="for_r4" x="304.33253" y="111.03081" width="100.34833" height="40.13333" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label4" class="for_r4" text-anchor="start" x="309.12336" y="131.25747" font-weight="400" font-size="16px" dy="-3.82667">Not Interested<tspan x="309.12336" dy="18.4" font-weight="400" font-size="16px">12</tspan></text>
+<rect id="label5_bg" class="for_r5" x="259.63322" y="190.34765" width="73.31501" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label5" class="for_r5" text-anchor="middle" x="296.24073" y="210.57432" font-weight="400" font-size="16px" dy="-3.82667">Waitlisted<tspan x="296.24073" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+<rect id="label6_bg" class="for_r6" x="304.33253" y="171.67607" width="102.06501" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label6" class="for_r6" text-anchor="start" x="309.12336" y="191.90274" font-weight="400" font-size="16px" dy="-3.82667">No Admission<tspan x="309.12336" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+<rect id="label7_bg" class="for_r7" x="401.17943" y="188.71453" width="69.26499" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label7" class="for_r7" text-anchor="start" x="405.53694" y="208.94121" font-weight="400" font-size="16px" dy="-3.82667">Admitted<tspan x="405.53694" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+<rect id="label8_bg" class="for_r8" x="-105.55559" y="352.46658" width="104.24834" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label8" class="for_r8" text-anchor="end" x="-5.66475" y="372.49075" font-weight="400" font-size="16px" dy="-3.62417">Applied cycles<tspan x="-5.66475" dy="18.4" font-weight="400" font-size="16px">17</tspan></text>
+<rect id="label9_bg" class="for_r9" x="71.05608" y="357.46493" width="64.71499" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label9" class="for_r9" text-anchor="middle" x="103.41358" y="377.69158" font-weight="400" font-size="16px" dy="-3.82667">ENSIAS<tspan x="103.41358" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+<rect id="label10_bg" class="for_r10" x="66.61442" y="226.76385" width="73.59834" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label10" class="for_r10" text-anchor="middle" x="103.41358" y="246.99053" font-weight="400" font-size="16px" dy="-3.82667">EMI/ECC<tspan x="103.41358" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+<rect id="label11_bg" class="for_r11" x="79.06441" y="245.43543" width="48.69833" height="40.13335" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label11" class="for_r11" text-anchor="middle" x="103.41358" y="265.66211" font-weight="400" font-size="16px" dy="-3.82667">EHTP<tspan x="103.41358" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+<rect id="label12_bg" class="for_r12" x="81.28108" y="376.1365" width="44.265" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label12" class="for_r12" text-anchor="middle" x="103.41358" y="396.36316" font-weight="400" font-size="16px" dy="-3.82667">INPT<tspan x="103.41358" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+<rect id="label13_bg" class="for_r13" x="71.94774" y="394.80807" width="62.93167" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label13" class="for_r13" text-anchor="middle" x="103.41358" y="415.03474" font-weight="400" font-size="16px" dy="-3.82667">ENSEM<tspan x="103.41358" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+<rect id="label14_bg" class="for_r14" x="48.83108" y="264.10702" width="109.465" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label14" class="for_r14" text-anchor="middle" x="103.41358" y="284.33368" font-weight="400" font-size="16px" dy="-3.82667">ENIM/ENSMR<tspan x="103.41358" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+<rect id="label15_bg" class="for_r15" x="61.28108" y="282.77859" width="84.265" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label15" class="for_r15" text-anchor="middle" x="103.41358" y="303.00526" font-weight="400" font-size="16px" dy="-3.82667">INSEA/ESI<tspan x="103.41358" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+<rect id="label16_bg" class="for_r16" x="67.06441" y="204.27648" width="72.69833" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label16" class="for_r16" text-anchor="middle" x="103.41358" y="224.50316" font-weight="400" font-size="16px" dy="-3.82667">ENSETM<tspan x="103.41358" dy="18.4" font-weight="400" font-size="16px">2</tspan></text>
+<rect id="label17_bg" class="for_r17" x="65.72275" y="301.45019" width="75.68166" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label17" class="for_r17" text-anchor="middle" x="103.41358" y="321.67684" font-weight="400" font-size="16px" dy="-3.82667">ENSAMR<tspan x="103.41358" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+<rect id="label18_bg" class="for_r18" x="63.93941" y="413.47967" width="78.94833" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label18" class="for_r18" text-anchor="middle" x="103.41358" y="433.70632" font-weight="400" font-size="16px" dy="-3.82667">ENSAMM<tspan x="103.41358" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+<rect id="label19_bg" class="for_r19" x="75.05608" y="435.96703" width="56.715" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label19" class="for_r19" text-anchor="middle" x="103.41358" y="456.19368" font-weight="400" font-size="16px" dy="-3.82667">ENSAJ<tspan x="103.41358" dy="18.4" font-weight="400" font-size="16px">2</tspan></text>
+<rect id="label20_bg" class="for_r20" x="72.83941" y="320.12176" width="61.14833" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label20" class="for_r20" text-anchor="middle" x="103.41358" y="340.34842" font-weight="400" font-size="16px" dy="-3.82667">ENSAB<tspan x="103.41358" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+<rect id="label21_bg" class="for_r21" x="72.39775" y="458.4544" width="62.33167" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label21" class="for_r21" text-anchor="middle" x="103.41358" y="478.68105" font-weight="400" font-size="16px" dy="-3.82667">ENSAK<tspan x="103.41358" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+<rect id="label22_bg" class="for_r22" x="73.72275" y="477.12597" width="59.38167" height="40.13331" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label22" class="for_r22" text-anchor="middle" x="103.41358" y="497.35263" font-weight="400" font-size="16px" dy="-3.82667">ENSAS<tspan x="103.41358" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+<rect id="label23_bg" class="for_r23" x="72.39775" y="495.79757" width="62.03167" height="40.13328" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label23" class="for_r23" text-anchor="middle" x="103.41358" y="516.02421" font-weight="400" font-size="16px" dy="-3.82667">ENSAA<tspan x="103.41358" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+<rect id="label24_bg" class="for_r24" x="74.18108" y="338.79333" width="58.46499" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label24" class="for_r24" text-anchor="middle" x="103.41358" y="359.02" font-weight="400" font-size="16px" dy="-3.82667">ENIAD<tspan x="103.41358" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+<rect id="label25_bg" class="for_r25" x="165.26967" y="219.71516" width="69.215" height="40.13335" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label25" class="for_r25" text-anchor="middle" x="199.82716" y="239.79333" font-weight="400" font-size="16px" dy="-3.67817">Accepted<tspan x="199.82716" dy="18.4" font-weight="400" font-size="16px">9</tspan></text>
+<rect id="label26_bg" class="for_r26" x="208.35228" y="421.66961" width="77.68167" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label26" class="for_r26" text-anchor="start" x="212.70978" y="441.69378" font-weight="400" font-size="16px" dy="-3.62417">Rejected :/<tspan x="212.70978" dy="18.4" font-weight="400" font-size="16px">8</tspan></text>
+<rect id="label27_bg" class="for_r27" x="304.76585" y="221.60919" width="137.14835" height="40.13334" rx="4" fill="#fff" fill-opacity="0.5" stroke="none" stroke-width="0" stroke-opacity="0"></rect>
+<text id="label27" class="for_r27" text-anchor="start" x="309.12336" y="241.83586" font-weight="400" font-size="16px" dy="-3.82667">Admitted ENSETM<tspan x="309.12336" dy="18.4" font-weight="400" font-size="16px">1</tspan></text>
+</g>
+</g></svg>
