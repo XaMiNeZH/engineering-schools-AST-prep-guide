@@ -31,4 +31,7 @@ I still remembered some of the first chapters of calculus and linear algebra fro
 
 I can also make this sound a bit more like a “lesson learned” so it inspires other students and gives them a clear takeaway: “Start early, even if you’re in a CS-heavy program.” 
 
+## roadmap
+
+[![AST Roadmap Preview](assets/roadmap-AST.png)](https://miro.com/app/board/uXjVIlhq-O8=/?share_link_id=424701816479)
 
