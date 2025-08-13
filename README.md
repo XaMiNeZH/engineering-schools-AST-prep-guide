@@ -6,6 +6,14 @@ This repository shares the exact resources, roadmaps, and study strategies I use
 <p align="center">
   <img src="assets/sankeymatic_20250813_004730.svg" alt="My AST Journey - Applications & Admissions" width="800">
 </p>
+
+>  <div style="font-size:16px; border-left: 4px solid #f39c12; padding-left: 10px;">
+> ⚠️ <strong>Note:</strong> I was specifically focused on IT-related engineering cycles like Software Engineering, Data Engineering, Cybersecurity, AI, and Robotics.  
+> I wasn’t aiming for other cycles such as Mechanical, Electrical, or Industrial Engineering.
+</div>
+
+
+
 These results were achieved after only 1 month of nonstop preparation. While I’m proud of the outcome, I believe I could have gained admission to even higher-ranked engineering schools with more time to prepare.
 
 After completing my first year of DEUG (Maths-Physics-CS), I specialized in Computer Science in my second year — focusing entirely on programming, statistics, operating systems, and related subjects.
@@ -15,6 +23,4 @@ I still remembered some of the first chapters of calculus and linear algebra fro
 
 I can also make this sound a bit more like a “lesson learned” so it inspires other students and gives them a clear takeaway: “Start early, even if you’re in a CS-heavy program.” 
 
-> ⚠️ **Note:** I was specifically focused on IT-related engineering cycles like Software Engineering, Data Engineering, Cybersecurity, AI, and Robotics.  
-> I wasn’t aiming for other cycles such as Mechanical, Electrical, or Industrial Engineering.
 
