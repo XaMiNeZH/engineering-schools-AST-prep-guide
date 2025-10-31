@@ -1,0 +1,724 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % ‚vite le textstyle en mode
+                                % math‚matique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math‚matiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de presentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% personnel Monasse
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'‚criture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% … l'int‚rieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d‚croissante),
+% \nondef (la fonction est non d‚finie)
+% si l'on termine la derniŠre ligne par \cr, un trait est tir‚ en dessous
+% sinon elle est laiss‚e sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   % MONASSE
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  % MONASSE
+\def\rmat{{\rm I\kern-0.6mm R}}  % MONASSE
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  % MONASSE
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  % MONASSE
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____def de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% AlgŠbre lin‚aire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________determinant_______
+\def\det{\mathop{\rm det}\nolimits}  % MONASSE
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  % MONASSE
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  % MONASSE
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}  % MONASSE
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos‚e ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  % MONASSE
+\def\MC#1{{\cal M}_{#1}(\cmat)}  % MONASSE
+\def\MK#1{{\cal M}_{#1}(\kmat)}  % MONASSE
+
+%________Complexes_________ % MONASSE
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   % CLENET
+\def\Arccos{\mathop{\rm Arccos}\nolimits}   % CLENET
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   % CLENET
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     % CLENET
+\def\Argch{\mathop{\rm Argch}\nolimits}     % CLENET
+\def\Argth{\mathop{\rm Argth}\nolimits}     % CLENET
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} %CLENET
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s‚ries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  % MONASSE
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  % MONASSE
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  % MONASSE
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  % MONASSE
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  % MONASSE
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr‚g‚es%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-…-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\catcode`@=12 % at signs are no longer letters
+\catcode`\‚=\active
+\def‚{\'e}
+\catcode`\Š=\active
+\defŠ{\`e}
+\catcode`\ˆ=\active
+\defˆ{\^e}
+\catcode`\…=\active
+\def…{\`a}
+\catcode`\—=\active
+\def—{\`u}
+\catcode`\–=\active
+\def–{\^u}
+\catcode`\ƒ=\active
+\defƒ{\^a}
+\catcode`\"=\active
+\def"{\^o}
+\catcode`\‰=\active
+\def‰{\"e}
+\catcode`\‹=\active
+\def‹{\"\i}
+\catcode`\=\active
+\def{\"u}
+\catcode`\‡=\active
+\def‡{\c c}
+\catcode`\Œ=\active
+\defŒ{\^\i}
+
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+
+
+
+
+
+\overfullrule=0mm
+\cl{{\bf SEMAINE 5}}\msk
+\cl{{\bf SUITES R\'EELLES - TOPOLOGIE DE} $\rmat$}
+\bsk
+
+
+
+
+
+
+{\bf EXERCICE 1 :}\msk
+{\bf 1.} Soit $u=(u_n)$ une suite r‚elle born‚e telle que $\;\Lim{n}{\infty}(u_{n+1}-u_n)=0$.
+Montrer que l'ensemble $A$ des valeurs d'adh‚rence de $u$ est un segment de $\rmat$.
+\msk
+{\bf 2.} Soit $f:[\alpha,\beta]\vers[\alpha,\beta]$ une fonction continue, soit $u=(u_n)$ une
+suite d‚finie par $u_0\in[\alpha,\beta]$ et, pour tout $n$, $u_{n+1}=f(u_n)$.
+On suppose que $\Lim{n}{\infty}(u_{n+1}-u_n)=0$. Montrer que la suite
+$(u_n)$ converge.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Pour tout $n\in\nmat$, posons $U_n=\{u_p\;;\;p\se n\}$. On a\vv
+$$l\in A\iff\a n\in\nmat\quad\a\eps>0\quad[l-\eps,l+\eps]\inter U_n\not=\emptyset
+        \iff \a n\in\nmat\quad l\in\ov{U_n}\;.$$
+Donc l'ensemble $A=\bigcap_{n\in\nmat}\ov{U_n}$ est un ferm‚ de $\rmat$.
+\ssk\sect
+Par ailleurs, $A$ est born‚ (‚vident) et $A$ est non vide (th‚orŠme de
+Bolzano-Weierstrass).\msk\sect
+{\it Il reste … montrer que $A$ est un intervalle}.\msk
+\sect
+Soient $a$ et $b$ deux ‚l‚ments de $A$ avec $a<b$. Soit $c\in]a,b[$.
+Soit $\eps>0$ tel que $\eps<\min\{c-a,b-c\}$. On a alors $a<c-\eps<c<c+\eps<b$.
+\msk\sect
+Montrons que, pour tout entier $N$, il existe $n\geq N$ tel que $u_n\in[c-\eps,c+\eps]$,
+ce qui prouvera que $c\in A$~: comme $a$ et $b$ sont valeurs d'adh‚rence de $u$,
+il existe des suites extraites de $u$ convergeant vers $a$ et $b$
+respectivement. Plus pr‚cis‚ment, on peut construire deux applications
+$\ffi$ et $\psi$ de $\nmat$ vers $\nmat$ telles que\vv
+$$\ffi(0)<\psi(0)<\ffi(1)<\psi(1)<\ldots<\ffi(k)<\psi(k)<\ffi(k+1)<\psi(k+1)<\ldots$$
+avec $\Lim{k}{\infty}u_{\ffi(k)}=a$ et $\Lim{k}{\infty}u_{\psi(k)}=b$. \ssk\sect
+Il existe un entier $K_1$ tel que, pour $k\se K_1$, on ait $\;u_{\ffi(k)}<c-\eps\;$
+et $\;u_{\psi(k)}>c+\eps$. Par ailleurs, il existe un entier $N$ tel
+que $|u_{n+1}-u_n|<\eps$ pour tout $n\se N$. Soit enfin $K_2$ un entier tel
+que $\ffi(K_2)>N$ (possible car $\Lim{k}{\ii}\ffi(k)=\ii$). En posant
+$K=\max\{K_1,K_2\}$, on a, pour tout $k\se K$,\ssk\new
+$\bullet$ \quad $u_{\ffi(k)}<c-\eps$~,\ssk\new
+$\bullet$ \quad $u_{\psi(k)}>c+\eps$~,\ssk\new
+$\bullet$ \quad $|u_{n+1}-u_n|<\eps$ pour tout $n\in\[ent\ffi(k),\psi(k)-1\]ent$.\ssk\sect
+Il existe donc au moins un entier $n$ dans l'intervalle
+$\[ent\ffi(k)+1,\psi(k)-1\]ent$ tel que $u_n\in[c-\eps,c+\eps]$~:
+il suffit de consid‚rer $n=\min\{m>\ffi(k)\;|\;u_m>c-\eps\}$.
+L'ensemble des entiers $n$ tels que $u_n\in[c-\eps,c+\eps]$ est donc infini,
+et ceci pour tout $\eps>0$, ce qui prouve que $c$ est valeur d'adh‚rence
+de la suite $u$.
+
+\bsk
+{\bf 2.} Notons $A$ l'ensemble des valeurs d'adh‚rence de la suite $u$
+(on a $A\subset[\alpha,\beta]$), soit
+$c\in A$, soit $(u_{\ffi(n)})$ une suite extraite de limite $c$.
+De $\Lim{n}{\infty}(u_{n+1}-u_n)=0$, on d‚duit $\Lim{n}{\infty}
+u_{\ffi(n)+1}=c$ mais, la fonction $f$ ‚tant continue au point $c$, \vv
+$$\Lim{n}{\infty}u_{\ffi(n)+1}=\Lim{n}{\infty}f\big(u_{\ffi(n)}\big)=f(c)\;,$$
+donc $f(c)=c$.\ssk\sect
+Moralit‚~: les valeurs d'adh‚rence de la suite $u$ sont toutes des points fixes
+de la fonction $f$.\ssk\sect
+Si la suite $u$ admettait deux valeurs d'adh‚rence distinctes $a$ et $b$
+avec $a<b$, alors tout point interm‚diaire entre $a$ et $b$ serait
+aussi valeur d'adh‚rence de $u$ (question {\bf a.}), donc serait un point fixe de
+$f$~; la suite $u$ prendrait alors n‚cessairement des valeurs dans l'intervalle
+$]a,b[$ (disons $\e n\in\nmat\quad u_n=c\in]a,b[$), m‚zalor la suite $u$
+serait stationnaire de valeur $c$, ce qui est bien s–r contradictoire.\ssk\sect
+La suite $u$ admet donc une seule valeur d'adh‚rence ce qui, pour une suite
+… valeurs dans un compact, signifie qu'elle converge.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 2 :}\msk
+Soit $u=(u_n)_{n\in\nmat}$ une suite r‚elle. On dit que la suite $u$ est
+{\bf dense modulo} 1 si l'ensemble $\{u_n-E(u_n)\;;\;n\in\nmat\}$ est dense
+dans $[0,1]$.\msk
+{\bf 1.} Soit $x$ un r‚el irrationnel. Montrer que la suite $u$ d‚finie par
+$u_n=nx$ est dense modulo 1.\msk
+{\bf 2.} Montrer que l'‚criture d‚cimale du nombre $2^n$ ($n\in\nmat$) peut
+commencer par une s‚quence de chiffres arbitraire.\msk
+{\it Source : article de Bruno LANGLOIS, \'Ecriture d‚cimale des termes de
+certaines suites d'entiers, paru dans la RMS (Revue des math‚matiques de
+l'enseignement sup‚rieur, ‚ditions Vuibert) num‚ro 3-4, de novembre/d‚cembre
+1999}.
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf 1.} Soit $N\in\net$. Pour tout $n\in\net$, le nombre $v_n=nx-E(nx)$ est
+un irrationnel appartenant … l'intervalle $[0,1]$ et appartient donc … l'un
+des intervalles $\lci{j\s N},{j+1\s N}\rci$ \quad ($0\ie j\ie N-1$). Comme
+il y a une infinit‚ de nombres $v_n$ (tous distincts puisque $x$ est
+irrationnel) dans un nombre fini d'intervalles ({\it c'est le principe des
+tiroirs}), on peut en trouver deux dans un mˆme intervalle, donc il existe
+deux entiers $p$ et $q$ (avec $p<q$ par exemple, notons $q=p+k$ avec $k\in\net$) tels que $0<|v_q-v_p|<{1\s N}$.
+Posons $\alpha=v_q-v_p=v_{p+k}-v_p$. On a alors $kx=\alpha+K$,
+o— $K$ est un entier relatif.\ssk\sect
+$\triangleright$ Supposons $\alpha>0$.
+Pour tout $n$ entier naturel, on a $nkx=n\alpha+nK$ donc, tant que $n\alpha<1$, c'est-…-dire
+pour $n\ie M=E\lp{1\s\alpha}\rp$, on a $v_{nk}=nkx-E(nkx)=n\alpha$. Les nombres
+$v_{nk}$ ($0\ie n\ie M$) ``remplissent donc l'intervalle $[0,1]$ … $\alpha$ prŠs'',
+c'est-…-dire~: pour tout r‚el $a$ appartenant … $[0,1]$, on peut trouver un
+nombre $v_{nk}$ v‚rifiant $|v_{nk}-a|\ie\alpha$.\ssk\sect
+$\triangleright$ Supposons $\alpha<0$. Dans ce cas, pour $1\ie n\ie
+E\lp{1\s|\alpha|}\rp$, on a $v_{nk}=1-n|\alpha|$ et ces nombres remplissent
+encore l'intervalle $[0,1]$ … $|\alpha|$ prŠs.\msk\sect
+Dans les deux cas (puisque $|\alpha|\ie{1\s N}$), les nombres $v_n$ remplissent
+l'intervalle $[0,1]$ … ${1\s N}$ prŠs. L'entier $N$ ‚tant arbitraire, on a
+prouv‚ que l'ensemble $\{v_n\;;\;n\in\nmat\}$ est dense dans $[0,1]$.
+
+\bsk
+{\bf 2.} Notons $\log$ le logarithme d‚cimal.\ssk\sect
+Soit $a$ un entier naturel non nul, d'‚criture d‚cimale $a=[a_pa_{p-1}\ldots
+a_1a_0]$. L'‚criture d‚cimale du nombre $2^n$ ``commence par $a$'' s'il existe
+un entier naturel $k$ tel que\vv
+$$a\cdot10^k\ie 2^n<(a+1)\cdot 10^k\;,$$
+c'est-…-dire\vv
+$$k+\log(a)\ie \log(2^n)<k+\log(a+1)\qquad(k\in\nmat)\;,$$
+c'est-…-dire si et seulement si $\;\log(a)\ie n\log(2)<\log(a+1)\;$ modulo 1.
+{\it Pour ˆtre pr‚cis, cette condition signifie\vv
+$$\log(a)-E\big(\log(a)\big)\ie n\log2-E(n\log 2)<\log(a+1)-E\big(\log(a+1)\big)$$
+sauf dans le cas particulier o— $a+1$ est une puissance de 10, o— le dernier
+membre (qui vaut alors 0) doit ˆtre remplac‚ par 1}.\msk\sect
+Le nombre $x=\log 2={\ln(2)\s\ln(10)}$ est irrationnel (si on avait $x={p\s q}$
+avec $p\in\net$, $q\in\net$, alors on aurait $5^p=2^{q-p}$, ce qui est
+impossible). La suite de terme g‚n‚ral $u_n=n\log 2$ est donc dense modulo 1, ce qui
+entraŒne qu'il existe au moins un entier naturel $n$ tel que $\;u_n\in
+[\log(a),\log(a+1)[$ modulo 1, ce qu'il fallait d‚montrer.
+
+
+\bsk\hrule
+\bsk
+{\bf EXERCICE 3 :}\msk
+Soit $u=(u_n)_{n\in\nmat}$ une suite r‚elle.\msk
+On dit que la suite $u$ est
+{\bf dense modulo} 1 si l'ensemble $\{u_n-E(u_n)\;;\;n\in\nmat\}$ est dense
+dans $[0,1]$.\msk
+On d‚finit la suite $\Delta u=v$ par $v_n=(\Delta u)_n=u_{n+1}-u_n$,
+puis la suite $\Delta^2u=\Delta(\Delta u)$.
+\msk
+{\bf 1.} Soit $v$ une suite r‚elle telle que $\system{&\lim_n v_n&=&\ii\cr
+&\lim_n (\Delta v)_n&=&0\hfill\cr}$. Montrer que $v$ est dense modulo 1.\msk
+{\bf 2.} Soit $u$ une suite r‚elle telle que $\system{&\lim_n (\Delta u)_n&=&\ii\cr
+&\lim_n (\Delta^2 u)_n&=&0\hfill\cr}$. Montrer que $u$ est dense modulo 1.\msk
+{\bf 3.} Montrer que l'‚criture d‚cimale du nombre $n!$ peut commencer par
+une s‚quence de chiffres arbitraire.\msk
+{\bf 4.} Mˆme question pour l'‚criture d‚cimale de $n^n$.
+
+\msk
+
+{\it Source : article de Bruno LANGLOIS, \'Ecriture d‚cimale des termes de
+certaines suites d'entiers, paru dans la RMS (Revue des math‚matiques de
+l'enseignement sup‚rieur, ‚ditions Vuibert) num‚ro 3-4, de novembre/d‚cembre
+1999}.
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf 1.} Soit $\eps>0$, soit $n_0$ un entier tel que $n\se n_0\impl|(\Delta v)_n|
+<\eps$, soit $N=E(v_{n_0})+1$~; comme $\Lim{n}{\ii}v_n=\ii$, il existe un entier $n_1>n_0$ tel que
+$v_{n_1}>N+1$. Alors, lorsque $n$ d‚crit l'intervalle entier $\[ent n_0,n_1
+\]ent$, le nombre $v_n$ s'approche de tout r‚el … $\eps$ prŠs modulo 1.
+\ssk\sect
+Pr‚cisons pour ceux qui aiment les r‚dactions d‚taill‚es~: supposons en fait $\eps<{1\s2}$.
+Soit\break $a\in[0,1]$, soit le r‚el $x=N+a$~; on a alors $v_{n_0}<x$
+et $v_{n_1}>x$, soit $n$ le plus grand entier appartenant … l'intervalle
+$\[ent n_0,n_1-1\]ent$ pour lequel $v_n<x$ (il est clair que cela a un sens).
+On a $v_n<x\ie v_{n+1}$ et $(\Delta v)_n=v_{n+1}-v_n<\eps$, donc $|v_n-x|<\eps$ et
+$|v_{n+1}-x|<\eps$, donc l'un au moins des deux nombres $|v_n-E(v_n)-a|$ et
+$|v_{n+1}-E(v_{n+1})-a|$ est inf‚rieur … $\eps$ ({\it les deux la plupart du temps, sauf
+lorsqu'un entier vient malencontreusement s'intercaler entre $v_n$ et $x$,
+ou entre $x$ et $v_{n+1}$}).\msk\sect
+{\it Ainsi, les suites $(\sqrt{n})$ ou $(\ln n)$ sont denses modulo 1.}
+\msk
+{\bf 2.} {\it Indication ‚ventuelle~: montrer que, pour tout entier $m>4$,
+il existe un entier $n_0$ tel que l'on ait $\;{1\s m}\ie(\Delta u)_{n_0+k}\ie
+{4\s m}\;$ pour tout $k\in\[ent0,m-1\]ent$}.\msk\sect
+D'aprŠs ce qui pr‚cŠde, la suite $v=\Delta u$ est dense modulo 1~: si on se donne un entier $m>4$,
+il existe un entier $n_0$ tel que l'on ait ${2\s m}<(\Delta u)_{n_0}
+<{3\s m}$ modulo 1 et tel que $|(\Delta^2u)_n|<{1\s m^2}$ pour tout $n\se
+n_0$. Pour tout $k\in\[ent0,m-1\]ent$, on a l'encadrement de
+$(\Delta u)_{n_0+k}$~:\vv
+$${1\s m}={2\s m}-m\>{1\s m^2}<(\Delta u)_{n_0+k}=(\Delta u)_{n_0}+
+  \sum_{p=0}^{k-1}(\Delta^2u)_{n_0+p}<{3\s m}+m\>{1\s m^2}={4\s m}\;.$$
+\sect
+Pour $n$ variant de $n_0$ … $n_0+m$, la suite $u$ fait des ``pas'' compris
+entre ${1\s m}$ et ${4\s m}$ modulo 1~; comme il y a $m$ pas
+plus grands que ${1\s m}$, $u_n$ a balay‚ tout le tore
+${\;{\raise 1mm\hbox{$\rmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!\zmat$}}}$
+(``la droite r‚elle modulo 1'') … ${4\s m}$ prŠs~: cette fois, les amateurs
+de r‚dactions d‚taill‚es se d‚brouilleront tous seuls! La suite $u$ est
+donc dense modulo 1.\msk\sect
+{\it Par exemple, les suites $(n\sqrt{n})$, ou $(S_n)$ avec $S_n=\sum_{k=1}^n\sqrt{k}$, sont denses modulo 1.}
+
+\msk
+{\bf 3.} Si $(X_n)$ est une suite d'entiers naturels non nuls, le fait que
+l'‚criture d‚cimale de l'entier $X_n$ ``puisse commencer par une s‚quence
+arbitraire'' ‚quivaut … la densit‚ modulo 1 de la suite $u_n=\log(X_n)$.
+Montrons au moins que cette condition est suffisante, ce qui est utilis‚ ici.\msk\sect
+Si $u_n=\log(X_n)$ est dense modulo 1, et si $a$ est un entier naturel,
+il existe un entier naturel $n$ tel que $\log(a)\ie u_n<\log(a+1)$ modulo 1,
+ce qui signifie que\vv
+$$k+\log(a)\ie u_n<k+\log(a+1)\qquad\hbox{pour un certain entier naturel}\quad k\;,$$
+c'est-…-dire $\;a\cdot10^k\ie X_n<(a+1)\cdot10^k$, donc l'‚criture d‚cimale
+du nombre $X_n$ ``commence par $a$''.
+\msk\sect
+Pour $X_n=n!$, on a $\;u_n=\log(n!)=\sum_{k=2}^n\log k$~; alors $(\Delta u)_n
+=\log(n+1)\vers\ii$, puis\break $(\Delta^2u)_n=\log\lp{n+2\s n+1}\rp\vers 0$, donc $u$ est
+dense modulo 1, ce qu'il fallait prouver.
+
+\msk
+{\bf 4.} Avec $X_n=n^n$, on a $u_n=\log(X_n)=n\>\log n$, alors $(\Delta u)_n=
+\log(n+1)+n\>\log\lp1+{1\s n}\rp\vers\ii$ et $(\Delta^2u)_n=\log\lc\lp
+{n\s n+1}\rp^n\lp{n+2\s n+1}\rp^{n+2}\rc\vers\log\lp{1\s e}\>e\rp=0$, donc $u$ est dense modulo 1.
+
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 4 :}\msk
+Soit $I$ un intervalle de $\rmat$. Une fonction $f:I\vers\rmat$
+est dite {\bf semi-continue inf‚rieurement} (en abr‚g‚ s.c.i.) si on a\vv
+$$\a x_0\in I\quad\a\eps>0\quad\e\alpha>0\quad\a x\in I\qquad
+  |x-x_0|\ie\alpha\impl f(x)\se f(x_0)-\eps\;.$$
+\par
+{\bf a.} Donner des exemples de fonctions s.c.i.\ssk
+{\bf b.} Montrer que toute fonction s.c.i. sur un segment de $\rmat$
+admet un minimum.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf a.}
+
+\msk
+
+{\bf b.} Soit $f$ une fonction s.c.i. sur le segment $I=[a,b]$.\ssk\sect
+$\bullet$ Montrons d'abord que $f$ est minor‚e sur $I$.\ssk\new
+Si ce n'‚tait pas le cas, on pourrait construire une suite $(x_n)$ de
+points de $[a,b]$ telle que $\Lim{n}{\infty}f(x_n)=-\infty$. On peut en
+extraire une sous-suite $(y_n)=(x_{\ffi(n)})$, convergeant vers un point
+$y$ de $I$. Mais cela est absurde car (en prenant la d‚finition de ``s.c.i.''
+avec $x_0=y$ et $\eps=1$), il existe un voisinage de $y$ dans lequel
+$f(x)\se f(y)-1$. Les $x_{\ffi(n)}$ ‚tant dans ce voisinage pour $n$ assez
+grand, on a une contradiction.
+
+\msk\sect
+$\bullet$ Montrons maintenant que la borne inf‚rieure est atteinte~: soit
+$m=\inf_{x\in I}f(x)$.\ssk\new
+Pour tout $n\in\net$, il existe $x_n\in I$ tel que \quad{\bf (*)} $\;m\ie f(x_n)\ie m+{1\s n}$.
+De $(x_n)$, on extrait encore une sous-suite $(y_n)=(x_{\ffi(n)})$,
+convergeant vers un $y\in I$. Des in‚galit‚s {\bf (*)}, on d‚duit $\Lim{n}
+{\infty}f(x_n)=m$, donc $\Lim{n}{\infty}f(y_n)=m$.
+\ssk\new
+Donnons-nous $\eps>0$. Il existe alors un $\alpha>0$ tel que\vv
+$$\a x\in I\qquad|x-y|\ie\alpha\impl f(x)\se f(y)-\eps\;.$$
+Comme $(y_n)$ converge vers $y$, il existe un rang $N$ … partir duquel
+$f(y_n)\se f(y)-\eps$. Comme $\Lim{n}{\infty}f(y_n)=m$, par passage … la
+limite, on d‚duit $m\se f(y)-\eps$.\ssk\new
+Cette derniŠre in‚galit‚ ‚tant vraie pour tout $\eps>0$, on a
+$m\se f(y)$, donc $f(y)=m$ et la borne inf‚rieure est atteinte.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 5 :}\msk
+Soit $x\in\>]0,1]$.\msk
+{\bf 1.} Montrer qu'il existe une unique suite $(u_n)$ d'entiers naturels, croissante avec $\>\a n\in\nmat\quad u_n\se2$, telle que\vvv
+$$x=\sum_{n=0}^{\infty}{1\s u_0u_1\cdots u_n}\;.$$
+D\'ecrire un algorithme de calcul des $u_n$.\msk
+{\bf 2.} Montrer que $x$ est rationnel si et seulement si la suite $(u_n)$ est stationnaire.\msk
+{\bf 3.} Le nombre $e^{\sqrt{2}}$ est-il rationnel~?
+\msk
+{\it Source : Daniel DUVERNEY, Th\'eorie des nombres, \'Editions Dunod, ISBN 2-10-004102-9}
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf 1.} $\bullet$ {\bf Unicit\'e~:} Supposons l'existence d'une telle suite $(u_n)$. On a alors\vv
+\begin{eqnarray*}
+x & = & {1\s u_0}+{1\s u_0u_1}+{1\s u_0u_1u_2}+\cdots
+      = {1\s u_0}\lp 1+{1\s u_1}+{1\s u_1u_2}+\cdots\rp \\
+   & = &{1\s u_0}\bigg(1+{1\s u_1}\big(1+{1\s u_2}(1+\cdots)\big)\bigg)\;,
+\end{eqnarray*}
+ce que l'on va essayer d'\'ecrire plus rigoureusement. Posons donc $\;x_n=\sum_{k=0}^{\infty}{1\s u_nu_{n+1}\cdots u_{n+k}}$ pour tout $n\in\nmat$ (la s\'erie d\'efinissant $x_n$ est \'evidemment convergente), on a alors $x_0=x$ et, pour tout entier naturel $n$, on a $\;x_n={1\s u_n}(1+x_{n+1})$, soit encore $\;x_{n+1}=u_nx_n-1\;$ ou $\;u_n={1\s x_n}+{x_{n+1}\s x_n}$. La suite $(u_n)$ \'etant croissante, on a
+$$x_{n+1}=\sum_{k=0}^{\infty}{1\s u_{n+1}u_{n+2}\cdots u_{n+1+k}}\ie\sum_{k=0}^{\infty}{1\s u_nu_{n+1}\cdots u_{n+k}}=x_n\;,$$
+donc la suite $(x_n)$ est d\'ecroissante~; on en d\'eduit l'encadrement $\;{1\s x_n}<u_n\ie{1\s x_n}+1$. Comme $u_n$ est un entier, on a donc $u_n=1+E\lp{1\s x_n}\rp$.\msk\sect
+On a ainsi prouv\'e (sous r\'eserve d'existence) l'unicit\'e de la suite $(u_n)$, et l'algorithme de calcul est le suivant~: poser $x_0=x$ puis, pour tout entier naturel $n$, poser $\;u_n=1+E\lp{1\s x_n}\rp\;$ et $\;x_{n+1}=u_nx_n-1$.
+\bsk\sect
+$\bullet$ {\bf Existence~:} R\'eciproquement, consid\'erons les $u_n$ construits par cet algorithme. On a\break $u_0=1+E\lp{1\s x}\rp\se2$, donc ${1\s x_0}<u_0\ie{1\s x_0}+1$ d'o\`u $1<u_0x_0\ie 1+x_0$. Il en r\'esulte $\;0<x_1=u_0x_0-1\ie x_0$ puis, de la m\^eme fa\c con, $0<x_2\ie x_1$. Par une r\'ecurrence imm\'ediate, la suite $(x_n)$ est d\'ecroissante \`a valeurs strictement positives. De $\;u_n=1+E\lp{1\s x_n}\rp$, on d\'eduit que la suite $(u_n)$ est croissante et ses termes sont tous des entiers naturels au moins \'egaux \`a 2.\msk\sect
+Il reste \`a montrer que $x=\sum_{n=0}^{\infty}{1\s u_0u_1\cdots u_n}$. La convergence de la s\'erie r\'esulte imm\'ediatement de $u_n\se2$. On montre facilement que\vv
+$$x={1\s u_0}+{1\s u_0u_1}+\cdots+{1\s u_0u_1\cdots u_n}+{x_{n+1}\s u_0u_1\cdots u_n}$$
+pour tout $n\in\nmat$. Or, on a $\;0<x_{n+1}\ie x_0\;$ et $\;u_0u_1\cdots u_n\se 2^n$, donc $\Lim{n}{\ii}{x_{n+1}\s u_0u_1\cdots u_n}=0$, ce qu'il fallait d\'emontrer.
+\msk\sect
+{\it L'\'ecriture du nombre $x$ sous la forme} $x=\sum_{n=0}^{\infty}{1\s u_0u_1\cdots u_n}$ {\it est son} {\bf d\'eveloppement en s\'erie de Engel}. {\it Avec $u_n=n+2$ par exemple, le lecteur obtiendra le d\'eveloppement en s\'erie de Engel du nombre} $e-2$.
+
+\bsk
+{\bf 2.} $\bullet$ Si la suite $(u_n)$ est stationnaire (constante \`a partir du rang $N$), alors\vv
+\begin{eqnarray*} 
+x & = & {1\s u_0}+{1\s u_0u_1}+\cdots+{1\s u_0u_1\cdots u_{N-1}}\lp\sum_{k=0}^{\infty}{1\s u_N^k}\rp\\
+   & = & {1\s u_0}+{1\s u_0u_1}+\cdots+{1\s u_0u_1\cdots u_{N-2}}+{1\s u_0u_1\cdots u_{N-1}}\cdot{u_N\s u_N-1}
+\end{eqnarray*}
+et le nombre $x$ est rationnel.
+\msk\sect
+$\bullet$ R\'eciproquement, supposons $x$ rationnel~: $x=x_0={a\s b}={a_0\s b_0}$ avec $a$ et $b$ entiers naturels non nuls. Alors $u_0=E\lp{1\s x}\rp+1=q_0+1$ avec $q_0=b_0\;{\rm div}\;a_0$ (quotient dans la division euclidienne~: $b_0=a_0q_0+r_0$, avec $0\ie r_0<a_0$). Ensuite,\vv
+$$x_1=u_0x_0-1=(q_0+1){a_0\s b_0}-1={q_0a_0+a_0-b_0\s b_0}={a_0-r_0\s b_0}={a_1\s b_0}$$
+avec $a_1\in\nmat$ et $1\ie a_1\ie a_0$. On r\'eit\`ere~: $x_2={a_1-r_1\s b_0}$ avec $r_1=b_0\;{\rm mod}\;a_1$ (reste dans la division euclidienne), donc $x_2={a_2\s b_0}$ avec $a_2\in\nmat$ et $1\ie a_2\ie a_1\ie a_0$.\ssk\new
+Par une r\'ecurrence imm\'ediate, on a, pour tout $n\in\net$, $x_n={a_n\s b_0}$ et $(a_n)$ est une suite d\'ecroissante d'entiers naturels, elle est donc stationnaire. La suite $(x_n)$ est donc aussi stationnaire, et il en est de m\^eme de $(u_n)$ puisque $u_n=1+E\lp{1\s x_n}\rp$.
+\msk
+{\bf 3.} Partons du d\'eveloppement en s\'erie enti\`ere\vv
+\begin{eqnarray*}
+\ch\sqrt{2} & = & \sum_{n=0}^{\infty}{(\sqrt{2})^{2n}\s(2n)!}=\sum_{n=0}^{\infty}{2^n\s(2n)!}=1+1+\sum_{n=2}^{\infty}{2^n\s(2n)!}\\
+& = & 2+{1\s6}+{1\s6\times15}+\cdots+{1\s6\times15\times\cdots\times n(2n-1)}+\cdots
+\end{eqnarray*}
+puisque $\;{2^n\s(2n)!}={2^{n-1}\s\big(2(n-1)\big)!}\times{1\s n(2n-1)}$. Le nombre $x=\ch\sqrt{2}-2\in\>]0,1]$ admet donc un d\'eveloppement en s\'erie de Engel non stationnaire avec $u_n=(n+2)(2n+3)$ ({\it il faut d\'ecaler les indices de deux unit\'es pour retrouver les notations de l'\'enonc\'e}), il est donc irrationnel.\msk\sect
+Si $e^{\sqrt{2}}$ \'etait rationnel, alors $\ch\sqrt{2}={1\s2}\lp e^{\sqrt{2}}+{1\s e^{\sqrt{2}}}\rp$ le serait aussi, donc $\;e^{\sqrt{2}}\not\in\qmat$.
+
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 6 :}\msk
+{\bf 1.} Soit $G$ un sous-groupe de $(\rmat,+)$. Montrer que~:\ssk\new
+- soit $G=\{0\}$,\ssk\new
+- soit $G=m\zmat$ avec $m=\min(G\inter\rpe)$,\ssk\new
+- soit $G$ est dense dans $\rmat$.\ssk\sect
+Que dire des sous-groupes de $(\rpe,\times)$~?\msk
+{\bf 2.} Soit l'ensemble $\;G=\{x+y\sqrt{2}\;;\;(x,y)\in\zmat^2\>,\>x^2-2y^2=1\}.$\ssk\sect
+Montrer que $G$ est un sous-groupe de $(\ret,\times)$ et que $\;\min(G\inter]1,\ii[)=3+2\sqrt{2}$. En d\'eduire une explicitation des \'el\'ements du groupe $G$.\msk
+{\bf 3.} On note $S$ l'ensemble des points \`a coordonn\'ees positives enti\`eres sur l'hyperbole $(H)$ d'\'equation $x^2-2y^2=1$, c'est-\`a-dire\vv
+$$S=\{(x,y)\in\nmat^2\;|\;x^2-2y^2=1\}\;.$$
+Montrer que l'on peut \'ecrire $S=\{(x_n,y_n)\;;\;n\in\nmat\}$, o\`u $(x_n)$ et $(y_n)$ sont deux suites strictement croissantes d'entiers naturels. Expliciter $x_n$ et $y_n$.
+
+\msk
+{\it Source : E. RAMIS, Claude DESCHAMPS, Jacques ODOUX, Analyse 1, \'Editions Masson, ISBN 2-225-80098-7}
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf 1.} Soit $G$ un sous-groupe de $(\rmat,+)$, supposons $G\not=\{0\}$. Alors l'ensemble $E=G\inter\rpe$ est non vide, soit $m$ sa borne inf\'erieure.\msk\sect
+$\bullet$ Si $m=0$, montrons que $G$ est dense dans $\rmat$. Si $u$ et $v$ sont deux r\'eels tels que $u<v$, alors il existe $g\in G$ v\'erifiant $0<g<v-u$, mais alors $g\zmat\subset G$~; comme $g\zmat$ rencontre le segment $[u,v]$, on a prouv\'e que $G$ est dense dans $\rmat$.\msk\sect
+$\bullet$ Si $m>0$, commen\c cons par montrer que $m\in G$~: si ce n'\'etait pas le cas, on pourrait trouver au moins un \'el\'ement $g$ de $G$ dans l'intervalle $]m,2m[$ (puisque $2m$ n'est pas un minorant de $E=G\inter\rpe$), puis un \'el\'ement $h$ de $G$ dans $]m,g[$ (puisque $g$ n'est pas un minorant de $E$)~; alors on a $g-h\in G$ et $0<g-h<m$, ce qui est absurde.\ssk\new
+Puisque $m\in G$, on a $m\zmat\subset G$. Inversement, soit $g\in G$, soit $k=E\lp{g\s m}\rp$, alors $km\in G$ et $km\ie g<(k+1)m$, donc $g-km\in G$ avec $0\ie g-km<m$, ce qui prouve que $g-km=0$ donc $g\in m\zmat$. On a donc $G=m\zmat$.
+\msk\sect
+L'application $\exp:(\rmat,+)\vers(\rpe,\times)$ est un isomorphisme de groupes, et c'est aussi un hom\'eomorphisme. On en d\'eduit que, si $G$ est un sous-groupe de $(\rpe,\times)$, alors\ssk\new
+- soit $G=\{1\}$,\ssk\new
+- soit $G=a^{\zmat}=\{a^k\;;\;k\in\zmat\}$ avec $a=\min(G\inter]1,\ii[)$,\ssk\new
+- soit $G$ est dense dans $\rpe$.
+
+\msk
+{\bf 2.} Soient $z=x+y\sqrt{2}$ et $z'=x'+y'\sqrt{2}$ deux \'el\'ements de $G$~; alors $z z'=x''+y''\sqrt{2}$ avec $\system{&x''&=&&xx'&+&2yy'\cr &y''&=&&xy'&+&yx'\cr}$ (ce sont des entiers relatifs) et
+$$x''^2-2y''^2=(xx'+2yy')^2-2(xy'+yx')^2=(x^2-2y^2)(x'^2-2y'^2)=1\;,$$
+donc $zz'\in G$. Par ailleurs, $1\in G$ et, si $z=x+y\sqrt{2}\in G$, alors ${1\s z}=x-y\sqrt{2}\in G$.\msk\sect
+L'ensemble $G$ est donc un sous-groupe de $(\ret,\times)$.\msk\sect
+On note que $z\in G\iff -z\in G$, il suffit donc de d\'eterminer l'ensemble $H=G\inter\rpe$, qui est un sous-groupe de $(\rpe,\times)$. Posons enfin $E=G\inter]1,\ii[=H\inter]1,\ii[$.
+On a effectivement $3+2\sqrt{2}\in E$, montrons que c'est le plus petit \'el\'ement de $E$.\msk\sect
+Si $z=x+y\sqrt{2}\in E$, on a $(x,y)\in\zmat^2$, $x+y\sqrt{2}>1$ et $x^2-2y^2=(x+y\sqrt{2})(x-y\sqrt{2})=1$.\ssk\new
+- on ne peut avoir $x\ie0$ et $y\ie0$, c'est clair!\ssk\new
+- on ne peut avoir $x\ie0$ et $y\se0$ car alors $\;{1\s x+y\sqrt{2}}=x-y\sqrt{2}\;$ serait n\'egatif, absurbe !\ssk\new
+- on ne peut avoir $x\se0$ et $y\ie0$ car cela impliquerait $\;x-y\sqrt{2}={1\s x+y\sqrt{2}}\se x+y\sqrt{2}$, impossible avec $x+y\sqrt{2}>1$.\ssk\new
+On a donc $x>0$ et $y>0$. On ne peut avoir ni $y=0$ ni $y=1$ (v\'erifications imm\'ediates avec $x^2-2y^2=1$), et si $y\se3$, alors $x^2=1+2y^2\se19$, donc $x\se5$ et $z\se5+3\sqrt{2}>3+2\sqrt{2}$.\msk\sect
+On a ainsi prouv\'e que $\min(G\inter]1,\ii[)=3+2\sqrt{2}$, donc $G\inter\rpe=(3+2\sqrt{2})^{\zmat}$ et $H=\pm(3+2\sqrt{2})^{\zmat}=\{\eps(3+2\sqrt{2})^n\;;\;\eps\in\{-1,1\}\>,\>n\in\zmat\}$.\ssk\sect
+Notons que $G\inter[1,\ii[=(3+2\sqrt{2})^{\nmat}=\{(3+2\sqrt{2})^n\;;\;n\in\nmat\}$.
+\msk
+{\bf 3.} Notons d'abord $T$ l'ensemble des points \`a coordonn\'ees entiers relatifs sur l'hyperbole $(H)$~:\vv
+$$T=\{(x,y)\in\zmat^2\;|\;x^2-2y^2=1\}\;.$$
+On v\'erifie ({\it c'est facile}) que l'application $\ffi:T\vers G$, $(x,y)\mapsto x+y\sqrt{2}$ est une bijection. On v\'erifie aussi que $G\inter[1,\ii[=\{x+y\sqrt{2}\;;\;(x,y)\in\nmat^2\>,\>x^2-2y^2=1\}$ (l'inclusion dans le sens $\subset$ a \'et\'e d\'emontr\'ee ci-dessus, l'autre est imm\'ediate).\msk\sect
+On a donc $S=\ffi^{-1}(G\inter[1,\ii[)$, c'est-\`a-dire que $S$ est l'ensemble des couples $(x_n,y_n)$ o\`u, pour tout $n\in\nmat$, on \'ecrit $(3+2\sqrt{2})^n=x_n+y_n\sqrt{2}$. Il est clair que $x_n$ et $y_n$ sont des entiers naturels, on peut pr\'eciser que\vv
+$$x_n=\sum_{k=0}^{E\lp{n\s 2}\rp}C_n^{2k}\>3^{n-2k}\>8^k\qquad{\rm et}\qquad
+  y_n= 2\;\sum_{k=0}^{E\lp{n-1\s 2}\rp}C_n^{2k+1}\>3^{n-2k-1}\>8^k\;.$$
+On a aussi $\system{&x_{n+1}&=&&3x_n&+&4y_n\cr &y_{n+1}&=&&2x_n&+&3y_n\cr}$, d'o\`u la stricte croissance des suites $(x_n)$ et $(y_n)$, et un calcul de proche en proche. Ainsi, si on note $M_n$ le point de coordonn\'ees $(x_n,y_n)$, on a\vv
+$$M_0(1,0)\;;\quad M_1(3,2)\;;\quad M_2(17,12)\;;\quad M_3(99,70)\;;\quad
+M_4(577,408)\;;\quad\cdots$$
+
+
+
+
+\end{document}

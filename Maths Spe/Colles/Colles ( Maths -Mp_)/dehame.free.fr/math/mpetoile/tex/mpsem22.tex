@@ -1,0 +1,497 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % \'evite le textstyle en mode
+                                % math\'ematique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math\'ematiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de pr\'esentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% divers
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'\'ecriture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% \`a l'int\'erieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d\'ecroissante),
+% \nondef (la fonction est non d\'efinie)
+% si l'on termine la derni\`ere ligne par \cr, un trait est tir\'e en dessous
+% sinon elle est laiss\'ee sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  
+\def\rmat{{\rm I\kern-0.6mm R}}  
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____d\'ef de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% Alg\`ebre lin\'eaire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________d\'eterminant_______
+\def\det{\mathop{\rm det}\nolimits} 
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos\'ee ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  
+\def\MC#1{{\cal M}_{#1}(\cmat)}  
+\def\MK#1{{\cal M}_{#1}(\kmat)}  
+
+%________Complexes_________ 
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   
+\def\Arccos{\mathop{\rm Arccos}\nolimits}  
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     
+\def\Argch{\mathop{\rm Argch}\nolimits}     
+\def\Argth{\mathop{\rm Argth}\nolimits}     
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} 
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s\'eries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr\'eg\'ees%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-\`a-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+\def\cala{{\cal A}}
+\def\fhat{\widehat{f}}
+\let\wh=\widehat
+\def\ftilde{\tilde{f}}
+
+% ********************************************************************************************************************** %
+%                                                                                                                                                                                   %
+%                                                                    FIN   DES   MACROS                                                                              %
+%                                                                                                                                                                                   %
+% ********************************************************************************************************************** %
+
+
+
+
+
+
+
+
+
+
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+
+
+
+\overfullrule=0mm
+
+
+\cl{{\bf SEMAINE 22}}\msk
+\cl{{\bf SYST\`EMES DIFF\'ERENTIELS}}\msk
+\cl{{\bf CONIQUES, QUADRIQUES}}\msk
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+Int\'egrer le syst\`eme diff\'erentiel\vv
+$$\system{&x'&=&-y+x(x^2+y^2)\>\sin{1\s x^2+y^2}\cr
+&y'&=&x+y(x^2+y^2)\>\sin{1\s x^2+y^2}\cr}\;.\leqno\hbox{\bf (S)}$$\par
+Comportement des courbes int\'egrales au voisinage de l'origine~?
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+Le syst\`eme {\bf (S)} peut s'\'ecrire sous la forme $\system{&x'&=&f(x,y)\cr &y'&=&g(x,y)\cr}\;$, les fonctions $f$ et $g$ \'etant de classe $\ceun$ dans l'ouvert $U=\rmat^2\setminus\{(0,0)\}$.\msk
+Il semble assez naturel ici d'utiliser les coordonn\'ees polaires. Si $(x,y)$ est une solution de {\bf (S)} d\'efinie sur un intervalle $I$ de $\rmat$, le th\'eor\`eme de rel\`evement permet de poser $\system{&x(t)&=&r(t)\>\cos\theta(t)\cr &y(t)&=&r(t)\>\sin\theta(t)\cr}\;$, les fonctions $r:I\vers\rpe$ et $\theta:I\vers\rmat$ \'etant de classe $\ceun$.\msk
+Plus g\'en\'eralement, si $u:\rpe\vers\rmat$ est une fonction de classe $\ceun$, le syst\`eme diff\'erentiel $\system{&x'&=&-y+x\>u(r)\cr &y'&=&x+y\>u(r)\cr}\;$ se  ram\`ene \`a $\;\system{r'\>\cos\theta&-&r\>\theta'\sin\theta&=&-r\>\sin\theta&+&r\>u(r)\>\cos\theta\cr
+r'\>\sin\theta&+&r\>\theta'\cos\theta&=&\hfill r\>\cos\theta&+&r\>u(r)\>\sin\theta\cr}\;$,
+c'est-\`a-dire \`a $\;\system{&r'(t)&=&r(t)\>u\big(r(t)\big)\cr &\theta'(t)&=&1\hfill\cr}\;$. Cela s'int\`egre alors en $\theta=t$ (\`a une translation pr\`es du ``temps''~: les courbes int\'egrales sont donc parcourues \`a ``vitesse angulaire'' constante) et il reste \`a int\'egrer l'\'equation diff\'erentielle autonome $r'=r\>u(r)$.\ssk\sect
+$\triangleright$ Si $r_0>0$ v\'erifie $u(r_0)=0$, on a une solution d\'efinie par $\system{&r(t)&=&r_0\hfill\cr &\theta(t)&=&t+C\cr}\;:$ le cercle de centre $O$ et de rayon $r_0$ est une courbe int\'egrale.\ssk\sect
+$\triangleright$ Si $u(r)\not=0$, on \'ecrit $\;{{\rm d}r\s r\>u(r)}={\rm d}t={\rm d}\theta\;$ et on int\`egre...
+
+\msk
+Dans le cas qui nous int\'eresse, $u(r)=r^2\>\sin{1\s r^2}$. Pour tout $k\in\net$, le cercle ${\cal C}_k$ de centre $O$ et de rayon ${1\s\sqrt{k\pi}}$ est une courbe int\'egrale. Sinon, on int\`egre $\;{{\rm d}r\s r^3\>\sin\dst{1\s r^2}}={\rm d}t$. En posant $r={1\s\sqrt{s}}$, puis $v=\cos s$, on a\vv
+\begin{eqnarray*}
+\int{{\rm d}r\s r^3\>\sin\dst{1\s r^2}} & = & -{1\s2}\>\int{{\rm d}s\s\sin s}={1\s2}\>\int{\sin s\>{\rm d}s\s\cos^2s-1}\\
+& = & -{1\s2}\>\int{{\rm d}v\s v^2-1}=-{1\s4}\>\ln\left|{1-v\s 1+v}\right| =-{1\s4}\>\ln\lp{1-\cos s\s 1+\cos s}\rp\\
+& = & -{1\s2}\>\ln\left|\tan{s\s2}\right|=-{1\s2}\>\ln\left|\tan{1\s 2r^2}\right|\;.
+\end{eqnarray*}
+Finalement, $\;-{1\s2}\>\ln\left|\tan{1\s 2r^2}\right|=\theta+C\;$ ou $\;\ln\left|C'\>\tan{1\s 2r^2}\right|=-2\theta$, puis $\;\tan{1\s 2r^2}=\lam\>e^{-2\theta}\;$ et finalement l'\'equation polaire des courbes int\'egrales (autres que les cercles ${\cal C}_k$) est\vv
+$$r={1\s\sqrt{2\>\arctan(\lam\>e^{-2\theta})+2k\pi}}\qquad{\rm avec}\quad k\in\nmat\;,\;\lam\in\ret\;.$$
+\msk
+\'Etudions rapidement ces courbes int\'egrales~:\ssk\sect
+$\triangleright$ pour $k\in\net$ et $\lam>0$, la fonction $t\mapsto r(t)$ (ou $\theta\mapsto r(\theta)$) est un $\ceinf$-diff\'eomorphisme croissant de $\rmat$ vers $\lci{1\s\sqrt{(2k+1)\pi}},{1\s\sqrt{2k\pi}}\rci$~;\ssk\sect
+$\triangleright$ pour $k\in\net$ et $\lam<0$, la fonction $t\mapsto r(t)$ (ou $\theta\mapsto r(\theta)$) est un $\ceinf$-diff\'eomorphisme d\'ecroissant de $\rmat$ vers $\lci{1\s\sqrt{2k\pi}},{1\s\sqrt{(2k-1)\pi}}\rci$~;\ssk\sect
+$\triangleright$ pour $k=0$ et $\lam>0$, la fonction $t\mapsto r(t)$ (ou $\theta\mapsto r(\theta)$) est un $\ceinf$-diff\'eomorphisme d\'ecroissant de $\rmat$ vers $\lci{1\s\sqrt{\pi}},\ii\rci$.
+\msk
+Les cercles ${\cal C}_{2k}$ sont donc des cycles limites attracteurs, alors que ${\cal C}_{2k+1}$ sont des cycles limites r\'epulseurs.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 2 :}\msk
+Soient $a$ et $b$ deux r\'eels avec $0<b<a$.\msk
+Pour $\lam<a$ et $\lam\not=b$, caract\'eriser la courbe $C_{\lam}$ d'\'equation\vv
+$$(C_{\lam})\;:\qquad {x^2\s b-\lam}+{y^2\s a-\lam}=1\;.$$\par
+Montrer que, par tout point du plan en dehors des axes, il passe deux courbes $C_{\lam_1}$ et $C_{\lam_2}$ se coupant orthogonalement.
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+$\triangleright$ si $\lam<b$, alors $C_{\lam}$ est une ellipse de centre $O$, d'axe focal $Oy$.\ssk
+$\triangleright$ si $b<\lam<a$, alors $C_{\lam}$ est une hyperbole de centre $O$, d'axe focal $Oy$.\ssk
+La distance focale $c=\sqrt{a-b}$ est constante, les foyers $F$ et $F'$ sont fixes, de coordonn\'ees $(0,c)$ et $(0,-c)$. Il s'agit donc d'une famille de {\bf coniques homofocales}.
+\bsk
+La normale \`a $C_{\lam}$ au point de coordonn\'ees $(x,y)$ est dirig\'ee par le vecteur $\vect{n}\lp{x\s b-\lam},{y\s a-\lam}\rp$, gradient (au facteur 2 pr\`es) de l'application $(x,y)\mapsto{x^2\s b-\lam}+{y^2\s a-\lam}-1$.
+\bsk
+Soit $M(x,y)$ un point du plan avec $xy\not=0$. Les param\`etres $\lam$ tels que $M\in C_{\lam}$ sont donn\'es par l'\'equation\vvvv
+$$(a-\lam)\>x^2+(b-\lam)\>y^2-(a-\lam)(b-\lam)=0\;,$$\vv\noi
+soit\vvv\vvv
+$$\lam^2-(a+b-x^2-y^2)\lam+ab-ax^2-by^2=0\;.\leqno\hbox{\bf (E)}$$
+C'est une \'equation du second degr\'e de discriminant\vvvv
+\begin{eqnarray*}
+\Delta & = & (a+b-x^2-y^2)^2-4ab+4ax^2+4by^2\\
+        & = & (a-b+x^2-y^2)^2+4x^2y^2>0\;.
+\end{eqnarray*}
+Cette \'equation admet deux racines r\'eelles distinctes $\lam_1$ et $\lam_2$ avec $\lam_1<\lam_2$.
+En notant $P(\lam)$ le premier membre de {\bf (E)}, on a\vvv
+$$P(a)=(a-b)y^2>0\quad{\rm et}\qquad P(b)=(b-a)x^2<0\;,$$
+donc $\lam_1<b<\lam_2<a$. Il y a donc exactement deux courbes $C_{\lam}$ passant par $M$ (une ellipse et une hyperbole).
+
+\bsk
+Par ailleurs, si deux courbes ${\cal C}_{\lam_1}$ et ${\cal C}_{\lam_2}$ ($\lam_1\not=\lam_2$) se coupent en $M(x,y)$, alors on a\vv
+$${x^2\s b-\lam_1}+{y^2\s a-\lam_1}={x^2\s b-\lam_1}+{y^2\s a-\lam_1}\;,$$
+soit\vvv
+$${x^2\s(b-\lam_1)(b-\lam_2)}+{y^2\s(a-\lam_1)(a-\lam_2)}=0\;,$$
+ce qui exprime l'orthogonalit\'e des vecteurs $\vect{n_1}$ et $\vect{n_2}$ normaux \`a ${\cal C}_{\lam_1}$ et ${\cal C}_{\lam_2}$ respectivement au point $M$.
+
+\msk
+{\it Les deux courbes ${\cal C }_{\lam}$ se coupant en $M$ sont une ellipse et une hyperbole. La tangente en $M$ \`a l'ellipse est la bissectrice ext\'erieure de $\widehat{FMF'}$, et la tangente \`a l'hyperbole est la bissectrice int\'erieure de cet angle}.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 3 :}\msk
+Dans l'espace euclidien orient\'e $E$ de dimension trois, on donne une droite $D$ et un plan $P$, suppos\'es s\'ecants. Soit $k$ un r\'eel strictement positif. On note ${\cal S}$ l'ensemble des points $M$ de $E$ v\'erifiant la relation\vv
+$$d(M,D)^2+d(M,P)^2=k^2\;.$$
+Montrer que ${\cal S}$ est une quadrique, et pr\'eciser sa nature.
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+Choisissons un rep\`ere orthonormal ${\cal R}=(O;\vect{i},\vect{j},\vect{k})$ avec $O$ point d'intersection de $D$ et $P$, les vecteurs $\vect{i}$ et $\vect{j}$ dirigeant $P$, le vecteur $\vect{i}$ dirigeant la projection orthogonale de $D$ sur $P$ (dans le cas particulier o\`u la droite $D$ est perpendiculaire au plan $P$, cette derni\`ere condition n'a plus lieu d'\^etre). Le plan $P$ a alors pour \'equation $z=0$ et, en notant $\alpha$ ($0<\alpha\ie{\pi\s2}$) une mesure de l'angle de la droite $D$ avec le plan $P$, un vecteur unitaire dirigeant $D$ est $\vect{u}(\cos\alpha,0,\sin\alpha)$.\msk
+Soit $M$ un point de $E$, de coordonn\'ees $(x,y,z)$ dans ${\cal R}$. On a alors $\;d(M,P)=|z|\;$ et  $\;d(M,D)=\|\vect{OM}\wedge\vect{u}\|$. Or,\vv
+$$\vect{OM}\wedge\vect{u}=(y\>\sin\alpha)\vect{i}+(z\>\cos\alpha-x\>\sin\alpha)\vect{j}-(y\>\cos\alpha)\vect{k}\;,$$
+donc $\;d(M,D)^2=x^2\>\sin^2\alpha+y^2+z^2\>\cos^2\alpha-2xz\>\cos\alpha\>\sin\alpha$. L'ensemble ${\cal S}$ admet donc pour \'equation cart\'esienne dans le rep\`ere ${\cal R}$~:\vv
+$$x^2\>\sin^2\alpha+y^2+(1+\cos^2\alpha)z^2-2xz\>\cos\alpha\>\sin\alpha-k^2=0\;.$$
+On reconna\^\i t l'\'equation d'une quadrique de centre $O$, la matrice de la forme quadratique associ\'ee est $\;M=\pmatrix{\sin^2\alpha&0&-\cos\alpha\sin\alpha\cr 0&1&0\cr -\cos\alpha\sin\alpha&0&1+\cos^2\alpha\cr}$.\msk
+Recherchons ses valeurs propres~:\vv
+$$\chi_M(X) = (1-X)(X^2-2X+\sin^2\alpha)=(1-X)(1+\cos\alpha-X)(1-\cos\alpha-X)\;.$$
+Les valeurs propres $\lam_1=1$, $\lam_2=1-\cos\alpha$, $\lam_3=1+\cos\alpha$ sont toutes trois strictement positives, donc ${\cal S}$ est un ellipso\"\i de de centre $O$.\msk Recherchons maintenant ses axes~:\ssk
+$\triangleright$ si $\alpha={\pi\s2}$, c'est-\`a-dire si $D\perp P$, l'\'equation cart\'esienne de ${\cal S}$ est~: $x^2+y^2+z^2-k^2=0$, et il s'agit d'une sph\`ere de centre $O$~;\ssk
+$\triangleright$ sinon, les trois valeurs propres sont distinctes et les sous-espaces propres associ\'es sont~:\ssk\sect
+- pour la valeur propre $\lam_1=0$~: l'axe $OX=Oy$~;\ssk\sect
+- pour la valeur propre $\lam_2=1-\cos\alpha$~: la droite $OY=\Delta$ d'\'equations $\;\system{&y&=&0\hfill\cr &z&=&x\>\tan {\alpha\s2}\cr}$~;\ssk\sect
+- pour la valeur propre $\lam_3=1+\cos\alpha$, la droite $OZ=\Delta'$ d'\'equations $\;\system{&y&=&0\hfill\cr &z&=&x\>\tan \lp{\pi\s2}+{\alpha\s2}\rp\cr}$.\ssk
+Dans le plan $xOz$, c'est-\`a-dire dans le plan perpendiculaire \`a $P$ contenant $D$, les axes $\Delta$ et $\Delta'$ sont les bissectrices de $D$ et de $Ox$. L'\'equation r\'eduite de ${\cal S}$ est\vv
+$$X^2+(1-\cos\alpha)\>Y^2+(1+\cos\alpha)\>Z^2=k^2\;.$$
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 4 :}\msk
+{\bf 1.} Soit $u$ un endomorphisme auto-adjoint d'un espace euclidien $E$. D\'emontrer l'\'equivalence entre les assertions\ssk\sect
+{\bf (1)} :\qquad $\tr u=0$~;\ssk\sect
+{\bf (2)} :\qquad il existe une base orthonormale de $E$ dans laquelle la matrice de $u$ a ses coefficients diagonaux tous nuls.
+\msk
+{\bf 2.} Dans l'espace euclidien $E$ de dimension trois, rapport\'e \`a un rep\`ere orthonormal $(O;\vect{i},\vect{j},\vect{k})$, soit l'ellipso\"\i de ${\cal E}$ d'\'equation\vv
+$${x^2\s a^2}+{y^2\s b^2}+{z^2\s c^2}=1\;.$$\sect
+D\'eterminer l'ensemble des points de $E$ par lesquels on peut mener trois plans tangents \`a l'ellipso\"\i de ${\cal E}$ deux \`a deux perpendiculaires.
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf 1.} L'implication {\bf (2)} $\impl$ {\bf (1)} \'etant imm\'ediate, int\'eressons-nous tout de suite \`a sa r\'eciproque.\msk\sect
+Il s'agit de montrer que, si $\tr u=0$, on peut trouver une base orthonormale de $E$ constitu\'ee de vecteurs $q$-isotropes, si $q$ est la forme quadratique d\'efinie par $q(x)=\big(u(x)|x\big)$. Soit ${\cal B}=(e_1,\cdots,e_n)$ une base orthonormale de $E$ diagonalisant $u$, notons $\lam_1$, $\cdots$, $\lam_n$ les valeurs propres associ\'ees, on a ainsi $\sum_{i=1}^n\lam_i=0$. Soit le vecteur $\eps={1\s\sqrt{n}}\>\sum_{i=1}^ne_i$, on a\break $u(\eps)={1\s\sqrt{n}}\>\sum_{i=1}^n\lam_ie_i$, donc $q(\eps)=\big(u(\eps)|\eps\big)={1\s n}\>\sum_{i=1}^n\lam_i=0$, ce vecteur est $q$-isotrope.\ssk\sect
+Ceci permet bien s\^ur d'amorcer une r\'ecurrence sur $n=\dim E$. L'initialisation ($n=1$) \'etant imm\'ediate, supposons l'implication {\bf (1)} $\impl$ {\bf (2)} vraie en dimension $n-1$ ($n\se2$) et reprenons les notations ci-dessus dans un espace euclidien de dimension $n$. Le vecteur $\eps$ \'etant $q$-isotrope, consid\'erons l'hyperplan $H=(\rmat\eps)^{\perp}$. Notons $p$ le projecteur orthogonal sur $H$, soit $v$ l'endomorphisme de $H$ induit par $p\circ u$~; on v\'erifie imm\'ediatement que $v$ est auto-adjoint (puisque $p$ est lui-m\^eme auto-adjoint), que $\big(v(x)|x\big)=\big(u(x)|x\big)$ pour tout $x$ de $H$. Si $(e'_2,\cdots,e'_n)$ est une base orthonormale de $H$, alors $(\eps,e'_2,\cdots,e'_n)$ est une base orthonormale de $E$ et\vv
+$$0=\tr u=\big(u(\eps)|\eps\big)+\sum_{i=2}^n\big(u(e'_i)|e'_i\big)=\sum_{i=2}^n\big(v(e'_i)|e'_i\big)=\tr v\;,$$
+ainsi l'hypoth\`ese de r\'ecurrence peut s'appliquer \`a l'endomorphisme auto-adjoint $v$ de l'espace euclidien $H$ et il existe $(e''_2,\cdots,e''_n)$ base orthonormale de $H$ dans laquelle $v$ est repr\'esent\'e par une matrice de diagonale nulle~; la base orthonormale $(\eps,e''_2,\cdots,e''_n)$ de $E$ r\'epond alors \`a la question.
+
+\msk
+{\bf 2.} Soit $M_1(x_1,y_1,z_1)$ un point de l'ellipso\"\i de ${\cal E}$, le plan ${\cal T}_1$ tangent \`a ${\cal E}$ en $M_1$ admet pour \'equation\vv
+$${x_1\s a^2}(x-x_1)+{y_1\s b^2}(y-y_1)+{z_1\s c^2}(z-z_1)=0\;,\qquad{\rm soit}\qquad{x_1x\s a^2}+{y_1y\s b^2}+{z_1z\s c^2}-1=0\;.$$
+Reprenons le probl\`eme ``\`a l'envers''~: si $M_0(x_0,y_0,z_0)$ est un point ext\'erieur \`a l'ellipso\"\i de, un plan ${\cal P}$ passant par $M_0$ a une \'equation de la forme\vv
+$$\alpha(x-x_0)+\beta(y-y_0)+\gamma(z-z_0)=0\;,$$
+et il est tangent \`a ${\cal E}$ s'il se confond avec un plan ${\cal T}_1$ ci-dessus, c'est-\`a-dire si et seulement s'il existe $M_1(x_1,y_1,z_1)\in{\cal E}$ tel que les \'equations de ${\cal P}$ et de ${\cal T}_1$ sont proportionnelles~:\vv
+$${x_1\s a^2\alpha}={y_1\s b^2\beta}={z_1\s c^2\gamma}={1\s\alpha x_0+\beta y_0+\gamma z_0}$$
+({\it le d\'enominateur de la derni\`ere expression ne peut \^etre nul car aucun plan tangent \`a ${\cal E}$ ne passe par l'origine}). On en tire alors les coordonn\'ees du pr\'esum\'e point de contact $M_1$~:\vv
+$$x_1={a^2\alpha\s\alpha x_0+\beta y_0+\gamma z_0}\;;\quad
+  y_1={b^2\beta\s\alpha x_0+\beta y_0+\gamma z_0}\;;\quad 
+  z_1={c^2\gamma\s\alpha x_0+\beta y_0+\gamma z_0}\;.$$
+et il reste \`a exprimer que ce  point $M_1(x_1,y_1,z_1)$ appartient \`a ${\cal E}$, ce qui donne la condition\vv
+$$a^2\alpha^2+b^2\beta^2+c^2\gamma^2=(\alpha x_0+\beta y_0+\gamma z_0)^2$$
+(on a obtenu l'{\bf \'equation tangentielle} de l'ellipso\"\i de ${\cal E}$, c'est-\`a-dire une condition n\'ecessaire et suffisante sur les coefficients $\alpha$, $\beta$, $\gamma$, $\delta$ pour que le plan d'\'equation $\alpha x+\beta y+\gamma z+\delta=0$ soit tangent \`a ${\cal E}$~: cette condition est $\;a^2\alpha^2+b^2\beta^2+c^2\gamma^2-\delta^2=0$). Cette \'equation tangentielle, homog\`ene de degr\'e deux en les variables $\alpha$, $\beta$, $\gamma$, donne les vecteurs normaux aux plans issus de $M_0$ et tangents \`a ${\cal E}$. On peut la voir comme l'\'equation, dans le rep\`ere $(M_0;\vect{i},\vect{j},\vect{k})$ d'un c\^one du second degr\'e de sommet $M_0$. On cherche alors une condition n\'ecessaire et suffisante pour que ce c\^one admette trois g\'en\'eratrices deux \`a deux orthogonales. Or, les g\'en\'eratrices du c\^one en question sont dirig\'ees par les vecteurs isotropes de la forme quadratique $q$ d\'efinie sur $\rmat^3$ par\vv
+\begin{eqnarray*}
+q(\alpha,\beta,\gamma) & = & (\alpha x_0+\beta y_0+\gamma z_0)^2-a^2\alpha^2-b^2\beta^2-c^2\gamma^2\\
+& = & (x_0^2-a^2)\alpha^2+(y_0^2-b^2)\beta^2+(z_0^2-c^2)\gamma^2+2x_0y_0\alpha\beta+2y_0z_0\beta\gamma+2z_0x_0\gamma\alpha\;.
+\end{eqnarray*}
+La matrice de cette forme quadratique $q$ est $\;A=\pmatrix{x_0^2-a^2& x_0y_0& x_0z_0\cr x_0y_0&y_0^2-b^2&y_0z_0\cr x_0z_0&y_0z_0&z_0^2-c^2\cr}$. La condition n\'ecessaire et suffisante pour que cette forme $q$ admette trois vecteurs isotropes deux \`a deux orthogonaux est $\tr(A)=0$, c'est-\`a-dire\vv
+$$x_0^2+y_0^2+z_0^2=a^2+b^2+c^2\;.$$
+Cette \'equation donne la condition n\'ecessaire et suffisante sur $M_0$ pour que l'on puisse mener de ce point trois plans tangents \`a ${\cal E}$ deux \`a deux perpendiculaires~; c'est l'\'equation d'une sph\`ere de centre $O$ ({\bf sph\`ere orthoptique} de l'ellipso\"\i de ${\cal E}$).
+
+
+
+
+
+
+\end{document}

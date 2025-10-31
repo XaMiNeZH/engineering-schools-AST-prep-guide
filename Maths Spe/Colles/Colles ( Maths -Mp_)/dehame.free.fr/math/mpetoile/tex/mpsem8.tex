@@ -1,0 +1,652 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % ‚vite le textstyle en mode
+                                % math‚matique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math‚matiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de presentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% personnel Monasse
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'‚criture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% … l'int‚rieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d‚croissante),
+% \nondef (la fonction est non d‚finie)
+% si l'on termine la derniŠre ligne par \cr, un trait est tir‚ en dessous
+% sinon elle est laiss‚e sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   % MONASSE
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  % MONASSE
+\def\rmat{{\rm I\kern-0.6mm R}}  % MONASSE
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  % MONASSE
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  % MONASSE
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____def de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% AlgŠbre lin‚aire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________determinant_______
+\def\det{\mathop{\rm det}\nolimits}  % MONASSE
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  % MONASSE
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  % MONASSE
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}  % MONASSE
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos‚e ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  % MONASSE
+\def\MC#1{{\cal M}_{#1}(\cmat)}  % MONASSE
+\def\MK#1{{\cal M}_{#1}(\kmat)}  % MONASSE
+
+%________Complexes_________ % MONASSE
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   % CLENET
+\def\Arccos{\mathop{\rm Arccos}\nolimits}   % CLENET
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   % CLENET
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     % CLENET
+\def\Argch{\mathop{\rm Argch}\nolimits}     % CLENET
+\def\Argth{\mathop{\rm Argth}\nolimits}     % CLENET
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} %CLENET
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s‚ries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  % MONASSE
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  % MONASSE
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  % MONASSE
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  % MONASSE
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  % MONASSE
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr‚g‚es%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-…-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\catcode`@=12 % at signs are no longer letters
+\catcode`\‚=\active
+\def‚{\'e}
+\catcode`\Š=\active
+\defŠ{\`e}
+\catcode`\ˆ=\active
+\defˆ{\^e}
+\catcode`\…=\active
+\def…{\`a}
+\catcode`\—=\active
+\def—{\`u}
+\catcode`\–=\active
+\def–{\^u}
+\catcode`\ƒ=\active
+\defƒ{\^a}
+\catcode`\"=\active
+\def"{\^o}
+\catcode`\‰=\active
+\def‰{\"e}
+\catcode`\‹=\active
+\def‹{\"\i}
+\catcode`\=\active
+\def{\"u}
+\catcode`\‡=\active
+\def‡{\c c}
+\catcode`\Œ=\active
+\defŒ{\^\i}
+
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+
+
+
+
+
+\overfullrule=0mm
+
+
+\cl{{\bf SEMAINE 8}}\msk
+\cl{{\bf FONCTIONS de} $\rmat$ {\bf VERS} $\rmat$. {\bf FONCTIONS CONVEXES}}
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+Soit $I$ un intervalle de $\rmat$. Une application $f:I\vers\rmat$ est dite {\bf absolument continue} si, pour tout $\eps>0$, il existe $\alpha>0$ tel que, pour toute liste $(x_1,\cdots,x_n,y_1,\cdots,y_n)$ de points de $I$ v\'erifiant $x_1<y_1\ie x_2<y_2\ie\cdots\ie x_n<y_n$, on ait\vv
+$$\sum_{i=1}^n(y_i-x_i)<\alpha\impl\sum_{i=1}^n|f(y_i)-f(x_i)|<\eps\;.$$
+\par
+{\bf 1.} Montrer que ${\bf (a)}\impl{\bf (b)}\impl{\bf (c)}$, avec\ssk\sect
+{\bf (a)} : $f$ est lipschitzienne sur $I$~;\ssk\sect
+{\bf (b)} : $f$ est absolument continue sur $I$~;\ssk\sect
+{\bf (c)} : $f$ est uniform\'ement continue sur $I$.\msk
+{\bf 2.} A-t-on ${\bf (c)}\impl{\bf (b)}$~?\msk
+{\bf 3.} Soit $f:I\vers\rmat$, uniform\'ement continue, monotone et convexe (ou concave). Montrer que $f$ est absolument continue sur $I$.\msk
+{\bf 4.} A-t-on ${\bf (b)}\impl{\bf (a)}$~?
+
+\msk
+
+{\it Source : Bertrand HAUCHECORNE, Les contre-exemples en math\'ematiques, \'Editions Ellipses, ISBN 2-7298-8806-3}
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf 1.} L'implication ${\bf (a)}\impl{\bf (b)}$ est imm\'ediate (choisir $\alpha={\eps\s k}$ si $f$ est $k$-lipschitzienne). L'implication ${\bf (b)}\impl{\bf (c)}$ est encore plus imm\'ediate (la continuit\'e uniforme correspond au cas $n=1$ dans la d\'efinition de la continuit\'e absolue).
+
+\msk
+{\bf 2.} Soit $f:[0,2]\vers\rmat$ d\'efinie par $f(0)=0$ et $f(x)=x\>\sin{\pi\s x}$ si $x\not=0$. La fonction $f$ est continue sur $[0,2]$, donc uniform\'ement continue. \msk\sect
+Choisissons maintenant $\eps=1$ et montrons que, pour tout $\alpha>0$, il est possible de trouver des $x_i$ et des $y_i$ tels que $\sum (y_i-x_i)<\alpha$ et $\sum |f(y_i)-f(x_i)|\se1$.\ssk\new
+Pour cela, pour tout entier $k\se1$, posons $x_k={2\s 2k+1}$ et $y_k={2\s 2k-1}=x_{k-1}$, on a alors, pour tout $n\in\net$, $0<x_n<y_n=x_{n-1}<y_{n-1}=x_{n-2}<\cdots<y_2=x_1<y_1=2$ et $f(x_k)=x_k\>\sin(2k+1){\pi\s2}=(-1)^k x_k=f(y_{k+1})$.\ssk\new
+Donnons-nous un $\alpha>0$ et soit $n\in\net$ tel que $y_n={2\s2n-1}<\alpha$. On a alors, pour tout $p\in\net$,\vvv
+$$\sum_{k=0}^p(y_{n+k}-x_{n+k})=y_n-x_{n+p}\ie y_n<\alpha$$\vvv\noi
+et\vv
+\begin{eqnarray*}
+\sum_{k=0}^p|f(y_{n+k})-f(x_{n+k})| & = & \sum_{k=0}^p(x_{n+k-1}+x_{n+k})=\sum_{k=0}^p\lp{2\s 2n+2k-1}+{2\s 2n+2k+1}\rp\\
+& \se & \sum_{k=0}^p{1\s n+k}\Vers{p}{\infty}\ii
+\end{eqnarray*}
+car la s\'erie harmonique est divergente. En choisissant $p$ assez grand, on aura donc\break $\;\sum_{k=0}^p|f(y_{n+k})-f(x_{n+k})|\se 1\;$ et $f$ n'est pas absolument continue sur $[0,2]$.
+
+\msk
+{\bf 3.} D\'emontrons d'abord le lemme suivant, dit {\bf lemme des trois cordes} ({\it faire un dessin})~:\msk\new
+{\it Si $f:I\vers\rmat$ est convexe, alors, pour tout r\'eel $h>0$, la fonction $\Delta_hf$ d\'efinie par\break $\Delta_hf(x)=f(x+h)-f(x)\;$ est croissante}.\ssk\new
+En effet, prenons $x\in I$, $y\in I$ avec $x<y$ et $y+h\in I$. On sait que la pente des s\'ecantes dont on fixe une extr\'emit\'e est fonction croissante de l'extr\'emit\'e variable, donc, en notant $T_f(a,b)$ le taux d'accroissement de $f$ entre deux points $a$ et $b$, on a\vv
+$$\Delta_hf(x)=h\cdot T_f(x,x+h)\ie h\cdot T_f(x,y+h)\ie h\cdot T_f(y,y+h)=\Delta_hf(y)\;.$$
+\ssk\sect
+Soit alors $f:I\vers\rmat$, uniform\'ement continue, croissante et convexe. Soit $\eps>0$, soit $\alpha>0$ tel que, pour tout $(x,y)\in I^2$, on ait $\;|x-y|<\alpha\impl|f(x)-f(y)|<\eps$. Donnons-nous maintenant $(x_1,\cdots,x_n,y_1,\cdots,y_n)$ avec $x_1<y_1\ie x_2<y_2\ie\cdots\ie x_n<y_n$ tels que $\sum_{i=1}^n(y_i-x_i)<\alpha$. Pour tout $i\in\[ent1,n\]ent$, posons $\delta_i=y_i-x_i$, ainsi $\sum_{i=1}^n\delta_i<\alpha$. La fonction $f$ \'etant croissante, on a $\;\sum_{i=1}^n|f(y_i)-f(x_i)|=\sum_{i=1}^n\big(f(y_i)-f(x_i)\big)$. D\'efinissons une nouvelle liste de points $(\xi_1,\cdots,\xi_n,\xi_{n+1})$ en ``compactant'' les intervalles de longueurs $\delta_i$, de la fa\c con suivante~:\ssk\new
+on pose $\xi_{n+1}=y_n$, $\xi_n=x_n=y_n-\delta_n$, puis $\xi_{n-1}=\xi_n-\delta_{n-1}=y_n-(\delta_{n-1}+\delta_n)$, jusqu'\`a\vv
+$$\xi_1=\xi_2-\delta_1=y_n-(\delta_1+\cdots+\delta_n)\;.$$
+Pour tout $k\in\[ent1,n+1\]ent$, on a donc $\;\xi_k=y_n-\sum_{i=k}^n\delta_i$. {\it Il est vivement recommand\'e de faire un sch\'ema}. Il est clair que $x_k\ie\xi_k$ pour tout $k\in\[ent1,n\]ent$, donc, par le lemme des trois cordes, on a, pour tout $k\in\[ent1,n\]ent$,\vv
+$$f(y_k)-f(x_k)=\Delta_{\delta_k}(x_k)\ie\Delta_{\delta_k}(\xi_k)=f(\xi_{k+1})-f(\xi_k)\;,$$
+donc\vv
+$$\sum_{k=1}^n\big(f(y_k)-f(x_k)\big)\ie\sum_{k=1}^n\big(f(\xi_{k+1})-f(\xi_k)\big)=f(\xi_{n+1})-f(\xi_1)\;;$$
+or, $\xi_{n+1}-\xi_1=\sum_{i=1}^n\delta_i<\alpha$, donc $|f(\xi_{n+1})-f(\xi_1)|<\eps$ et on a prouv\'e l'absolue continuit\'e de $f$ sur $I$.\msk\sect
+Le lecteur adaptera sans difficult\'e la d\'emonstration ci-dessus au cas d'une fonction d\'ecroissante (ou concave).
+
+\msk
+{\bf 4.} L'application $x\mapsto\sqrt{x}$ est uniform\'ement continue, croissante et concave sur $[0,1]$, donc abso\-lument continue sur cet intervalle, mais elle n'est pas lipschitzienne.
+
+
+\eject
+
+{\bf EXERCICE 2 :}\msk
+\def\sab{{\cal S}_{a,b}}
+\def\V#1{{\cal V}([#1])}
+On note $\sab$ l'ensemble des subdivisions du segment $[a,b]$.\msk
+Pour toute fonction $f:[a,b]\vers\rmat$ et pour $\sigma=(a=x_0,x_1,\cdots,x_n=b)\in{\cal S}_{a,b}$, on note\vv
+$$v(f,\sigma)=\sum_{k=0}^{n-1}|f(x_{k+1})-f(x_k)|\;.$$\par
+On dit que $f$ est {\bf \`a variation born\'ee} sur $[a,b]$ si l'ensemble $\{v(f,\sigma)\;;\; \sigma\in\sab\}$ est major\'e. Dans ce cas, on pose\vv
+$$V_{a,b}(f)=\sup_{\sigma\in\sab}v(f,\sigma)$$
+({\bf variation totale} de $f$ sur $[a,b]$). On note enfin ${\cal V}([a,b])$ l'ensemble des fonctions \`a variation born\'ee sur $[a,b]$\msk
+{\bf 1.} Soit $c\in]a,b[$. Montrer que $f\in\V{a,b}$ si et seulement si $\;f\big|_{[a,c]}\in\V{a,c}\;$ et$\;f\big|_{[c,b]}\in\V{c,b}$.\psn Quelle relation y a-t-il alors entre les nombres $V_{a,b}(f)$, $V_{a,c}(f)$ et $V_{c,b}(f)$~?\msk
+{\bf 2.} Montrer qu'une fonction $f$ est \`a variation born\'ee sur $[a,b]$ si et seulement si on peut l'\'ecrire comme diff\'erence de deux fonctions croissantes.\msk
+{\bf 3.} Montrer que toute fonction de classe ${\cal C}^1$ sur $[a,b]$ est \`a variation born\'ee et d\'eterminer sa variation totale.
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\bsk
+
+{\bf 1.} $\bullet$ Si $f\in\V{a,b}$, alors, pour toute subdivision $\sigma=(a=x_0,x_1,\cdots,x_n=c)$ de $[a,c]$, on a\vv
+$$v\lp f\big|_{[a,c]},\sigma\rp=\sum_{k=0}^{n-1}|f(x_{k+1})-f(x_k)|\ie\sum_{k=0}^{n-1}|f(x_{k+1})-f(x_k)|+|f(c)-f(b)|=v(f,\tau)$$
+o\`u $\tau=(x_0,x_1,\cdots,x_n,b)\in\sab$, donc $v\lp f\big|_{[a,c]},\sigma\rp\ie V_{a,b}(f)$ et la restriction de $f$ au segment $[a,c]$ est \`a variation born\'ee. Il en est bien s\^ur de m\^eme de sa restriction \`a $[c,b]$.\msk\sect
+$\bullet$ Supposons les restrictions de $f$ \`a $[a,c]$ et \` a $[c,b]$ toutes deux \`a variation born\'ee, soit $\sigma\in\sab$, soit $\tau$ la subdivision de $[a,b]$ obtenue en intercalant le point $c$ dans la subdivision $\sigma$ (s'il n'y figure pas d\'ej\`a). Alors $\tau$ est la ``r\'eunion'' de deux subdivisions $\tau_1$ et $\tau_2$ de $[a,c]$ et $[c,b]$ respectivement et on a\vv
+$$v(f,\sigma)\ie v(f,\tau)=v\lp f\big|_{[a,c]},\tau_1\rp+v\lp f\big|_{[c,b]},\tau_2\rp\ie V_{a,c}(f)+V_{c,b}(f)\;.$$
+Donc $f$ est \`a variation born\'ee sur $[a,b]$ et, de plus, en ``passant au sup'',\vv
+$$V_{a,b}(f)\ie V_{a,c}(f)+V_{c,b}(f)\;.$$
+\sect
+$\bullet$ Si $f\in\V{a,b}$, donnons-nous $\eps>0$, alors il existe des subdivisions $\sigma_1$ et $\sigma_2$ de $[a,c]$ et $[c,b]$ respectivement telles que\vv
+$$v\lp f\big|_{[a,c]},\sigma_1\rp\se V_{a,c}(f)-{\eps\s2}\qquad{\rm et}\qquad
+  v\lp f\big|_{[c,b]},\sigma_2\rp\se V_{c,b}(f)-{\eps\s2}\;.$$
+Alors $\sigma=\sigma_1\cup\sigma_2$ ({\it notation abusive}) est une subdivision de $[a,b]$ et\vv
+$$v(f,\sigma)=v\lp f\big|_{[a,c]},\sigma_1\rp+v\lp f\big|_{[c,b]},\sigma_2\rp\se V_{a,c}(f)+V_{c,b}(f)-\eps\;.$$
+On en d\'eduit que $\;V_{a,b}(f)=V_{a,c}(f)+V_{c,b}(f)\;.$
+
+\msk
+{\bf 2.} $\bullet$ Soit $f:[a,b]\vers\rmat$, \`a variation born\'ee. D'apr\`es la question {\bf 1.}, la fonction $g:x\mapsto V_{a,x}(f)$ est croissante puisque, si $a\ie x\ie y\ie b$, alors\vv
+$$g(y)-g(x)=V_{a,y}(f)-V_{a,x}(f)=V_{x,y}(f)\se0\;.$$
+Posons $h=g-f$, alors $f=g-h$ et il serait agr\'eable que $h$ soit aussi croissante. Eh bien, figurez-vous que c'est le cas puisque, si $a\ie x\ie y\ie b$, on a\vv
+$$h(y)-h(x)=\big(g(y)-g(x)\big)-\big(f(y)-f(x)\big)=V_{x,y}(f)-\big(f(y)-f(x)\big)$$
+et cette quantit\'e est positive car $\;V_{x,y}(f)\se|f(y)-f(x)|\se f(y)-f(x)$.
+\msk\sect
+$\bullet$ Toute fonction $g$ croissante sur $[a,b]$ est \'evidemment \`a variation born\'ee avec\break $V_{a,b}(g)=g(b)-g(a)$. Par ailleurs, il est facile de v\'erifier que $\V{a,b}$ est un sous-espace vectoriel de ${\cal F}\big([a,b],\rmat\big)$ puisque, pour toute subdivision $\sigma$, on a\vv
+$$v(\lam f+\mu g,\sigma)\ie|\lam|\>v(f,\sigma)+|\mu|\>v(g,\sigma)\;,$$
+donc toute diff\'erence de deux fonctions croissantes est \`a variation born\'ee.
+
+\msk
+{\bf 3.} Soit $f:[a,b]\vers\rmat$ de classe ${\cal C}^1$, alors sa d\'eriv\'ee est born\'ee ($|f'|\ie M$ sur $[a,b]$) et on en d\'eduit $v(f,\sigma)\ie M(b-a)$ pour toute subdivision $\sigma$, donc $f\in\V{a,b}$ et $\;V_{a,b}(f)\ie M(b-a)$.\msk\sect
+ Si $\sigma=(x_0,\cdots,x_n)$ est une subdivision de $[a,b]$, alors\vv
+$$v(f,\sigma)=\sum_{k=0}^{n-1}|f(x_{k+1})-f(x_k)|=\sum_{k=0}^{n-1}|f'(c_k)|(x_{k+1}-x_k)\ie V_{a,b}(f)\eqno\hbox{\bf (*)}$$
+avec $x_k\ie c_k\ie x_{k+1}$ d'apr\`es le th\'eor\`eme des accroissements finis. Lorsque le pas de la subdivision $\sigma$ tend vers z\'ero, le premier membre de l'in\'egalit\'e {\bf (*)} tend vers $\int_{[a,b]}|f'|$ donc, par passage \`a la limite, on a l'in\'egalit\'e $\;\int_{[a,b]}|f'|\ie V_{a,b}(f)$.\msk\sect
+{\it Ceux qui refusent de passer \`a la limite suivant la base de filtre des subdivisions dont le pas tend vers z\'ero pourront \'ecrire l'in\'egalit\'e} {\bf (*)} {\it pour la subdivision r\'eguli\`ere $\sigma_N$ du segment $[a,b]$ en $N$ segments et feront tendre $N$ vers $\ii$}.\msk\sect
+Par ailleurs, si on se donne $\eps>0$, on peut trouver une subdivision $\sigma$ telle que\break $v(f,\sigma)\se V_{a,b}(f)-{\eps\s2}$. D'autre part, pour toute subdivision $\tau$, le r\'eel $v(f,\tau)$ est une somme de Riemann pour la fonction $|f'|$, donc il existe $\alpha>0$ tel que, pour toute subdivision $\tau$ de pas inf\'erieur \`a $\alpha$, on ait $\;\bigg|v(f,\tau)-\int_{[a,b]}|f'|\bigg|\ie{\eps\s2}$.Pour une telle subdivision $\tau$, on a alors $v(f,\sigma\cup\tau)\se v(f,\sigma)\se V_{a,b}(f)-{\eps\s2}$ et, comme $\sigma\cup\tau$ a un pas inf\'erieur \`a $\alpha$, on a $\;\bigg|v(f,\sigma\cup\tau)-\int_{[a,b]}|f'|\bigg|\ie{\eps\s2}$, d'o\`u $\;\int_{[a,b]}|f'|\se V_{a,b}(f)-\eps$. Ceci \'etant vrai pour tout $\eps>0$, on a $\int_{[a,b]}|f'|\se V_{a,b}(f)$.\msk\sect
+Finalement, $V_{a,b}(f)=\int_{[a,b]}|f'|\;$ pour toute fonction $f$ de classe ${\cal C}^1$ sur $[a,b]$.
+
+\bsk\hrule\bsk
+
+{\bf EXERCICE 3 :}\msk
+Soit $I$ un intervalle de $\rmat$.\msk
+Pour $g:I\vers\rmat$, $x\in I$, $h\in\ret$ tel que $x+h\in I$, on pose\vv
+$$\Delta_hg(x)=T_g(x,x+h)={g(x+h)-g(x)\s h}\;.$$\par
+Soit $f:I\vers\rmat$ une fonction de classe ${\cal C}^n$. Montrer que\vv
+$$\a x\in I\quad\a n\in\nmat\qquad \Lim{h}{0}\Delta_h^n f(x)=f^{(n)}(x)$$
+en notant $\Delta_h^n=\Delta_h\circ\cdots\circ\Delta_h$ (avec $n$ facteurs).
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\bsk
+
+Pour tout r\'eel $h$, notons $\tau_h$ l'op\'erateur de translation d\'efini par $\tau_hf(x)=f(x+h)$, alors\break $\Delta_h={1\s h}(\tau_h-\id)$. Donc\vv
+$$\Delta_h^n={1\s h^n}(\tau_h-\id)^n={1\s h^n}\>\sum_{k=0}^nC_n^k(-1)^{n-k}\tau_h^k\;,$$
+c'est-\`a-dire\vv
+$$\Delta_h^nf(x)={1\s h^n}\>\sum_{k=0}^nC_n^k(-1)^{n-k}f(x+kh)\;.$$
+{\it Le lecteur perspicace aura remarqu\'e que la formalisation en termes d'op\'erateurs $\tau_h$, $\Delta_h$ et $\id$ souffre de quelques impr\'ecisions puisque, \`a part dans le cas o\`u $I=\rmat$, on ne peut pas les consid\'erer comme endomorphismes d'un espace de fonctions, les fonctions $f$ et $\tau_hf$ n'ayant pas le m\^eme intervalle de d\'efinition. Une formalisation plus rigoureuse serait assez lourde et n'apporterait pas grand'chose \`a la compr\'ehension du probl\`eme}.
+\msk
+Pour $k\in\nmat$ et $x\in I$ fix\'es, la formule de Taylor-Young donne, si $x+kh\in I$,\vv
+$$f(x+kh)=\sum_{p=0}^n{(kh)^p\s p!}\>f^{(p)}(x)+h^n\>\eps_k(h)\;,\quad{\rm avec}\quad\Lim{h}{0}\eps_k(h)=0\;,$$
+d'o\`u\vv
+\begin{eqnarray*}
+\Delta_h^nf(x) & = & {1\s h^n}\>\sum_{k=0}^n\sum_{p=0}^nC_n^k(-1)^{n-k}{(kh)^p\s p!}\>f^{(p)}(x)+\eps(h)\\
+                  & = & {1\s h^n}\>\sum_{p=0}^n S_n(p)\>{h^p\s p!}\>f^{(p)}(x)+\eps(h)
+\end{eqnarray*}
+avec $\Lim{h}{0}\eps(h)=0$ et $\;S_n(p)=\sum_{k=0}^nC_n^k(-1)^{n-k}k^p$~: essayons d'\'evaluer cette derni\`ere expression.\msk\new
+Parachutons pour cela la fonction $\ffi:t\mapsto(e^t-1)^n=\sum_{k=0}^nC_n^k(-1)^{n-k}e^{kt}$. On constate que, pour tout entier naturel $p$, on a $\;S_n(p)=\ffi^{(p)}(0)$.
+Mais $e^t-1\Equi{t}{0}t$, donc $\ffi(t)\Equi{t}{0}t^n$~: le d\'eveloppement limit\'e \`a l'ordre $n$ au voisinage de 0 de $\ffi(t)$ est donc $\ffi(t)=t^n+o(t^n)$. Par comparaison avec la formule de Taylor-Young et unicit\'e du d\'eveloppement limit\'e, on d\'eduit que $\;S_n(p)=\ffi^{(p)}(0)=0\;$ si $\;0\ie p\ie n-1\;$ et $\;S_n(n)=\ffi^{(n)}(0)=n!$.\msk
+Il reste donc $\;\Delta_h^nf(x)=f^{(n)}(x)+\eps(h)$, avec $\Lim{h}{0}\eps(h)=0$, c'est ce que l'on voulait prouver.
+
+
+\bsk\hrule\bsk
+
+{\bf EXERCICE 4 :}\msk
+Soit $f:[0,1]\vers\rmat$ une application de classe $\ce^3$. Pour tout
+$n\in\net$, soit la somme de Riemann $\;S_n(f)={1\s n}\sum_{k=1}^nf\lp{k\s n}
+\rp$.\msk
+{\bf a.} Donner un d\'eveloppement asymptotique de $S_n$, \`a la pr\'ecision
+$O\lp{1\s n^3}\rp$.\msk
+{\it Indication. Pour $x\in\lc{k-1\s n},{k\s n}\rc$, on \'ecrira une in\'egalit\'e
+de Taylor-Lagrange appliqu\'ee \`a $f$ sur $\lc x,{k\s n}\rc$, puis on int\'egrera
+cette in\'egalit\'e sur le segment $\lc{k-1\s n},{k\s n}\rc$. On sera amen\'e
+ensuite \`a appliquer la m\^eme m\'ethode aux fonctions $f'$ et $f''$.}\msk
+{\bf b.} En d\'eduire un d\'eveloppement asymptotique, avec trois termes non
+nuls, de\vv
+$$u_n=\root {\sst n}\of{(2n)!\s n!}\;.$$
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf a.} Soit $x\in\lc{k-1\s n},{k\s n}\rc\;$ ($1\le k\le n$).
+L'in\'egalit\'e de Taylor-Lagrange, appliqu\'ee \`a $f$ sur $\lc x,{k\s n}\rc$,
+s'\'ecrit~:\vv
+$$\left|f(x)-f\lp{k\s n}\rp-\lp x-{k\s n}\rp f'\lp{k\s n}\rp-{1\s 2}\lp x-{k\s n}\rp^2f''\lp{k\s n}\rp\right|\ie{M_3\s 6n^3}$$
+avec $M_3=\max_{[0,1]}|f^{(3)}|$. Int\'egrons cette in\'egalit\'e sur le segment $\lc{k-1\s n},{k\s n}\rc$ en utilisant\ssk\new
+$\bullet$  $\left|\int g\right|\ie\int|g|$ avec $\;g:x\mapsto f(x)-f\lp{k\s n}\rp-\lp x-{k\s n}\rp f'\lp{k\s n}\rp-{1\s 2}\lp x-{k\s n}\rp^2f''\lp{k\s n}\rp$
+~;\ssk\new
+$\bullet$ $\int_{k-1\s n}^{k\s n}\lp x-{k\s n}\rp\>dx=\int_{-{1\s n}}^0 t\>dt=-{1\s 2n^2}$~;\ssk\new
+$\bullet$ $\int_{k-1\s n}^{k\s n}\lp x-{k\s n}\rp^2\>dx=\int_{-{1\s n}}^0t^2\>dt={1\s 3n^3}$,\msk\new
+cela donne\vv
+$$\left|\int_{k-1\s n}^{k\s n}f-{1\s n}\>f\lp{k\s n}\rp+{1\s2n^2}\>f'\lp
+  {k\s n}\rp-{1\s6n^3}\>f''\lp{k\s n}\rp\right|\le{M_3\s6n^4}\;.$$\sect
+En ajoutant ces in\'egalit\'es pour $k$ de 1 \`a
+$n$, en vertu de l'in\'egalit\'e triangulaire, on obtient\vv
+$$\left|\int_0^1f-S_n(f)+{1\s 2n}\>S_n(f')-{1\s 6n^2}\>S_n(f'')\right|\ie{M_3\s 6n^3}\;,$$
+soit\vv
+$$S_n(f)=\int_0^1f+{1\s2n}\>S_n(f')-{1\s6n^2}\>S_n(f'')+O\lp{1\s n^3}\rp\;.$$\sect
+On d\'eveloppe de m\^eme (\`a des ordres moindres) les quantit\'es $S_n(f')$
+et $S_n(f'')$~:\vv
+$$S_n(f')=\int_0^1f'+{1\s 2n}\>S_n(f'')+O\lp{1\s n^2}\rp\quad{\rm et}\qquad
+  S_n(f'')=\int_0^1f''+O\lp{1\s n}\rp\;,$$
+d'o\`u, en r\'einjectant,\vv
+$$S_n(f)=\int_0^1f+{f(1)-f(0)\s2n}+{f'(1)-f'(0)\s12n^2}+O\lp{1\s n^3}\rp\;.$$
+\msk
+{\bf b.} On a $\;\ln u_n={1\s n}\>\sum_{k=1}^n\ln(n+k)=S_n(f)+\ln n$, avec $f:x\mapsto\ln(1+x)$, d'o\`u\vv
+\begin{eqnarray*}
+\ln u_n & = & \ln n+\int_0^1f+{f(1)-f(0)\s2n}+{f'(1)-f'(0)\s12n^2}+O\lp{1\s n^3}\rp\\
+& = & \ln n+(2\ln 2-1)+{\ln 2\s2n}-{1\s24n^2}+O\lp{1\s n^3}\rp\;,
+\end{eqnarray*}
+puis $\;u_n=n\times{4\s e}\times e^{{}^{{\sst\ln 2\sur\sst 2n}\sst -{\sst 1\sur\sst 24n^2}\sst +O\lp{\sst 1\sur\sst n^3}\rp}}$, donc\vv
+\begin{eqnarray*}
+u_n & = & {4\s e}\> n \lc1+{\ln 2\s 2n}+\lp{(\ln 2)^2\s 8}-{1\s 24}\rp\>{1\s n^2}+O\lp{1\s n^3}\rp\rc\\
+& = & {4\s e}\>n+{2\s e}\>\ln 2+{3(\ln 2)^2-1\s 6en}+O\lp{1\s n^2}\rp\;.
+\end{eqnarray*}
+
+\bsk\hrule\bsk
+
+{\bf EXERCICE 5 :}\msk
+Soit $I$ un intervalle de $\rmat$, soit une fonction $f:I\vers\rpe$.\msk
+Montrer que $f$ est {\bf logarithmiquement convexe} (c'est-\`a-dire la fonction $g=\ln\circ f$ est convexe) si et seulement si, pour tout $\alpha>0$, la fonction $f^{\alpha}$ est convexe.
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+$\bullet$ Supposons $g=\ln\circ f$ convexe, alors $f^{\alpha}=\exp\circ(\alpha g)$ est convexe car c'est la compos\'ee d'une fonction convexe par une fonction convexe croissante. D\'etaillons~:\msk\sect
+Si $g:I\vers J$ est convexe et $h:J\vers\rmat$ est convexe croissante, alors pour $x\in I$, $y\in I$ et $\lam\in[0,1]$, on a\vv
+$$g\big(\lam x+(1-\lam)y\big)\ie\lam g(x)+(1-\lam)g(y)\;,$$
+donc\vv
+\begin{eqnarray*}
+(h\circ g)\big(\lam x+(1-\lam)y\big) & \ie & h\big(\lam g(x)+(1-\lam) g(y)\big)\\
+                                             & \ie & \lam (h\circ g)(x)+(1-\lam) (h\circ g)(y)
+\end{eqnarray*}
+en utilisant successivement la croissance et la convexit\'e de $h$. On a ainsi prouv\'e que la fonction compos\'ee $h\circ g$ est convexe. En revenant aux notations de l'\'enonc\'e, on a ainsi $f^{\alpha}$ convexe pour tout $\alpha>0$.
+
+\msk
+$\bullet$ Supposons $f^{\alpha}$ convexe pour tout $\alpha>0$.\msk\sect
+Fixons $x\in I$, $y\in I$, $\lam\in[0,1]$. On a\vv
+$$\a\alpha\in\rpe\qquad f^{\alpha}\big(\lam x+(1-\lam)y\big)\ie\lam f(x)^{\alpha}+(1-\lam) f(y)^{\alpha}\;,$$
+donc\vv
+$$\a\alpha\in\rpe\qquad \ln\Big[f\big(\lam x+(1-\lam)y\big)\Big]\ie{1\s\alpha}\>\ln\big(\lam f(x)^{\alpha}+(1-\lam) f(y)^{\alpha}\big)\eqno\hbox{\bf (*)}\;.$$\sect 
+Pour conclure, il suffit de passer \`a la limite quand $\alpha$ tend vers z\'ero~: en effet, la fonction $\ffi:\rmat\vers\rmat$, $\alpha\mapsto\ln\big(\lam f(x)^{\alpha}+(1-\lam) f(y)^{\alpha}\big)\;$ est d\'erivable sur $\rmat$ avec\vv
+$$\a\alpha\in\rmat\qquad \ffi'(\alpha)={\lam\>f(x)^{\alpha}\cdot\ln f(x)+(1-\lam)\>f(y)^{\alpha}\cdot\ln f(y)\s\lam\> f(x)^{\alpha}+(1-\lam)\>f(y)^{\alpha}}\;.$$
+En particulier, $\ffi'(0)=\lam \ln f(x)+(1-\lam) \ln f(y)$. Comme $\ffi(0)=0$, $\Lim{\alpha}{0}{\ffi(\alpha)\s\alpha}=\ffi'(0)$. En passant \`a la limite dans {\bf (*)}, on obtient\vv
+$$\ln\Big[f\big(\lam x+(1-\lam)y\big)\Big]\ie\lam \ln f(x)+(1-\lam) \ln f(y)\;,$$
+c'est-\`a-dire la convexit\'e de $g=\ln\circ f$.
+
+
+\bsk\hrule\bsk
+
+{\bf EXERCICE 6 :}\msk
+Une fonction $f:\rmat\vers\rmat$ est dite {\bf fortement convexe} s'il existe un r\'eel $k$ strictement positif tel que la fonction $x\mapsto f(x)-kx^2$ soit convexe.\msk
+{\bf 1.} Traduire l'hypoth\`ese de forte convexit\'e~:\ssk\sect
+{\bf a.} par une condition sur la d\'eriv\'ee seconde, si $f$ est suppos\'ee deux fois d\'erivable~;\ssk\sect
+{\bf b.} par une condition portant sur les rapports\vv
+$$R_{a,b,\lam}(f)={\lam f(a)+(1-\lam) f(b)-f\big(\lam a+(1-\lam)b\big)\s \lam(1-\lam)(b-a)^2}$$
+avec $a\in\rmat$, $b\in\rmat$, $a\not=b$, $\lam\in]0,1[$, sans hypoth\`ese de d\'erivabilit\'e.
+\msk
+{\bf 2.} Soit $f:\rmat\vers\rmat$ une fonction convexe. Montrer l'existence d'une {\bf fonction affine d'appui} en tout point $a$ de $\rmat$, c'est-\`a-dire d'une fonction affine $\ffi_a$ telle que $\ffi_a(a)=f(a)$ et $\ffi_a\ie f$ sur $\rmat$.\msk
+Dans toute la suite de l'exercice, la fonction $f:\rmat\vers\rmat$ est suppos\'e fortement convexe.\msk
+{\bf 3.} Montrer que l'on peut d\'efinir une fonction $f^*$ sur $\rmat$ par\vv
+$$\a x\in\rmat\qquad f^*(x)=\sup_{t\in\rmat}\big(xt-f(t)\big)\;.$$\par
+{\bf 4.} Montrer que $f^*$ est convexe.\msk
+{\bf 5.} Montrer que l'on peut d\'efinir $f^{**}$ et que l'on a l'\'egalit\'e $f^{**}=f$ ({\it on pourra commencer par calculer $h^{**}$ lorsque $h$ est une fonction polyn\^ome du second degr\'e $x\mapsto ax^2+bx+c$, avec $a>0$}).
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf 1.a.} Une fonction deux fois d\'erivable est fortement convexe si et seulement si sa d\'eriv\'ee seconde est minor\'ee par un r\'eel strictement positif ({\it \'evident})~; ainsi, les fonctions $x\mapsto ax^2+bx+c$ avec $a>0$ ou $x\mapsto \ch x$ sont fortement convexes, mais la fonction $x\mapsto e^x$ ne l'est pas.\msk\sect
+{\bf b.} Soit $k\in\rmat$ donn\'e. On v\'erifie que la fonction $g:x\mapsto f(x)-kx^2$ est convexe si et seulement si\vvvv
+$$\a(a,b)\in\rmat^2\quad\a\lam\in[0,1]\qquad \lam f(a)+(1-\lam) f(b)-f\big(\lam a+(1-\lam)b\big)\se k\>\lam(1-\lam)(b-a)^2\;.$$
+On en d\'eduit que $f$ est fortement convexe si et seulement si les rapports $R_{a,b,\lam}(f)$ sont minor\'es par un r\'eel strictement positif.
+
+\msk
+{\bf 2.} Si la fonction $f$ est d\'erivable, on sait que la courbe est au-dessus de chacune de ses tangentes, la fonction affine tangente au point $a$, soit $x\mapsto f(a)+f'(a)\>(x-a)$, est une fonction affine d'appui au point $a$.\msk\sect
+En fait, une fonction convexe sur $\rmat$ est toujours d\'erivable \`a gauche et \`a droite en tout point $a$ avec $f'_g(a)\ie f'_d(a)$~: en effet, la fonction $\tau_a:x\mapsto{f(x)-f(a)\s x-a}$ est croissante sur $\rmat\setminus\{a\}$~; sur $]-\infty,a[$, elle est major\'ee (par exemple par $\tau_a(a+1)$), donc elle admet une limite \`a gauche au point $a$ (th\'eor\`eme de la limite monotone), d'o\`u l'existence de $f'_g(a)$. On montre de m\^eme l'existence de $f'_d(a)$ et l'in\'egalit\'e $f'_g(a)\ie f'_d(a)$. Si on prend un r\'eel $m\in[f'_g(a),f'_d(a)]$, alors, d'apr\`es la croissance de la fonction $\tau_a$, pour tout r\'eel $x$ diff\'erent de $a$, ${f(x)-f(a)\s x-a}-m$ est du signe de $x-a$, ce qui signifie que $\;\a x\in\rmat\quad f(x)\se f(a)+m(x-a)$. On a donc trouv\'e (au moins) une fonction affine d'appui de $f$ en $a$.
+
+\msk
+{\bf 3.} Soit $k$ un r\'eel strictement positif tel que la fonction $g:x\mapsto f(x)-kx^2$ soit convexe. Soit $x$ un r\'eel fix\'e, soit $\ffi:t\mapsto g(x)+m(t-x)$ une fonction affine d'appui de $g$ au point $x$, on a\vv
+$$\a t\in\rmat\qquad g(t)=f(t)-k t^2\se g(x)+m(t-x)\;,$$
+d'o\`u l'on d\'eduit\vv
+$$\a t\in\rmat\qquad xt-f(t)\ie -kt^2+(x-m)t+mx-g(x)\;.$$
+Le second membre est une fonction du second degr\'e de la variable $t$ ayant $-\infty$ pour limite en $-\infty $ et en $\ii$ donc est major\'e lorsque $t$ d\'ecrit $\rmat$~; le premier membre $xt-f(t)$ est, a fortiori, major\'e lorsque $t$ d\'ecrit $\rmat$, d'o\`u l'existence de $\;f^*(x)=\sup_{t\in\rmat}\big(xt-f(t)\big)$. La fonction $f^*$ est appel\'ee {\bf fonction polaire} de la fonction fortement convexe $f$. Par exemple, pour $f:x\mapsto\ch x$, on obtient $f^*(x)=x\>{\rm argsh}x-\sqrt{1+x^2}$.
+
+\msk
+{\bf 4.} Soient $x$ et $y$ deux r\'eels, $\lam\in[0,1]$, posons $z=\lam x+(1-\lam)y$, on a alors\vv
+\begin{eqnarray*}
+zt-f(t) & = & \lam\big(xt-f(t)\big)+(1-\lam)\big(yt-f(t)\big)\\
+          & \ie & \lam\> f^*(x)+(1-\lam)\>f^*(y)
+\end{eqnarray*}
+En passant au sup, on obtient $f^*(z)\ie\lam\>f^*(x)+(1-\lam)\>f^*(y)$, c'est-\`a-dire la convexit\'e de la fonction $f^*$.
+
+\msk
+{\bf 5.} $\bullet$ Soient $x$ et $t$ deux r\'eels, alors $\;f^*(x)=\sup_{s\in\rmat}\big(xs-f(s)\big)\se xt-f(t)$, soit $\;tx-f^*(x)\ie f(t)$. Cela prouve que, pour tout r\'eel $t$, la fonction $x\mapsto tx-f^*(x)$ est major\'ee, ce qui permet de d\'efinir $\;f^{**}(t)=\sup_{x\in\rmat}\big(tx-f^*(x)\big)$. De plus, en passant au sup dans l'in\'egalit\'e obtenue ci-dessus, on obtient l'in\'egalit\'e $\;f^{**}(t)\ie f(t)$.
+\msk\sect
+$\bullet$ Pour $h:x\mapsto ax^2+bx+c$ avec $a>0$, on v\'erifie que $h^*(x)={x^2-2bx+b^2-4ac\s 4a}$, puis $h^{**}=h$.
+\msk\sect
+$\bullet$ Si $f$ et $g$ sont deux fonctions fortement convexes telles que $f\ie g$, on a bien s\^ur $g^*\ie f^*$.
+\msk\sect
+$\bullet$ Soit $f$ fortement convexe, soit $k>0$ tel que la fonction $g:x\mapsto f(x)-kx^2$ soit convexe, soit $x\in\rmat$, soit $\ffi_x:t\mapsto  g(x)+m(t-x)$ une fonction affine d'appui de $g$ au point $x$, on a alors ({\it cf}. question {\bf 3.}) $f(t)\se h_x(t)$ pour tout $t$ r\'eel en posant $h_x(t)=kt^2+m(t-x)+g(x)$. Comme $h_x$ est une fonction polyn\^ome du second degr\'e, on a $h_x^{**}=h_x$ et, de l'in\'egalit\'e $f\se h_x$, on tire $f^*\ie h_x^*$, puis $f^{**}\se h_x$ donc, en particulier, $f^{**}(x)\se h_x(x)=f(x)$.
+On a ainsi prouv\'e $f^{**}\se f$, donc $f^{**}=f$. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

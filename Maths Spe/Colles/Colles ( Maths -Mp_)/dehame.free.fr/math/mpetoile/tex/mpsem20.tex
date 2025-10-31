@@ -1,0 +1,559 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % \'evite le textstyle en mode
+                                % math\'ematique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math\'ematiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de pr\'esentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% divers
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'\'ecriture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% \`a l'int\'erieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d\'ecroissante),
+% \nondef (la fonction est non d\'efinie)
+% si l'on termine la derni\`ere ligne par \cr, un trait est tir\'e en dessous
+% sinon elle est laiss\'ee sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  
+\def\rmat{{\rm I\kern-0.6mm R}}  
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____d\'ef de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% Alg\`ebre lin\'eaire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________d\'eterminant_______
+\def\det{\mathop{\rm det}\nolimits} 
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos\'ee ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  
+\def\MC#1{{\cal M}_{#1}(\cmat)}  
+\def\MK#1{{\cal M}_{#1}(\kmat)}  
+
+%________Complexes_________ 
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   
+\def\Arccos{\mathop{\rm Arccos}\nolimits}  
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     
+\def\Argch{\mathop{\rm Argch}\nolimits}     
+\def\Argth{\mathop{\rm Argth}\nolimits}     
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} 
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s\'eries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr\'eg\'ees%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-\`a-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+\def\cala{{\cal A}}
+\def\fhat{\widehat{f}}
+\let\wh=\widehat
+\def\ftilde{\tilde{f}}
+
+% ********************************************************************************************************************** %
+%                                                                                                                                                                                   %
+%                                                                    FIN   DES   MACROS                                                                              %
+%                                                                                                                                                                                   %
+% ********************************************************************************************************************** %
+
+
+
+
+
+
+
+
+
+
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+
+
+
+\overfullrule=0mm
+
+
+\cl{{\bf SEMAINE 20}}\msk
+\cl{{\bf INT\'EGRALES CURVILIGNES}}\msk
+\cl{{\bf  \'EQUATIONS DIFF\'ERENTIELLES LIN\'EAIRES}}
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+{\bf 1.} Soit $F\in\cmat(X)$ une fraction rationnelle n'ayant aucun p\^ole de module 1. On note $\Gamma$ le cercle unit\'e parcouru dans le sens direct. Calculer l'int\'egrale curviligne\vv
+$$I=\int_{\Gamma}F(z)\>{\rm d}z\;.$$\par
+{\bf 2.} En d\'eduire les int\'egrales simples\vv
+$$J_n(r)=\int_0^{2\pi}{\cos nt\s1+r^2-2r\>\cos t}\>{\rm d}t\qquad(n\in\nmat\;,\;r\in\rpe\;,\;r\not=1)\;.$$\par
+{\bf 3.} Retrouver aussi les int\'egrales de Wallis\vv
+$$W_n=\int_0^{2\pi}\cos^n\theta\>{\rm d}\theta\;.$$
+
+
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Il suffit de savoir faire le calcul lorsque $F$ est un \'el\'ement simple~: $F(z)={1\s(z-a)^k}$. Posons pour cela $\gamma(t)=e^{it}$ ($0\ie t\ie 2\pi$, param\'etrage de l'arc $\Gamma$). On a alors, pour $k>1$,\vv
+$$I=\int_{\Gamma}{{\rm d}z\s(z-a)^k}=\int_0^{2\pi}{\gamma'(t)\>{\rm d}t\s\big(\gamma(t)-a\big)^k}=\lc{1\s1-k}\>{1\s\big(\gamma(t)-a\big)^{k-1}}\rc_0^{2\pi}=0$$
+car $\gamma(0)=\gamma(2\pi)$.\msk\sect
+Pour $k=1$, on ne dispose pas d'expression d'une primitive de la fonction \`a valeurs complexes $t\mapsto{\gamma'(t)\s\gamma(t)-a}$. Une solution consiste \`a poser $a=\alpha+i\beta$ et \`a consid\'erer l'int\'egrale\break $I(a)=I(\alpha,\beta)=\int_{\Gamma}{{\rm d}z\s z-a}\;$ comme une fonction des deux variables r\'eelles $\alpha$ et $\beta$. On a $\;I(\alpha,\beta)=\int_0^{2\pi}{\gamma'(t)\>{\rm d}t\s\gamma(t)-\alpha-i\beta}$. Sur chacun des deux ouverts connexes par arcs\break $U=\{z\in\cmat\;;\;|z|<1\}$ et $V=\{z\in\cmat\;;\;|z|>1\}$, la fonction $I$ des deux variables r\'eelles $\alpha$ et $\beta$ est de classe ${\cal C}^1$ et\vv
+$${\ddd I\s\ddd\alpha}(\alpha,\beta)=\int_0^{2\pi}{\gamma'(t)\>{\rm d}t\s\big(\gamma(t)-\alpha-i\beta\big)^2}=\lc{-1\s\gamma(t)-\alpha-i\beta}\rc_0^{2\pi}=0\;;$$
+$${\ddd I\s\ddd\beta}(\alpha,\beta)=\int_0^{2\pi}{i\>\gamma'(t)\>{\rm d}t\s\big(\gamma(t)-\alpha-i\beta\big)^2}=\lc{-i\s\gamma(t)-\alpha-i\beta}\rc_0^{2\pi}=0\;.$$
+La fonction $I$ est donc constante sur chacun des deux ouverts $U$ et $V$. De\vv
+$$I(0)=\int_0^{2\pi}{\gamma'(t)\s\gamma(t)}\>{\rm d}t=\int_0^{2\pi}{i\>e^{it}\s e^{it}}\>{\rm d}t=2i\pi\;,$$
+on d\'eduit $I(a)=2i\pi$ si $|a|<1$.\ssk\new
+Si $|a|>1$, \'ecrivons $|z-a|\se\big||z|-|a|\big|=|a|-1$, donc $|I(a)|\ie{2\pi\s|a|-1}$ et $\;\Lim{|a|}{\ii}I(a)=0$, donc $I(a)=0$ pour $|a|>1$.\msk\sect
+Enfin, si $P\in\cmat[X]$ est un polyn\^ome, on a facilement $\int_{\Gamma}P(z)\>{\rm d}z=0$.\msk\sect
+En conclusion, si $F$ est une fraction rationnelle quelconque (sans p\^ole de module un), on d\'ecompose $F$ en \'el\'ements simples~: la partie enti\`ere n'apporte aucune contribution \`a l'int\'egrale $I$~; dans la partie polaire en un p\^ole $a$ (de la forme ${c_{a,1}\s z-a}+\cdots+{c_{a,r}\s(z-a)^r}$ si le p\^ole est d'ordre $r$), aucun terme n'apporte de contribution \`a l'int\'egrale si $|a|>1$ et seul le terme ${c_{a,1}\s z-a}$ apporte une contribution non nulle si $|a|<1$. Le coefficient $c_{a,1}$ est appel\'e le {\bf r\'esidu} de la fraction rationnelle $F$ au p\^ole $a$ et not\'e ${\rm Res}(F,a)$. On a donc la formule\vv
+$$I=\int_{\Gamma}F(z)\>{\rm d}z=2i\pi\cdot\sum_{|a|<1}{\rm Res}(F,a)\;.$$
+\ssk
+{\bf 2.} On a $\;J_n(r)=\Re\big(I_n(r)\big)$, avec $I_n(r)=\int_0^{2\pi}{e^{int}\>{\rm d}t\s1+r^2-2r\>\cos t}$. Or,\vv
+$$I_n(r)=\int_0^{2\pi}{e^{int}\>{\rm d}t\s(1-r\>e^{it})(1-r\>e^{-it})}={1\s i}\>\int_{\Gamma}{z^{n-1}\>{\rm d}z\s(1-rz)\lp1-\dst{r\s z}\rp}=-{1\s ir}\>\int_{\Gamma}{z^n\s(z-r)\lp z-\dst{1\s r}\rp}\>{\rm d}z\;,$$
+d'o\`u la discussion~:\ssk\new
+$\bullet$ si $0<r<1$, le seul p\^ole de la fraction rationnelle $F={X^n\s(X-r)\lp X-\dst{1\s r}\rp}$ dans le disque unit\'e ouvert est $r$ (p\^ole simple), et on obtient facilement son r\'esidu $\;{\rm Res}(F,r)={r^{n+1}\s r^2-1}$, donc\vv
+$$J_n(r)=I_n(r)={2\pi\>r^n\s 1-r^2}\;.$$
+$\bullet$ si $r>1$, le seul p\^ole de module inf\'erieur \`a 1 est ${1\s r}$, de r\'esidu ${1\s r^{n-1}(1-r^2)}$, donc
+$$J_n(r)=I_n(r)={2\pi\s r^n(r^2-1)}\;.$$
+
+\ssk
+{\bf 3.} On a\vv
+$$W_n={1\s2^n}\>\int_0^{2\pi}\lp e^{i\theta}+{1\s e^{i\theta}}\rp^n\>{\rm d}\theta={1\s i\>2^n}\>\int_{\Gamma}\lp z+{1\s z}\rp^n\>{{\rm d}z\s z}={1\s i\>2^n}\>\int_{\Gamma}{(z^2+1)^n\s z^{n+1}}\>{\rm d}z\;.$$
+Le seul p\^ole de la fraction $F={1\s i\>2^n}\>{(X^2+1)^n\s X^{n+1}}$ est z\'ero (de module $<1$), le r\'esidu de $F$ en ce p\^ole est le coefficient de $X^n$ dans le d\'eveloppement de\vv
+$${1\s i\>2^n}\>(X^2+1)^n={1\s i\>2^n}\>\sum_{k=0}^nC_n^kX^{2k}\;.$$
+Il est donc nul si $n$ est impair, et vaut ${C_{2p}^p\s i\>2^p}$ si $n=2p$, donc
+$$W_{2p+1}=0\qquad{\rm et}\qquad W_{2p}=2\pi\>{C_{2p}^p\s2^{2p}}=2\pi\>{(2p)!\s2^{2p}\>(p!)^2}\;.$$
+
+
+\hrule
+\eject
+
+{\bf EXERCICE 2 :}\msk
+{\bf 1.} Soit $g:x\mapsto\int_0^{\ii}{e^{-xt}\s1+t^2}\>{\rm d}t$.\msk\sect
+Montrer que la fonction $g$ est continue sur $\rplus$, de classe ${\cal C}^{\infty}$ sur $\rpe$. \'Ecrire une \'equation diff\'erentielle {\bf (E)} v\'erifi\'ee par $g$ sur $\rpe$.\msk
+{\bf 2.} En d\'eduire la valeur de $I=\int_0^{\ii}{\sin t\s t}\>{\rm d}t$.
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Posons $f(x,t)={e^{-xt}\s1+t^2}$ pour $x\se0$ et $t\se0$. La fonction $f$ est continue sur $(\rplus)^2$ et on a $0\ie f(x,t)\ie{1\s1+t^2}$, la fonction $t\mapsto{1\s1+t^2}$ \'etant int\'egrable sur $[0,\ii[$~; on en d\'eduit l'existence et la continuit\'e de $g$ sur $\rplus$.\msk\sect
+Pour tout $k\in\net$, on a $\;{\ddd^k f\s\ddd x^k}(x,t)=(-1)^k\>{t^k\>e^{-xt}\s1+t^2}\;$ et, si on se donne $a>0$, on a, pour $x\se a$ et $t\se0$,\vv
+$$\left|{\ddd^k f\s\ddd x^k}(x,t)\right|\ie{t^k\s1+t^2}\>e^{-at}\ie t^k\>e^{-at}\;,$$
+la fonction $t\mapsto t^k\>e^{-at}$ \'etant int\'egrable sur $\rplus$. On en d\'eduit que $g$ est de classe ${\cal C}^{\infty}$ sur $\rpe$, avec $\;g^{(k)}(x)=(-1)^k\>\int_0^{\ii}{t^k\>e^{-xt}\s1+t^2}\>{\rm d}t\;$ pour tout $k\in\net$.\msk\sect
+On observe notamment que $\;g''(x)+g(x)=\int_0^{\ii}e^{-xt}\>{\rm d}t={1\s x}$, donc $g$ est solution sur $\rpe$ de l'\'equation diff\'erentielle\vv
+$${\bf (E)}\;:\qquad y''+y={1\s x}\;.$$
+\ssk
+{\bf 2.} L'\'equation homog\`ene {\bf (E}$_0${\bf)}~: $y''+y=0$ admet $(\sin,\cos)$ comme syst\`eme fondamental de solutions. Utilisons la m\'ethode de variation des constantes pour exprimer les solutions de {\bf (E)}. Nous posons $\;y(x)=u(x)\>\sin x+v(x)\>\cos x\;$ en imposant $\;u'(x)\>\sin x+v'(x)\>\cos x=0$. L'\'equation {\bf (E)} devient $\;u'(x)\>\cos x-v'(x)\>\sin x={1\s x}$.\msk\sect
+On r\'esout le syst\`eme $\system{&u'(x)&\sin x&+&&v'(x)&\cos x&&=&0\cr &u'(x)&\cos x&-&&v'(x)&\sin x&&=&{1\s x}\cr}$, ce qui donne $\;u'(x)={\cos x\s x}\;$ et $\;v'(x)=-{\sin x\s x}$. On sait que les int\'egrales $\int_1^{\ii}{\sin t\s t}\>{\rm d}t\;$ et $\int_1^{\ii}{\cos t\s t}\>{\rm d}t\;$ sont\break (semi-)convergentes. Une solution particuli\`ere de {\bf (E)} peut donc \^etre exprim\'ee sous la forme
+$$y_0:x\mapsto\lp\int_x^{\ii}{\sin t\s t}\>{\rm d}t\rp\>\cos x-\lp\int_x^{\ii}{\cos t\s t}\>{\rm d}t\rp\>\sin x=\int_x^{\ii}{\sin(t-x)\s t}\>{\rm d}t\;.$$\sect
+Les solutions de {\bf (E)} sur $\rpe$ sont donc les fonctions de la forme $y=A\>\cos x+B\>\sin x+y_0(x)$~; en particulier, la fonction $g$ de la question {\bf 1.} est de cette forme-l\`a. On a $\lim_{\ii}g=0$ car $\;|g(x)|\ie\int_0^{\ii}e^{-xt}\>{\rm d}t={1\s x}$~; comme $\lim_{\ii}y_0=0$, cela entra\^\i ne $A=B=0$. Finalement, $g=y_0$.\msk\sect
+Enfin, $\Lim{x}{0}g(x)=g(0)={\pi\s2}$, alors que\ssk\new
+$\bullet$ $\;\Lim{x}{0}\lp\cos x\cdot\int_x^{\ii}{\sin t\s t}\>{\rm d}t\rp=I$~;\ssk\new
+$\bullet$ $\;\Lim{x}{0}\lp\sin x\cdot\int_x^{\ii}{\cos t\s t}\>{\rm d}t\rp=0$.\msk\sect
+Pour ce deuxi\`eme point en effet, $\Lim{x}{0}\lp\sin x\cdot\int_1^{\ii}{\cos t\s t}\>{\rm d}t\rp=0\;$ et (pour $x<1$),
+$$\left|\sin x\cdot\int_x^1{\cos t\s t}\>{\rm d}t\right|\ie x\>\int_x^1{{\rm d}t\s t}=x\>|\ln x|\Vers{x}{0}0\;.$$
+\sect
+On obtient donc $I=\int_0^{\ii}{\sin t\s t}\>{\rm d}t={\pi\s2}$.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 3 :}\msk
+{\bf 1.} Soit $g(x)=\int_0^{\ii}{e^{-xt^2}\s1+t^2}\>{\rm d}t$. Montrer que $g$ est solution, sur $\rpe$, d'une \'equation diff\'erentielle du premier ordre. En d\'eduire la valeur de l'int\'egrale de Gauss $\;G=\int_0^{\ii}e^{-t^2}\>{\rm d}t$.\msk
+{\bf 2.} Soit $\ffi$ la solution, sur $\rpe$, de l'\'equation diff\'erentielle\vv
+$$y''-2y'+y={1\s\sqrt{x}}\leqno\hbox{\bf (E)}$$
+telle que $\lim_{0}\ffi=\lim_{0}\ffi'=0$. Donner un \'equivalent de $\ffi$ en $\ii$.
+
+
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf 1.} La fonction $g$ est d\'efinie sur $\rmat_+$ et, si l'on pose $f(x,t)=
+{e^{-xt^2}\s1+t^2}$ pour $x\ge0$ et $t\ge0$, la fonction $f$ est continue sur
+$(\rplus)^2$ et la majoration
+$0\le f(x,t)\le{1\s1+t^2}$ prouve que $g$ est continue sur $\rmat_+$.\pn
+Pour tout $(x,t)\in(\rmat_+)^2$, on a ${\ddd f\s\ddd x}(x,t)={-t^2\;e^{-xt^2}\s
+1+t^2}$. Si $a$ est un r\'eel strictement positif, on a\vv
+$$\a(x,t)\in[a,\ii[\times\rmat_+\qquad\left|{\ddd f\s\ddd x}(x,t)\right|\le
+{t^2\s1+t^2}\;e^{-at^2}\;,$$
+cette derni\`ere fonction de la variable $t$ \'etant int\'egrable sur $\rmat_+$.
+On en d\'eduit que $g$ est de classe ${\cal C}^1$ sur $[a,\ii[$ pour tout
+$a>0$, donc sur $\rmat_+^*$, et que\vv
+$$\a x\in\rmat_+^*\qquad g'(x)=-\int_0^{\ii}{t^2\;e^{-xt^2}\s1+t^2}\>{\rm d}t
+=g(x)-\int_0^{\ii}e^{-xt^2}\>{\rm d}t\;.$$
+Le changement de variable $t\,\sqrt{x}=u$ dans cette derni\`ere int\'egrale
+montre que $g$ v\'erifie, sur $\rmat_+^*$, l'\'equation diff\'erentielle\vvvv
+$$g'(x)-g(x)=-{G\s\sqrt{x}}\;.$$
+En posant $g(x)=\lambda(x)\;e^x$ (m\'ethode de ``variation de la constante''),
+on obtient\vv
+$$\lambda(x)=-G\;\int_0^x{e^{-t}\s\sqrt{t}}\;{\rm d}t+C\;.$$
+La fonction $\lambda:x\mapsto e^{-x}\;g(x)$ \'etant continue sur $\rmat_+$,
+de $\lambda(0)=g(0)={\pi\s2}$, on tire $C={\pi\s2}$ et\vv
+$$g(x)=e^x\;\lambda(x)=e^x\;\lp{\pi\s2}-G\;\int_0^x{e^{-t}\s\sqrt{t}}
+  \;{\rm d}t\rp\;.$$
+Enfin, la majoration imm\'ediate $0\le\lambda(x)=e^{-x}\;
+\int_0^{\ii}{e^{-xt^2}\s1+t^2}\;{\rm d}t\le{\pi\s2}\;e^{-x}$ montre que
+$\Lim{x}{\ii}\lambda(x)=0$, donc
+$${\pi\s2}=G\;\int_0^{\ii}{e^{-t}\s\sqrt{t}}\;{\rm d}t=G\;\int_0^{\ii}
+  {e^{-u^2}\s u}\;2u\;{\rm d}u=2G^2\;.$$
+Comme $G$ est positif, on conclut
+$$\int_0^{\ii}e^{-u^2}\;{\rm d}u={\sqrt{\pi}\s2}\;.$$
+
+\par
+{\bf 2.} Les solutions de l'\'equation sans second membre associ\'ee sont $(\lam x+\mu)\>e^x$.\ssk\sect Utilisons la m\'ethode de variation des constantes pour exprimer les solutions de {\bf (E)}. Posons donc $\;y(x)=\big(\lam(x)+x\>\mu(x)\big)\>e^x$, avec la condition $\lam'(x)+x\mu'(x)=0$. On d\'erive deux fois~: $y'=(\lam+\mu+\mu x)\>e^x$, puis $\;y''=(\lam+2\mu+\mu'+\mu x)\>e^x$. Ainsi,\vv
+$${\bf (E)}\iff \mu'(x)\>e^x={1\s\sqrt{x}}\iff\mu'(x)={e^{-x}\s\sqrt{x}}\;,\qquad{\rm puis}\quad \lam'(x)=-\sqrt{x}\>e^{-x}\;.$$
+Les conditions initiales sont alors $\lam(0)=0$ et $\lam(0)+\mu(0)=0$, donc $\lam(0)=\mu(0)=0$ et\vv
+$$\mu(x)=\int_0^x{e^{-t}\s\sqrt{t}}\>{\rm d}t\qquad{\rm et}\quad \lam(x)=-\int_0^x\sqrt{t}\>e^{-t}\>{\rm d}t=\sqrt{x}\>e^{-x}-\int_0^x{e^{-t}\s2\sqrt{t}}\>{\rm d}t$$
+donc\vvv
+$$\ffi(x)=\sqrt{x}+\lp x-{1\s2}\rp\>e^x\>\int_0^x{e^{-t}\s\sqrt{t}}\>{\rm d}t=\sqrt{x}+(2x-1)\>e^x\>\int_0^{\sqrt{x}} e^{-u^2}\>{\rm d}u\;.$$
+Lorsque $x$ tend vers $\ii$, on a donc\vv
+$$\ffi(x)=\sqrt{x}+(2x-1)\>e^x\>\big(G+o(1)\big)=2Gxe^x+o(x\>e^x)\;,\qquad{\rm soit}\quad\ffi(x)\Equi{x}{\ii}\sqrt{\pi}\>x\>e^x\;.$$
+
+\bsk
+\hrule
+\eject
+
+{\bf EXERCICE 4 :}\msk
+{\bf 1. Lemme de Gronwall}\msk
+Soit $c$ un r\'eel, soient $u$ et $v$ deux fonctions continues sur $\rplus$, $u$ \`a valeurs r\'eelles, $v$ \`a valeurs positives ou nulles. On suppose\vv
+$$\a x\in\rplus\qquad u(x)\ie c+\int_0^xu(t)\>v(t)\>{\rm d}t\;.$$
+D\'emontrer que\vv
+$$\a x\in\rplus\qquad u(x)\ie c\cdot\exp\lp\int_0^xv(t)\>{\rm d}t\rp\;.$$
+\par
+{\bf 2.} Soit $p:\rplus\vers\rmat$ une fonction continue, int\'egrable sur $\rplus$. Montrer que les solutions de l'\'equation diff\'erentielle\vvvv
+$$y''+\big(1-p(x)\big)\>y=0\leqno\hbox{\bf (E)}$$\vv\new
+sont born\'ees sur $\rplus$.
+
+
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf 1.} Posons $\;w(x)=c+\int_0^xu(t)\>v(t)\>{\rm d}t$. On a $u\ie w$ sur $\rplus$. La fonction $w$ est d\'erivable et $w'=uv\ie wv$. Posons maintenant $\;V(x)=\int_0^xv(t)\>{\rm d}t\;$ et $\;f(x)=e^{-V(x)}\>w(x)$. La fonction $f$ est d\'erivable et $\;f'=e^{-V}(w'-wv)\ie0$, donc $f$ est d\'ecroissante sur $\rplus$ et $\;\a x\in\rplus\quad f(x)\ie f(0)=w(0)=c$, donc\vv
+$$\a x\in\rplus\qquad w(x)\ie c\cdot e^{V(x)}\qquad\hbox{et, a fortiori}\;,\quad u(x)\ie c\cdot e^{V(x)}\;,$$
+ce qu'il fallait prouver.
+
+\msk
+{\bf 2.} Soit $\ffi$ une solution de {\bf (E)} sur $\rplus$. Alors $\ffi$ est solution de\vv
+$${\bf (E')}\;:\qquad y''+y=p(x)\>\ffi(x)\;.$$
+La m\'ethode de variation des constantes permet alors d'\'ecrire\vv
+$$\ffi(x)=A\>\cos x+B\>\sin x+\int_0^x\sin(x-t)\>p(t)\>\ffi(t)\>{\rm d}t\;.$$
+On a donc $\;|\ffi(x)|\ie c+\int_0^x|p(t)|\>|\ffi(t)|\>{\rm d}t\;$ avec $c=|A|+|B|$. Le lemme de Gronwall donne alors\vv
+$$\a x\in\rplus\qquad |\ffi(x)|\ie c\cdot\exp\lp\int_0^x|p(t)|\>{\rm d}t\rp\ie c\cdot\exp\lp\int_0^{\ii}|p(t)|\>{\rm d}t\rp\;,$$
+donc la fonction $\ffi$ est born\'ee sur $\rplus$.
+
+\bsk
+\hrule
+\eject
+
+{\bf EXERCICE 5 :}\msk
+Soit le syst\`eme diff\'erentiel \`a coefficients constants\vv
+$${\bf (S)}\;:\quad X'=AX\;,\quad{\rm avec}\quad X:\rmat\vers\cmat^n\;,\quad A\in{\cal M}_n(\cmat)\;.$$
+\par
+{\bf 1.} Condition n\'ecessaire et suffisante sur la matrice $A$ pour que toutes les solutions du syst\`eme {\bf (S)} soient born\'ees sur $\rmat$~?\msk 
+{\bf 2.} \`A quelle condition les solutions de {\bf (S)} sont-elles born\'ees sur $\rplus$~?\msk
+{\bf 3.} En d\'eduire que toute matrice antisym\'etrique r\'eelle est diagonalisable sur $\cmat$, avec toutes ses valeurs propres imaginaires pures~?\msk
+{\bf 4.} \'Etendre au cas d'une matrice complexe antihermitienne ($A^*=-A$).
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Les solutions de {\bf (S)} s'expriment sous la forme $X(t)=e^{tA}\>X_0$, mais le calcul de $e^{tA}$, partant d'une matrice $A$ quelconque, n'est pas ais\'e.
+Effectuons alors la r\'eduction de $A$ suivant ses sous-espaces caract\'eristiques~: on peut \'ecrire $A=PBP^{-1}$, avec $P\in{\rm GL}_n(\cmat)$ et $B\in{\cal M}_n(\cmat)$ diagonale par blocs~: $B=\diag(B_1,\cdots,B_m)$, chaque bloc $B_k\in{\cal M}_{\alpha_k}(\cmat)$ \'etant de la forme $B_k=\lam_kI_{\alpha_k}+N_k$, o\`u $N_k\in{\cal M}_{\alpha_k}(\cmat)$ est nilpotente.\msk\sect
+Effectuons le changement de fonctions inconnues $X=PY\iff Y=P^{-1}X$. Alors, en posant $Y_0=Y(0)$ (``condition initiale''), on a\vv
+$${\bf (S)}\iff Y'=BY\iff Y(t)=e^{tB}\>Y_0\;.$$\sect
+Les solutions de {\bf (S)} sont born\'ees sur $\rmat$ si et seulement si les coefficients de la matrice $e^{tB}$ sont born\'es. Or, la matrice $e^{tB}$ est aussi diagonale par blocs~: $e^{tB}=\diag(e^{tB_1},\cdots,e^{tB_m})$, o\`u\vv
+$$e^{tB_k}=e^{t\lam_k}\>e^{tN_k}=e^{t\lam_k}\Big(I_{\alpha_k}+t\>N_k+{t^2\s2}\>N_k^2+\cdots+{t^{\beta_k-1}\s(\beta_k-1)!}\>N_k^{\beta_k-1}\Big)\;,$$
+$\beta_k$ \'etant l'indice de nilpotence de la matrice $N_k$ ({\it rappelons que $\beta_k$ est l'ordre de la valeur propre $\lam_k$ en tant que racine du polyn\^ome minimal, alors que $\alpha_k$ est sa multiplicit\'e en tant que racine du polyn\^ome caract\'eristique~; le sous-espace caract\'eristique est $\Ker(A-\lam_k I_n)^{\beta_k}$ et il est de dimension $\alpha_k$}).\msk\sect
+Les matrices $I_{\alpha_k}$, $N_k$, $N_k^2$, $\cdots$, $N_k^{\beta_k-1}$ \'etant lin\'eairement ind\'ependantes dans ${\cal M}_{\alpha_k}(\cmat)$ ({\it exercice classique}), on voit que la fonction $t\mapsto e^{tB_k}$ est born\'ee sur $\rmat$ si et seulement si on a, d'une part $t\mapsto e^{t\lam_k}$ born\'ee sur $\rmat$ (c'est-\`a-dire $\lam_k\in i\rmat$) et d'autre part $\beta_k=1$ (c'est-\`a-dire $N_k=0$ ou encore $B_k=\lam_kI_{\alpha_k}$).\msk\sect
+Une condition n\'ecessaire et suffisante pour que les solutions de {\bf (S)} soient born\'ees sur $\rmat$ est donc que la matrice $A$ soit diagonalisable sur $\cmat$, ses valeurs propres \'etant toutes imaginaires pures.
+
+\msk
+{\bf 2.} En reprenant les calculs pr\'ec\'edents, on voit que les solutions de {\bf (S)} sont born\'ees sur $\rplus$ si et seulement si, pour tout $k\in\[ent1,m\]ent$, toutes les fonctions $t\mapsto t^p\>e^{t\lam_k}$ ($0\ie p\ie\beta_k-1$) sont born\'ees sur $\rplus$. Or,\ssk\new
+$\triangleright$ si $\Re(\lam_k)>0$, aucune de ces fonctions n'est born\'ee sur $\rplus$~;\ssk\new
+$\triangleright$ si $\Re(\lam_k)=0$, seule celle pour $p=0$ est born\'ee sur $\rplus$~;\ssk\new
+$\triangleright$ si $\Re(\lam_k)<0$, elles sont toutes born\'ees sur $\rplus$.
+\msk\sect
+En conclusion, une condition n\'ecessaire et suffisante pour que les solutions de {\bf (S)} soient born\'ees sur $\rplus$ est que toutes les valeurs propres de $A$ aient une partie r\'eelle n\'egative ou nulle, celles de partie r\'eelle nulle \'etant racines simples du polyn\^ome minimal (pour ces derni\`eres, le sous-espace caract\'eristique doit \^etre confondu avec le sous-espace propre).
+
+\msk
+{\bf 3.} Si $A$ est antisym\'etrique r\'eelle, si $X$ est solution de $X'=AX$ (\`a valeurs r\'eelles, il suffit pour cela de prendre $X_0=X(0)\in\rmat^n$) , alors, en notant $\|\cdot\|$ la norme euclidienne canonique sur $\rmat^n$, on a\vv
+$${{\rm d}\s{\rm d}t}\big(\|X(t)\|^2\big)=2\big(X'(t)|X(t)\big)=2\big(A\>X(t)|X(t)\big)=0$$
+($X\mapsto\|X\|^2$ est une {\bf int\'egrale premi\`ere} du syst\`eme diff\'erentiel {\bf (S)}). Les solutions de {\bf (S)} sont constantes en norme, donc born\'ees (on l'a montr\'e pour les solutions \`a valeurs r\'elles, mais il en est de m\^eme des solutions \`a valeurs complexes, puisque si $X:\rmat\vers\cmat^n$ est une telle solution, alors $\Re(X)$ et $\Im(X)$ sont aussi solutions de {\bf (S)}). De la question {\bf 1.}, on d\'eduit que la matrice $A$ est diagonalisable sur $\cmat$, \`a valeurs propres imaginaires pures.
+
+\msk
+{\bf 4.} Si $A$ est antihermitienne, si $X:\rmat\vers\cmat^n$, $X=(x_1,\cdots,x_n)$ est une solution de {\bf (S)}, on a, en notant $\|\cdot\|$ la norme hermitienne canonique sur $\cmat^n$, $\|X(t)\|^2=\t\>\ov{X}X$, donc\vv
+$${{\rm d}\s{\rm d}t}\big(\|X\|^2\big)=\t\>\ov{X}\>'X+\t\>\ov{X}X'=\t\>\ov{X}\>\t\>\ov{A}X+\t\>\ov{X}AX=\t\>\ov{X}(A^*+A)X=0$$
+car $A^*+A=0$, d'o\`u la m\^eme conclusion qu'\`a la question pr\'ec\'edente (qui est d'ailleurs un cas particulier de celle-ci)~: la matrice $A$ est diagonalisable sur $\cmat$, \`a valeurs propres imaginaires pures.
+
+
+
+
+
+
+
+
+
+\end{document}

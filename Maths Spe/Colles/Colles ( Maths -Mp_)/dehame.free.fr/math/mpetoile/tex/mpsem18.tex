@@ -1,0 +1,638 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % \'evite le textstyle en mode
+                                % math\'ematique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math\'ematiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de pr\'esentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% divers
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'\'ecriture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% \`a l'int\'erieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d\'ecroissante),
+% \nondef (la fonction est non d\'efinie)
+% si l'on termine la derni\`ere ligne par \cr, un trait est tir\'e en dessous
+% sinon elle est laiss\'ee sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  
+\def\rmat{{\rm I\kern-0.6mm R}}  
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____d\'ef de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% Alg\`ebre lin\'eaire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________d\'eterminant_______
+\def\det{\mathop{\rm det}\nolimits} 
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos\'ee ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  
+\def\MC#1{{\cal M}_{#1}(\cmat)}  
+\def\MK#1{{\cal M}_{#1}(\kmat)}  
+
+%________Complexes_________ 
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   
+\def\Arccos{\mathop{\rm Arccos}\nolimits}  
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     
+\def\Argch{\mathop{\rm Argch}\nolimits}     
+\def\Argth{\mathop{\rm Argth}\nolimits}     
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} 
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s\'eries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr\'eg\'ees%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-\`a-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+\def\cala{{\cal A}}
+\def\fhat{\widehat{f}}
+\let\wh=\widehat
+\def\ftilde{\tilde{f}}
+
+% ********************************************************************************************************************** %
+%                                                                                                                                                                                   %
+%                                                                    FIN   DES   MACROS                                                                              %
+%                                                                                                                                                                                   %
+% ********************************************************************************************************************** %
+
+
+
+
+
+
+
+
+
+
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+
+
+
+\overfullrule=0mm
+
+
+\cl{{\bf SEMAINE 18}}\msk
+\cl{{\bf S\'ERIES de FOURIER}}
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+En consid\'erant la fonction $f:\rmat\vers\cmat$, 1-p\'eriodique, telle que\vv
+$$\a x\in[0,1[\qquad f(x)=e^{2i\pi x^2}\;,$$
+calculer les {\bf int\'egrales de Fresnel}~:\vv
+$$I=\int_{-\infty}^{\ii}\cos u^2\>du\qquad{\rm et}\qquad
+  J=\int_{-\infty}^{\ii}\sin u^2\>du\;.$$
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+Soit $(c_n)_{n\in\zmat}$ la famille des coefficients de Fourier de $f$. On a\vv
+\begin{eqnarray*}
+c_n & = & \int_0^1f(x)\>e^{-2i\pi n x}\>dx=\int_0^1e^{2i\pi(x^2-nx)}\>dx\\ \nssk
+               & = & \int_0^1e^{{}^{\sst2i\pi\lc\lp x-{\sst n\sur\sst2}\rp^2-
+                                 {\sst n^2\sur\sst 4}\rc}}\>dx
+                 = e^{{}^{\sst-i\pi{\sst n^2\sur\sst2}}}\>\int_0^1e^{{}^{\sst
+                                 2i\pi\lp x-{\sst n\sur\sst2}\rp^2}}\>dx\\ \nssk
+               & = & e^{{}^{\sst-i\pi{\sst n^2\sur\sst2}}}\>\int_{-{\sst n\sur\sst2}}^{-{\sst n\sur\sst2}+1}
+                                 e^{2i\pi t^2}\>dt
+\end{eqnarray*}
+(\'ecriture du trin\^ome sous forme canonique, puis translation de la variable
+$t=x-{n\s2}$). On distingue alors selon la parit\'e de $n$~: pour tout $p\in\zmat$,
+on a\vv
+$$c_{2p}=\int_{-p}^{-p+1}e^{2i\pi t^2}\>dt\qquad{\rm et}\qquad
+  c_{2p+1}=-i\>\int_{-p+{\sst1\sur\sst2}}^{-p+{\sst3\sur\sst2}}e^{2i\pi t^2}\>dt\;.$$
+La fonction $f$ est continue, 1-p\'eriodique, et de classe ${\cal C}^1$ par morceaux sur $\rmat$,
+la famille $(c_n)_{n\in\zmat}$ des coefficients de Fourier de $f$ est donc sommable
+et la s\'erie de Fourier de $f$ converge normalement vers $f$~:
+$$\a x\in\rmat\qquad f(x)=\sum_{n=-\infty}^{\ii}c_n\>e^{2i\pi nx}$$
+et, en particulier, $f(0)=1=\sum_{n=-\infty}^{\ii}c_n$.
+\msk
+
+Pour tout $P\in\net$, on a $\sum_{p=-P}^{P}c_{2p}=\sum_{p=-P}^{P}\int_{-p}^{-p+1}e^{2i\pi t^2}\>dt=
+\int_{-P}^{P+1}e^{2i\pi t^2}\>dt$.\qquad{\bf (*)}
+\ssk
+Or, l'int\'egrale $\;K=\int_{-\infty}^{\ii}e^{2i\pi t^2}\>dt\;$ est semi-convergente~: en effet, le changement de variable
+$t=\sqrt{u}$ ram\`ene le probl\`eme de la convergence de l'int\'egrale $\;\int_1^{\ii}
+e^{2i\pi t^2}\>dt\;$ \`a celle de l'int\'egrale $\;\int_1^{\ii}{e^{2i\pi u}\s\sqrt{u}}\>du\;$
+et
+$$\int_1^U{e^{2i\pi u}\s\sqrt{u}}\>du=\lc{e^{2i\pi u}\s2i\pi\sqrt{u}}\rc_1^U
+  +{1\s4i\pi}\int_1^U{e^{2i\pi u}\s u\sqrt{u}}\>du\;,$$
+cette derni\`ere int\'egrale \'etant absolument convergente en $\ii$ (selon les
+termes du programme, la fonction $\;u\mapsto{e^{2i\pi u}\s u\sqrt{u}}\;$
+est int\'egrable sur $[1,\ii[$).\ssk
+En faisant tendre $P$ vers $\ii$ dans {\bf (*)}, on obtient donc $\;
+\sum_{p=-\infty}^{\ii}c_{2p}=K$.\ssk
+De la m\^eme fa\c con, on obtient $\sum_{p=-\infty}^{\ii}c_{2p+1}=-i\>\sum_{p=-\infty}^{\ii}
+\int_{-p+{\sst1\sur\sst2}}^{-p+{\sst3\sur\sst2}}e^{2i\pi t^2}\>dt=-iK$.\ssk
+Finalement, $1=\sum_{n\in\zmat}c_n=\sum_{p=-\infty}^{\ii}c_{2p}+\sum_{p=-\infty}
+^{\ii}c_{2p+1}=(1-i)K$, donc $K={1\s 1-i}={1+i\s2}$. En posant $u=t\>\sqrt{2\pi}$,
+on obtient\vv
+$$K={1\s\sqrt{2\pi}}\>\int_{-\infty}^{\ii}e^{iu^2}\>du={I+iJ\s\sqrt{2\pi}}={1+i\s2}\;,$$
+donc\vv
+$$I=J=\sqrt{\pi\s2}\;.$$
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 2 :}\msk
+Soit $f:\rmat\vers\cmat$ une fonction continue par morceaux et $2\pi$-p\'eriodique. On note $(c_n)_{n\in\zmat}$ les coefficients de Fourier de $f$. Pour tout $r\in]0,1[$, on pose\vv
+$$F_r(t)=\sum_{n=-\infty}^{\ii}r^{|n|}\>c_n\>e^{int}\;.$$
+\par
+{\bf 1.} Montrer que, si $f$ est continue au point $t\in\rmat$, alors\vv
+$$f(t)=\Lim{r}{1^-}F_r(t)\;.$$ 
+\par
+{\bf 2.} Montrer que, si $f$ est continue sur $\rmat$, alors la convergence de la famille de fonctions $(F_r)$ vers $f$ lorsque $r\vers 1^-$ est uniforme sur $\rmat$.
+\msk
+{\bf 3.} En d\'eduire le second th\'eor\`eme de Weierstrass.
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+On a $c_n={1\s2\pi}\>\int_0^{2\pi}f(u)\>e^{-inu}\>du$. On a $|c_n|\ie\|f\|_{\infty}$ pour tout $n\in\zmat$ donc, pour tout $r\in]0,1[$, $F_r(t)$ est d\'efini comme somme d'une s\'erie normalement convergente de fonctions de $t$. Alors\vv
+$$F_r(t)={1\s2\pi}\>\sum_{n=-\infty}^{\ii}\int_0^{2\pi}r^{|n|}\>f(u)\;e^{in(t-u)}\>du={1\s2\pi}\>\int_0^{2\pi}\sum_{n=-\infty}^{\ii}r^{|n|}\>f(u)\;e^{in(t-u)}\>du$$
+car la s\'erie de fonctions $\;u\mapsto r^{|n|}\>f(u)\>e^{in(t-u)}\;$ converge normalement sur $[0,2\pi]$.\msk
+Donc $\;F_r(t)=\int_0^{2\pi}f(u)\>P_r(t-u)\>du\;$ en posant, pour tout $x$ r\'eel et tout $r\in]0,1[$,\vv
+\begin{eqnarray*}
+P_r(x) & = & {1\s 2\pi}\>\sum_{n=-\infty}^{\ii}r^{|n|}\>e^{inx}
+             =   {1\s 2\pi}\>\Big(\sum_{n=0}^{\ii}r^n\>e^{inx}+\sum_{n=0}^{\ii}r^n\>e^{-inx}-1\Big)\\
+& = & {1\s2\pi}\>\Big({1\s1-re^{ix}}+{1\s1-re^{-ix}}-1\Big)={1\s2\pi}\>{1-r^2\s1-2r\cos x+r^2}\;.
+\end{eqnarray*}
+\par
+La famille de fonctions $(P_r)_{0<r<1}$, appel\'ee {\bf noyau de Poisson}, est une {\bf approximation de l'unit\'e $2\pi$-p\'eriodique} lorsque $r\vers 1^-$ ({\it cf}. semaine 13, exercice 4), ce qui signifie que ce sont des fonctions continues et $2\pi$-p\'eriodiques sur $\rmat$ v\'erifiant\ssk\sect
+{\bf (1)}\quad : \quad $\a r\in]0,1[\quad\a x\in\rmat\qquad P_r(x)\se0$~;\ssk\sect
+{\bf (2)}\quad : \quad $\a r\in]0,1[\qquad\int_0^{2\pi}P_r(t)\>dt=1$~;\ssk\sect
+{\bf (3)}\quad : \quad pour tout $\alpha\in]0,\pi[$, la famille de fonctions $(P_r)$ converge uniform\'ement vers la fonction nulle sur $[\alpha,2\pi-\alpha]$ lorsque $r\vers1^-$.
+\ssk
+La propri\'et\'e {\bf (1)} est imm\'ediate.\ssk
+La propri\'et\'e {\bf (2)} se d\'eduit de la relation $\;F_r(t)=\int_0^{2\pi}f(u)\>P_r(t-u)\>du\;$ en consid\'erant $f=1$.\ssk
+La propri\'et\'e {\bf (3)} est cons\'equence de l'encadrement $\;0\ie P_r(x)\ie P_r(\alpha)$ valable si $x\in[\alpha,2\pi-\alpha]$ et du fait que, pour tout $\alpha\not\in2\pi\zmat$ fix\'e, $\Lim{r}{1^-}P_r(\alpha)=0$.
+\msk
+{\bf 1.} Soit $t\in\rmat$ un point de continuit\'e de $f$. Donnons-nous $\eps>0$ et associons-lui un $\alpha>0$ tel que $\;|u|\ie\alpha\impl|f(t-u)-f(t)|\ie{\eps\s2}$. Alors, en faisant un changement de variable et en utilisant le fait que l'int\'egrale d'une fonction c.p.m. et $2\pi$-p\'eriodique est la m\^eme sur tout segment de longueur $2\pi$, on obtient\vv
+\begin{eqnarray*}
+F_r(t) & = & \int_0^{2\pi}f(u)\>P_r(t-u)\>du = \int_0^{2\pi} f(t-u)\>P_r(u)\>du\\
+         & = & f(t)+\int_0^{2\pi}\big(f(t-u)-f(t)\big)\>P_r(u)\>du\;,
+\end{eqnarray*}
+donc\vv
+\begin{eqnarray*}
+|F_r(t)-f(t)| & \ie & \left|\int_{-\alpha}^{\alpha}\big(f(t-u)-f(t)\big)\>P_r(u)\>du\right|+\left|\int_{[-\pi,-\alpha]\cup[\alpha,\pi]}\big(f(t-u)-f(t)\big)\>P_r(u)\>du\right|\\
+& \ie & {\eps\s2}\>\int_{-\alpha}^{\alpha}P_r(u)\>du+{1\s\pi}\>{1-r^2\s1-2r\cos\alpha+r^2}\>\int_{-\pi}^{\pi}|f(u)|\>du\\
+& \ie & {\eps\s2}+C\>{1-r^2\s1-2r\cos\alpha+r^2}\;,
+\end{eqnarray*}
+o\`u $C$ est une constante positive. De $\;\Lim{r}{1^-}{1-r^2\s1-2r\cos\alpha+r^2}=0$, on tire la conclusion (le deuxi\`eme terme peut \^etre rendu inf\'erieur \`a ${\eps\s2}$ pour $r$ suffisamment proche de 1).
+\msk\sect
+{\it En un point de discontinuit\'e de $f$, on a} $\;\Lim{r}{1^-}F_r(t)={f(t^+)+f(t^-)\s2}$.
+\bsk
+{\bf 2.} La fonction $f$ \'etant p\'eriodique et continue sur $\rmat$, elle est uniform\'ement continue sur $\rmat$. Dans la d\'emonstration de la question pr\'ec\'edente, une fois donn\'e $\eps$, on peut lui associer $\alpha>0$ ind\'ependamment du point $t$, et la m\^eme majoration de $|F_r(t)-f(t)|$ montre la convergence uniforme sur $\rmat$.
+
+\msk
+{\bf 3.} Soit $f:\rmat\vers\cmat$, continue et $2\pi$-p\'eriodique. Soit $\eps>0$. D'apr\`es la question {\bf 2.}, on peut trouver $r_0\in]0,1[$ tel que $\|f-F_{r_0}\|_{\infty}\ie{\eps\s2}$. Par ailleurs, en posant $\;F_{r_0}^{[N]}(t)=\sum_{n=-N}^Nr_0^{|n|}c_ne^{int}\;$ pour tout $N\in\nmat$, alors $(F_{r_0}^{[N]})_{N\in\nmat}$ est une suite de polyn\^omes trigonom\'etriques convergeant normalement sur $\rmat$ vers la fonction $F_{r_0}$. On aura donc $\|F_{r_0}^{[N]}-F_{r_0}\|_{\infty}\ie{\eps\s2}$ pour $N$ assez grand, donc $f$ est limite uniforme sur $\rmat$ d'une suite de polyn\^omes trigonom\'etriques.
+
+
+\bsk\hrule\bsk
+
+{\bf EXERCICE 3 :}\msk
+{\bf Formule sommatoire de Poisson}\msk
+\def\fhat{\widehat{f}}
+Soit $f:\rmat\vers\cmat$, de classe ${\cal C}^1$. On suppose qu'il existe
+un r\'eel $\alpha>1$ tel que, au voisinage de $-\infty$ et de $\ii$, on ait\vv
+$$f(t)=O\lp{1\s |t|^{\alpha}}\rp\qquad\hbox{et}\qquad f'(t)=O\lp{1\s |t|^{\alpha}
+  }\rp\;.$$\par
+La {\bf transform\'ee de Fourier} de $f$ est la fonction $\fhat$ d\'efinie sur $\rmat$ par $\;\fhat(\lam)=\int_{-\infty}^{\ii}f(t)\>e^{-i\lam t}\>dt$.\msk
+Soit $\omega$ un r\'eel strictement positif. On pose $T={2\pi\s\omega}$. Pour
+tout r\'eel $t$, on pose
+$$F_T(t)=\sum_{n=-\infty}^{\ii}f(t+nT)$$
+($F_T$ est la $T$-{\bf p\'eriodis\'ee} de $f$).\msk
+{\bf a.} Montrer que $F_T$ est $T$-p\'eriodique et de classe ${\cal C}^1$ sur $\rmat$
+et exprimer ses coefficients de Fourier \`a l'aide de la transform\'ee de
+Fourier $\fhat$ de $f$.\msk
+{\bf b.} Montrer la relation (formule sommatoire de Poisson)~:\vvvv
+$$\sum_{n=-\infty}^{\ii}\fhat(n\omega)=T\cdot
+  \sum_{n=-\infty}^{\ii}f(nT)\;.$$\par
+{\bf c.} {\it Application}. Soit $a>0$. Calculer $S_a=\sum_{n=-\infty}^{\ii}
+{1\s n^2+a^2}$.\ssk\sect
+Retrouver la relation $\;\sum_{n=1}^{\ii}{1\s n^2}={\pi^2\s6}$.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+
+{\bf a.} La fonction $\;t\mapsto t^{\alpha}\>f(t)\;$ est born\'ee sur $\rmat$
+car elle est continue et born\'ee au voisinage de $-\infty$ et $\ii$~: on a
+$\;\a t\in\rmat\quad|t^{\alpha}\>f(t)|\le k\;$ ($k>0$).\pn
+Soit $A>0$. Pour $|n|>{A\s T}$ et $|t|\le A$, on a\vv
+$$|t+nT|\ge|nT|-|t|\ge|n|T-A\;,$$
+d'o\`u $|f(t+nT)|\le{k\s(|n|T-A)^{\alpha}}$. Cela garantit la convergence
+normale sur $[-A,A]$ de la s\'erie $\sum_{n\in\zmat}f(t+nT)$. La fonction
+$F_T$ est donc d\'efinie et continue sur $\rmat$. Sa p\'eriodicit\'e est
+imm\'ediate.\pn
+La s\'erie des d\'eriv\'ees est aussi normalement convergente sur tout segment
+de $\rmat$, donc $F_T$ est de classe ${\cal C}^1$.\psn
+Calculons les coefficients de Fourier de $F_T$~:\vv
+\begin{eqnarray*}
+c_n(F_T) & = & {1\s T}\;\int_0^TF_T(t)\;e^{-in\omega t}\;dt
+                      ={1\s T}\;\int_0^T\lp\sum_{k=-\infty}^{\ii}
+                           f(t+kT)\rp\;e^{-in\omega t}\;dt\\
+                    & = & {1\s T}\;\sum_{k=-\infty}^{\ii}\int_0^Tf(t+kT)\;
+                           e^{-in\omega t}\;dt\\
+                    & = & {1\s T}\;\sum_{k=-\infty}^{\ii}\int_{kT}^{(k+1)T}
+                           f(t)\;e^{-in\omega t}\;dt\\
+                    & = & {1\s T}\;\int_{-\infty}^{\ii}f(t)\;
+                           e^{-in\omega t}\;dt
+                      ={1\s T}\>\fhat(n\omega)
+\end{eqnarray*}
+(la convergence normale de la s\'erie sur $[0,T]$ permet d'int\'egrer terme
+\`a terme).\msk\sect
+{\it Remarque. Cette relation permet de faire le lien entre les notions
+de s\'erie de Fourier et d'int\'egrale (ou transform\'ee) de Fourier.}
+
+\msk
+{\bf b.} La fonction $F_T$ est de classe ${\cal C}^1$ ; elle est donc somme
+de sa s\'erie de Fourier~:\vv
+$$\a t\in\rmat\qquad F_T(t)=\sum_{n=-\infty}^{\ii}f(t+nT)=\sum_{n=-\infty}
+  ^{\ii}c_n(F_T)\>e^{in\omega t}={1\s T}\>\sum_{n=-\infty}^{\ii}
+  \fhat(n\omega)\>e^{in\omega t}\;.$$
+Pour $t=0$, on obtient la relation demand\'ee.
+
+\msk
+{\bf c.} Soit la fonction$f:t\mapsto e^{-a|t|}$. Choisissons $\omega=1$,
+soit $T=2\pi$. La fonction $f$ est continue sur $\rmat$~; elle
+n'est pas tout \`a fait
+de classe ${\cal C}^1$ (non d\'erivable en z\'ero) mais on voit facilement
+que la $2\pi$-p\'eriodis\'ee $F_{2\pi}$ est continue et de classe ${\cal C}^1$
+par morceaux sur $\rmat$ (les points o\`u la d\'eriv\'ee n'est pas d\'efinie \'etant
+les $2n\pi$, $n\in\zmat$), ce qui suffit pour affirmer qu'elle est somme
+de sa s\'erie de Fourier. Les hypoth\`eses de d\'ecroissance \`a l'infini de $f$
+et de $f'$ sont bien v\'erifi\'ees. Nous laissons le lecteur v\'erifier que la transform\'ee de Fourier de $f$ est $\fhat:\lam\mapsto
+{2a\s \lam^2+a^2}$. La formule de Poisson donne alors\vv
+$$\sum_{n=-\infty}^{\ii}\fhat(n)=2a\>S_a=2\pi\;\sum_{n=-\infty}^{\ii}
+  f(2n\pi)=2\pi\;\sum_{n=-\infty}^{\ii}e^{-2\pi a|n|}\;,$$
+soit\vv
+$$S_a={\pi\s a}\;\lc1+{2e^{-2\pi a}\s1-e^{-2\pi a}}\rc=
+  {\pi\s a\>\th\pi a}\;.$$
+Pour $a\ge0$, posons $s(a)=\sum_{n=1}^{\ii}{1\s n^2+a^2}$. La fonction
+$a\mapsto s(a)$ est continue sur $\rplus$ comme somme d'une s\'erie
+normalement convergente de fonctions continues. Or, le calcul ci-dessus
+montre que, pour $a>0$, on a\vv
+$$s(a)={1\s2}\lp S_a-{1\s a^2}\rp={1\s2}\lp{\pi\s a\>\th\pi a}-{1\s a^2}\rp
+  \;.$$
+\`A l'aide d'un d\'eveloppement limit\'e \`a l'ordre trois de la fonction $\th$,
+on obtient facilement $s(0)=\Lim{a}{0}s(a)={\pi^2\s6}$.
+
+
+\bsk\hrule\bsk
+
+{\bf EXERCICE 4 :}\msk
+{\bf Ph\'enom\`ene de Gibbs}\msk
+Soit $f$ la fonction de $\rmat$ vers $\rmat$, $2\pi$-p\'eriodique, telle que $\;\system{&f&=&-1\quad&{\rm sur}\quad&[-\pi,0[\cr &f&=&+1\quad&{\rm sur}\quad&[0,\pi[\cr}$.
+\msk
+{\bf 1.} D\'eterminer les coefficients de Fourier $(b_n)_{n\in\nmat}$ de $f$.\msk
+{\bf 2.} Soit $f_n$ la somme partielle d'indice $n$ de la s\'erie de Fourier de $f$~:\vv
+$$\a x\in\rmat\qquad f_n(x)=\sum_{k=0}^{n-1}b_{2k+1}\>\sin(2k+1)x\;.$$
+Rechercher les extremums relatifs de $f_n$ sur $[0,\pi]$.\msk
+{\bf 3.} Soit $M_n$ le maximum global de $f_n$. En quel point de $\lc0,{\pi\s2}\rc$ est-il atteint~?\msk
+{\bf 4.} Exprimer le nombre $l=\Lim{n}{\ii}M_n$ sous la forme d'une int\'egrale, et aussi comme somme d'une s\'erie.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf 1.} La fonction $f$ est impaire, donc les coefficients $a_n$ sont nuls. Ensuite,\vv
+$$b_n  =  {2\s\pi}\>\int_0^{\pi}f(x)\>\sin nx\>dx={2\s\pi}\>\int_0^{\pi}\sin nx\>dx={2\s n\pi}\big(1-(-1)^n\big)\;,$$
+donc $b_{2k}=0$ et $\;b_{2k+1}={4\s\pi(2k+1)}$.
+
+\msk
+{\bf 2.} On a $f_n(x)={4\s\pi}\>\sum_{k=0}^{n-1}{\sin(2k+1)x\s 2k+1}$, donc $\;f'_n(x)={4\s\pi}\>\sum_{k=0}^{n-1}\cos(2k+1)x$. Un calcul classique, laiss\'e au lecteur courageux, donne $\;f'_n(x)={2\>\sin 2nx\s\pi\>\sin x}$ pour $x\not\in{\pi\zmat}$, prolong\'e par continuit\'e (puisque la fonction $f_n$ est de classe ${\cal C}^{\infty}$) en les points de la forme $k\pi$ ($k\in\zmat$) par\break $f'_n(2k\pi)={4n\s\pi}$ et $f'_n\big((2k+1)\pi\big)=-{4n\s\pi}$.\msk\sect
+La d\'eriv\'ee $f'_n$ s'annule donc, dans $[0,\pi]$, en les points $x_k={k\pi\s2n}\;$ ($1\ie k\ie 2n-1$). On peut pr\'eciser que $f'_n>0$ sur les intervalles $]x_{2p},x_{2p+1}[\;$ ($0\ie p\ie n-1$) et $f'_n<0$ sur les intervalles $]x_{2p+1},x_{2p+2}[\;$ ($0\ie p\ie n-1$), donc la fonction $f_n$ admet\ssk\new
+- un maximum relatif en chaque $x_{2p+1}\;$ ($0\ie p\ie n-1$)~;\ssk\new
+- un minimum relatif en chaque $x_{2p}\;$ ($1\ie p\ie n-1$).
+\msk
+{\bf 3.} \'Etudions les maximums relatifs de $f_n$ sur $\lc0,{\pi\s2}\rc$~: posons $\mu_p=f_n(x_{2p+1})=f_n\lp{(2p+1)\pi\s2n}\rp$ pour $0\ie p\ie E\lp{n-1\s2}\rp$. Pour $1\ie p\ie E\lp{n-1\s2}\rp$, on a\vv
+\begin{eqnarray*}
+\mu_p-\mu_{p-1} & = & \int_{{(2p-1)\pi\s2n}}^{{(2p+1)\pi\s2n}}f'_n(x)\>dx\\ \nssk
+& = & {2\s\pi}\>\int_{{(2p-1)\pi\s2n}}^{{2p\pi\s2n}}{\sin 2nx\s\sin x}\>dx + {2\s\pi}\>\int_{{2p\pi\s2n}}^{{(2p+1)\pi\s2n}}{\sin 2nx\s\sin x}\>dx\\ \nssk
+& = & {2\s\pi}\>\int_{{2p\pi\s2n}}^{{(2p+1)\pi\s2n}}\sin 2nx\>\lp{1\s\sin x}-{1\s\sin\lp x-\dst{\pi\s2n}\rp}\rp\>dx
+\end{eqnarray*}
+en faisant une translation de la variable dans la deuxi\`eme int\'egrale. Or, sur $\lc{2p\pi\s2n},{(2p+1)\pi\s2n}\rc$, on a $\sin 2nx\se0$ et la fonction sinus est positive et croissante sur $\lc0,{\pi\s2}\rc$, donc $\mu_p-\mu_{p-1}\ie0$. On a donc\vv
+$$M_n=\mu_1=f_n\lp{\pi\s2n}\rp\;.$$
+\ssk
+{\bf 4.} On a $\;M_n=\int_0^{{\pi\s2n}}f'_n(x)\>dx={2\s\pi}\>\int_0^{{\pi\s2n}}{\sin 2nx\s\sin x}\>dx=\int_0^{\pi}g_n(t)\>dt$, avec, pour tout $t\in]0,\pi]$,\break\ssk\noi
+$g_n(t)={\sin t\s\pi n\>\sin\dst{t\s2n}}$. Pour tout $t\in]0,\pi]$, on a $\;\Lim{n}{\infty}g_n(t)={2\s\pi}\>{\sin t\s t}$ ({\it convergence simple}). Par ailleurs, la concavit\'e de la fonction sinus sur $\lc0,{\pi\s2}\rc$ donne $\;\sin u\se{2u\s\pi}$ pour $u\in\lc0,{\pi\s2}\rc$~; on a donc la condition de domination\vv
+$$\a t\in\>]0,\pi]\qquad 0\ie g_n(t)\ie{\sin t\s t}\;,$$
+la fonction $t\mapsto{\sin t\s t}$ \'etant int\'egrable sur $]0,\pi]$. Le th\'eor\`eme de convergence domin\'ee s'applique et $\;l=\Lim{n}{\ii}M_n={2\s\pi}\>\int_0^{\pi}{\sin t\s t}\>dt$.
+\msk\sect
+{\it On peut remarquer que la suite $(M_n)$ est d\'ecroissante car $\;n\>\sin{t\s 2n}={1\s2}\>\int_0^t\cos{u\s 2n}\>du\;$ et, la fonction cosinus \'etant d\'ecroissante sur $[0,\pi]$, la suite $\lp n\>\sin{t\s2n}\rp_{n\in\net}$ est croissante pour tout $t$ fix\'e dans $[0,\pi]$.}
+\msk\sect
+On peut aussi d\'evelopper en s\'erie enti\`ere~:\quad ${\sin t\s t}=\sum_{k=0}^{\ii}(-1)^k\>{t^{2k}\s(2k+1)!}$ avec un rayon de convergence infini, d'o\`u la convergence normale sur $[0,\pi]$ qui permet d'int\'egrer terme \`a terme~:\vvvv
+$$l={2\s\pi}\>\sum_{k=0}^{\ii}(-1)^k\>{\pi^{2k+1}\s(2k+1)\times(2k+1)!}\;.$$
+\sect
+{\it La s\'erie de Fourier de $f$ converge simplement vers la r\'egularis\'ee $\tilde{f}$ de $f$ par le th\'eor\`eme de Dirichlet et, cette fonction $\tilde{f}$ \'etant discontinue, la convergence ne peut \^etre uniforme. Une calculatrice, ou MAPLE, donne $l\simeq 1,18$, donc $l>1$, ce qui met en \'evidence ce ph\'enom\`ene.}
+
+\bsk\hrule\bsk
+
+{\bf EXERCICE 5 :}\msk
+{\bf In\'egalit\'e isop\'erim\'etrique}\msk
+{\bf 1.}Soit $f:\rmat\vers\cmat$, 1-p\'eriodique, de classe $\ceun$, telle que $\;\int_0^1f(t)\>dt=0$.\ssk\sect
+Prouver l'in\'egalit\'e\vv
+$$4\pi^2\>\int_{[0,1]}|f|^2\ie\int_{[0,1]}|f'|^2\;.$$
+\par
+{\bf 2.} Soit $\Gamma$ un arc ferm\'e r\'egulier de classe $\ceun$ dans le plan euclidien orient\'e identifi\'e \`a $\cmat$. Notons $l$ sa longueur, et ${\cal A}$ l'aire de la partie born\'ee du plan d\'elimit\'ee par $\Gamma$.\ssk\sect
+Prouver l'in\'egalit\'e\vv
+$$l^2\se4\pi{\cal A}$$
+et \'etudier les cas d'\'egalit\'e.
+\msk
+\sect
+{\it Si $\Gamma$ est param\'etr\'ee par $t\mapsto \big(x(t),y(t)\big)$, avec $t\in[0,1]$, la formule de Green-Riemann donne\vv
+$${\cal A}={1\s2}\>\left|\int_{\Gamma}x\>dy-y\>dx\right|={1\s2}\left|\int_0^1\big(x(t)\>y'(t)-y(t)\>x'(t)\big)\>dt\right|={1\s 2}\>\left|\Im\lp\int_0^1\ov{f(t)}\>f'(t)\>dt\rp\right|$$
+en posant $f(t)=x(t)+iy(t)$.}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf 1.} Soient $(c_n)_{n\in\zmat}$ les coefficients de Fourier de $f$. La relation de Parseval donne\vv $$\int_0^1|f|^2=\sum_{n=-\infty}^{\ii}|c_n|^2\;.$$\sect
+Notons $(c'_n)_{n\in\zmat}$ les coefficients de Fourier de $f'$. Une classique int\'egration par parties donne $\;c'_n=2i\pi n\>c_n$. Par ce m\^eme val, nous arrivons \`a\vv
+$$\int_0^1|f'|^2=\sum_{n=-\infty}^{\ii}|c'_n|^2=4\pi^2\>\sum_{n=-\infty}^{\ii}n^2|c_n|^2\;.$$
+Or, $|c_n|^2\ie n^2|c_n|^2$ pour tout $n\in\zmat^*$ et c'est vrai aussi pour $n=0$ puisque $c_0=\int_0^1f=0$. On obtient donc $\;4\pi^2\>\int_0^1|f|^2\ie\int_0^1|f'|^2$, soit encore $2\pi\>\|f\|_2\ie\|f'\|_2$.
+\msk
+{\bf 2.} Sur un arc r\'egulier de classe $\ceun$, l'abscisse curviligne est un param\'etrage admissible (``repr\'esentation normale'' d'un arc). Si l'arc est ferm\'e de longueur $l$, on peut aussi choisir un param\'etrage $f:\rmat\vers\cmat$, 1-p\'eriodique, de classe $\ceun$ ``uniforme'' (``\`a vitesse constante''), c'est-\`a-dire tel que $|f'(t)|=l$ pour tout $t\in\rmat$. {\it Alors $\tau\mapsto f\lp{\tau\s l}\rp$ est un param\'etrage normal sur $\Gamma$}. Enfin, quitte \`a faire une translation, on peut supposer que $\int_0^1f=0$~: {\it en effet, l'int\'egrale $\int_0^1f$ est l'affixe du centre d'inertie de la courbe $\Gamma$, assimil\'ee \`a un fil homog\`ene}.\msk\sect
+L'aire de la r\'egion int\'erieure \`a la courbe est alors\vv
+$${\cal A}={1\s 2}\>\left|\Im\lp\int_0^1\ov{f(t)}\>f'(t)\>dt\rp\right|\ie{1\s2}\>\left|\int_0^1\ov{f}\>f'\right|\ie{1\s2}\>\lp\int_0^1|f|^2\rp^{{}^{\sst1\sur\sst2}}\lp\int_0^1|f'|^2\rp^{{}^{\sst1\sur\sst2}}$$
+par l'in\'egalit\'e de Cauchy-Schwarz. De la premi\`ere question, on d\'eduit $\;{\cal A}\ie{1\s2}\>{1\s2\pi}\>\int_0^1|f'|^2$, soit $\;{\cal A}\ie{l^2\s4\pi}$.
+\msk\sect
+S'il y a \'egalit\'e, alors~:\ssk\new
+$\bullet$ $\left|\Im\lp\int_0^1\ov{f(t)}\>f'(t)\>dt\rp\right|=\left|\int_0^1\ov{f}\>f'\right|$, soit $\int_0^1\ov{f}\>f'\in i\rmat$~;\ssk\new
+$\bullet$ les fonctions $f$ et $f'$ sont li\'ees ($f'=\lam f$ avec $\lam\in\cmat$)~; alors $\int_0^1\ov{f}\>f'=\lam\int_0^1|f|^2$~; la premi\`ere condition entra\^\i ne alors $\lam\in i\rmat$.\ssk\new
+Posons donc $\lam=i\omega$ avec $\omega\in\ret$, on a $f'=i\omega f$ donc $f(t)=a\>e^{i\omega t}$ avec $a\in\cet$, $|a|=l$. La courbe est alors un cercle (de centre $O$ si l'on impose toujours $\int_0^1f=0$).
+\msk\sect
+R\'eciproquement, il est imm\'ediat que tout cercle v\'erifie l'\'egalit\'e.
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

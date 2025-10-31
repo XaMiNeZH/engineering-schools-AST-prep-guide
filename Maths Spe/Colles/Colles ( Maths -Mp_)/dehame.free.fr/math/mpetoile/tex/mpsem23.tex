@@ -1,0 +1,523 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % \'evite le textstyle en mode
+                                % math\'ematique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math\'ematiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de pr\'esentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% divers
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'\'ecriture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% \`a l'int\'erieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d\'ecroissante),
+% \nondef (la fonction est non d\'efinie)
+% si l'on termine la derni\`ere ligne par \cr, un trait est tir\'e en dessous
+% sinon elle est laiss\'ee sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  
+\def\rmat{{\rm I\kern-0.6mm R}}  
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____d\'ef de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% Alg\`ebre lin\'eaire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________d\'eterminant_______
+\def\det{\mathop{\rm det}\nolimits} 
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos\'ee ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  
+\def\MC#1{{\cal M}_{#1}(\cmat)}  
+\def\MK#1{{\cal M}_{#1}(\kmat)}  
+
+%________Complexes_________ 
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   
+\def\Arccos{\mathop{\rm Arccos}\nolimits}  
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     
+\def\Argch{\mathop{\rm Argch}\nolimits}     
+\def\Argth{\mathop{\rm Argth}\nolimits}     
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} 
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s\'eries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr\'eg\'ees%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-\`a-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+\def\cala{{\cal A}}
+\def\fhat{\widehat{f}}
+\let\wh=\widehat
+\def\ftilde{\tilde{f}}
+
+% ********************************************************************************************************************** %
+%                                                                                                                                                                                   %
+%                                                                    FIN   DES   MACROS                                                                              %
+%                                                                                                                                                                                   %
+% ********************************************************************************************************************** %
+
+
+
+
+
+
+
+
+
+
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+
+
+
+\overfullrule=0mm
+
+
+\cl{{\bf SEMAINE 23}}\msk
+\cl{{\bf COURBES PLANES}}\msk
+\cl{{\bf NAPPES PARAM\'ETR\'EES}}\msk
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+Soit $O$ un point du plan euclidien orient\'e, soit $\Gamma$ un arc de classe $\ceun$, r\'egulier. \`A tout point $M$ sur $\Gamma$, on associe le point $T$, intersection de la tangente \`a $\Gamma$ en $M$ avec la perpendiculaire \`a $(OM)$ issue de $O$.\msk
+D\'eterminer $\Gamma$ de sorte que la distance $MT$ soit constante \'egale \`a 1. Calcul d'une abscisse curviligne sur $\Gamma$.
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+Notons $s$ une abscisse curviligne sur $\Gamma$. Au point $M\>\pmatrix{x(s)\cr y(s)\cr}$, le vecteur tangent unitaire est $\vect{\tau}\>\pmatrix{x'(s)\cr y'(s)\cr}$. Quitte \`a changer l'orientation de $\Gamma$, on peut supposer que $\vect{MT}=\vect{\tau}$. La condition \`a \'ecrire est alors $\vect{OT}\cdot\vect{OM}=0$, ce qui conduit \`a l'\'equation diff\'erentielle\vv
+$$\hbox{\bf (*)}\;:\qquad x(x+x')+y(y+y')=0\;.$$\par
+On peut supposer que l'arc recherch\'e ne passe pas par $O$, et le th\'eor\`eme de rel\`evement permet de poser $\;\system{&x(s)&=&\rho(s)\>\cos\theta(s)\cr &y(s)&=&\rho(s)\>\sin\theta(s)\cr}\;$, les fonctions $\rho$ et $\theta$ \'etant de classe $\ceun$. On a alors la relation {\bf (**)}~: $\rho'(s)^2+\rho(s)^2\>\theta'(s)^2=1\;$ qui exprime que $s$ est un param\`etre normal sur $\Gamma$.\msk
+En posant $R(s)=\rho(s)^2=x(s)^2+y(s)^2$, l'\'equation {\bf (*)} s'\'ecrit $\;R'(s)+2R(s)=0$, ce qui s'int\`egre en $\;R(s)=C^2\>e^{-2s}$, puis $\;\rho(s)=C\>e^{-s}$. En r\'einjectant dans {\bf (**)}, on obtient $\;C^2\>e^{-2s}\big(1+\theta'(s)^2\big)=1$, d'o\`u\vv
+$$\theta'(s)={{\rm d}\theta\s{\rm d}s}=\pm\sqrt{{e^{2s}\s C^2}-1}\;.$$\par
+Cherchons maintenant une \'equation polaire de $\Gamma$~:\vv
+$${{\rm d}\rho\s{\rm d}\theta}={{\rm d}\rho\s{\rm d}s}\>{{\rm d}s\s{\rm d}\theta}=\pm{C\>e^{-s}\s\sqrt{{e^{2s}\s C^2}-1}}=\pm{C^2\>e^{-2s}\s\sqrt{1-C^2\>e^{-2s}}}=\pm{\rho^2\s\sqrt{1-\rho^2}}\;.$$\par
+Nous sommes donc ramen\'es \`a int\'egrer l'\'equation diff\'erentielle autonome (\`a variables s\'eparables) $\;{\rm d}\theta=\pm{\sqrt{1-\rho^2}\s\rho^2}\>{\rm d}\rho$. En posant $\rho=\sin u$ (on a n\'ecessairement $0<\rho\ie1$), on obtient
+$$\int{\sqrt{1-\rho^2}\s\rho^2}\>{\rm d}\rho=\int\cotan u\>{\rm d}u=-\cotan u-u+k=-\sqrt{{1\s\rho^2}-1}-\arcsin\rho+k\;,$$
+o\`u $k$ est une constante. Finalement,\vv
+$$\theta=\theta_0\pm\lp\arcsin\rho+\sqrt{{1\s\rho^2}-1}\rp\qquad(0<\rho\ie 1)\;.$$
+Les courbes solutions s'obtiennent \`a partir de l'une d'entre elles par toutes les isom\'etries fixant $O$.\msk
+L'abscisse curviligne est $s=-\ln\lp{\rho\s C}\rp$ soit, \`a une constante pr\`es, $s=-\ln\rho$. La spirale a donc une longueur infinie.
+
+\bsk
+\hrule
+\eject
+
+{\bf EXERCICE 2 :}\msk
+Dans le plan euclidien, soit $\Gamma$ un arc de classe ${\cal C}^4$, bir\'egulier. On note $I$ le centre de courbure de $\Gamma$ en un point $M$. On note ${\cal D}$ la d\'evelopp\'ee de $\Gamma$ (lieu des centres de courbure). Le centre de courbure de ${\cal D}$ au point $I$ (s'il existe) est not\'e $J$. On note enfin $P$ le milieu de $[MI]$, et ${\cal C}$ le lieu des points $P$ lorsque $M$ parcourt $\Gamma$.\msk
+Montrer que la tangente \`a ${\cal C}$ au point $P$ est orthogonale \`a la droite $(MJ)$.
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+Soit $s$ un param\`etre normal (``une abscisse curviligne'') sur $\Gamma$. Soit $R$ le rayon de courbure de $\Gamma$ en $M$. Notons enfin $(M;\vect{t},\vect{n})$ le rep\`ere de Frenet de $\Gamma$ en $M$. Alors $\;I=M+R\>\vect{n}$ et, en d\'erivant cette \'egalit\'e (gr\^ace aux formules de Frenet),  on a\vv
+$${{\rm d}I\s{\rm d}s}=\vect{t}+{{\rm d}R\s{\rm d}s}\>\vect{n}+R\cdot\lp-{\vect{t}\s R}\rp={{\rm d}R\s{\rm d}s}\>\vect{n}\;.$$
+{\it Remarque~: l'arc $\Gamma$ \'etant de classe ${\cal C}^3$, la fonction $s\mapsto R(s)$ dont l'expression utilise des d\'eriv\'ees d'ordre deux, est de classe $\ceun$}.\msk
+Les points singuliers sur la d\'evelopp\'ee ${\cal D}$ (${{\rm d}I\s{\rm d}s}=\vect{0}$) correspondent donc aux ``sommets'' de la courbe $\Gamma$ (extremums de la courbure), on exclut d\'esormais ces points. On constate alors que la tangente \`a ${\cal D}$ au point $I$ est la normale \`a $\Gamma$ au point $M$ ({\it propri\'et\'e classique~: la d\'evelopp\'ee d'une courbe est l'enveloppe de ses normales}). Orientons ${\cal D}$ (c'est au moins possible localement) de fa\c con que son vecteur tangent unitaire orient\'e $\vect{\tau}$ au point $I$ soit $\vect{n}$~; le rep\`ere de Frenet de ${\cal D}$ au point $I$ est alors $(I;\vect{\tau},\vect{\nu})=(I;\vect{n},-\vect{t})$.\msk
+Soit $\sigma$ une abscisse curviligne sur ${\cal D}$. On a alors ${{\rm d}I\s{\rm d}\sigma}=\vect{\tau}=\vect{n}$, m\'ez\^ossi
+$${{\rm d}I\s{\rm d}\sigma}={{\rm d}s\s{\rm d}\sigma}\>{{\rm d}I\s{\rm d}s}={{\rm d}R\s{\rm d}s}\>{{\rm d}s\s{\rm d}\sigma}\>\vect{n}={{\rm d}R\s{\rm d}\sigma}\>\vect{n}\;.$$
+On en d\'eduit la relation $\;{{\rm d}R\s{\rm d}\sigma}=1$ ({\it ce qui traduit en fait que $\Gamma$ est une d\'eveloppante de ${\cal D}$}), ou encore ${{\rm d}\sigma\s{\rm d}s}={{\rm d}R\s{\rm d}s}$ ({\it interpr\'etation~: en int\'egrant cette \'egalit\'e pour $s\in[s_1,s_2]$, avec des notations \'evidentes, on voit que la longueur de l'arc $I_1I_2$ sur la d\'evelopp\'ee est \'egale \`a $|R_2-R_1|$, c'est-\`a-dire \`a la variation du rayon de courbure de $\Gamma$ entre les points $M_1$ et $M_2$, \`a condition que la courbe $\Gamma$ ne pr\'esente pas de ``sommet'' entre les points $M_1$ et $M_2$, c'est-\`a-dire que la fonction $s\mapsto R(s)$ soit monotone sur l'intervalle $[s_1,s_2]$}).
+\msk
+On a ensuite $\;{{\rm d}\vect{n}\s{\rm d}\sigma}={{\rm d}s\s{\rm d}\sigma}\>{{\rm d}\vect{n}\s{\rm d}s}=-\lp R\>{{\rm d}R\s{\rm d}s}\rp^{-1}\vect{t}\;$ puisque ${{\rm d}\vect{n}\s{\rm d}s}=-{\vect{t}\s R}$. Soit alors $\rho$ le rayon de courbure de la d\'evelopp\'ee ${\cal D}$ au point $I$~;  les formules de Frenet montrent que ${{\rm d}\vect{\tau}\s{\rm d}\sigma}={\vect{\nu}\s\rho}$, c'est-\`a-dire $\;{{\rm d}\vect{n}\s{\rm d}\sigma}=-{\vect{t}\s\rho}$. Par comparaison avec la relation obtenue ci-dessus, on obtient une relation entre les courbures $R$ et $\rho$~:\vv
+$$\rho=R\>{{\rm d}R\s{\rm d}s}\;.$$
+Le point $J$ est donc d\'efini par $\;\vect{IJ}=\rho\>\vect{\nu}=-R\>{{\rm d}R\s{\rm d}s}\>\vect{t}\;$ et
+$$\vect{MJ}=\vect{MI}+\vect{IJ}=R\lp\vect{n}-{{\rm d}R\s{\rm d}s}\>\vect{t}\rp\;.$$
+D'autre part, $P=M+{1\s2}\>R\>\vect{n}$, donc la tangente \`a ${\cal C}$ au point $P$ est dirig\'ee par le vecteur (s'il est non nul)~:
+$${{\rm d}P\s{\rm d}s}=\vect{t}+{1\s2}\>{{\rm d}R\s{\rm d}s}\>\vect{n}+{1\s2}\>R\lp-{\vect{t}\s R}\rp={1\s2}\lp\vect{t}+{{\rm d}R\s{\rm d}s}\>\vect{n}\rp\;.$$
+Ce vecteur est donc effectivement non nul et l'arc $s\mapsto P(s)$ est r\'egulier, et on v\'erifie la nullit\'e du produit scalaire $\;\vect{MJ}\cdot{{\rm d}P\s{\rm d}s}$.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 3 :}\msk
+{\bf 1.} Soit $a>0$, soit $(H)$ l'hyperbole \'equilat\`ere d'\'equation $xy=a$.
+Soit $M$ un point de $(H)$. Calculer les coordonn\'ees de $K$, centre de
+courbure de $(H)$ en $M$.\ssk\sect V\'erifier la relation $\vect{OK}\cdot\vect{OM}=
+2\|\vect{OM}\|^2$. En d\'eduire une construction g\'eom\'etrique du point $K$.\msk
+{\bf 2.} R\'eciproque~: d\'eterminer toutes les courbes planes $\Gamma$ dont le centre de courbure peut s'obtenir par cette construction g\'eom\'etrique.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf 1.} Param\'etrons $(H)$ par $\system{&x&=&&t\cr &y&=&&{a\s t}\cr}\;$ $\;(t\in\ret)$.
+Alors $\system{&x'&=&&1\cr &y'&=&&-{a\s t^2}\cr}\;$ et $\;\system{&x''&=&&0\cr
+&y''&=&&{2a\s t^3}\cr}$, d'o\`u\break\noi $\|\vect{F'}(t)\|=x'^2+y'^2={t^4+a^2\s t^4}$,
+$\Det\big(\vect{F'}(t),\vect{F''}(t)\big)=x'y''-x''y'={2a\s t^3}$ et le rayon
+de courbure est
+$$R={(x'^2+y'^2)^{{}^{\sst3\sur\sst2}}\s x'y''-x''y'}={(t^4+a^2)^{{}^{\sst3\sur\sst2}}\s
+  2at^3}\;.$$
+On d\'etermine le rep\`ere de Frenet~:\vv
+$$\vect{T}\lp{t^2\s\sqrt{t^4+a^2}},{-a\s\sqrt{t^4+a^2}}\rp\quad;\qquad
+  \vect{N}\lp{a\s\sqrt{t^4+a^2}},{t^2\s\sqrt{t^4+a^2}}\rp\;.$$
+On d\'etermine le centre de courbure $K$ par $K=M+R\vect{N}$~:\vv
+$$\system{&x_K&=&&t&+&{t^4+a^2\s2t^3}&&=&&{3t^4+a^2\s2t^3}\cr
+          &y_K&=&&{a\s t}&+&{t^4+a^2\s2at}&&=&&{t^4+3a^2\s2at}\cr}\;.$$
+On v\'erifie imm\'ediatement que $\;\vect{OK}\cdot\vect{OM}=2\|\vect{OM}\|^2=
+2{t^4+a^2\s t^2}$. Cela signifie que le point $N$, projet\'e orthogonal de $K$
+sur la droite $(OM)$, v\'erifie $\vect{ON}=2\vect{OM}$.\ssk\sect
+Pour construire le point $K$, on place d'abord $N$ tel que $\vect{ON}=
+2\vect{OM}$~; le point $K$ est \`a l'intersection de la normale \`a $(H)$ en $M$
+et de la perpendiculaire \`a $(OM)$ issue de $N$.
+\msk
+{\bf 2.} Supposons l'arc $\Gamma$ de classe $\cedeux$ bir\'egulier, ce qui permettra de consid\'erer l'angle $\alpha$ comme param\`etre admissible~; enfin, on suppose naturellement que l'arc ne passe pas par $O$, ce qui permet d'utiliser le th\'eor\`eme de rel\`evement pour param\'etrer par l'angle $\theta$ des coordonn\'ees polaires.\msk\sect
+Soit $M(x,y)$ un point de $\Gamma$, soit $K(\xi,\eta)$ le centre de courbure de $\Gamma$ en ce point. On veut que soit satisfaite la relation $\;\vect{OK}\cdot\vect{OM}=2\>\|\vect{OM}\|^2$, c'est-\`a-dire {\bf (R)}~: $\;x\xi+y\eta=x^2+y^2$.\msk\sect
+Notons $(M;\vect{T},\vect{N})$ le rep\`ere de Frenet de $\Gamma$ en $M$, et soit l'angle $\alpha=(\vect{i},\vect{T})$. De $K=M+R\vect{N}$ avec $R={{\rm d}s\s{\rm d}\alpha}$ et $\vect{T}=-{{\rm d}x\s{\rm d}s}\vect{i}+{{\rm d}y\s{\rm d}s}\vect{j}$, on d\'eduit que les coordonn\'ees du centre de courbure sont donn\'ees par $\;\system{&\xi&=&x-{{\rm d}y\s{\rm d}\alpha}\cr &\eta&=&y+{{\rm d}x\s{\rm d}\alpha}\cr}\;$. On a donc
+\begin{eqnarray*}
+{\bf (R)} & \iff & x \lp x-{{\rm d}y\s{\rm d}\alpha}\rp+y\lp y+{{\rm d}x\s{\rm d}\alpha}\rp=2(x^2+y^2)\\
+& \iff & y\>{{\rm d}x\s{\rm d}\alpha}-x\>{{\rm d}y\s{\rm d}\alpha}=x^2+y^2\\
+& \iff & y^2\cdot {{\rm d}\s{\rm d}\alpha}\lp{x\s y}\rp=x^2+y^2\;.
+\end{eqnarray*}
+Passons en coordonn\'ees polaires~:\vv
+$${\bf (R)} \iff \rho^2\>\sin^2\theta\cdot {{\rm d}\s{\rm d}\alpha}(\cotan\theta)=\rho^2
+\iff {{\rm d}\theta\s{\rm d}\alpha}=-1
+\iff {{\rm d}\alpha\s{\rm d}\theta}=-1\;.$$
+Posons $\theta=\alpha+V$ (notation classique~; $V$ est une mesure de l'angle que fait le vecteur tangent \`a $\Gamma$ au point $M$ avec le rayon vecteur $\vect{OM}$, on sait que $\tan V={\rho\s\rho'}$ avec ici $\rho'={{\rm d}\rho\s{\rm d}\theta}$). Alors\vv
+\begin{eqnarray*}
+{\bf (R)} & \iff & {{\rm d}V\s{\rm d}\theta}=2 \iff V=2\theta+\theta_0\\
+& \iff & {\rho\s\rho'}=\tan(2\theta+\theta_0)\iff {\rho'\s\rho}=\cotan(2\theta+\theta_0)\\
+& \iff & \ln\left|{\rho\s\rho_0}\right|=-{1\s2}\>\ln|\sin(2\theta+\theta_0)|\\
+& \iff & \rho={\rho_0\s\sqrt{|\sin(2\theta+\theta_0)|}}\;.
+\end{eqnarray*}
+Les courbes solutions du probl\`eme se d\'eduisent de l'une d'entre elles par les similitudes de centre $O$. Il suffit donc de reconna\^\i tre la courbe $\Gamma_0$ d'\'equation polaire {\bf (E)}~: $\rho={1\s\sqrt{\sin 2\theta}}$. Or,\vv
+$${\bf (E)}\iff \rho^2\>\sin 2\theta=1\iff (x^2+y^2)\>{2xy\s x^2+y^2}=1\iff 2xy=1\;.$$
+Les courbes solutions sont donc les arcs d'hyperboles \'equilat\`eres de centre $O$. 
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 4 :}\msk
+Soit $\Gamma$ un arc ferm\'e simple de classe $\cedeux$ bir\'egulier, soit $r>0$. On suppose qu'en tout point $M$ de $\Gamma$, le rayon de courbure alg\'ebrique $R$ v\'erifie $R\se r$. Donner une minoration de la longueur de l'arc $\Gamma$. Dans quel cas la minoration obtenue est-elle une \'egalit\'e~?
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+Soit $l$ la longueur de la courbe, on peut param\'etrer $\Gamma$ par une abscisse curviligne $s$ d\'ecrivant $[0,l]$. En notant $\alpha=\alpha(s)$ l'angle $(\vect{i},\vect{t})$, o\`u $\vect{t}$ est le vecteur tangent unitaire orient\'e et $c(s)$ la courbure au point $M(s)$, on a $\;0<c(s)\ie{1\s r}\;$ et\vv
+$$\int_0^lc(s)\>{\rm d}s=\int_0^l{{\rm d}\alpha\s{\rm d}s}\>{\rm d}s=\alpha(l)-\alpha(0)\in2\pi\zmat\;,$$
+donc $\;\int_0^lc(s)\>{\rm d}s\se 2\pi\;$ puisque la fonction $s\mapsto c(s)$ est strictement positive sur $[0,l]$. Mais on a aussi $\;\int_0^lc(s)\>{\rm d}s\ie{l\s r}$, d'o\`u l'in\'egalit\'e $\;l\se2\pi r$.
+\msk
+Si $l=2\pi r$, alors n\'ecessairement $\;\int_0^lc(s)\>{\rm d}s=2\pi={l\s r}\;$ avec $c(s)\se{1\s r}$ sur l'intervalle $[0,l]$, ce qui entra\^\i ne que $R(s)=r$~: le rayon de courbure est constant. L'arc $\Gamma$ est alors un cercle de rayon $r$~; en effet,
+le centre de courbure $K$
+de $\Gamma$ au point $M(s)$ v\'erifie $K=M+r\vect{n}$, donc (puisque $R(s)=r$
+est constant)~:\vv
+$${dK\s ds}={dM\s ds}+r{d\vect{n}\s ds}=\vect{t}+r\lp-{\vect{t}\s r}\rp=\vect{0}\;:$$
+le centre de courbure $K$ est constant~; il est alors imm\'ediat que le
+support de $\Gamma$ est le cercle de centre $K$ et de rayon $r$.
+
+\bsk
+\hrule
+\eject
+
+{\bf EXERCICE 5 :}\msk
+L'espace euclidien orient\'e de dimension trois est rapport\'e \`a un rep\`ere orthonormal ${\cal R}=(O;\vect{i},\vect{j},\vect{k})$.\msk
+Soit ${\cal T}$ le {\bf tore} obtenu par rotation autour de l'axe $Oz$ du cercle ${\cal C}$ d'\'equations $\;\system{&\hfill y&=&0\cr &x^2+z^2-4x+3&=&0\cr}$.\msk
+{\bf 1.} \'Ecrire une repr\'esentation cart\'esienne de ${\cal T}$. En d\'eduire une \'equation cart\'esienne de ${\cal T}$.\msk
+{\bf 2.} D\'eterminer les plans tangents \`a ${\cal T}$ passant par l'origine.\msk
+{\bf 3.} Montrer que l'intersection avec ${\cal T}$ de l'un quelconque de ces plans est une r\'eunion de deux cercles.
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf 1.} Le cercle ${\cal C}$ admet pour \'equations $\;\system{&\hfill y&=&0\cr &(x-2)^2+z^2&=&1\cr}$, d'o\`u le param\'etrage $\;\system{&x&=&2+\cos\theta\cr &y&=&0\hfill\cr &z&=&\sin\theta\hfill\cr}$. Par ailleurs, la rotation $r_t$ d'axe $Oz$ et d'angle $t$ ($t\in\rmat$) admet pour expressions analytiques $\system{&x'&=&x\cos t-y\sin t\cr &y'&=&x\sin t+y\cos t\cr &z'&=&z\hfill\cr}$. Le tore ${\cal T}$ est la r\'eunion des images du cercle ${\cal C}$ par toutes les rotations $r_t$, d'o\`u un param\'etrage
+$\;\system{&x&=&(2+\cos\theta)\>\cos t\cr &y&=&(2+\cos\theta)\>\sin t\cr &z&=&\sin\theta\hfill\cr}$.\msk\sect
+Pour obtenir une \'equation cart\'esienne de ${\cal T}$, on \'elimine les param\`etres $t$ et $\theta$ en \'ecrivant que\vv
+$$x^2+y^2+z^2=(2+\cos\theta)^2+\sin^2\theta=5+4\cos\theta\;,$$
+ce qui \'elimine $t$, donc $\;\cos\theta={1\s4}(x^2+y^2+z^2-5)$, puis\vv
+$${1\s16}(x^2+y^2+z^2-5)^2+z^2=1\;.\leqno\hbox{\bf (E)}$$
+Nous avons ainsi prouv\'e que le tore ${\cal T}$ est inclus dans la surface ${\cal S}$ d'\'equation cart\'esienne {\bf (E)}. R\'eciproquement, si les coordonn\'ees $(x,y,z)$ d'un point $M$ v\'erifie {\bf (E)}, il existe un r\'eel $\theta$ tel que $\;\system{&{1\s4}(x^2+y^2+z^2-5)&=&\cos\theta\cr &\hfill z&=&\sin\theta\cr}$, d'o\`u l'on tire $\;x^2+y^2=5-\sin^2\theta+4\cos\theta=(2+\cos\theta)^2$, puis l'existence d'un r\'eel $t$ tel que $\;\system{&x&=&(2+\cos\theta)\cos t\cr &y&=&(2+\cos\theta)\sin t\cr}\;$ et ${\cal S}$ est confondue avec ${\cal T}$. Donc {\bf (E)} est bien une \'equation cart\'esienne du tore ${\cal T}$.
+
+\msk
+{\bf 2.} Soit $M$ le point de ${\cal T}$ de param\`etres $(t,\theta)$. Un vecteur normal \`a ${\cal T}$ en $M$ est\vv
+$$\vect{N}={\ddd M\s\ddd t}\wedge{\ddd M\s\ddd\theta}=\pmatrix{(2+\cos\theta)\>\cos\theta\>\cos t\cr (2+\cos\theta)\>\cos\theta\>\sin t\cr (2+\cos\theta)\>\sin\theta\cr}\;,\quad\hbox{\rm colin\'eaire \`a}\quad\pmatrix{\cos\theta\>\cos t\cr \cos\theta\>\sin t\cr \sin\theta\cr}\;.$$
+On v\'erifie en effet que tout point est r\'egulier, c'est-\`a-dire que ce dernier vecteur n'est jamais nul. Une \'equation du plan tangent \`a ${\cal T}$ au point $M$ est alors $\vect{N}\cdot\vect{MX}=0$ (o\`u $X$ est le point courant sur la tangente), soit\vvvv
+$$\big(x-(2+\cos\theta)\cos t\big)\cos\theta\cos t+\big(y-(2+\cos\theta)\sin t\big)\cos\theta\sin t+(z-\sin\theta)\sin\theta=0\;.$$
+Ce plan passe par l'origine si et seulement si\vv
+$$-(2+\cos\theta)\cos\theta\cos^2 t-(2+\cos\theta)\cos\theta\sin^2 t-\sin^2\theta=0\;,$$
+soit $\;\cos\theta=-{1\s2}$.\msk\sect
+Les points du tore ${\cal T}$ en lesquels le plan tangent passe par l'origine sont donc situ\'es sur deux cercles ${\cal C}_1$ et ${\cal C}_2$ \`a l'intersection du tore ${\cal T}$ avec les plans horizontaux de cotes ${\sqrt{3}\s2}$ et $-{\sqrt{3}\s2}$ respectivement, et qui ont pour \'equations $\;\system{&x&=&{3\s2}\>\cos t\cr &y&=&{3\s2}\>\sin t\cr &z&=&\pm{\sqrt{3}\s2}\hfill\cr}$.\msk\sect
+Les plans tangents \`a ${\cal T}$ aux points du cercle ${\cal C}_1$ ont pour \'equations\vv
+$${\cal P}_t\;:\qquad x\>\cos t+y\>\sin t-z\>\sqrt{3}=0\;.$$\ssk\sect
+{\it On peut remarquer que les plans tangents \`a ${\cal T}$ aux points de ${\cal C}_2$ sont les m\^emes puisque le plan ${\cal P}_t$ ci-dessus est tangent \`a ${\cal T}$ au point de param\`etres $\lp t,{2\pi\s3}\rp$ sur ${\cal C}_1$, mais aussi au point de param\`etres $\lp t+\pi,-{2\pi\s3}\rp$ sur ${\cal C}_2$}.
+
+\msk
+{\bf 3.} Le plan ${\cal P}_t$ se d\'eduit du plan ${\cal P}_0$ par la rotation d'axe $Oz$ et d'angle $t$, il suffit donc d'\'etudier l'intersection du plan $\;{\cal P}_0\;:\;x-z\sqrt{3}=0\;$ avec le tore.\msk\sect
+Pour cela, choisissons un rep\`ere orthonormal ${\cal R}'=(O;\vect{I},\vect{J},\vect{K})$ de sorte que les deux premiers vecteurs $\vect{I}$ et $\vect{J}$ dirigent ${\cal P}_0$~; on peut choisir\vv
+$$\vect{I}=\vect{j}\;;\quad\vect{J}={\sqrt{3}\s2}\>\vect{i}+{1\s2}\>\vect{k}\;;\quad\vect{K}={1\s2}\>\vect{i}-{\sqrt{3}\s2}\>\vect{k}\;.$$
+La matrice de passage est $\;P=\pmatrix{0&{\sqrt{3}\s2}&{1\s2}\cr\nssk 1&0&0\cr 0&{1\s2}&-{\sqrt{3}\s2}\cr}$, d'o\`u les formules de changement de coordonn\'ees $\;\system{&x&=&{\sqrt{3}\s2}\>Y+{1\s2}\>Z\cr &y&=&X\hfill\cr &z&=&{1\s2}\>Y-{\sqrt{3}\s2}\>Z\cr}$. La courbe intersection du tore ${\cal T}$ avec le plan ${\cal P}_0$ admet alors pour \'equations dans le rep\`ere ${\cal R}'$~: $\system{&\hfill Z&=&0\cr &{1\s16}\Big({3\s4}Y^2+X^2+{1\s4}Y^2-5\Big)^2+{1\s4}Y^2&=&1\cr}\;$, soit, toujours avec $Z=0$,\vv
+$$(X^2+Y^2-5)^2-16+4Y^2=0\;;$$
+$$(X^2+Y^2)^2-10X^2-6Y^2+9=0\;;$$
+$$(X^2+Y^2-3)^2-4X^2=0\;;$$
+$$(X^2+Y^2-2X-3)(X^2+Y^2+2X-3)=0\;:$$
+on reconna\^\i t bien, dans le plan ${\cal P}_0$, une r\'eunion de deux cercles, chacun de rayon 2.\msk
+Ces cercles sont les {\bf cercles de Villarceau} du tore ${\cal T}$.
+
+
+
+
+
+
+
+
+\end{document}

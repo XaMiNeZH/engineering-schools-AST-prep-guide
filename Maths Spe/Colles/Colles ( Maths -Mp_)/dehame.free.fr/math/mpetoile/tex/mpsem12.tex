@@ -1,0 +1,755 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % Çvite le textstyle en mode
+                                % mathÇmatique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses mathÇmatiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de presentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% personnel Monasse
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'Çcriture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% Ö l'intÇrieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est dÇcroissante),
+% \nondef (la fonction est non dÇfinie)
+% si l'on termine la derniäre ligne par \cr, un trait est tirÇ en dessous
+% sinon elle est laissÇe sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   % MONASSE
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  % MONASSE
+\def\rmat{{\rm I\kern-0.6mm R}}  % MONASSE
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  % MONASSE
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  % MONASSE
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____def de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% Algäbre linÇaire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________determinant_______
+\def\det{\mathop{\rm det}\nolimits}  % MONASSE
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  % MONASSE
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  % MONASSE
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}  % MONASSE
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transposÇe ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  % MONASSE
+\def\MC#1{{\cal M}_{#1}(\cmat)}  % MONASSE
+\def\MK#1{{\cal M}_{#1}(\kmat)}  % MONASSE
+
+%________Complexes_________ % MONASSE
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   % CLENET
+\def\Arccos{\mathop{\rm Arccos}\nolimits}   % CLENET
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   % CLENET
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     % CLENET
+\def\Argch{\mathop{\rm Argch}\nolimits}     % CLENET
+\def\Argth{\mathop{\rm Argth}\nolimits}     % CLENET
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} %CLENET
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et sÇries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  % MONASSE
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  % MONASSE
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  % MONASSE
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  % MONASSE
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  % MONASSE
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abrÇgÇes%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-Ö-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\catcode`@=12 % at signs are no longer letters
+\catcode`\Ç=\active
+\defÇ{\'e}
+\catcode`\ä=\active
+\defä{\`e}
+\catcode`\à=\active
+\defà{\^e}
+\catcode`\Ö=\active
+\defÖ{\`a}
+\catcode`\ó=\active
+\defó{\`u}
+\catcode`\ñ=\active
+\defñ{\^u}
+\catcode`\É=\active
+\defÉ{\^a}
+\catcode`\"=\active
+\def"{\^o}
+\catcode`\â=\active
+\defâ{\"e}
+\catcode`\ã=\active
+\defã{\"\i}
+\catcode`\Å=\active
+\defÅ{\"u}
+\catcode`\á=\active
+\defá{\c c}
+\catcode`\å=\active
+\defå{\^\i}
+
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+
+
+
+
+
+\overfullrule=0mm
+
+
+\cl{{\bf SEMAINE 12}}\msk
+\cl{{\bf SUITES ET S\'ERIES DE FONCTIONS}}
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+{\bf 1.} Soit la fonction $\ffi:x\mapsto 2x(1-x)$. Montrer que la suite de fonctions $(\ffi^n)$, o\`u $\ffi^n=\ffi\circ\ffi\circ\cdots\circ\ffi$ repr\'esente l'it\'er\'ee $n$-i\`eme de $\ffi$, converge uniform\'ement sur tout compact de $]0,1[$ vers la fonction constante ${1\s 2}$.\msk
+{\bf 2.} Soit $I$ un segment inclus dans $]0,1[$. Montrer que toute fonction $f$ continue de $I$ vers $\rmat$ est limite uniforme sur $I$ d'une suite de fonctions polyn\^omes \`a coefficients entiers relatifs.\msk\sect
+{\it On pourra commencer par traiter le cas o\`u $f$ est constante sur $I$}.
+
+\msk
+{\it Source : Antoine CHAMBERT-LOIR, St\'efane FERMIGIER, Vincent MAILLOT, Exercices de math\'ematiques pour l'agr\'egation, Analyse 1, ISBN 2-225-84692-8}
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf 1.} Soit $K$ un compact inclus dans $]0,1[$. Alors il existe $\alpha$ avec $\;0<\alpha<{1\s2}\;$ tel que $K\subset[\alpha,1-\alpha]$. Pour tout entier naturel $n$, on a alors $\ffi^n(K)\subset\ffi^n([\alpha,1-\alpha])$.\msk\sect
+Une \'etude rapide de $\ffi$ ({\it faire un dessin}) montre la sym\'etrie $\ffi(1-x)=\ffi(x)$ pour tout $x\in[0,1]$ et le fait que, sur l'intervalle $\lc0,{1\s2}\rc$ (qui est stable par $\ffi$), l'application $\ffi$ est continue et strictement croissante. On en d\'eduit que $\ffi([\alpha,1-\alpha])=\lc\ffi(\alpha),{1\s2}\rc$ puis, par une r\'ecurrence imm\'ediate, $\ffi^n([\alpha,1-\alpha])=\lc\ffi^n(\alpha),{1\s 2}\rc$ pour tout $n\in\net$.\msk\sect
+Enfin, la suite $\big(\ffi^n(\alpha)\big)$, \`a valeurs dans $\lci0,{1\s 2}\rci$, est croissante (car, sur cet intervalle, stable par $\ffi$, on a $\ffi(x)\se x$), major\'ee donc convergente, et il est alors imm\'ediat que sa limite est ${1\s2}$.\msk\sect
+De $\ffi^n(K)\subset\lc\ffi^n(\alpha),{1\s2}\rc$ avec $\Lim{n}{\infty}\ffi^n(\alpha)={1\s2}$, on d\'eduit que la suite de fonctions $(\ffi^n)$ converge uniform\'ement sur $K$ vers la fonction constante ${1\s 2}$.
+
+\bsk
+{\bf 2.} $\bullet$ Montrons d'abord le r\'esultat dans le cas o\`u $f$ est constante ($f=C$) sur $I$~:\ssk\new
+$\triangleright$ si $C={1\s 2}$, c'est la question {\bf 1.} puisque les fonctions $\ffi^n$ sont des polyn\^omes \`a coefficients entiers relatifs~;\ssk\new
+$\triangleright$ on en d\'eduit le r\'esultat pour $C={1\s 2^p}$ pour tout $p\in\nmat$ par r\'ecurrence sur $p$ en utilisant le r\'esultat suivant~: \ssk\new
+{\it si $(f_n)\vers f$ uniform\'ement, $(g_n)\vers g$ uniform\'ement, et si les fonctions $f_n$ et $g_n$ sont uniform\'ement born\'ees, alors $(f_ng_n)\vers fg$ uniform\'ement} (d\'emonstration \'evidente)~;\ssk\new
+$\triangleright$ on en d\'eduit alors le r\'esultat lorsque $C$ est un nombre dyadique, c'est-\`a-dire de la forme ${q\s 2^p}$ avec $q\in\zmat$ et $p\in\nmat$.\ssk\new
+$\triangleright$ on montre enfin que c'est vrai pour $C$ r\'eel quelconque, puisque les nombres dyadiques sont denses dans $\rmat$. {\it Pour tout entier naturel $p$, on peut encadrer le r\'eel $C$ entre ses valeurs approch\'ees dyadiques \`a $2^{-p}$ pr\`es par d\'efaut et par exc\`es, qui sont les nombres $\;u_p=2^{-p}\>E(2^p\>C)\;$ et $\;v_p=u_p+2^{-p}$}.
+
+\msk\sect
+$\bullet$ Soit $f:I\vers\rmat$ continue. On sait (th\'eor\`eme de Weierstrass) qu'on peut approcher $f$ uniform\'ement sur $I$ par des fonctions polyn\^omes (\`a coefficients r\'eels!)~: si on se donne $\eps>0$, il existe un polyn\^ome $P$ \`a coefficients r\'eels tel que $\|f-P\|_{\infty}\ie{\eps\s 2}$ (o\`u $\|\cdot\|_{\infty}$ repr\'esente la norme de la convergence uniforme sur ${\cal C}(I,\rmat)$). Notons $P(x)=\sum_{k=0}^da_kx^k$. Pour tout $k\in\[ent0,d\]ent$, soit $Q_k\in\zmat[X]$ tel que $\|Q_k-a_k\|_{\infty}\ie{\eps\s2(d+1)}$ et posons $Q(x)=\sum_{k=0}^dQ_k(x)x^k$. La fonction $Q$ est polynomiale \`a coefficients entiers relatifs et, de $|x|\ie1$ pour tout $x\in I$, on d\'eduit par l'in\'egalit\'e triangulaire que $\|f-Q\|_{\infty}\ie\eps$.
+
+\msk
+{\it Le r\'esultat reste vrai, par translation, sur tout segment de $\rmat$ ne rencontrant pas $\zmat$. Il est faux sur un segment $I$ rencontrant $\zmat$ car, si $k\in I\cap\zmat$, si $(R_n)$ est une suite d'\'el\'ements de $\zmat[X]$ convergeant uniform\'ement vers $f$ sur $I$, alors $f(k)=\Lim{n}{\infty}R_n(k)$ est n\'ecessairement un entier relatif car les $R_n(k)$ sont tous des entiers relatifs.}
+
+
+
+\bsk
+\hrule
+\bsk
+
+
+{\bf EXERCICE 2 :}\msk
+{\bf M\'ethode de Laplace}\msk
+On admettra que $\;\int_{-\infty}^{\ii}e^{-t^2}\;dt=\sqrt{\pi}$.\ssk
+Soit $f:[-1,1]\vers\rmat$ une fonction strictement positive, de classe
+$\ce^2$, ayant en 0 un maximum global strict, et telle que $f''(0)<0$.\msk
+{\bf a.} D\'emontrer que\vv
+$$\e a>0\quad\a x\in[-1,1]\qquad f(x)\le f(0)\cdot e^{-ax^2}\;.$$\par
+{\bf b.} En d\'eduire que
+$$\int_{-1}^1\big(f(x)\big)^n\;dx\Equi{n}{\ii}\sqrt{2\pi\s n}\cdot
+  {\big(f(0)\big)^{{}^{\sst n+{\sst1\sur\sst2}}}\s\sqrt{|f''(0)|}}$$\par
+({\it on pourra poser} $u=x\sqrt{n})$.\msk
+{\bf c.} Donner un \'equivalent, lorsque $x$ tend vers $\ii$, des expressions\vv
+$$g(x)=\int_0^{\pi\sur2}(\sin t)^x\;dt\qquad\hbox{et}\qquad
+  h(x)=\int_0^{\pi\sur2} e^{x\cos t}\;dt\;.$$
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf a.} Pour $x\in[-1,1]\setminus\{0\}$, on a\vv
+$$f(x)\le f(0)\cdot e^{-ax^2} \iff \ln\lp{f(x)\s f(0)}\rp\le-ax^2
+  \iff a\le-{1\s x^2}\>\ln\lp{f(x)\s f(0)}\rp\;.$$\ssk
+Or, la fonction $\;\ffi:x\mapsto-{1\s x^2}\>\ln\lp{f(x)\s f(0)}\rp$ est
+continue et \`a valeurs strictement positives sur chacun des intervalles
+$[-1,0[$ et $]0,1]$. Du d\'eveloppement limit\'e\vv
+$${f(x)\s f(0)}=1+{f''(0)\s 2f(0)}\;x^2+o(x^2)\;,$$
+on d\'eduit que $\;\ln\lp{f(x)\s f(0)}\rp={f''(0)\s 2f(0)}\;x^2+o(x^2)$, donc
+$\;\Lim{x}{0}\ffi(x)=-{f''(0)\s 2f(0)}>0$. La fonction $\ffi$, ainsi
+prolong\'ee, est continue et strictement positive sur le segment $[-1,1]$, donc
+admet un minimum strictement positif $m$. Pour r\'epondre \`a la question,
+on peut choisir $a=m$.
+
+\msk
+{\bf b.} Posons $\;I_n=\int_{-1}^1\big(f(x)\big)^n\;dx={1\s\sqrt{n}}\>
+\int_{-\sqrt{n}}^{\sqrt{n}}\lp f\lp{u\s\sqrt{n}}\rp\rp^n\;du$.
+Consid\'erons alors
+$$J_n={\sqrt{n}\s\big(f(0)\big)^n}\>I_n=\int_{-\sqrt{n}}^{\sqrt{n}}
+  \lp{f\lp{u\s\sqrt{n}}\rp\s f(0)}\rp^n\;du=\int_{\rmat}g_n$$
+o\`u, pour tout $n\in\net$, la fonction $g_n$ est d\'efinie sur $\rmat$ par
+$$g_n(u)=\lp{f\lp{u\s\sqrt{n}}\rp\s f(0)}\rp^n\quad\hbox{si}\quad
+  u\in[-\sqrt{n},\sqrt{n}]\;,\qquad g_n(u)=0\quad\hbox{sinon}\;.$$
+Chaque fonction $g_n$ est continue par morceaux sur $\rmat$. Pour $u\in
+[-\sqrt{n},\sqrt{n}]$, on a\break $g_n(u)=e^{h_n(u)}$, o\`u\vv
+$$h_n(u)=n\cdot\ln\lp{f\lp{u\s\sqrt{n}}\rp\s f(0)}\rp\;.$$
+Pour tout $u\in\ret$ fix\'e, le d\'eveloppement limit\'e de $f$ \`a l'ordre deux en
+z\'ero permet d'\'ecrire, lorsque $n$ tend vers $\ii$~:\vv
+$${f\lp{u\s\sqrt{n}}\rp\s f(0)}=1+{f''(0)\s2f(0)}\cdot{u^2\s n}+o\lp{1\s n}\rp
+  \;,$$
+d'o\`u $\;\ln\lp{f\lp{u\s\sqrt{n}}\rp\s f(0)}\rp\Equi{n}{\ii}
+{f''(0)\s2f(0)}\cdot{u^2\s n}\;$ et $\;\Lim{n}{\ii}g_n(u)=\exp\lp{f''(0)\s
+2f(0)}\>u^2\rp$.
+Enfin, la majoration de la question {\bf a.} donne $g_n(u)\le e^{-au^2}$, la
+fonction $u\mapsto e^{-au^2}$ \'etant int\'egrable sur $\rmat$. On peut donc
+appliquer le th\'eor\`eme de convergence domin\'ee~:\vv
+$$\Lim{n}{\ii}J_n=\Lim{n}{\ii}\int_{\rmat}g_n=\int_{-\infty}^{\ii}
+  \exp\lp{f''(0)\s2f(0)}u^2\rp\;du=\sqrt{2\pi{f(0)\s|f''(0)|}}$$
+en utilisant $\int_{-\infty}^{\ii}e^{-t^2}\;dt=\sqrt{\pi}$.
+Cela fournit bien l'\'equivalent
+demand\'e pour $I_n$.\msk
+{\sl Remarque.} Le lecteur v\'erifiera sans peine que, sous les m\^emes
+hypoth\`eses, on a\vv
+$$\int_0^1\big(f(x)\big)^n\;dx\Equi{n}{\ii}\sqrt{\pi\s 2n}\cdot
+  {\big(f(0)\big)^{{}^{\sst n+{\sst1\sur\sst2}}}\s\sqrt{|f''(0)|}}\;.$$
+
+\msk
+{\bf c.} Dans l'int\'egrale $g(x)$, poser $t={\pi\s2}(1-u)$~: on obtient $\;g(x)={\pi\s2}\>\int_0^1\Big(\cos{\pi u\s2}\Big)^x\>du$. On applique la m\'ethode de Laplace avec $f(u)=\cos{\pi u\s2}$ et cela donne $\;g(x)\sim\sqrt{\pi\s2x}\;$ (lorsque $x$ est un entier
+naturel, on reconna\^\i t les int\'egrales de Wallis).\ssk\sect
+De la m\^eme fa\c con, on obtient $\;h(x)\sim\sqrt{\pi\s2x}\;e^x$.
+
+
+\bsk
+\hrule
+\bsk
+
+{\bf  EXERCICE 3 :}\msk
+{\bf D\'efinitions :}\msk
+{\bf a.} Soit ${\cal A}(n)$ une assertion d\'ependant d'un entier naturel non nul $n$. On appelle {\bf probabilit\'e de l'\'ev\`enement} ${\cal A}(n)$ le nombre, s'il existe\vv
+$$\Lim{n}{\infty}{1\s n}\Card\big\{k\in\[ent1,n\]ent\;|\;{\cal A}(k)\;\hbox{est vrai}\big\}\;.$$\par
+{\bf b.} Une suite $(x_n)$ de r\'eels est dite {\bf \'equir\'epartie modulo} 1 si, pour tous r\'eels $a$ et $b$ avec $0\ie a<b\ie1$, la probabilit\'e de l'\'ev\`enement $x_n-E(x_n)\in[a,b[$ est \'egale \`a $b-a$.\bsk
+{\bf \'Enonc\'e :}\msk
+{\bf 1.} Soit $(x_n)$ une suite r\'eelle telle que, pour tout entier relatif $m$ non nul, on ait\vv
+$$\sum_{k=1}^n e^{i2\pi mx_k}=o(n)\quad{\rm lorsque}\;n\vers\ii\;.$$
+Montrer que $(x_n)$ est \'equir\'epartie modulo 1.\msk
+{\bf 2.} Soit $d$ un entier, $d\in\[ent1,9\]ent$.\ssk\sect
+Quelle est la probabilit\'e pour que l'\'ecriture d\'ecimale du nombre $2^n$ commence par le chiffre $d$~?
+
+\msk
+
+{\it Source : Antoine CHAMBERT-LOIR, St\'efane FERMIGIER, Vincent MAILLOT, Exercices de math\'ematiques pour l'agr\'egation, Analyse 1, ISBN 2-225-84692-8}
+
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\bsk
+
+{\bf 1.} Pour toute fonction $f:\rmat\vers\cmat$, continue par morceaux et 1-p\'eriodique, et pour tout entier naturel $n$ non nul, posons $\;S_n(f)={1\s n}\>\sum_{k=1}^nf(x_k)$.\msk\sect
+L'hypoth\`ese est que, pour tout $m\in\zmat^*$, en notant $e_m:x\mapsto e^{2i\pi mx}$, on a\vv
+$$\Lim{n}{\ii}S_n(e_m)=0=\int_{[0,1]}e_m\;.$$\sect
+Par lin\'earit\'e, et comme $S_n(e_0)=1=\int_{[0,1]}e_0$, on a donc $\;\Lim{n}{\ii}S_n(f)=\int_{[0,1]}f\;$ pour toute fonction $f\in\Vect\{e_m\;;\;m\in\zmat\}$, c'est-\`a-dire pour tout polyn\^ome trigonom\'etrique 1-p\'eriodique.\bsk\sect
+Soit alors $g:\rmat\vers\cmat$, continue et 1-p\'eriodique. Le th\'eor\`eme de Weierstrass trigonom\'etrique permet d'approcher $g$ uniform\'ement par des polyn\^omes trigonom\'etriques 1-p\'eriodiques~:\ssk\new
+si on se donne $\eps>0$, on peut trouver $f\in\Vect\{e_m\;;\;m\in\zmat\}$ tel que $\|g-f\|_{\infty}\ie{\eps\s3}$~; on a alors $|S_n(g)-S_n(f)|\ie{\eps\s3}$ pour tout $n\in\net$ et $\left|\int_{[0,1]}g-\int_{[0,1]}f\right|\ie\int_{[0,1]}|g-f|\ie{\eps\s3}$~; soit $N$ un entier tel que $\left|S_n(f)-\int_{[0,1]}f\right|\ie{\eps\s3}$ pour tout $n\se N$. Par l'in\'egalit\'e triangulaire, on a alors $\left|S_n(g)-\int_{[0,1]}g\right|\ie\eps$ pour tout $n\se N$.\msk\new
+On a donc $\;\Lim{n}{\ii}S_n(g)=\int_{[0,1]}g\;$ pour toute fonction continue et 1-p\'eriodique.
+\bsk\sect
+Soient $a$ et $b$ avec $0<a<b<1$, soit $\chi$ la fonction 1-p\'eriodique co\"\i ncidant sur $[0,1]$ avec la fonction caract\'eristique de l'intervalle $[a,b[$. Pour tout $\eps$ avec $0<\eps<\min\big\{a,1-b,{b-a\s2}\big\}$, soient $\ffi_{\eps}$ et $\psi_{\eps}$ les fonctions 1-p\'eriodiques et continues d\'efinies comme suit sur l'intervalle $[0,1]$~:\ssk\new
+- la fonction $\ffi_{\eps}$ est nulle sur $[0,a]$ et sur $[b,1]$, vaut 1 sur $[a+\eps,b-\eps]$, et est affine sur chacun des intervalles $[a,a+\eps]$ et $[b-\eps,b]$~;\ssk\new
+- la fonction $\psi_{\eps}$ est nulle sur $[0,a-\eps]$ et sur $[b+\eps,1]$, vaut 1 sur $[a,b]$, et est affine sur chacun des intervalles $[a-\eps,a]$ et $[b,b+\eps]$\ssk\new
+({\it faire un dessin !!}).\msk\new
+Pour tout $\eps>0$, on a $\ffi_{\eps}\ie\chi\ie\psi_{\eps}$, donc $\;S_n(\ffi_\eps)\ie S_n(\chi)\ie
+S_n(\psi_\eps)\;$ pour tout $n\in\net$. Soit par ailleurs $N$ un entier tel que, pour tout $n\se N$, on ait\vv
+$$\left|S_n(\ffi_\eps)-\int_{[0,1]}\ffi_\eps\right|\ie\eps\quad{\rm et}\quad\left|S_n(\psi_\eps)-\int_{[0,1]}\psi_\eps\right|\ie\eps\;.$$
+Comme $\;\int_{[0,1]}\ffi_\eps=\int_{[0,1]}\chi-\eps\;$ et $\;\int_{[0,1]}\psi_\eps=\int_{[0,1]}\chi+\eps$, pour tout $n\se N$, on a
+$$\left|S_n(\ffi_\eps)-\int_{[0,1]}\chi\right|\ie2\eps\quad{\rm et}\quad\left|S_n(\psi_\eps)-\int_{[0,1]}\chi\right|\ie2\eps\;.$$
+On a donc les in\'egalit\'es\vv
+$$\lp\int_{[0,1]}\chi\rp-2\eps\ie S_n(\ffi_\eps)\ie S_n(\chi)\ie S_n(\psi_\eps)\ie\lp\int_{[0,1]}\chi\rp+2\eps\;,$$
+d'o\`u $\;\left|S_n(\chi)-\int_{[0,1]}\chi\right|\ie2\eps\;$ pour $n\se N$, donc $\Lim{n}{\infty}S_n(\chi)=\int_{[0,1]}\chi=b-a$, ce qui prouve que la suite $(x_n)$ est \'equir\'epartie modulo 1 ({\it je laisse le lecteur m\'eticuleux examiner les cas $a=0$ ou $b=1$}).
+\bsk\sect
+{\it La condition donn\'ee par l'\'enonc\'e comme condition suffisante d'\'equir\'epartition modulo 1 est aussi une condition n\'ecessaire~: c'est le} {\bf crit\`ere de Weyl}.
+
+\bsk
+
+{\bf 2.} L'\'ecriture d\'ecimale du nombre $2^n$ commence par le chiffre $d$ si et seulement si\vvv
+$$\e p\in\nmat\qquad d\cdot 10^p\ie 2^n<(d+1)\cdot 10^p\;,$$
+c'est-\`a-dire si et seulement si (en notant $\log$ le logarithme d\'ecimal)\vvv
+$$\e p\in\nmat\qquad p+\log(d)\ie\log(2^n)<p+\log(d+1)$$
+ou encore si et seulement si $\;\log(d)\ie\log(2^n)-E\big(\log(2^n)\big)<\log(d+1)$. Or, la suite $(x_n)$, avec $\;x_n=\log(2^n)=n\>\log(2)=n\>{\ln 10\s\ln 2}\;$ est \'equir\'epartie modulo 1 car elle v\'erifie le crit\`ere de Weyl~:\ssk\new
+le nombre $a=\log 2={\ln 10\s \ln 2}$ est irrationnel car, si on avait $a={p\s q}$, cela entra\^\i nerait $2^q=10^p$, soit $2^{q-p}=5^p$ ce qui est absurde, alors, pour tout $m\in\zmat^*$, la suite $(s_n)$ d\'efinie par $\;s_n=\sum_{k=1}^ne^{2i\pi m x_k}=e^{2i\pi ma}\>{1-e^{2i\pi mna}\s 1-e^{2i\pi ma}}$ est born\'ee, donc est ``$o(n)$''.\msk\sect
+La probabilit\'e pour que l'\'ecriture d\'ecimale de $2^n$ commence par le chiffre $d$ est donc\break $p=\log(d+1)-\log(d)=\log\lp1+{1\s d}\rp$. C'est la {\bf loi de Benford}.
+
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 4 :}\msk
+{\bf Une fonction continue partout et d\'erivable nulle part}\msk
+Soit $g$ la fonction 1-p\'eriodique v\'erifiant\vv
+$$\a x\in\lc-{1\s2},{1\s2}\rc\qquad g(x)=|x|\;.$$\par
+Pour tout $n\in\nmat$, on d\'efinit la fonction $g_n$ par\vv
+$$g_n(x)=10^{-n}\>g(10^n\>x)\;.$$\par
+Montrer que la fonction $\;f=\sum_{n=0}^{\ii}g_n\;$ est continue sur $\rmat$,
+mais n'est d\'erivable en aucun point.\msk
+{\it Pour prouver la non-d\'erivabilitÇ de $f$ en un point $x$, on \'etudiera
+des taux d'accroissement\break $\delta_n={f(x+h_n)-f(x)\s h_n}$, avec $h_n=
+\eps_n\>10^{-n}$ oó $\eps_n\in\{-1,1\}$}.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+
+$\bullet$ Remarquons que\vv
+$$g(x)=d(x,\zmat)=\left|E\lp x+{1\s2}\rp-x\right|\;.$$
+La fonction $g$ est continue et born\'ee~: $0\le g(x)\le{1\s2}$,
+d'o\`u, pour tout $n\in\nmat$ et tout $x\in
+\rmat$, $0\le g_n(x)\le{1\s2}\>10^{-n}$. Les fonctions $g_n$ sont continues
+sur $\rmat$ et la s\'erie $\sum g_n$ converge normalement, ce qui assure la
+continuit\'e sur $\rmat$ de la fonction somme $f$.
+
+\msk
+$\bullet$ Soit $x$ un r\'eel.\pn
+Pour tout $k\in\nmat$, la fonction $g_k$ est $10^{-k}$-p\'eriodique.
+Si $h_n=\eps_n\>10^{-n}$ avec $\eps_n=\pm1$, on a donc $\;g_k(x+h_n)=g_k(x)\;$
+pour tout $k\ge n$. Donc\vv
+\begin{eqnarray*}
+\delta_n & =& {1\s h_n}\;\sum_{k=0}^{\ii}\big[g_k(x+h_n)-g_k(x)\big]
+                      ={1\s h_n}\;\sum_{k=0}^{n-1}\big[g_k(x+h_n)-g_k(x)\big]
+                                   \\
+                    & = & \eps_n\>\sum_{k=0}^{n-1}10^{n-k}\big[g(10^k\>x+
+                             \eps_n\>10^{k-n})-g(10^k\>x)\big]\;.
+\end{eqnarray*}
+Soit $m_n$ l'unique entier relatif
+tel que $10^{n-1}\>x$ appartienne \`a l'intervalle\break $I_n=\lc {m_n\s2},{m_n+1\s2}\rci$.
+Alors l'un au moins des deux nombres $10^{n-1}\>x-{1\s10}$ et\break
+$10^{n-1}\>x+{1\s10}$ appartient aussi \`a l'intervalle $I_n$ (la diff\'erence
+entre ces deux nombres vaut\break ${1\s5}<{1\s2}$). Fixons alors $\eps_n\in\{-1,1
+\}$ de fa\c con que $10^{n-1}\>x+{\eps_n\s10}\in I_n$. Alors, pour tout\break
+$k\in\[ent0,n-1\]ent$, les nombres $10^k\>x$ et $10^k\>x+\eps_n10^{k-n}$
+appartiennent \`a l'intervalle\break $\lc{m_n\s2\times10^{n-1-k}},
+{m_n+1\s2\times10^{n-1-k}}\rci\;$, qui est inclus dans un intervalle de la
+forme $\;\lc{p\s2},{p+1\s2}\rci\;$ avec $p\in\zmat$. Or, dans un tel
+intervalle, la fonction $g$ est affine de pente 1 ou -1, donc
+$$10^{n-k}\lc g(10^k\>x+\eps_n\>10^{k-n})-g(10^k\>x)\rc\in\{-1,1\}$$
+et $\delta_n$, somme de $n$ entiers appartenant \`a $\{-1,1\}$,
+est un entier relatif de m\^eme parit\'e que $n$.\pn
+On a $\;\Lim{n}{\ii}h_n=0\;$ et la suite de terme g\'en\'eral $\;\delta_n=
+{f(x+h_n)-f(x)\s h_n}\;$ ne peut pas converger, ce qui contredit la
+d\'erivabilit\'e de la fonction $f$ au point $x$.
+
+
+\eject
+
+{\bf EXERCICE 5 :}\msk
+Soit la s\'erie de fonctions $\sum_{n\in\nmat}f_n$, o\`u
+$$f_0(x)={1\s x}\qquad\hbox{et}\qquad\a n\in\net\quad f_n(x)={2x\s x^2-n^2}
+  \;.$$\par
+On note $f$ la fonction somme de cette s\'erie.\ssk
+a. Montrer que $f$ est d\'efinie sur $\rmat\setminus\zmat$, qu'elle est
+impaire, 1-p\'eriodique et qu'elle v\'erifie\vv
+$$\a x\in\rmat\setminus{1\s2}\zmat\qquad 2f(2x)=f(x)+f\lp x+{1\s2}\rp\;.
+  \eqno\hbox{(*)}$$\par
+b. Montrer que la fonction $\;g:x\mapsto f(x)-\pi\>\cotan\pi x\;$ est
+prolongeable en une fonction continue sur $\rmat$.\ssk
+c. En consid\'erant le maximum de $|g|$ sur $[0,1]$, montrer que $g$ est
+nulle sur $\rmat$.\ssk
+d. En d\'eduire, pour tout $\;x\in\rmat\setminus\zmat$,\vv
+$${\pi^2\s\sin^2\pi x}={1\s x^2}+\sum_{n=1}^{\ii}\lp{1\s(x-n)^2}+{1\s(x+n)^2}
+  \rp\;.$$
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+
+{\bf a.} La convergence simple de la s\'erie $\sum f_n$ sur $\rmat\setminus
+\zmat$ est imm\'ediate.\ssk\sect
+Chacune des fonctions $f_n$ est impaire, donc $f$ est impaire.\msk\sect
+Il est commode de noter que, pour $n\in\net$, on a $\;f_n(x)={1\s x+n}+
+{1\s x-n}$. En notant
+alors $S_n$ la somme partielle d'ordre $n$ de la s\'erie $\sum f_n$, on a
+$\;S_n(x)=\sum_{k=-n}^n{1\s x+k}$, d'o\`u
+$$S_n(x+1)=S_n(x)+{1\s x+n+1}-{1\s x-n}\;,$$
+donc $f$ est 1-p\'eriodique (faire tendre $n$ vers $\ii$).\ssk\sect
+Pour prouver {\bf (*)}, remarquer de m\^eme que\vv
+$$\a x\in\rmat\setminus{1\s2}\zmat\qquad 2\>S_{2n}(2x)=S_n(x)+S_n\lp x+{1\s2}
+  \rp-{1\s x+n+\dst{1\s2}}\;.$$
+
+\msk
+{\bf b.} Soit $a\in\lci0,{1\s2}\rci$. Sur $[a,1-a]$, pour
+$n\ge1$, la majoration $|f_n(x)|=-f_n(x)\le{2\s n^2-(1-a)^2}\;$
+prouve que la s\'erie $\sum f_n$ converge normalement sur $[a,1-a]$.
+Les fonctions $f_n$ \'etant continues sur cet intervalle, il en est de m\^eme de
+$f$, qui est donc continue sur $]0,1[$, et donc sur $\rmat\setminus\zmat$
+par p\'eriodicit\'e. La fonction $\;x\mapsto\pi\>\cotan\pi x$ est aussi d\'efinie
+et continue sur $\rmat\setminus\zmat$, donc $g$ aussi.\ssk\sect
+Au voisinage de z\'ero, on a $\;\pi\>\cotan\pi x={1\s x}+O(x)$. De plus,
+$$f(x)={1\s x}+2x\>\sum_{n=1}^{\ii}{1\s x^2-n^2}\;,$$
+cette derni\`ere s\'erie de fonctions convergeant normalement sur tout intervalle
+\break $[-1+\alpha,1-\alpha]$ avec $0<\alpha<1$ gr\^ace \`a la majoration\vv
+$$\left|{1\s x^2-n^2}\right|={1\s n^2-x^2}\le{1\s n^2-(1-\alpha)^2}\;.$$\sect
+On en d\'eduit (continuit\'e de la somme en z\'ero)~:\vv
+$$f(x)={1\s x}-{\pi^2\s3}x+o(x)={1\s x}+O(x)$$
+au voisinage de 0, donc $g(x)=O(x)$ en z\'ero ; elle est donc prolongeable
+par continuit\'e en z\'ero, avec $g(0)=0$. Etant 1-p\'eriodique, elle est
+prolongeable par continuit\'e sur $\rmat$.
+
+\msk
+{\bf c.} La fonction $\;x\mapsto\pi\>\cotan\pi x$ est impaire, 1-p\'eriodique
+et v\'erifie la propri\'et\'e {\bf (*)} (v\'erification facile). Il en est donc de
+m\^eme de la fonction $g$. Mais $g$ est continue sur $[0,1]$, donc $|g|$
+admet un maximum $M$ sur ce segment, atteint en un point $x_0$. La
+relation {\bf (*)} donne alors\vv
+$$2M=2|g(x_0)|=\left|g\lp{x_0\s2}\rp+g\lp{x_0+1\s2}\rp\right|\le
+  \left|g\lp{x_0\s2}\rp\right|+\left|g\lp{x_0+1\s2}\rp\right|\le2M\;.$$\sect
+Il en r\'esulte que $\left|g\lp{x_0\s2}\rp\right|=M$, puis, par une r\'ecurrence
+imm\'ediate, que, pour tout $n\in\nmat$, $\left|g\lp{x_0\s2^n}\rp\right|=M$.
+La continuit\'e de $g$ en z\'ero donne alors $M=|g(0)|=0$. La fonction $g$ est
+nulle sur $[0,1]$ et, par p\'eriodicit\'e, sur $\rmat$ tout entier. Finalement,
+\vv
+$$\a x\in\rmat\setminus\zmat\qquad \pi\>\cotan\pi x={1\s x}+\sum_{n=1}^{\ii}
+  {2x\s x^2-n^2}\;.$$
+
+\ssk
+{\bf d.} Il suffit de d\'eriver terme \`a terme, ce qui est autoris\'e par la
+convergence normale de la s\'erie des d\'eriv\'ees sur tout intervalle
+$[a,1-a]$ avec $0<a<{1\s2}$, puis par la p\'eriodicit\'e.
+
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 6 :}\msk
+{\it On rappelle que} $\;\int_0^{\ii}e^{-u^2}\;du={\sqrt{\pi}\s2}$.\msk
+{\bf 1.} Soit $f:\rplus\vers\rmat$ une application continue et born\'ee, avec $f(0)
+\not=0$. Donner un \'equivalent de\vv
+$$a_n=\int_0^{\ii}{e^{-nt}\>f(t)\s\sqrt{t}}\;dt$$
+lorsque $n$ tend vers $\ii$.\msk
+Dans la suite de l'exercice, $f$ est une fonction de $\rplus$ vers $\rmat$, de classe ${\cal C}^{\infty}$ et born\'ee. Pour tout $n\in\net$, on pose\vv
+$$a_n=\int_0^{\ii}{e^{-nt}\>f(t)\s\sqrt{t}}\;dt\;.$$\ssk
+{\bf 2.} Pour tout $n\in\net$, on pose $\;c_n=\int_1^{\ii}{e^{-nt}\>f(t)\s\sqrt{t}}\;dt$.
+Montrer que, pour tout r\'eel $\alpha$ strictement positif, $c_n$ est n\'egligeable devant ${1\s n^{\alpha}}$
+lorsque $n$ tend vers $\ii$.\msk
+{\bf 3.} En d\'eduire, pour tout $p\in\nmat$, le d\'eveloppement asymptotique
+de $a_n$~:\vv
+$$a_n=\sqrt{\pi}\;\sum_{k=0}^p{(2k)!\s2^{2k}(k!)^2}\>f^{(k)}(0)\cdot
+  {1\s n^{{}^{\sst k+{\sst1\s\sst2}}}}+o\lp{1\s n^{{}^{\sst p+
+  {\sst1\s\sst2}}}}\rp\;.$$
+{\it Pour cela, on appliquera l'in\'egalit\'e de Taylor-Lagrange \`a $f$ sur
+$[0,1]$ et on en d\'eduira une estimation de} $\;b_n=\int_0^1{e^{-nt}\>f(t)\s
+\sqrt{t}}\;dt$.
+
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+
+
+{\bf 1.} Soit $M=\sup_{\rplus}|f|$ (on a $M>0$) ;
+l'existence de $a_n$ pour $n\in\net$ r\'esulte de l'\'equivalence $\;\left|{e^{-nt}\>f(t)\s
+\sqrt{t}}\right|\sim{|f(0)|\s\sqrt{t}}\;$ en z\'ero et de la majoration
+$\;\left|{e^{-nt}\>f(t)\s\sqrt{t}}\right|\le M\>{e^{-nt}\s\sqrt{t}}\;$
+qui garantit l'int\'egra\-bi\-li\-t\'e sur $[1,\ii[$.\msk\sect
+En posant $nt=u^2$, on obtient
+$\;a_n={2\s\sqrt{n}}
+\;\int_0^{\ii}e^{-u^2}\;f\lp{u^2\s n}\rp\;du$.
+Pour tout $u\in\rplus$, on a\break $\Lim{n}{\ii}e^{-u^2}\>f\lp{u^2\s n}\rp=e^{-u^2}
+\>f(0)$ et la majoration $\;\left|e^{-u^2}\>f\lp{u^2\s n}\rp\right|\le
+M\>e^{-u^2}\;$ permet d'appliquer le th\'eor\`eme de convergence domin\'ee~:\vv
+$$\Lim{n}{\ii}\int_0^{\ii}e^{-u^2}\>f\lp{u^2\s n}\rp\;du=f(0)\>\int_0^{\ii}
+  e^{-u^2}\;du={\sqrt{\pi}\s2}\>f(0)\;,$$
+ce qui conduit imm\'ediatement \`a la conclusion $\;a_n\sim\sqrt{\pi\s n}\>f(0)$.
+\msk
+
+{\bf 2.} Avec $M=\sup_{\rplus}|f|$, on obtient sans difficult\'e la
+majoration\vv
+$$|c_n|=\left|\int_1^{\ii}{e^{-nt}\>f(t)\s\sqrt{t}}\;dt\right|\le{M\s n}\>e^{-n}\;,
+  $$
+donc $c_n$ est n\'egligeable devant ${1\s n^{\alpha}}$ pour tout $\alpha>0$.
+\msk
+{\bf 3.} Appliquons l'in\'egalit\'e de Taylor-Lagrange \`a $f$ sur $[0,1]$~:
+$$\a t\in[0,1]\qquad\left|f(t)-\sum_{k=0}^p{f^{(k)}(0)\s k!}\;t^k\right|\ie{M_{p+1}\s (p+1)!}\;t^{p+1}$$
+avec $\;M_{k}=\sup_{t\in[0,1]}|f^{(k)}(t)|$ pour tout $k\in\nmat$. Pour $t\in\;]0,1]$ et $n\in\net$, on multiplie par ${e^{-nt}\s\sqrt{t}}$ et on int\`egre~:\vv
+$$\left|b_n-\sum_{k=0}^p{f^{(k)}(0)\s k!}
+  \>J_k(n)\right|\le{M_{p+1}\s (p+1)!}\;J_{p+1}(n)\;,$$
+en posant, pour tout $k\in\nmat$ et $n\in\net$, $J_k(n)=\int_0^1t^{{}^{\sst k-
+{\sst1\sur\sst2}}}\>e^{-nt}\;dt$.\msk\sect
+La majoration $\;0\le\int_1^{\ii}t^{{}^{\sst k-{\sst1\sur\sst2}}}\>e^{-nt}
+\;dt\le e^{-(n-1)}\cdot\int_1^{\ii}e^{-t}
+\>t^{{}^{\sst k-{\sst1\sur\sst2}}}\;dt\;$ montre que, pour obtenir un
+d\'eveloppement asymptotique \`a la pr\'ecision $\;o\lp{1\s n^{{}^{\sst p+
+{\sst1\s\sst2}}}}\rp$, les int\'egrales
+$J_k(n)$ peuvent \^etre remplac\'ees par
+les int\'egrales $\;I_k(n)=\int_0^{\ii}t^{{}^{\sst k-{\sst1\sur\sst2}}}\>
+e^{-nt}\;dt$, la diff\'erence \'etant ``n\'egligeable'' \`a la pr\'ecision demand\'ee, c'est-\`a-dire dans l'\'echelle de comparaison des ${1\s n^{\alpha}}$ avec $\alpha>0$.
+Un calcul simple, par r\'ecurrence sur $k$, montre que\vv
+$$I_k(n)={2\s n^{{}^{\sst k+{\sst1\s\sst2}}}}\;\int_0^{\ii}u^{2k}\>e^{-u^2}
+\;du={1\s n^{{}^{\sst k+{\sst1\s\sst2}}}}\;{(2k)!\s2^{2k}k!}\>\sqrt{\pi}\;,$$
+d'o\`u le d\'eveloppement demand\'e pour $b_n$, puisque le ``reste'' est de l'ordre de $J_{p+1}(n)$ ou
+de $I_{p+1}(n)$, n\'egligeable devant ${1\s n^{{}^{\sst p+{\sst1\s\sst2}}}}\;$
+lorsque $n$ tend vers $\ii$. Enfin, $c_n=a_n-b_n$ \'etant aussi n\'egligeable devant
+${1\s n^{{}^{\sst p+{\sst1\s\sst2}}}}$ (question {\bf 2.}), on trouve le m\^eme d\'eveloppement asymptotique pour $a_n$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

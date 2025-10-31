@@ -1,0 +1,922 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % ‚vite le textstyle en mode
+                                % math‚matique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math‚matiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de presentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% personnel Monasse
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'‚criture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% … l'int‚rieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d‚croissante),
+% \nondef (la fonction est non d‚finie)
+% si l'on termine la derniŠre ligne par \cr, un trait est tir‚ en dessous
+% sinon elle est laiss‚e sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   % MONASSE
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  % MONASSE
+\def\rmat{{\rm I\kern-0.6mm R}}  % MONASSE
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  % MONASSE
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  % MONASSE
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____def de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% AlgŠbre lin‚aire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________determinant_______
+\def\det{\mathop{\rm det}\nolimits}  % MONASSE
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  % MONASSE
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  % MONASSE
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}  % MONASSE
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos‚e ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  % MONASSE
+\def\MC#1{{\cal M}_{#1}(\cmat)}  % MONASSE
+\def\MK#1{{\cal M}_{#1}(\kmat)}  % MONASSE
+
+%________Complexes_________ % MONASSE
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   % CLENET
+\def\Arccos{\mathop{\rm Arccos}\nolimits}   % CLENET
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   % CLENET
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     % CLENET
+\def\Argch{\mathop{\rm Argch}\nolimits}     % CLENET
+\def\Argth{\mathop{\rm Argth}\nolimits}     % CLENET
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} %CLENET
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s‚ries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  % MONASSE
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  % MONASSE
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  % MONASSE
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  % MONASSE
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  % MONASSE
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr‚g‚es%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-…-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\catcode`@=12 % at signs are no longer letters
+\catcode`\‚=\active
+\def‚{\'e}
+\catcode`\Š=\active
+\defŠ{\`e}
+\catcode`\ˆ=\active
+\defˆ{\^e}
+\catcode`\…=\active
+\def…{\`a}
+\catcode`\—=\active
+\def—{\`u}
+\catcode`\–=\active
+\def–{\^u}
+\catcode`\ƒ=\active
+\defƒ{\^a}
+\catcode`\"=\active
+\def"{\^o}
+\catcode`\‰=\active
+\def‰{\"e}
+\catcode`\‹=\active
+\def‹{\"\i}
+\catcode`\=\active
+\def{\"u}
+\catcode`\‡=\active
+\def‡{\c c}
+\catcode`\Œ=\active
+\defŒ{\^\i}
+
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+
+
+
+
+
+\overfullrule=0mm
+\cl{{\bf SEMAINE 6}}\msk
+\cl{{\bf TOPOLOGIE DES ESPACES M\'ETRIQUES}}
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+Soit $(K,d)$ un espace m\'etrique compact. Soit $f:K\vers K$ une application
+telle que\vv
+$$\a(x,y)\in K^2\qquad d\big(f(x),f(y)\big)\se d(x,y)\;.$$\par
+Montrer que $f$ est une isom\'etrie de $K$ (bijection de $K$ sur $K$
+conservant la distance).
+
+\msk
+
+{\it Source : CHAMBERT-LOIR, FERMIGIER, MAILLOT : Exercices de math\'ematiques
+pour\break l'agr\'egation, Analyse 1, \'Editions Masson}, ISBN : 2-225-84692-8.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+$\bullet$ L'injectivit\'e de $f$ est imm\'ediate.\msk
+$\bullet$ L'application $f$ conserve la distance~: soient $a$ et $b$ deux
+points de $K$, notons $a_n=f^n(a)$, $b_n=f^n(b)$ leurs it\'er\'es par $f$
+($n\in\nmat$). Comme $K$ est compact, il existe une application $\ffi:\nmat
+\vers\nmat$, strictement croissante, telle que les suites extraites
+$(a_{\ffi(n)})$ et $(b_{\ffi(n)})$ soient convergentes, de limites
+$\alpha$ et $\beta$ respectivement.\ssk\sect
+Donnons-nous $\eps>0$. Alors il existe un entier $k$ strictement positif tel
+que $d(a,a_k)<{\eps\s2}$ et $d(b,b_k)<{\eps\s2}$~: en effet, il existe des
+entiers $N_1$ et $N_2$ (avec $N_1<N_2$) tels que\vv
+$$d(a_{\ffi(N_1)},\alpha)<{\eps\s4}\;;\quad
+  d(a_{\ffi(N_2)},\alpha)<{\eps\s4}\;;\quad
+  d(b_{\ffi(N_1)},\beta)<{\eps\s4}\;;\quad
+  d(b_{\ffi(N_2)},\beta)<{\eps\s4}\;.$$
+En posant $k=\ffi(N_2)-\ffi(N_1)\in\net$, on a\vv
+$$d(a,a_k)\ie d\big(f(a),f(a_k)\big)\ie\ldots\ie
+  d\Big(f^{\ffi(N_1)}(a),f^{\ffi(N_1)}(a_k)\Big)=d(a_{\ffi(N_1)},a_{\ffi(N_2)})
+  <{\eps\s2}$$
+et on majore de m\^eme $d(b,b_k)$.\new
+On en d\'eduit alors\vv
+$$d(a,b)\ie d\big(f(a),f(b)\big)=d(a_1,b_1)\ie d(a_2,b_2)\ie\ldots
+  \ie d(a_k,b_k)\ie d(a,b)+\eps$$
+et ceci pour tout $\eps>0$, donc $d\big(f(a),f(b)\big)=d(a,b)$.\msk
+$\bullet$ L'ensemble image $f(K)$ est dense dans $K$~: on vient de voir
+que toute orbite de $f$ est {\bf r\'ecurrente}, c'est-\`a-dire\vv
+$$\a a\in K\quad\a \eps>0\quad \e k\in\net\qquad d\big(a,f^k(a)\big)<\eps$$
+({\it l'orbite du point $a$ repasse aussi pr\`es de $a$ que l'on veut}), donc\vv
+$$\a a\in K\quad \a\eps>0\quad \e y\in f(K)\qquad d(a,y)\ie\eps\;.$$
+\par
+$\bullet$ Enfin, $f$ est surjective puisque, $f$ \'etant continue car
+1-lipschitzienne, l'ensemble $f(K)$ est compact, donc ferm\'e dans $K$.
+Comme il est dense dans $K$, on a $f(K)=K$.
+
+
+\bsk\hrule\hrule\bsk
+
+{\bf EXERCICE 2 :}\msk
+Soit $(K,d)$ un espace m\'etrique compact.\ssk
+Si $u$ et $v$ sont deux \'el\'ements de $K^\nmat$, on pose\vv
+$$\delta(u,v)=\sum_{n=0}^{\infty}{d(u_n,v_n)\s 2^n}\;.$$
+\par
+{\bf 1.} V\'erifier que $\delta$ est une distance sur $K^\nmat={\cal F}(\nmat,K)$
+et qu'elle d\'efinit sur cet espace la ``topologie de la convergence simple'', c'est-\`a-dire~:
+une suite $(v^p)_{p\in\nmat}$ d'\'el\'ements de $K^\nmat$ converge vers $\lam\in
+K^\nmat$ si et seulement si, pour tout $n\in\nmat$, $\Lim{p}{\infty}v^p_n=\lam_n$.
+\ssk
+{\bf 2.} Montrer que $(K^\nmat,\delta)$ est un espace m\'etrique compact.
+\ssk
+{\bf 3.} Montrer que l'ensemble ${\cal P}$ des suites p\'eriodiques est
+dense dans $(K^\nmat,\delta)$.\ssk
+{\bf 4.} Montrer que, en posant $\gamma(u,v)=\sup_{n\in\nmat}d(u_n,v_n)$, on
+d\'efinit une distance sur $K^\nmat$, mais que l'espace m\'etrique
+$(K^\nmat,\gamma)$ n'est pas compact.
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf 1.} L'espace m\'etrique $(K,d)$ est born\'e car compact~; soit $\Delta$
+son diam\`etre. Si $u$ et $v$ sont deux \'el\'ements de $K$, la s\'erie
+$\sum_n {d(u_n,v_n)\s2^n}$ est convergente, d'o\`u l'existence de $\delta(u,v)$.
+L'axiome de s\'eparation, la sym\'etrie et l'in\'egalit\'e triangulaire se
+laissent v\'erifier sans opposer de r\'esistance.\msk\sect
+Montrons donc l'\'equivalence\vv
+$$\Lim{p}{\infty}v^p=\lam\quad{\rm dans}\;(K^\nmat,\delta)\iff
+  \a n\in\nmat\quad\Lim{p}{\ii}v_n^p=\lam_n\;.$$\sect
+$\bullet$ Si $\Lim{p}{\infty}v^p=\lam\;$ dans $(K^\nmat,\delta)$, alors
+$\Lim{p}{\infty}\delta(v^p,\lam)=0$ d'o\`u, clairement, pour tout $n\in\nmat$,
+$\Lim{p}{\infty}{d(v_n^p,\lam_n)\s2^n}=0$, soit
+$\Lim{p}{\infty}d(v_n^p,\lam_n)=0$, ce qu'il fallait d\'emontrer.
+\ssk\sect
+$\bullet$ Supposons $\;\a n\in\nmat\quad\Lim{p}{\ii}v_n^p=\lam_n$ et donnons-nous
+$\eps>0$.\sect\quad
+Il existe un entier $N$ tel que $\sum_{n=N+1}^{\infty}{1\s2^n}
+\ie{\eps\s2\Delta}$, o— $\Delta$ est le diam\`etre de $(K,d)$.\sect\quad
+Pour tout $n\ie N$ fix\'e, on a $\Lim{p}{\infty}d(v_n^p,\lam_n)=0$,
+donc on peut trouver un entier $P_n$ tel que $p\se P_n\impl d(v_n^p,\lam_n)\ie
+{\eps\s4}$.\sect\quad
+Soit $P=\max_{0\ie n\ie N}P_n$. Pour tout $p\se P$, l'in\'egalit\'e $d(v_n^p,\lam_n)
+\ie{\eps\s4}$ est r\'ealis\'ee pour tout $n\ie N$, donc\vv
+$$\sum_{n=0}^N{d(v_n^p,\lam_n)\s 2^n}\ie{\eps\s4}\;\sum_{n=0}^N{1\s2^n}\ie{\eps\s2}
+  \qquad\hbox{pour tout}\quad p\se P\;.$$
+Ainsi, pour tout $p\se P$, on a\vv
+$$\delta(v^p,\lam)=\sum_{n=0}^N{d(v_n^p,\lam_n)\s 2^n}+\sum_{n=N+1}^\infty{d(v_n^p,\lam_n)\s 2^n}
+  \ie{\eps\s2}+{\eps\s2\Delta}\Delta=\eps\;.$$
+On a ainsi prouv\'e que $\Lim{p}{\infty}\delta(v^p,\lam)=0$.\msk\sect
+La distance $\delta$ sur $K^\nmat$ d\'efinit bien la topologie de la
+convergence simple.
+
+\bsk
+{\bf 2.} Soit $(u^p)_{p\in\nmat}$ une suite d'\'el\'ements de $K^\nmat$. On va
+en extraire une sous-suite convergente par le {\bf proc\'ed\'e diagonal}, ce
+qui prouvera la compacit\'e de l'espace m\'etrique $(K^\nmat,\delta)$.\ssk\sect
+$\triangleright$ De la suite $(u_0^p)_{p\in\nmat}$, \`a valeurs dans $K$, on peut extraire une
+sous-suite convergente $(u_0^{\ffi_0(p)})_{p\in\nmat}$, de limite $\lam_0\in K$.
+\sect
+$\triangleright$ De la suite $(u_1^{\ffi_0(p)})_{p\in\nmat}$, \`a valeurs dans $K$, on peut extraire une
+sous-suite convergente $(u_1^{\ffi_0\circ\ffi_1(p)})_{p\in\nmat}$, de limite $\lam_1\in K$.
+\ssk\sect
+$\triangleright$ Soit $k\in\net$. Supposons ainsi construites $k$ extractions $\ffi_0$, $\ffi_1$,
+$\ldots$, $\ffi_{k-1}$ (applications strictement croissantes de $\nmat$
+vers $\nmat$). De la suite $\lp u_k^{\ffi_0\circ\ffi_1\circ\ldots\circ\ffi_{k-1}(p)}\rp_{p\in\nmat}$,
+\`a valeurs dans $K$, on peut extraire une sous-suite convergente
+$\lp u_k^{\ffi_0\circ\ffi_1\circ\ldots\circ\ffi_{k-1}\circ\ffi_k(p)}\rp_{p\in\nmat}$,
+de limite $\lam_k\in K$.\msk\sect
+Pour tout $p\in\nmat$, posons maintenant $\psi(p)=\ffi_0\circ\ffi_1\circ\ldots
+\circ\ffi_p(p)$. On a ainsi d\'efini une application $\psi$ de $\nmat$ vers $\nmat$. Elle
+est strictement croissante car\vv
+\begin{eqnarray*}
+\psi(p+1) & = & \ffi_0\circ\ldots\circ\ffi_p\big(\ffi_{p+1}(p+1)\big)\se
+                               \ffi_0\circ\ldots\circ\ffi_p(p+1)\qquad\hbox{\bf (1)}\\
+                     & > & \ffi_0\circ\ldots\circ\ffi_p(p)=\psi(p)\qquad\qquad\qquad\qquad\qquad\qquad\;\;\hbox{\bf (2)}\;:
+\end{eqnarray*}
+\new\quad {\bf (1)} car $\ffi_{p+1}(p+1)\se p+1$ et $\ffi_0\circ\ldots\circ\ffi_p$ est croissante~;
+\new\quad {\bf (2)} car $\ffi_0\circ\ldots\circ\ffi_p$ est strictement croissante.
+\msk\sect
+Posons maintenant $v^p=u^{\psi(p)}$~: $(v^p)_{p\in\nmat}$ est une suite extraite de
+$(u^p)_{p\in\nmat}$.\ssk\sect
+Pour tout $n\in\nmat$, on a $\Lim{p}{\infty}v_n^p=
+\Lim{p}{\infty}u_n^{\psi(p)}=\lam_n$ car $(u_n^{\psi(p)})_{p>n}$ est une
+suite extraite de la suite $\lp u_n^{\ffi_0\circ\ldots\circ\ffi_n(p)}\rp_{p\in\nmat}$,
+qui converge vers $\lam_n$ dans $K$~: en effet, l'application\break
+$p\mapsto\ffi_{n+1}\circ\ldots\circ\ffi_p(p)$ est strictement croissante
+sur $\[ent n+1,\ii\[ent$ par un raisonnement analogue \`a celui fait ci-dessus
+pour $\psi$.\msk\sect
+De la question {\bf 1.}, on d\'eduit enfin que la suite $(v^p)_{p\in\nmat}$,
+extraite de la suite $(u^p)_{p\in\nmat}$, converge vers $\lam$ dans l'espace
+m\'etrique $(K^\nmat,\delta)$.
+
+\bsk
+{\bf 3.} Soit $u\in K^\nmat$, soit $\eps>0$. Comme en {\bf 1.}, introduisons
+un entier $N$ tel que $\sum_{n=N+1}^{\infty}{1\s 2^n}\ie{\eps\s\Delta}$, o\`u
+$\Delta$ est le diam\`etre de $K$. Alors toute suite $v$ de $K^\nmat$ dont les
+$N+1$ premiers termes co\"\i ncident avec ceux de $u$ ($v_n=u_n$ pour $n\in\[ent0,
+N\]ent$) v\'erifie $\delta(u,v)\ie\eps$. Parmi ces suites, il en existe une
+qui est $(N+1)$-p\'eriodique, donc l'ensemble ${\cal P}$ est dense dans $(K^\nmat,\delta)$.
+
+\bsk
+{\bf 4.} La distance $\gamma$ sur $K^\nmat={\cal F}(\nmat,K)$ d\'efinit la
+``topologie de la convergence uniforme''. Montrons que $(K^\nmat,\gamma)$
+n'est pas compact.\ssk\sect
+Soient $a$ et $b$ deux \'el\'ements de $K$ distincts ({\it pour les pinailleurs, on
+suppose $K$ non r\'eduit \`a un point}). Soit $d_0=d(a,b)$. Pour tout $p\in\nmat$,
+soit $u^p$ la suite d'\'el\'ements de $K$ d\'efinie par $u_n^p=\system{
+&a&\quad&{\rm si}\quad n=p\cr &b&\quad&{\rm sinon}\hfill\cr}$.\ssk\sect
+Si $p$ et $q$ sont deux entiers distincts, on a $\gamma(u^p,u^q)=d_0$~; on
+ne peut donc extraire de la suite $(u^p)_{p\in\nmat}$ aucune sous-suite
+convergente pour la m\'etrique d\'efinie par $\gamma$.
+
+\bsk
+{\it Remarque}. On peut r\'epondre \`a la question {\bf 2.} en court-circuitant
+la question {\bf 1.} Soit, en effet, $(u^p)_{p\in\nmat}$ une suite d'\'el\'ements
+de $K^\nmat$. On d\'efinit des extractions $\ffi_0$, $\ldots$, $\ffi_n$, $\ldots$
+comme dans la solution de la question {\bf 2.}, telles que, pour tout $n\in\nmat$,
+la suite $\lp u_n^{\ffi_0\circ\ldots\circ\ffi_n(p)}\rp_{p\in\nmat}$ admette
+une limite $\lam_n$ dans $K$.\ssk\sect
+On veut montrer que l'\'el\'ement $\lam=(\lam_n)_{n\in\nmat}$
+de $K^\nmat$ est valeur d'adh\'erence de la suite $(u^p)_{p\in\nmat}$. Pour cela,
+plut\^ot que d'expliciter, par le proc\'ed\'e diagonal, une sous-suite de $(u^p)_p$
+qui converge vers $\lam$ dans $(K^\nmat,\delta)$, on montre l'assertion\vv
+$$\a\eps>0\quad\a P\in\nmat\quad\e p\se P\qquad\delta(u^p,\lam)\ie\eps\;.$$\sect
+Donnons-nous donc $\eps>0$ et $P\in\nmat$, soit d'autre part un entier $N$
+tel que $\;\sum_{n=N+1}^{\infty}{1\s2^n}\ie{\eps\s2\Delta}$, o— $\Delta$
+est le diam\`etre de $K$. On a alors, pour tout $p\in\nmat$,\vv
+$$\delta(u^p,\lam)\ie\sum_{n=0}^N{d(u_n^p,\lam_n)\s2^n}+{\eps\s2}\;.$$\sect
+Il suffit donc de montrer que, pour un certain $p\se P$, on peut rendre
+la premi\`ere somme inf\'erieure … ${\eps\s2}$ et, pour cela, il suffit que l'on
+ait\vv
+$$\a n\in\[ent0,N\]ent\qquad d(u_n^p,\lam_n)\ie{\eps\s4}\eqno\hbox{\bf (*)}\;.$$\sect
+Or, pour tout $n\in\[ent0,N\]ent$, la suite
+$\lp u_n^{\ffi_0\circ\ldots\circ\ffi_n(k)}\rp_{k\in\nmat}$ converge vers $\lam_n$,
+donc aussi la suite $\lp u_n^{\ffi_0\circ\ldots\circ\ffi_N(k)}\rp_{k\in\nmat}$,
+qui en est extraite. Il existe alors un entier naturel $k_0$ tel que
+$$\a k\se k_0\quad\a n\in\[ent0,N\]ent\qquad d\lp u_n^{\ffi_0\circ\ldots\circ\ffi_N(k)},
+  \lam_n\rp\ie{\eps\s4}\;.$$\sect
+Comme $\Lim{k}{\infty}\ffi_0\circ\ldots\circ\ffi_N(k)=\ii$, il existe un entier
+$k_1$ tel que $k\se k_1\impl\ffi_0\circ\ldots\circ\ffi_N(k)\se P$. En choisissant
+$k\se\max\{k_0,k_1\}$ et en posant $p=\ffi_0\circ\ldots\circ\ffi_N(k)$, l'entier
+$p$ est sup\'erieur \`a $P$ et v\'erifie bien {\bf (*)}.
+
+
+
+\bsk
+\hrule\hrule
+\bsk
+
+{\bf EXERCICE 3 :}\msk
+Dans $E=\rmat^m$, soit $(F_n)_{n\in\nmat}$ une suite de sous-espaces affines
+de dimension au plus \'egale … $m-2$.\ssk
+Montrer que le compl\'ementaire de leur
+r\'eunion $\;A=E\setminus\lp\bigcup_{n\in\nmat}F_n\rp\;$ est un ensemble
+connexe par arcs.
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\bsk
+
+Cet exercice utilise la propri\'et\'e de Baire.
+Commen\c cons par quelques ``rappels'' sur les espaces m\'etriques complets.\eject
+{\dotfill}\par
+{\bf 1.} Si $(E,d)$ est un espace m\'etrique complet, alors toute suite $(B_n)_{n\in\nmat}$
+de ferm\'es born\'es non vides, d\'ecroissante pour l'inclusion, et dont les diam\`etres
+tendent vers z\'ero, a pour intersection (not\'ee $B$) un singleton ({\bf th\'eor\`eme des
+ferm\'es embo\^\i t\'es}).\par
+{\dotfill}
+\msk\sect
+En effet, pour tout $n\in\nmat$, soit $u_n\in B_n$, soit l'ensemble
+$U_n=\{u_p\;;\;p\se n\}$. On a $U_n\subset B_n$, donc le diam\`etre de
+l'ensemble $U_n$ tend vers z\'ero lorsque $n$ tend vers $\ii$, ce qui signifie
+que la suite $(u_n)$ est de Cauchy. Elle converge donc vers un \'el\'ement $l$ de $E$.
+\ssk\sect
+Mais, pour tout $n$, on a $l\in\ov{U_n}\subset\ov{B_n}=B_n$, donc $l\in B$.
+\ssk\sect
+Par ailleurs, si $x\in E$ est distinct de $l$, alors on peut trouver un entier
+$n$ tel que\break ${\rm diam}(B_n)<d(x,l)$ donc tel que $x\not\in B_n$, donc $x\not\in B$.\ssk\sect
+En conclusion, $B=\bigcap_{n\in\nmat}B_n=\{l\}$.
+
+\bsk
+{\dotfill}\par
+{\bf 2.} Tout espace m\'etrique complet v\'erifie la {\bf propri\'et\'e de Baire}, c'est-\`a-dire~:
+toute intersection d\'enombrable $\bigcap_{n\in\nmat}\Omega_n$ d'ouverts denses
+est un ensemble dense dans $E$.\par
+{\dotfill}
+\msk\sect
+Posons $\Omega=\bigcap_{n\in\nmat}\Omega_n$.\ssk\sect
+Soit $U$ un ouvert non vide de $E$, il suffit de montrer que $\Omega\inter U\not=\emptyset$.\ssk\sect
+L'ouvert $\Omega_0$ \'etant dense dans $E$, il existe une boule ferm\'ee $B_0$
+(de diam\`etre $\delta_0>0$) incluse dans $\Omega_0\inter U$.\ssk\sect
+L'ouvert dense $\Omega_1$ rencontre l'ouvert non vide $\interieur{B_0}$,
+l'intersection $\interieur{B_0}\inter\Omega_1$ contient donc une boule
+ferm\'ee $B_1$ de diam\`etre $\delta_1>0$ et on peut toujours supposer que
+$\delta_1<{\delta_0\s2}$.\ssk\sect
+Par r\'ecurrence, on construit une suite $(B_n)$ de boules ferm\'ees, de
+diam\`etres $\delta_n$ avec\break $0<\delta_n<{\delta_{n-1}\s2}$ pour tout $n\in\net$,
+v\'erifiant $B_n\subset\interieur{B_{n-1}}\inter\Omega_n\subset B_{n-1}$. On a alors
+$\Lim{n}{\infty}\delta_n=0$, donc $\bigcap_{n\in\nmat}B_n$
+est un singleton $\{x\}$ d'apr\`es {\bf 1.}
+L'\'el\'ement $x$ de $E$ est alors dans $\Omega\inter U$, ce qui ach\`eve
+la d\'emonstration.
+
+\bsk
+{\dotfill}\par
+{\bf 3.} Dans un espace m\'etrique complet, toute r\'eunion d\'enombrable
+de ferm\'es d'int\'erieurs vides a un int\'erieur vide.\par
+{\dotfill}
+\msk\sect
+C'est la propri\'et\'e ``duale'' de la pr\'ec\'edente (elle s'en d\'eduit par passage
+au compl\'ementaire puisqu'une partie de $E$ a un int\'erieur vide si et seulement
+si son compl\'ementaire est dense dans $E$).
+
+
+\eject
+{\dotfill}\par
+{\bf 4.} Attaquons maintenant l'exercice proprement dit!\par
+{\dotfill}
+\msk\sect
+Nous allons montrer que deux \'el\'ements quelconques de $A$ peuvent \^etre joints
+(dans $A$) par une ligne bris\'ee form\'ee de deux segments, autrement dit\vv
+$$\a(x,y)\in A^2\quad\e z\in A\qquad [x,z]\union[z,y]\subset A\;.$$\sect
+Soient $x$ et $y$ deux \'el\'ements de $A$. Pour tout $n\in\nmat$, il existe\ssk\new
+- un hyperplan affine $H_n$ contenant $x$ et $F_n$~;\ssk\new
+- un hyperplan affine $H'_n$ contenant $y$ et $F_n$.\ssk\sect
+Tout hyperplan affine de $E$ est un ferm\'e d'int\'erieur vide (``{\bf ensemble rare}'')
+donc, d'apr\`es {\bf 3.}, l'ensemble $\;M=\lp\bigcup_{n\in\nmat}H_n\rp\union
+\lp\bigcup_{n\in\nmat}H'_n\rp\;$ est un ensemble d'int\'erieur vide (``{\bf ensemble
+maigre}'', c.\`a.d. union d\'enombrable de ferm\'es d'int\'erieur vide). Son
+compl\'ementaire $E\setminus M$ est donc dense dans $E$ et il est donc non vide.
+\ssk\sect
+Soit donc $z\in E\setminus M$, soit le segment $S=[x,z]$~; alors $S$ ne rencontre
+aucun des sous-espaces affines $F_n$
+(si on avait un point $a$ dans $S\inter F_n$, on aurait alors $x\in H_n$, $a\in H_n$
+avec $x\not=a$, donc la droite affine $(ax)$ serait incluse dans $H_n$ donc
+le point $z$, qui appartient \`a cette droite, serait dans $H_n$, absurde).\ssk\sect
+De m\^eme, le segment $S'=[z,y]$ ne rencontre aucun des $F_n$ et $S\union S'\subset
+A$, ce qu'il fallait d\'emontrer.
+
+
+\bsk
+\hrule
+\hrule
+\bsk
+
+{\bf EXERCICE 4 :}\msk
+\def\K{{\cal K}}
+
+Soit $\K$ l'ensemble des parties compactes non vides de $\cmat$.\ssk
+Pour $F\in\K$ et $\eps>0$, on note $V_{\eps}(F)=\{z\in\cmat\;|\;d(z,F)\ie\eps\}$\quad
+($\eps$-voisinage de $F$).\ssk
+Pour $F\in\K$ et $G\in\K$, on pose\vv
+$$\delta(F,G)=\min\{\eps\se0\;|\;F\subset V_{\eps}(G)\quad{\rm et}\quad
+  G\subset V_{\eps}(F)\}\;.$$\par
+{\bf a.} V\'erifier l'existence de $\delta(F,G)$.\ssk
+{\bf b.} Montrer que $\delta$ est une distance sur $\K$.\ssk
+{\bf c.} Soit $(G_n)$ une suite d'\'el\'ements de $\K$, d\'ecroissante pour l'inclusion.
+Montrer que, dans l'espace m\'etrique $(\K,\delta)$, on a $\;\Lim{n}{\infty}G_n=
+\bigcap_{n\in\nmat}G_n$.\ssk
+{\bf d.} Montrer que $(\K,\delta)$ est un espace m\'etrique complet.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+
+{\bf a.} Les parties $F$ et $G$ \'etant born\'ees, l'ensemble de r\'eels\vv
+$$I_{F,G}=\{\eps\se0\;|\;F\subset V_{\eps}(G)\quad{\rm et}\quad
+  G\subset V_{\eps}(F)\}$$
+est non vide~; il est minor\'e par $0$, donc admet une
+borne inf\'erieure $\delta$.\new {\it Il est alors clair que $I_{F,G}$ est, soit
+l'intervalle $]\delta,\ii[$, soit l'intervalle $[\delta,\ii[$}.\ssk
+\sect
+Pour tout $\alpha>0$, on a $\delta+\alpha\in I_{F,G}$, donc
+$\;F\subset V_{\delta+\alpha}(G)$, donc $\;F\subset\bigcap_{\alpha>0}
+V_{\delta+\alpha}(G)=V_{\delta}(G)\;$ et, de mˆme, $G\subset V_{\delta}(F)$.
+Finalement, $\delta\in I_{F,G}$ et $\delta=\delta(F,G)=\min I_{F,G}$.
+\ssk\sect
+{\it Les lecteurs aimant jongler avec les inf et les sup v\'erifieront que l'on
+peut aussi \'ecrire\vv
+$$\delta(F,G)=\max\{\max_{x\in F}d(x,G),\max_{y\in G}d(y,F)\}\;,$$
+les autres feront un dessin, ce qui est largement aussi instructif}.
+
+\bsk
+{\bf b.} Si $F$ est un ferm\'e de $\cmat$, on a $V_0(F)=\ov{F}=F$, donc\vv
+$$\delta(F,G)=0\iff F\subset G\quad{\rm et}\quad G\subset F\iff F=G\;.$$\sect
+La sym\'etrie $\delta(G,F)=\delta(F,G)$ est imm\'ediate.\ssk\sect
+Pour l'in\'egalit\'e triangulaire, notons tout d'abord que, pour tout $K\in\K$ et
+tous $\alpha>0$, $\beta>0$, on a $\;V_{\alpha}\big(V_{\beta}(K)\big)\subset
+V_{\alpha+\beta}(K)$. Alors, soient $F$, $G$, $H$ trois \'el\'ements de $\K$,
+posons $\alpha=\delta(F,G)$ et $\beta=\delta(G,H)$~; on a $\;F\subset V_{\alpha}(G)\;$
+et $\;G\subset V_{\beta}(H)\;$ d'o\`u\vv
+$$F\subset V_{\alpha}(G)\subset V_{\alpha}\big(V_{\beta}(H)\big)\subset
+  V_{\alpha+\beta}(H)\;.$$
+De m\^eme, $H\subset V_{\alpha+\beta}(F)$, donc $\delta(F,H)\ie\alpha+\beta$,
+ce qu'il fallait d\'emontrer.
+\ssk\sect
+{\it Remarque. L'espace m\'etrique $\cmat$ \'etant en fait une partie convexe
+d'un e.v.n., le lecteur se convaicra ais\'ement de l'\'egalit\'e $\;V_{\alpha}
+\big(V_{\beta}(K)\big)=V_{\alpha+\beta}(K)\;$ pour tout compact $K$ non vide.}\msk\sect
+La distance $\delta$ est la {\bf distance de Hausdorff}.
+
+\bsk
+{\bf c.} Posons $G=\bigcap_{n\in\nmat}G_n$.\ssk\sect
+On a $G\in\K$~: en effet, $G$ est une intersection de ferm\'es born\'es, c'en est
+donc encore un.
+Par ailleurs, il est classique que {\it toute suite d\'ecroissante de compacts
+non vides a une intersection non vide}~: en effet, si, pour tout $n$, on se
+donne $x_n\in G_n$, la suite $(x_n)$, dont tous les \'el\'ements appartiennent
+au compact $G_0$, admet une valeur d'adh\'erence $x=\Lim{n}{\infty}x_{\phi(n)}$.
+Pour tout $n$, $x$ est alors la limite de la suite $\big(x_{\ffi(k)}\big)_{k\se n}$
+d'\'el\'ements du ferm\'e $G_{\ffi(n)}$, donc $x\in\bigcap_{n\in\nmat}G_{\ffi(n)}=G$.\ssk
+\ssk\sect
+Montrons que $\Lim{n}{\ii}G_n=G$ dans l'espace m\'etrique $(\K,\delta)$, c'est-\`a-dire
+$\Lim{n}{\ii}\delta(G_n,G)=0$.\break On a d\'ej\`a $G\subset G_n$ pour tout $n$.
+Ensuite, si on se donne $\eps>0$, il existe $N$ tel que\break $G_N\subset V_{\eps}(G)$~:
+sinon, pour tout $n$, on pourrait trouver $x_n\in G_n$ tel que $x_n\not\in
+V_{\eps}(G)$, c'est-\`a-dire $d(x_n,G)>\eps$~; la suite $(x_n)$, \`a valeurs dans
+le compact $G_0$, admet une valeur d'adh\'erence $x$ qui v\'erifie alors, par
+passage \`a la limite dans l'in\'egalit\'e, $d(x,G)\se\eps$ donc $x\not\in G$, ce qui
+est absurde puisque, pour tout $n$, $x$ est valeur d'adh\'erence de la suite
+$(x_p)_{p\se n}$ \`a valeurs dans le compact $G_n$ donc $x\in G_n$. La d\'ecroissance
+de la suite $(G_n)$ fait alors que $G_n\subset V_{\eps}(G)$ pour tout $n\se N$,
+donc $\delta(G_n,G)\ie\eps$ pour $n\se N$, ce qu'il fallait d\'emontrer.
+\msk
+
+{\bf d.} Soit $(F_n)_{n\in\nmat}$ une suite de Cauchy dans l'espace
+m\'etrique $(\K,\delta)$. Pour tout $n$, posons
+$$G_n=\ov{\bigcup_{k\se n}F_k}\;,\quad{\rm puis}\quad
+  G=\bigcap_{n\in\nmat}G_n\;.$$
+\sect
+Chaque $G_n$ est ferm\'e, non vide car il contient $F_n$, il est born\'e
+car, la suite $(F_n)$ \'etant de Cauchy,\vv
+$$\e N\in\nmat\quad k\se N\impl F_k\subset V_1(F_N)\;.$$
+On a donc $G_n\in\K$ pour tout $n$.
+Enfin, la suite $(G_n)$ est d\'ecroissante pour l'inclusion.\ssk
+\sect
+Montrons que $\Lim{n}{\infty}\delta(F_n,G_n)=0$, ce qui ach\'evera la d\'emonstration~:
+on sait en effet que $\Lim{n}{\infty}G_n=G$, il en r\'esultera que la suite $(F_n)$
+converge vers $G$ dans $(\K,\delta)$.
+\ssk\sect
+Si on se donne $\eps>0$, on peut trouver $N$ tel que $\delta(F_p,F_q)\ie\eps$
+pour tous $p\se N$, $q\se N$. Pour $n\se N$, on a alors $F_k\subset
+V_{\eps}(F_n)$ pour tout $k\se n$, ce qui entra\^\i ne $G_n\subset V_{\eps}(F_n)$~;
+comme, par ailleurs, $F_n\subset G_n$, on a $\delta(F_n,G_n)\ie\eps$
+pour tout $n\se N$, ce qu'il fallait prouver.
+
+
+\bsk
+\hrule
+\hrule
+\bsk
+
+{\bf EXERCICE 5 :}\msk
+{\bf Rel\`evements et hom\'eomorphismes du cercle}\bsk
+On note ${\cal U}$ le cercle unit\'e dans le plan complexe. On note $\eps:\rmat
+\vers{\cal U}$ le morphisme de groupe $\theta\mapsto\eps(\theta)=e^{2i\pi\theta}$.
+\msk
+{\bf 1. Rel\`evement d'une application continue de $[a,b]$ vers ${\cal U}$}\ssk\sect
+Soient $a$ et $b$ deux r\'eels avec $a<b$. Soit $\ffi:[a,b]\vers{\cal U}$
+une application continue. Montrer qu'il existe une application $\Phi:[a,b]
+\vers\rmat$, continue, telle que $\ffi=\eps\circ\Phi$.\ssk\sect
+Y a-t-il unicit\'e de $\Phi$~?\msk
+{\bf 2. Rel\`evement d'une application continue de ${\cal U}$ vers ${\cal U}$}\ssk\sect
+Soit $f:{\cal U}\vers{\cal U}$ une application continue. Montrer l'existence
+d'une application $F:\rmat\vers\rmat$, continue, telle que\vvv
+$$f\circ\eps=\eps\circ F\;.$$\sect
+Une telle application $F$ est appel\'ee un rel\`evement de $f$.\msk
+{\bf 3.} Soit $f:{\cal U}\vers{\cal U}$, continue. Comparer deux rel\`evements de $f$.
+V\'erifier que le nombre $F(1)-F(0)$ est un entier relatif, qui ne d\'epend pas du choix
+du rel\`evement $F$ de $f$~; on note ce nombre $N(f)$, c'est le {\bf nombre de
+rotation} de $f$.\msk
+{\bf 4.} Calculer $N(f)$ lorsque $f:z\mapsto\omega z^k$ avec $\omega\in{\cal U}$
+et $k\in\zmat$.\msk
+{\bf 5.} Soient $f,g:{\cal U}\vers{\cal U}$ continues. Montrer que\vv
+$$N(g\circ f)=N(g)\>N(f)\;.$$\par
+{\bf 6.} Soit $f:{\cal U}\vers{\cal U}$ un hom\'eomorphisme. Quelles sont les
+valeurs possibles de $N(f)$~?\ssk\sect
+Montrer que tout rel\`evement $F$ de $f$ est alors un hom\'eomorphisme de $\rmat$
+sur lui-m\^eme.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Notons tout d'abord que, si une application $h:I\vers{\cal U}$,
+continue sur un intervalle $I$ de $\rmat$, ne recouvre pas le cercle ${\cal U}$
+tout entier, alors elle admet un rel\`evement $H$~: en effet, soit $u_0=e^{2i\pi\theta_0}$
+un \'el\'ement de ${\cal U}$ n'appartenant pas \`a l'image $h(I)$, alors l'application\break
+$\alpha:{\cal U}\setminus\{u_0\}\vers]\theta_0,\theta_0+1[$ qui, \`a tout point
+$u\in{\cal U}\setminus\{u_0\}$, associe l'unique r\'eel $\theta\in]\theta_0,\theta_0+1[$
+tel que $e^{2i\pi\theta}=u$ est une ``d\'etermination continue de l'argument'' sur
+${\cal U}\setminus\{u_0\}$ (c'est, plus pr\'ecis‚ment, un hom\'eomorphisme de
+${\cal U}\setminus\{u_0\}$ vers $]\theta_0,\theta_0+1[$ dont la r\'eciproque
+est une restriction de $\eps$)
+et l'application $H=\alpha\circ h$ r\'epond \`a la question.
+On peut donc relever toute application continue $h$ d'un intervalle $I$
+de $\rmat$ vers ${\cal U}$ lorsque le diam\`etre de l'ensemble-image $h(I)$
+est strictement inf\'erieur \`a 2.\msk\sect
+L'application $\ffi$, continue sur $[a,b]$, est uniform\'ement continue. Il existe
+donc un $\alpha>0$ tel que\vv
+$$\a(x,y)\in[a,b]^2\qquad |x-y|\ie\alpha\impl|\phi(x)-\phi(y)|\ie1\;.$$
+Cela permet de construire une subdivision $a=c_0<c_1<\ldots<c_{n-1}<c_n=b$ de
+l'intervalle $[a,b]$ telle que, pour tout $k\in\[ent0,n-1\]ent$, l'ensemble
+$\phi([c_k,c_{k+1}])$ ait un diam\`etre au plus \'egal \`a 1 (il suffit que le pas de
+la subdivision soit inf\'erieur \`a $\alpha$). Pour tout $k\in\[ent0,n-1\]ent$,
+la restriction $\ffi_k$ de $\ffi$ au segment $[c_k,c_{k+1}]$ admet donc un rel\`evement
+$\Phi_k:[c_k,c_{k+1}]\vers\rmat$ (application continue telle que $\ffi_k=\eps
+\circ\Phi_k$).\ssk\sect
+Il reste \`a raccorder ces rel\`evements~: en chaque ``point de jonction'' $c_k$
+($1\ie k\ie n-1$), le nombre $\Phi_k(c_k)-\Phi_{k-1}(c_k)$ est un entier relatif
+$N_k$ puisque $\exp\big(2i\pi\Phi_k(c_k)\big)=\exp\big(2i\pi\Phi_{k-1}(c_k)\big)=\ffi(c_k)$.
+Consid\'erons alors l'application $\Phi:[a,b]\vers\rmat$ d\'efinie par\ssk\new
+$\bullet$ $\Phi(x)=\Phi_0(x)$ pour tout $x\in[c_0,c_1]$~;\ssk\new
+$\bullet$ $\Phi(x)=\Phi_1(x)-N_1$ pour tout $x\in[c_1,c_2]$~;\ssk\new
+{\dotfill\hfill}\ssk\new
+$\bullet$ pour tout $k\in\[ent1,n-1\]ent$, $\Phi(x)=\Phi_k(x)-(N_1+N_2+\ldots+N_k)$
+ sur $[c_k,c_{k+1}]$.\ssk\sect
+L'application $\Phi$ ainsi construite est bien d\'efinie et continue sur $[a,b]$
+et v\'erifie $\ffi=\eps\circ\Phi$.\msk\sect
+Si $\Phi$ et $\Psi$ sont deux rel\`evements de $\ffi$, alors, pour tout $x\in[a,b]$,
+on a $e^{2i\pi\big(\Psi(x)-\Phi(x)\big)}=1$~; la fonction $\Psi-\Phi$, continue,
+est \`a valeurs dans $\zmat$, elle est donc constante.\ssk\sect
+En conclusion, si $\Phi_0$ est un rel\`evement de $\ffi$ sur $[a,b]$ (il en existe), les
+rel\`evements de $\ffi$ sur $[a,b]$ sont les fonctions $\Phi_0+m$, o—
+$m$ est un entier relatif fix\'e.
+
+\bsk
+{\bf 2.} Soit $f:{\cal U}\vers{\cal U}$ continue. Posons $\ffi=f\circ\eps$.
+Alors $\ffi$ est une application continue et\break 1-p\'eriodique de $\rmat$ vers ${\cal U}$.
+La restriction $\psi$ de $\ffi$ au segment $[0,1]$ est continue et admet donc
+un rel\`evement $\Psi$ ($\Psi:[0,1]\vers\rmat$ continue telle que $\psi=\eps\circ\Psi$).
+Comme $\psi(0)=\psi(1)$, le nombre $\Psi(1)-\Psi(0)$ est un entier relatif $N$.
+\msk\sect
+D\'efinissons alors $F:\rmat\vers\rmat$ par\vv
+$$\a k\in\zmat\quad\a x\in[k,k+1[\qquad F(x)=\Psi(x-k)+kN\;.$$
+L'application $F$ est continue sur $\rmat$, il suffit de v\'erifier les raccordements
+aux points entiers~:\vv
+$$F(k^-)=\Psi(1)+(k-1)N=\Psi(0)+kN=F(k)=F(k^+)$$
+et on a bien $\eps\circ F=\ffi=f\circ\eps$~: si $x\in[k,k+1[$, on a en effet\vv
+$$(\eps\circ F)(x)=\eps\big(\Psi(x-k)\big)=\psi(x-k)=\ffi(x-k)=\ffi(x)$$
+car $\ffi$ est 1-p\'eriodique.
+
+\msk
+{\bf 3.} Si $F$ et $G$ sont deux rel\`evements de $f$, alors $\eps\circ F=\eps\circ G$,
+donc la fonction $F-G$, continue sur $\rmat$, est \`a valeurs enti\`eres, donc constante.
+Ici encore, \'etant donn‚ un rel\`evement $F_0$ de $f$, tous les rel\`evements de $f$
+sont les applications $F_0+m$, o\`u $m$ est un entier relatif.\ssk\sect
+Le nombre $F(1)-F(0)$ ne d\'epend donc pas du choix de ce rel\`evement, et ne
+d\'epend donc que de $f$.\msk\sect
+{\it Remarque}~: si $F$ est un rel\`evement de $f$, alors on a
+$F(x+1)-F(x)=N(f)$ pour tout r\'eel $x$~: en effet, de $\eps\circ F=f\circ\eps$,
+on tire $e^{2i\pi F(x+1)}=e^{2i\pi F(x)}=f(e^{2i\pi x})$~; la fonction
+$x\mapsto F(x+1)-F(x)$ est donc continue et \`a valeurs dans $\zmat$, donc constante.
+On a donc aussi $F(x+k)-F(x)=k\>N(f)$ pour tout $x\in\rmat$ et tout
+$k\in\zmat$.
+
+\msk
+{\bf 4.} Posons $\omega=e^{2i\pi\alpha}$. On peut choisir comme rel\`evement
+de $f:z\mapsto \omega z^k$ l'application affine $F:\rmat\vers\rmat$,
+$x\mapsto kx+\alpha$. Le nombre de rotation de $f$
+est donc $\;N(f)=k$.
+
+\msk
+{\bf 5.} On v\'erifie imm\'ediatement que, si $F$ est un rel\`evement de $f$ et
+$G$ un rel\`evement de $g$, alors $G\circ F$ est un rel\`evement de $g\circ f$, donc\vv
+$$N(g\circ f)=G\big(F(1)\big)-G\big(F(0)\big)=
+  G\big(F(0)+N(f)\big)-G\big(F(0)\big)=N(g)\cdot N(f)$$
+d'apr\`es la remarque formul\'ee \`a la fin de la question {\bf 3.}
+
+\msk
+{\bf 6.} Soit $g=f^{-1}$ l'hom\'eomorphisme r\'eciproque de $f$. De la question
+{\bf 5.}, on d\'eduit\vv
+$$N(g)\>N(f)=N(g\circ f)=N(\id_{{}_{{\cal U}}})=1\;,$$
+donc $N(f)$ est un \'el\'ement inversible de l'anneau $\zmat$, d'o\`u $N(f)\in\{-1,
+1\}$. Ces deux valeurs sont effectivement possibles~: $N(f)=1$ avec $f=
+\id_{{}_{{\cal U}}}$, et $N(f)=-1$ avec $f:e^{i\theta}\mapsto e^{-i\theta}$
+(c'est-\`a-dire $f:z\mapsto{1\s z}$).\ssk\sect
+Soit $F$ un rel\`evement de $f$, soit $G$ un rel\`evement de $g=f^{-1}$. Alors $G\circ F$
+et $F\circ G$ sont des rel\`evements de $\id_{{}_{{\cal U}}}$ ({\it cf}. d\'ebut
+de la question {\bf 5.}). Comme $\id_{\rmat}$ est un rel\`evement de
+$\id_{{}_{{\cal U}}}$, d'apr\`es la question {\bf 3.}, il existe des entiers
+relatifs $m$ et $n$ tels que\vv
+$$F\circ G(x)=x+n\qquad{\rm et}\qquad G\circ F(x)=x+m\;.$$
+L'application $F\circ G$ est surjective, donc $F$ est surjective. L'application
+$G\circ F$ est injective, donc $F$ est injective. Le rel\`evement $F$ est donc
+une bijection continue de $\rmat$ sur lui-m\^eme, donc un hom\'eomorphisme
+({\it une bijection continue $H$ d'un intervalle $I$ de $\rmat$ sur un intervalle
+$J$ de $\rmat$ est toujours strictement monotone et sa bijection r\'eciproque
+est alors continue, $H$ est alors un hom\'eomorphisme de $I$ sur $J$}).
+
+
+
+\bsk
+\hrule\hrule
+\bsk
+
+{\bf EXERCICE 6 :}\msk
+Soit $f:\rpe\vers\rmat$, continue, telle que\vv
+$$\a x\in\rpe\qquad \Lim{n}{\ii}f(nx)=0\;.$$
+Montrer que $\Lim{x}{\ii}f(x)=0$. {\it On pourra pour cela utiliser la propri\'et\'e de Baire}.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+Pour un rappel de la propri\'et\'e de Baire, {\it cf.} exercice 3. Un \'enonc\'e possible est~:\ssk\new
+{\it Dans un espace m\'etrique complet, toute r\'eunion d\'enombrable de ferm\'es d'int\'erieur vide est d'int\'erieur vide}.\msk
+Bon, mais alors, vous allez me dire~: l'ensemble $\rpe$, muni de la m\'etrique induite par la distance usuelle de $\rmat$, n'est pas complet. Certes, mais je r\'epondrai que, si la compl\'etude est une notion ``m\'etrique'' (i.e. attach\'ee \`a une distance), la propri\'et\'e de Baire, elle, est ``topologique'' (i.e. conserv\'ee par hom\'eomorphisme), or l'application exponentielle est un hom\'eomorphisme de $\rmat$ (complet, donc de Baire) sur $\rpe$. La propri\'et\'e de Baire reste donc vraie dans $\rpe$.\bsk
+
+Donnons-nous $\eps>0$. Pour tout entier naturel $p$, soit\vv
+$$F_p=\{x\in\rpe\;;\;\a n>p\quad |f(nx)|\ie\eps\}\;.$$\par
+Comme $f$ est continue, chaque $\;F_p=\bigcap_{n>p}\{x\in\rpe\;;\;|f(nx)|\ie\eps\}\;$ est un ferm\'e relatif de $\rpe$.\msk
+Or, les $F_p$ recouvrent $\rpe$ puisque, pour tout $x\in\rpe$, on a $\Lim{n}{\ii}f(nx)=0$. La r\'eunion $\bigcup_{p\in\nmat}F_p$ est d'int\'erieur non vide, puisque c'est $\rpe$ tout entier. Par contraposition de la propri\'et\'e de Baire ci-dessus, l'un au moins des $F_p$ est d'int\'erieur non vide.\msk
+Soit $p\in\nmat$ tel que $\interieur{F_p}\not=\emptyset$, il existe alors deux r\'eels $u$ et $v$ avec $0<u<v$ tels que $[u,v]\subset F_p$, ce qui signifie que\vv
+$$\a n>p\quad \a x\in[u,v]\qquad |f(nx)|\ie\eps\;.$$
+On a donc $|f(x)|\ie\eps$ pour tout $x$ appartenant \`a l'ensemble $V=\bigcup_{n>p}[nu,nv]$. Or, cet ensemble $V$ est un voisinage de $\ii$ puisque, pour $n$ assez grand, les intervalles $[nu,nv]$ se chevauchent~: plus pr\'ecis\'ement, si $N$ est un entier sup\'erieur \`a ${u\s v-u}$, alors, pour $n\se N$, on a $(n+1)u\ie nv$~; l'intervalle $[Nu,\ii[$ est donc inclus dans $V$.\msk
+On a ainsi prouv\'e\vv
+$$\a \eps>0\quad\e A\in\rpe\quad x\se A\impl |f(x)|\ie\eps\;,$$
+c'est-\`a-dire $\Lim{x}{\ii}f(x)=0$.
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

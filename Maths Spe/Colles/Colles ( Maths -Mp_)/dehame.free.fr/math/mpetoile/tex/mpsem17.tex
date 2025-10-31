@@ -1,0 +1,668 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % \'evite le textstyle en mode
+                                % math\'ematique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math\'ematiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de pr\'esentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% divers
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'\'ecriture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% \`a l'int\'erieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d\'ecroissante),
+% \nondef (la fonction est non d\'efinie)
+% si l'on termine la derni\`ere ligne par \cr, un trait est tir\'e en dessous
+% sinon elle est laiss\'ee sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  
+\def\rmat{{\rm I\kern-0.6mm R}}  
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____d\'ef de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% Alg\`ebre lin\'eaire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________d\'eterminant_______
+\def\det{\mathop{\rm det}\nolimits} 
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos\'ee ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  
+\def\MC#1{{\cal M}_{#1}(\cmat)}  
+\def\MK#1{{\cal M}_{#1}(\kmat)}  
+
+%________Complexes_________ 
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   
+\def\Arccos{\mathop{\rm Arccos}\nolimits}  
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     
+\def\Argch{\mathop{\rm Argch}\nolimits}     
+\def\Argth{\mathop{\rm Argth}\nolimits}     
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} 
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s\'eries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr\'eg\'ees%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-\`a-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+\def\cala{{\cal A}}
+\def\fhat{\widehat{f}}
+\let\wh=\widehat
+\def\ftilde{\tilde{f}}
+
+% ********************************************************************************************************************** %
+%                                                                                                                                                                                   %
+%                                                                    FIN   DES   MACROS                                                                              %
+%                                                                                                                                                                                   %
+% ********************************************************************************************************************** %
+
+
+
+
+
+
+
+
+
+
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+
+
+
+\overfullrule=0mm
+
+
+\cl{{\bf SEMAINE 17}}\msk
+\cl{{\bf G\'EOM\'ETRIE EUCLIDIENNE, ESPACES HERMITIENS}}
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+L'espace $\rmat^3$ est muni de sa structure affine euclidienne orient\'ee canonique, on note ${\cal S}$ la sph\`ere de centre $O$ et de rayon 1.\msk
+Si $A$, $B$, $C$ sont trois points de ${\cal S}$, suppos\'es non coplanaires, la configuration constitu\'ee des trois arcs de ``grands cercles'' $AB$, $BC$ et $CA$ trac\'es sur la sph\`ere ${\cal S}$ est appel\'ee un {\bf triangle sph\'erique}.\ssk
+On notera $a$, $b$, $c$ respectivement les longueurs des arcs $BC$, $CA$ et $AB$ (``c\^ot\'es du triangle'').\ssk
+Les angles aux sommets $A$, $B$, $C$ sont not\'es $\alpha$, $\beta$, $\gamma$. Pr\'ecisons~: l'angle $\alpha$ est l'angle au point $A$ entre les deux arcs de cercle $AB$ et $AC$, c'est-\`a-dire entre les tangentes au point $A$ de ces deux arcs de cercle. On les consid\`ere comme des angles non orient\'es de vecteurs.\ssk
+On d\'efinit les vecteurs $i=\vect{OA}$, $j=\vect{OB}$ et $k=\vect{OC}$.
+\msk
+{\bf 1.} Rester calme.\msk
+{\bf 2.} Faire un dessin.\msk
+{\bf 3.} D\'emontrer la relation\vv
+$$\cos a=\cos b\>\cos c+\sin b\>\sin c\>\cos \alpha$$
+({\it on pourra \'evaluer de deux fa\c cons le produit scalaire} $(k\wedge i\;|\;i\wedge j)$ ).
+\msk
+{\bf 4.} En introduisant un triangle sph\'erique $A'B'C'$ ``dual'' du pr\'ec\'edent, d\'emontrer la relation\vv
+$$\cos\alpha=-\cos\beta\>\cos\gamma+\sin\beta\>\sin\gamma\>\cos a\;.$$\par
+{\bf 5.} Que peut-on dire de la somme des angles d'un triangle sph\'erique~?
+
+\msk
+
+{\it Source : Marcel BERGER, G\'eom\'etrie, Tome 2, \'Editions Nathan, ISBN 209 191 731-1}
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Passons directement \`a la question {\bf 3.}\msk
+
+{\bf 3.} Les grands cercles de la sph\`ere ${\cal S}$ ayant pour rayon 1, la longueur d'un arc de cercle est \'egale \`a la mesure (en radians) de l'angle au centre, donc $a$ est aussi une mesure de l'angle non orient\'e de vecteurs $(\vect{OB},\vect{OC})=(j,k)$, ou encore, puisque les vecteurs $i$, $j$, $k$ sont unitaires~:\vv
+$$\cos a=(j|k)\quad;\qquad \cos b=(k|i)\quad ;\qquad\cos c=(i|j)\;.$$
+La formule de Gibbs (ou ``du double produit vectoriel'') donne alors\vv
+\begin{eqnarray*}
+(k\wedge i\;|\;i\wedge j) & = & \Det(k,i,i\wedge j)=\big(k\;|\;i\wedge(i\wedge j)\big)\\
+& = & \big(k\;|\;(i|j)\>i-(i|i)\>j\big)\\
+& = & (i|j)\>(k|i)-(i|i)\>(k|j)\\
+& = & \cos c\>\cos b-\cos a\;.
+\end{eqnarray*}
+\sect
+Notons ${\cal P}_A$ le plan affine tangent \`a la sph\`ere ${\cal S}$ au point $A$, c'est-\`a-dire le plan passant par $A$ et orthogonal au vecteur $i=\vect{OA}$, que nous orientons corr\'elativement au vecteur normal $i$. La tangente en $A$ \`a l'arc de cercle $AB$ est la droite d'intersection du plan ${\cal P}_A$ avec le plan $OAB$. Le vecteur tangent orient\'e \`a cet arc de cercle admet pour vecteur directement orthogonal dans le plan ${\cal P}_A$ le vecteur $\vect{OA}\wedge\vect{OB}=i\wedge j$. De m\^eme, le vecteur $i\wedge k$ est directement orthogonal, dans le m\^eme plan ${\cal P}_A$ orient\'e, \`a l'arc de cercle orient\'e $AC$ au point $A$. Les angles g\'eom\'etriques $\alpha$ et $(i\wedge j,i\wedge k)$ sont donc \'egaux, d'o\`u
+$\;(k\wedge i,i\wedge j)=\pi-\alpha\;$ et\vv
+$$(k\wedge i|i\wedge j)=\|k\wedge i\|\>\|i\wedge j\|\>\cos(\pi-\alpha)=-\sin b\>\sin c\>\cos\alpha\;,$$
+ce qui prouve la relation \`a d\'emontrer.
+
+\msk
+{\bf 4.} Soient $A'$, $B'$, $C'$ les points de ${\cal S}$ d\'efinis par\vv
+$$i'=\vect{OA'}={j\wedge k\s\|j\wedge k\|}={j\wedge k\s\sin a}\quad;\quad
+j'=\vect{OB'}={k\wedge i\s\|k\wedge i\|}={k\wedge i\s\sin b}\quad;\quad
+k'=\vect{OC'}={i\wedge j\s\|i\wedge j\|}={i\wedge j\s\sin c}\;.$$\par
+Notons $a'$, $b'$, $c'$ les mesures des angles $(j',k')$, $(k',i')$ et $(i',j')$, c'est-\`a-dire aussi les longueurs des c\^ot\'es (arcs de cercles trac\'es sur ${\cal S}$) $B'C'$, $C'A'$ et $A'B'$ du triangle sph\'erique $A'B'C'$.\ssk
+Notons enfin $\alpha'$ une mesure de l'angle que font au point $A'$ les deux arcs de cercles $A'B'$ et $A'C'$, d\'efinissons de m\^eme $\beta'$ et $\gamma'$.\msk
+{\it Notons que le triangle dual $A'B'C'$ est toujours``direct'' puisqu'un calcul classique donne}\vv
+$$\Det(j\wedge k,k\wedge i,i\wedge j)=\big(\Det(i,j,k)\big)^2\;,\quad{\it donc}\quad\Det(i',j',k')>0\;.$$
+\par
+Le raisonnement de la question {\bf 3.} montre l'\'egalit\'e d'angles $a'=(j',k')=(k\wedge i,i\wedge j)=\pi-\alpha$. De m\^eme, $b'=\pi-\beta$ et $c'=\pi-\gamma$.\ssk
+Par ailleurs,\vv
+$$(k\wedge i)\wedge(i\wedge j) = (k\wedge i\;|\;j)\>i-(k\wedge i\;|\;i)\>j=(k\wedge i\;|\;j)\>i=\Det(i,j,k)\>i\;,$$
+donc $\;{j'\wedge k'\s\|j'\wedge k'\|}={(k\wedge i)\wedge(i\wedge j)\s\sin b\>\sin c\>\sin a'}={\Det(i,j,k)\s\sin\alpha\>\sin b\>\sin c}\;i\;$, ce qui prouve que~:\msk\sect
+{\bf (*)}\quad:\quad $|\Det(i,j,k)|=\sin\alpha\>\sin b\>\sin c=\sin a\>\sin\beta\>\sin c=\sin a\>\sin b\>\sin\gamma\;$ par permutation des sommets~;\ssk\sect
+{\bf (**)}\quad :\quad le triangle ``dual'' du triangle $A'B'C'$ est le triangle $ABC$ si $\Det(i,j,k)>0$
+et c'est son sym\'etrique par rapport \`a $O$ si $\Det(i,j,k)<0$~;\ssk\sect
+{\bf (***)}\quad :\quad on a $\;\alpha'=\pi-a$, $\beta'=\pi-b\;$ et $\;\gamma'=\pi-c$ ({\it cons\'equence de la propri\'et\'e} {\bf (**)}).\msk
+La relation du {\bf 3.} appliqu\'ee au triangle dual $A'B'C'$ donne $\;\cos a'=\cos b'\>\cos c'+\sin b'\>\sin c'\>\cos\alpha'$, c'est-\`a-dire\vvvv
+$$\cos\alpha=-\cos\beta\>\cos\gamma+\sin\beta\>\sin\gamma\>\cos a$$ 
+({\bf relation fondamentale de la trigonom\'etrie sph\'erique}).
+\msk
+{\bf 5.} De la relation ci-dessus, on d\'eduit que $\;\cos\alpha<-\cos\beta\>\cos\gamma+\sin\beta\>\sin\gamma=\cos\big(\pi-(\beta+\gamma)\big)$, d'o\`u $\alpha>\pi-(\beta+\gamma)$~: la somme des angles d'un triangle sph\'erique est donc strictement sup\'erieure \`a $\pi$.
+\msk
+{\it De la relation {\bf (*)} ci-dessus, on d\'eduit $\;{\sin a\s\sin\alpha}={\sin b\s\sin\beta}={\sin c\s\sin\gamma}\;$ et la valeur commune de ces trois quotients est \'egale au quotient des produits mixtes $\;{|\Det(i,j,k)|\s\Det(i',j',k')}$.}
+
+\eject
+
+{\bf EXERCICE 2 :}\msk
+{\bf 1.} Soient $x_1$, $\cdots$, $x_k$ des points de $\rmat^n$ muni de sa structure affine euclidienne canonique. Pour tout couple $(i,j)$, on note $d_{ij}=d(x_i,x_j)=\|\vect{x_ix_j}\|$.\ssk\sect
+Montrer que les $k$ points $x_1$, $\cdots$, $x_k$ sont affinement d\'ependants (c'est-\`a-dire les $k-1$ vecteurs $\vect{x_1x_2}$, $\cdots$, $\vect{x_1x_k}$ sont lin\'eairement d\'ependants) si et seulement si le d\'eterminant d'ordre $k+1$~:\vv
+$$\Gamma(x_1,\cdots,x_k)=\deter{0&1&1&\ldots&1\cr 1&0&d_{12}^2&\ldots&d_{1k}^2\cr 1&d_{21}^2&0&\ldots&d_{2k}^2\cr \vdots&\vdots&\vdots&&\vdots\cr 1&d_{k1}^2&d_{k2}^2&\ldots&0\cr}$$
+est nul.\msk
+{\bf 2.} Montrer que $n+2$ points $x_1$, $\cdots$, $x_{n+2}$ de $\rmat^n$ appartiennent \`a un m\^eme hyperplan affine ou \`a une m\^eme hypersph\`ere si et seulement si le d\'eterminant des $(d_{ij}^2)_{1\ie i,j\ie n+2}$ est nul.
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Quelques ``rappels'' sur les matrices et d\'eterminants de Gram~: si ${\cal V}=(v_1,\cdots,v_p)$ est une famille de $p$ vecteurs d'un espace euclidien $E$, la matrice $G({\cal V})=(g_{ij})\in{\cal M}_p(\rmat)$ avec $g_{ij}=(v_i|v_j)$ est appel\'ee {\bf matrice de Gram} de la famille de vecteurs ${\cal V}$. Son d\'eterminant ${\rm Gram}({\cal V})=\det G({\cal V})$ est le {\bf d\'eterminant de Gram} de cette famille de vecteurs.\ssk\sect Si ${\cal B}=(e_1,\cdots,e_n)$ est une base orthonormale de $E$ et si $V=M_{{\cal B}}({\cal V})\in{\cal M}_{n,p}(\rmat)$ est la matrice de la famille de vecteurs ${\cal V}$ relativement \`a la base ${\cal B}$, on a $G({\cal V})=\t\>VV$, donc le rang de la matrice de Gram $G({\cal V})$ est \'egal au rang de la famille de vecteurs ${\cal V}$ (puisqu'il est classique que $\Ker(\t\>VV)=\Ker V$). En particulier, la famille ${\cal V}$ est libre si et seulement si ${\rm Gram}({\cal V})\not=0$.
+\msk\sect
+Pour tout couple $(i,j)\in\[ent2,k\]ent^2$, on a, par une identit\'e de polarisation,\vv
+$$(\vect{x_1x_i}|\vect{x_1x_j})={1\s2}\big(\|\vect{x_1x_i}\|^2+\|\vect{x_1x_j}\|^2-\|\vect{x_1x_i}-\vect{x_1x_j}\|^2\big)={1\s2}(d_{i1}^2+d_{1j}^2-d_{ij}^2)$$
+ou encore $\;d_{ij}^2-d_{1j}^2-d_{i1}^2=-2(\vect{x_1x_i}|\vect{x_1x_j})$. Effectuons donc des op\'erations \'el\'ementaires sur les lignes et colonnes du d\'eterminant $\Gamma(x_1,\cdots,x_k)$ pour faire appara\^\i tre un d\'eterminant de Gram.\ssk\sect
+Num\'erotons de 0 \`a $k$ les $k+1$ lignes et colonnes du d\'eterminant $\Gamma(x_1,\cdots,x_k)$. Effectuons\ssk\new
+$C_j\srev C_j-d_{1j}^2\>C_0$\qquad($2\ie j\ie k$), puis\ssk\new
+$L_i\srev L_i-d_{i1}^2\>L_0$\qquad($2\ie i\ie k$).\ssk\sect
+Ainsi,\vv
+\begin{eqnarray*}
+\Gamma(x_1,\cdots,x_k) & = & \deter{0&1&1&1&\ldots&1\cr 1&0&0&0&\ldots&0\cr 1&0&-2\>d_{12}^2&d_{23}^2-d_{13}^2-d_{21}^2&\ldots&d_{2k}^2-d_{1k}^2-d_{21}^2\cr \vdots&\vdots&\vdots&\vdots&&\vdots\cr 1&0&d_{k2}^2-d_{12}^2-d_{k1}^2&d_{k3}^2-d_{13}^2-d_{k1}^2&\ldots&-2\>d_{1k}^2\cr}\\ \noalign{\msk}
+& = & -(-2)^k\>{\rm Gram}(\vect{x_1x_2},\cdots,\vect{x_1x_k})
+\end{eqnarray*}
+{\it en d\'eveloppant par rapport \`a la deuxi\`eme ligne, puis par rapport \`a la premi\`ere colonne dans le nouveau d\'eterminant obtenu}. Le r\'esultat en d\'ecoule imm\'ediatement.
+
+\msk
+{\bf 2.} Si les coordonn\'ees d'un point $x$ de $\rmat^n$ sont not\'ees $x^{(1)}$, $\cdots$, $x^{(n)}$, l'\'equation g\'en\'erale d'une hypersph\`ere ou d'un hyperplan affine est de la forme $a\|x\|^2+\ffi(x)=0$, o\`u $\ffi$ est une forme affine sur $\rmat^n$ (on a un hyperplan si $a=0$, une hypersph\`ere sinon). Cette \'equation cart\'esienne peut s'\'ecrire\vv
+$$a\|x\|^2+\sum_{i=1}^nb_ix^{(i)}+c=0\;,$$
+o\`u $a$, $c$, $b_1$, $\cdots$, $b_n$ sont des constantes r\'eelles non toutes nulles. La condition d'appartenance de $n+2$ points $x_1$, $\cdots$, $x_{n+2}$ \`a un m\^eme hyperplan ou une m\^eme hypersph\`ere est donc que les $n+2$ vecteurs\vv
+$$\pmatrix{\|x_1\|^2\cr \cr \vdots\cr \cr \|x_{n+2}\|^2\cr}\;,\quad\pmatrix{x_1^{(1)}\cr \cr \vdots\cr \cr x_{n+2}^{(1)}\cr}\;,\cdots\quad,\pmatrix{x_1^{(n)}\cr \cr \vdots\cr \cr x_{n+2}^{(n)}\cr}\;,\quad\pmatrix{1\cr \cr \vdots\cr \cr 1\cr}$$
+soient li\'es, c'est-\`a-dire la nullit\'e du d\'eterminant de la matrice\vv
+$$A=\pmatrix{\|x_1\|^2&1&\>x_1^{(1)}&\ldots&\>x_1^{(n)}\cr\noalign{\ssk} \vdots&\vdots&\vdots&&\vdots\cr\noalign{\ssk} \|x_{n+2}\|^2&1&x_{n+2}^{(1)}&\ldots&x_{n+2}^{(n)}\cr}\;.$$
+Notons $D\in{\cal M}_{n+2}(\rmat)$ la matrice de coefficient g\'en\'erique $d_{ij}^2$. De la relation\vv
+$$d_{ij}^2=\|x_i-x_j\|^2=\|x_i\|^2+\|x_j\|^2-2\sum_{k=1}^nx_i^{(k)}x_j^{(k)}\;,$$
+on d\'eduit que $D=A\t\>B$, avec\vv
+$$B=\pmatrix{1&\|x_1\|^2&\>-2x_1^{(1)}&\ldots&\>-2x_1^{(n)}\cr\noalign{\ssk} \vdots&\vdots&\vdots&&\vdots\cr\noalign{\ssk} 1&\|x_{n+2}\|^2&\>-2x_{n+2}^{(1)}&\ldots&-2x_{n+2}^{(n)}\cr}\;.$$
+Or, $\det B=-(-2)^n\>\det A$, donc $\det D=-(-2)^n\>(\det A)^2$ et le d\'eterminant de $D$ est nul si et seulement si celui de $A$ l'est aussi, ce qui m\`ene \`a la conclusion.
+
+\eject
+
+{\bf EXERCICE 3 :}\msk
+Soit $E$ un espace hermitien. Un endomorphisme de $E$ est dit {\bf normal} lorsque $uu^*=u^*u$.\msk
+{\bf 1.} Si $u$ est normal, montrer que $\Im u=(\Ker u)^\perp$.\msk
+{\bf 2.} Soit $u\in{\cal L}(E)$. D\'emontrer l'\'equivalence entre les assertions~:\ssk\sect
+{\bf (i)}$\;\;$ : \quad $u$ est normal~;\ssk\sect
+{\bf (ii)}$\;$ : \quad $u$ est unitairement diagonalisable~;\ssk\sect
+{\bf (iii)} : \quad $\e P\in\cmat[X]\quad P(u)=u^*$~;\ssk\sect
+{\bf (iv)} : \quad $\tr(uu^*)=\sum_{\lam\in\Sp(u)}|\lam|^2$.\ssk
+{\it Dans cette derni\`ere assertion, chaque valeur propre de $u$ est compt\'ee avec son ordre de multiplicit\'e}.
+\msk
+{\bf 3.} Si $u$, $v$ et $uv$ sont des endomorphismes normaux, montrer que $vu$ est normal.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} On sait que $\Ker u^*=(\Im u)^\perp$, donc $\Im u=(\Ker u^*)^\perp$. Il suffit donc de prouver l'\'egalit\'e $\Ker u^*=\Ker u$. Or, si $x\in E$, on a\vv\vvvv
+\begin{eqnarray*}
+\|u^*(x)\|^2 & = & \big(u^*(x)|u^*(x)\big)=\big(uu^*(x)|x\big)=\big(u^*u(x)|x\big)\\
+              & = & \big(u(x)|u(x)\big)=\|u(x)\|^2\;,
+\end{eqnarray*}
+ce qui entra\^\i ne $\Ker u^*=\Ker u$.
+\msk
+{\bf 2.} $\bullet$ {\bf (ii)} $\impl$ {\bf (i)}~: si $u$ est unitairement diagonalisable, c'est-\`a-dire diagonalisable dans une base orthonormale ${\cal B}$ de $E$, alors $M_{{\cal B}}(u)$ est une matrice diagonale et la matrice adjointe $M_{{\cal B}}(u^*)$ est aussi diagonale, donc les deux matrices commutent et $uu^*=u^*u$.\ssk\new
+Prouvons la r\'eciproque {\bf (i)} $\impl$ {\bf (ii)} par r\'ecurrence forte sur $n=\dim E$~:\ssk\new
+$\triangleright$ pour $n=1$, c'est imm\'ediat~;\ssk\new
+$\triangleright$ soit $n\se2$, supposons la proposition vraie en dimension $<n$. Si $\dim E=n$ et si $u\in{\cal L}(E)$ est normal, soit $\lam$ une valeur propre de $u$, soit $v=u-\lam\id_E$~; alors $v$ est aussi normal, donc $\Im v=(\Ker v)^\perp$. Le sous-espace $\Im v$ est stable par $u$ et de dimension strictement inf\'erieure \`a $n$, donc l'endomorphisme de $\Im v$ induit par $u$ se diagonalise dans une base orthonormale ${\cal B}_1$ de $\Im v$. Si ${\cal B}_2$ est une quelconque base orthonormale de $\Ker v$, alors la base ${\cal B}=({\cal B}_1,{\cal B}_2)$ de $E$ obtenue par concat\'enation est une base orthonormale de diagonalisation de $u$.\ssk\new
+Nous disposons ainsi de l'\'equivalence {\bf (i)} $\iff$ {\bf (ii)}. Traduction matricielle~: si $A\in{\cal M}_n(\cmat)$, alors $AA^*=A^*A$ si et seulement si il existe $U\in U(n)$ unitaire et $D\in{\cal M}_n(\cmat)$ diagonale telles que $A=UDU^*$.
+\msk\sect
+$\bullet$ L'implication {\bf (iii)} $\impl$ {\bf (i)} est imm\'ediate.\ssk\new
+R\'eciproquement, si $u$ est normal, il existe une base orthonormale ${\cal B}$ de $E$ dans laquelle la matrice de $u$ est diagonale~: $M_{{\cal B}}(u)=D=\diag(\lam_1,\cdots,\lam_n)$. Dans une telle base, on a $M_{{\cal B}}(u^*)=D^*=\ov{D}=\diag(\ov{\lam_1},\cdots,\ov{\lam_n})$. Il existe un polyn\^ome $P$ de $\cmat[X]$ tel que $P(\lam_i)=\ov{\lam_i}$ pour tout $i\in\[ent1,n\]ent$ ({\it consid\'erer un polyn\^ome d'interpolation de Lagrange}), alors $P(D)=D^*$, donc $P(u)=u^*$.\ssk\new
+Ainsi, {\bf (i)} $\iff$ {\bf (iii)}.
+\msk\sect
+$\bullet$ Si $u$ est normal, il existe une base ${\cal B}$ orthonormale telle que $M_{{\cal B}}(u)=D=\diag(\lam_1,\cdots,\lam_n)$ et $M_{{\cal B}}(u^*)=D^*=\ov{D}$. Alors $\;M_{{\cal B}}(uu^*)=D\ov{D}=\diag(|\lam_1|^2,\cdots,|\lam_n|^2)\;$ et $\;\tr(uu^*)=\sum_{i=1}^n|\lam_i|^2$, donc {\bf (i)} $\impl$ {\bf (iv)}.
+\ssk\new
+Pour la r\'eciproque, d\'emontrons le lemme suivant~:\ssk\new
+{\bf Soit $E$ un espace hermitien, soit $u\in{\cal L}(E)$ quelconque. Alors $u$ est trigonalisable dans une base orthonormale de $E$.}\ssk\new
+{\it D\'emonstration du lemme~: Traduisons matriciellement. Soit $A\in{\cal M}_n(\cmat)$, on sait que la matrice $A$ est trigonalisable, donc $A=PT_1P^{-1}$ avec $P\in{\rm GL}_n(\cmat)$ et $T\in{\cal M}_n(\cmat)$ triangulaire sup\'erieure. Le th\'eor\`eme d'orthonormalisation de Gram-Schmidt permet d'\'ecrire $P=UT_2$ avec $U\in U(n)$ et $T_2$ triangulaire sup\'erieure \`a coefficients diagonaux strictement positifs, finalement $A=UTU^{-1}$ avec $U$ unitaire et $T=T_2T_1T_2^{-1}$ triangulaire sup\'erieure ($A$ est ``unitairement trigonalisable'').}\msk\new
+Soit $u\in{\cal L}(E)$, soit une base orthonormale ${\cal B}$ telle que $M_{{\cal B}}(u)=T=(t_{ij})$ soit triangulaire, alors $M_{{\cal B}}(u^*)=T^*=\t\;\ov{T}$ et\vv
+$$\tr(uu^*)=\tr(TT^*)=\sum_{i,j}|t_{ij}|^2\se\sum_{i=1}^n|t_{ii}|^2=\sum_{\lam\in\Sp(u)}|\lam|^2\;.$$
+Si l'\'egalit\'e a lieu, alors $T$ est diagonale, donc $u$ est unitairement diagonalisable, donc normal, ce qui ach\`eve de prouver {\bf (iv)} $\impl$ {\bf (i)}.
+
+\msk
+{\bf 3.} Si $u$ et $v$ sont normaux, alors\vv
+$$\tr\big(uv(uv)^*\big) = \tr(uvv^*u^*)=\tr(vv^*u^*u)=\tr(v^*vuu^*) =  \tr(vuu^*v^*)=\tr\big(vu(vu)^*\big)\;.$$
+Notons $\lam_1$, $\cdots$, $\lam_n$ les valeurs propres de $uv$ (compt\'ees avec leur multiplicit\'e). Ce sont aussi les valeurs propres de $vu$ ${}^{(\star)}$. Si $uv$ est normal, alors $\tr\big(uv(uv)^*)=\sum_{i=1}^n|\lam_i|^2$, donc $\tr\big(vu(vu)^*)=\sum_{i=1}^n|\lam_i|^2$, donc $vu$ est normal, puisque {\bf (i)} $\iff$ {\bf (iv)}.
+
+\bsk
+${}^{(\star)}$ {\it Le fait que, si $u$ et $v$ sont deux endomorphismes d'un espace vectoriel de dimension finie, alors $uv$ et $vu$ ont les m\^emes valeurs propres, est un petit exercice classique, que l'on traite en consid\'erant \`a part le cas de l'\'eventuelle valeur propre 0. On peut aussi l'obtenir comme cons\'equence de l'\'egalit\'e $\chi_{uv}=\chi_{vu}$ qui se retrouve en constatant que}\vv
+$$\pmatrix{XI_n&A\cr XB&XI_n\cr}=\pmatrix{XI_n-AB&A\cr 0&XI_n\cr}\pmatrix{I_n&0\cr B&I_n\cr}=\pmatrix{I_n&0\cr B&I_n\cr}\pmatrix{XI_n&A\cr 0&XI_n-BA\cr}\;,$$
+{\it et en \'egalant les d\'eterminants des deux derniers membres}.
+
+\eject
+
+{\bf EXERCICE 4 :}\msk
+{\bf 1.} Soit $A\in{\cal M}_n(\cmat)$ une matrice \`a la fois unitaire et sym\'etrique. Montrer qu'il existe une matrice $S$ sym\'etrique r\'eelle telle que $A=\exp(iS)$. {\it On commencera par \'ecrire $A=U+iV$ avec $U$ et $V$ matrices r\'eelles}.\ssk
+{\bf 2.} Soit $U\in{\cal M}_n(\cmat)$ une matrice unitaire. Prouver qu'il existe une matrice r\'eelle orthogonale $\Omega$ et une matrice sym\'etrique r\'eelle $S$ telles que $U=\Omega\>\exp(iS)$. {\it Consid\'erer la matrice $\t\>UU$}.
+
+\msk
+
+{\it Source : Jean-Marie ARNAUDI\`ES et Henri FRAYSSE, Alg\`ebre bilin\'eaire et g\'eom\'etrie, \'Editions Dunod, ISBN 2-04-016550-9}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} On a les relations $\t\>A=A$ et $A^*A=\t\>\ov{A}A=I$. En transposant cette derni\`ere relation, on obtient $\;A\ov{A}=I$.\ssk\sect
+En posant $A=U+iV$ avec $U$ et $V$ matrices r\'eelles, il vient\vv
+$$A\ov{A}=(U+iV)(U-iV)=(U^2+V^2)+i(VU-UV)=I\;,$$
+donc $\;U^2+V^2=I\;$ et $\;UV=VU$. Par ailleurs, $\t\>A=\t\>U+i\t\>V=A$, donc les matrices $U$ et $V$ sont sym\'etriques r\'eelles. Or, {\bf deux matrices sym\'etriques r\'eelles qui commutent sont simultan\'ement orthogonalement diagonalisables} ({\it cf}. semaine 16, exercice 4, question 2). Il existe donc une matrice $P\in O(n)$ et deux matrices diagonales r\'eelles\break $D_1=\diag(x_1,\cdots,x_n)$ et $D_2=\diag(y_1,\cdots,y_n)$ telles que\vv
+$$U=PD_1P^{-1}=PD_1\t\>P\qquad{\rm et}\qquad V=PD_2P^{-1}=PD_2\t\>P\;.$$
+En posant $D=D_1+iD_2=\diag(z_1,\cdots,z_n)$ avec $z_k=x_k+iy_k$, on a $\;A=PDP^{-1}=PD\t\>P$. Les $z_k$ ($1\ie k\ie n$) sont les valeurs propres de $A$ et, $A$ \'etant unitaire, on a $|z_k|=1$ pour tout $k$, on peut donc \'ecrire $z_k=e^{i\theta_k}$ avec $\theta_k$ r\'eel. En posant $T=\diag(\theta_1,\cdots,\theta_n)$, on a $D=\exp(iT)$, puis\vv
+$$A=P\>\exp(iT)\>P^{-1}=\exp\big(P\>(iT)\>P^{-1}\big)=\exp(iS)\;,$$
+o\`u $S=PTP^{-1}=PT\t\>P$ est sym\'etrique r\'eelle.
+
+\msk
+{\bf 2.} Soit $U$ unitaire, alors la matrice $\t\>UU$ est sym\'etrique ({\it \'evident}) et unitaire~:\vv
+$$\t\>UU(\t\>UU)^*=\t\>UUU^*\t\>U^*=\t\>U\t\>U^*=\t\>(U^*U)=I\;,$$
+donc il existe $S$ sym\'etrique r\'eelle telle que $\t\>UU=\exp(2iS)$.\msk\sect
+Posons $\Omega=U\>\exp(-iS)$.\ssk\sect {\it Nous laissons le lecteur se convaincre du fait que, pour toute matrice $A\in{\cal M}_n(\cmat)$, on a $\t\>\big(\exp(A)\big)=\exp(\t\>A)$\quad;\quad$\ov{\exp(A)}=\exp(\ov{A})$\quad et \quad$\big(\exp(A)\big)^*=\exp(A^*)$.}
+\sect
+Donc\vvvv
+$$\t\>\Omega\Omega=\t\>\big(\exp(-iS)\big)\>\t\>UU\>\exp(-iS)=\exp(-iS)\>\exp(2iS)\>\exp(-iS)=I$$
+et\vvvv
+$$\Omega^*\Omega=\big(\exp(-iS)\big)^*\>U^*U\>\exp(-iS)=\exp(iS)\>I\>\exp(-iS)=I\;,$$
+donc $\Omega^{-1}=\t\>\Omega=\Omega^*$, soit encore $\ov{\Omega}=\Omega$~: la matrice $\Omega$ est \`a coefficients r\'eels, donc $\Omega\in O(n)$.\ssk\sect
+On obtient finalement $\;U=\Omega\>\exp(iS)$.
+
+\eject
+
+{\bf EXERCICE 5 :}\msk
+Soient $E$ et $F$ deux espaces hermitiens (ou euclidiens), soit $u$ une application lin\'eaire de $E$\break vers $F$.\msk
+{\bf 1.} D\'efinir la notion d'adjoint (not\'e $u^*$) de l'application lin\'eaire $u$. Pr\'eciser $\Ker u^*$ et $\Im u^*$.\msk
+{\bf 2.} Montrer l'existence et l'unicit\'e d'une application lin\'eaire $u'$ de $F$ vers $E$ telle que\vv
+$$\system{&{\bf (1)}\quad:&uu'u&=&u\hfill\cr &{\bf (2)}\quad:&u'uu'&=&u'\hfill\cr &{\bf (3)}\quad:&\Ker u'&=&(\Im u)^\perp\hfill\cr &{\bf (4)}\quad:&\Im u'&=&(\Ker u)^\perp\cr}\;.$$\par
+{\bf 3.} Montrer que, pour tout $y_0\in F$, le vecteur $x_0=u'(y_0)$ est ``la meilleure solution approch\'ee en norme'' de l'\'equation $u(x)=y_0$, ce qui signifie que\msk\sect
+$\bullet\qquad\a x\in E\qquad\|u(x)-y_0\|_F\se\|u(x_0)-y_0\|_F$~;\msk\sect
+$\bullet\qquad\a x\in E\setminus\{x_0\}\qquad \|u(x)-y_0\|_F=\|u(x_0)-y_0\|_F\impl\|x\|_E>\|x_0\|_E$.\msk
+{\bf 4.} Simplifier les expressions $\;u^*uu'\;$ et $\;u'uu^*$.\ssk\sect En d\'eduire une
+expression de $u'$ \`a l'aide de $u$ et $u^*$~:\ssk\sect
+{\bf a.} lorsque $u$ est injectif~;\ssk\sect
+{\bf b.} lorsque $u$ est surjectif.
+
+\msk
+{\it Source : RAMIS, DESCHAMPS, ODOUX, Alg\`ebre, \'Editions Masson, ISBN 2-225-81314-0}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} On cherche \`a construire une application lin\'eaire $u^*$ de $F$ vers $E$ v\'erifiant\vv
+$$\a(x,y)\in E\times F\qquad \big(u^*(y)|x\big)_E=\big(y|u(x)\big)_F\;.$$
+Or, pour tout $y\in F$, l'application $f_y:x\mapsto\big(y|u(x)\big)_F$ est une forme lin\'eaire sur $E$, donc il existe un unique $z$ de $E$ tel que $\;\a x\in E\quad f_y(x)=(z|x)_E$. {\it En effet, le produit scalaire hermitien de $E$ d\'efinit un semi-isomorphisme de $E$ vers son dual $E^*$, c'est-\`a-dire une application semi-lin\'eaire (lin\'eaire dans le cas euclidien) et bijective}. Notons $z=u^*(y)$, nous avons ainsi d\'efini une application $u^*$ de $F$ vers $E$ r\'epondant \`a la condition impos\'ee, et nous avons prouv\'e qu'une telle application est unique. Il reste \`a prouver qu'elle est lin\'eaire. Si on se donne $y_1\in F$, $y_2\in F$, $\lam\in K$ ($K=\rmat$ ou $\cmat$), alors\vvvv
+\begin{eqnarray*}
+\a x\in E\qquad \big(u^*(\lam y_1+y_2)|x)_E & = & \big(\lam y_1+y_2|u(x)\big)_F\\
+                                                             & = & \ov{\lam}\big(y_1|u(x)\big)_F+\big(y_2|u(x)\big)_F\\
+         & = & \ov{\lam}\big(u^*(y_1)|x\big)_E+\big(u^*(y_2)|x\big)_E\\
+         & = & \big(\lam u^*(y_1)+u^*(y_2)|x\big)_E\;,
+\end{eqnarray*}
+donc $u^*(\lam y_1+y_2)=\lam u^*(y_1)+u^*(y_2)$~: $u^*\in{\cal L}(F,E)$.\msk\sect
+{\it Remarque : si ${\cal B}$ et ${\cal C}$ sont des bases orthonormales dans $E$ et $F$ respectivement, si on pose $A=M_{{\cal B},{\cal C}}(u)$, on a alors $M_{{\cal C},{\cal B}}(u^*)=A^*=\t\>\ov{A}$ (``transconjugu\'ee'' de $A$~; remarquons que ce ne sont pas n\'ecessairement des matrices carr\'ees).}\msk\sect
+Comme pour l'adjoint d'un endomorphisme d'un espace euclidien ou hermitien, on obtient sans difficult\'e\vv
+$$\Ker u^*=(\Im u)^\perp\quad{\rm dans}\;F\quad;\qquad \Im u^*=(\Ker u)^\perp\quad{\rm dans}\;E\;.$$
+\ssk
+{\bf 2.} Raisonnons d'abord par conditions n\'ecessaires~: si une telle application lin\'eaire $u'$ existe, alors, de {\bf (1)}, on d\'eduit que $uu'$ est un projecteur $q$ dans l'espace $F$ et que les vecteurs de $\Im u$ sont invariants par ce projecteur $q$, donc $\Im u\subset\Im q$. De {\bf (3)}, on d\'eduit que $u'$ est nul sur $(\Im u)^\perp$ qui est un suppl\'ementaire de $\Im u$ dans $F$. Donc $q=uu'$ est n\'ecessairement, dans $F$, le projecteur orthogonal sur $\Im u$. Si $y\in F$, le vecteur $u'(y)$ doit \^etre un ant\'ec\'edent par $u$ de $q(y)\in\Im u$ appartenant \`a $(\Ker u)^\perp$ d'apr\`es {\bf (4)}. Or, nous savons que l'application lin\'eaire $u$ induit un isomorphisme $\omega$ de $(\Ker u)^\perp$ sur $\Im u$, donc n\'ecessairement $u'(y)=\omega^{-1}\big(q(y)\big)$. Cela prouve l'unicit\'e de $u'$.\msk\sect
+R\'eciproquement, soit $q$ le projecteur orthogonal sur $\Im u$ dans $F$, soit $\omega$ l'isomorphisme de $(\Ker u)^\perp$ sur $\Im u$ induit par $u$. Pour tout $y\in F$, posons $u'(y)=\omega^{-1}\big(q(y)\big)$. La lin\'earit\'e de $u'$ est imm\'ediate. On v\'erifie ensuite $uu'=q$, d'o\`u on tire facilement {\bf (1)} et {\bf (2)}. Comme $\omega$ est un isomorphisme, on a $\Ker u'=\Ker q=(\Im u)^\perp$ et $\Im u'=\omega^{-1}(\Im u)=(\Ker u)^\perp$.
+
+\msk
+{\bf 3.} En posant $x_0=u'(y_0)$, le vecteur $u(x_0)=uu'(y_0)=q(y_0)$ est le projet\'e orthogonal de $y_0$ sur $\Im u$, donc\vvvv
+$$\|u(x_0)-y_0\|_F=\min_{y\in\Im u}\|y-y_0\|_F=\min_{x\in E}\|u(x)-y_0\|_F\;.$$\sect
+Si un autre vecteur $x$ v\'erifie $\;\|u(x)-y_0\|_F=\|u(x_0)-y_0\|_F$, alors $u(x)$ est aussi le projet\'e orthogonal de $y_0$ sur $\Im u$, donc $u(x)=u(x_0)$, donc $x-x_0\in\Ker u$~; mais $x_0\in\Im u'=(\Ker u)^\perp$, donc la relation de Pythagore donne $\;\|x\|_E^2=\|x-x_0\|_E^2+\|x_0\|_E^2>\|x_0\|_E^2$.\msk\sect
+L'application lin\'eaire $u'$ est appel\'ee {\bf pseudo-inverse} de $u$. Notons que, lorsque $u$ est un isomorphisme, on a $u'=u^{-1}$.
+\msk
+{\bf 4.} $\bullet$ $q=uu'$ est, dans $F$, le projecteur orthogonal sur $\Im u$ ({\it cf}. question {\bf 2.}), donc $\id_F-uu'$ est, dans $F$, le projecteur orthogonal sur $(\Im u)^\perp=\Ker u^*$, d'o\`u $\;u^*(\id_F-uu')=0$, c'est-\`a-dire $\;u^*uu'=u^*$.
+\msk\sect
+$\bullet$ On peut noter que $u$ et $u'$ jouent des r\^oles sym\'etriques (examiner les conditions {\bf (1)}, {\bf (2)}, {\bf (3)}, {\bf (4)} de la question {\bf 2.} qui d\'eterminent $u'$ de mani\`ere unique~; on a donc aussi $u''=(u')'=u$), donc $p=u'u$ est, dans $E$, le projecteur orthogonal sur $\Im u'=(\Ker u)^\perp=\Im u^*$~; les vecteurs de $\Im u^*$ sont donc invariants par $u'u$, ce qui donne $\;u'uu^*=u^*$.
+\msk\sect
+$\bullet$ Remarquons d'abord que, sans hypoth\`ese sur $u$, nous avons\vv
+$$\Ker(u^*u)=\Ker u\qquad{\rm et}\qquad\Im(uu^*)=\Im u\;.$$
+{\it En effet, $\Ker u\subset\Ker(u^*u)$ et $u^*u(x)=0\impl\big(u^*u(x)|x\big)_E=\|u(x)\|_F^2=0\impl u(x)=0_F$. Enfin,\vvvv
+$$\Im(uu^*)=u(\Im u^*)=u\big((\Ker u)^\perp\big)=\Im u$$
+puisque $u$ induit un isomorphisme de $(\Ker u)^\perp$ sur $\Im u$.}
+\msk\sect
+$\bullet$ Supposons $u$ injectif. Alors $u^*u$ est aussi injectif puisque $\Ker(u^*u)=\Ker u$, mais $u^*u$ est un endomorphisme de l'espace de dimension finie $E$, donc $u^*u$ est bijectif. De la relation $u^*uu'=u^*$, on tire $\;u'=(u^*u)^{-1}u^*$.\ssk\new
+Si ${\cal B}$ et ${\cal C}$ sont des bases orthonormales de $E$ et $F$ respectivement, et si $M_{{\cal B},{\cal C}}(u)=A$, alors $A'=M_{{\cal C},{\cal B}}(u')=(A^*A)^{-1}A^*$.
+\msk\sect
+$\bullet$ Supposons $u$ surjectif. Alors $uu^*$ est surjectif, donc est un automorphisme de l'espace $F$. De la relation $u'uu^*=u^*$, on tire $u'=u^*(uu^*)^{-1}$.\ssk\new
+Si ${\cal B}$ et ${\cal C}$ sont des bases orthonormales de $E$ et $F$ respectivement, et si $M_{{\cal B},{\cal C}}(u)=A$, alors $A'=M_{{\cal C},{\cal B}}(u')=A^*(AA^*)^{-1}$.
+
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 6 :}\msk
+Soit $A\in{\cal M}_n(\cmat)$, de valeurs propres $\lam_1$, $\cdots$, $\lam_n$.\msk
+{\bf 1.} D\'emontrer l'{\bf in\'egalit\'e de Schur}~:\vvvv
+$$\sum_{i=1}^n|\lam_i|^2\ie\tr(A^*A)\;.$$
+\par
+{\bf 2.} Soient $z_1$, $\cdots$, $z_n$ des nombres complexes. Prouver les relations\vvvv
+$$\sum_{i<j}|z_i-z_j|^2=n\>\sum_{i=1}^n|z_i|^2-\left|\sum_{i=1}^nz_i\right|^2\;.\leqno\hbox{\bf (*)}$$
+\vvv
+$$\max_{i,j}|z_i-z_j|^2\ie{1\s n}\>\sum_{i,j}|z_i-z_j|^2\;.\leqno\hbox{\bf (**)}$$
+\par
+{\bf 3.}En d\'eduire l'{\bf in\'egalit\'e de Mirsky}~:\vvvv
+$$\max_{i,j}|\lam_i-\lam_j|^2\ie2\Big(\tr(A^*A)-{1\s n}|\tr A|^2\Big)\;.$$
+\par
+{\bf 4.} \'Etudier les cas d'\'egalit\'e dans les questions {\bf 1.} et {\bf 3.}
+
+\msk
+
+{\it Source : Jean-Marie MONIER, Alg\`ebre, Tome 2, \'Editions Dunod, ISBN 2-10-000006-3}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Toute matrice de ${\cal M}_n(\cmat)$ est unitairement trigonalisable ({\it cf}. exercice {\bf 3})~: on peut donc \'ecrire $\;A=UTU^{-1}=UTU^*$ avec $U\in U(n)$ (groupe unitaire) et $T=(t_{ij})\in{\cal M}_n(\cmat)$ triangulaire sup\'erieure. Alors $\;A^*A=UT^*TU^*=UT^*TU^{-1}$, donc\vv
+$$\tr(A^*A)=\tr(T^*T)=\sum_{i,j}|t_{ij}|^2\se\sum_{i=1}^n|t_{ii}|^2=\sum_{i=1}^n|\lam_i|^2$$
+puisque les \'el\'ements diagonaux $t_{ii}$ de $T$ sont les valeurs propres de $A$.
+
+\msk
+{\bf 2.} $\bullet$ D\'eveloppons dans la joie et la bonne humeur~:\vv
+\begin{eqnarray*}
+\sum_{i<j}|z_i-z_j|^2 & = & \sum_{i<j}\Big(|z_i|^2+|z_j|^2-(\>\ov{z_i}\>z_j+z_i\>\ov{z_j}\>)\Big)\\
+& = & (n-1)\>\sum_{i=1}^n|z_i|^2-\Big(\big|\sum_{i=1}^nz_i\big|^2-\sum_{i=1}^n|z_i|^2\Big)\\
+& = & n\>\sum_{i=1}^n|z_i|^2-\big|\sum_{i=1}^nz_i\big|^2\;.
+\end{eqnarray*}
+\ssk\sect
+$\bullet$ Soit $(r,s)\in\[ent1,n\]ent^2$ un couple d'indices avec $r<s$~; alors la somme $\;\sum_{i,j}|z_i-z_j|^2\;$ est plus grande que la somme sur les couples $(i,j)$ tels que $\{i,j\}\cap\{r,s\}\not=\emptyset$, ce qui s'\'ecrit\vv
+\begin{eqnarray*}
+\sum_{i,j}|z_i-z_j|^2 & \se & \sum_{k\not\in\{r,s\}}\Big(|z_r-z_k|^2+|z_k-z_r|^2+|z_s-z_k|^2+|z_k-z_s|^2\Big)+|z_r-z_s|^2+|z_s-z_r|^2\\
+  & = & 2\;\sum_{k\not\in\{r,s\}}\Big(|z_r-z_k|^2+|z_k-z_s|^2\Big)+2\>|z_r-z_s|^2\;.
+\end{eqnarray*}
+Par ailleurs l'identit\'e du parall\'elogramme $\;|u+v|^2+|u-v|^2=2\big(|u|^2+|v|^2\big)\;$ donne $\;2\big(|u|^2+|v|^2\big)\se|u+v|^2$, donc\vv
+$$\sum_{i,j}|z_i-z_j|^2\se\sum_{k\not\in\{r,s\}}|z_r-z_s|^2+2\>|z_r-z_s|^2=n\>|z_r-z_s|^2\;.$$
+L'in\'egalit\'e ci-dessus \'etant vraie pour tout couple $(r,s)$, cela prouve {\bf (**)}.
+
+\msk
+{\bf 3.} En utilisant {\bf (**)}, puis {\bf (*)}, puis la question {\bf 1.}, on obtient\vv
+$$\max_{i,j}|\lam_i-\lam_j|^2  \ie  {1\s n}\>\sum_{i,j}|\lam_i-\lam_j|^2
+                                    =  2\>\sum_{i=1}^n|\lam_i|^2-{2\s n}\>\left|\sum_{i=1}^n\lam_i\right|^2
+ \ie  2\:\Big(\tr(A^*A)-{1\s n}\>|\tr A|^2\Big)\;.$$
+
+\ssk
+{\bf 4.} $\bullet$ Il y a \'egalit\'e dans {\bf 1.} (Schur) si et seulement la matrice $T$ est diagonale, \`a savoir si et seulement si $A$ est unitairement diagonalisable, c'est-\`a-dire normale ($AA^*=A^*A$), {\it cf}. exercice {\bf 3}.\msk\sect
+$\bullet$ L'\'egalit\'e dans {\bf 3.} (Mirsky) se produit si et seulement si on a les deux conditions\ssk\new
+{\bf (a)}~: \quad $\max_{i,j}|\lam_i-\lam_j|^2  =  {1\s n}\>\sum_{i,j}|\lam_i-\lam_j|^2$~;\ssk\new
+{\bf (b)}~: \quad $\sum_{i=1}^n|\lam_i|^2=\tr(A^*A)$\quad(Schur).\msk\sect
+La condition {\bf (b)} signifie que la matrice $A$ est normale. En reprenant les calculs conduisant \`a l'in\'egalit\'e {\bf (**)} de la question {\bf 2.}, on voit que la condition {\bf (a)} est r\'ealis\'ee si et seulement si~:\ssk\new
+- d'une part, il existe un couple $(r,s)$ avec $r<s$ tel que $|\lam_i-\lam_j|=0$ pour tout couple $(i,j)\in\big(\[ent1,n\]ent\setminus\{r,s\}\big)^2$~;\ssk\new
+- on a l'\'egalit\'e $\;2\big(|u|^2+|v|^2\big)=|u+v|^2\;$ avec $\system{&u&=&\lam_r-\lam_k\cr &v&=&\lam_k-\lam_s\cr}$, et ceci pour tout\break $k\in\[ent1,n\]ent\setminus\{r,s\}$... mais ceci \'equivaut \`a $u=v$, soit $\lam_k={\lam_r+\lam_s\s2}$.\ssk\sect
+En conclusion, les matrices de permutation \'etant unitaires, l'\'egalit\'e a lieu dans {\bf 3.} si et seulement si la matrice $A$ est unitairement semblable \`a une matrice diagonale de la forme $\;\diag\big(\lam,\mu,{\lam+\mu\s2},\cdots,{\lam+\mu\s2}\big)$ avec $(\lam,\mu)\in\cmat^2$.
+
+
+
+
+
+
+
+
+
+\end{document}

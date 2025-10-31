@@ -1,0 +1,699 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % \'evite le textstyle en mode
+                                % math\'ematique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math\'ematiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de pr\'esentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% divers
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'\'ecriture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% \`a l'int\'erieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d\'ecroissante),
+% \nondef (la fonction est non d\'efinie)
+% si l'on termine la derni\`ere ligne par \cr, un trait est tir\'e en dessous
+% sinon elle est laiss\'ee sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  
+\def\rmat{{\rm I\kern-0.6mm R}}  
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____d\'ef de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% Alg\`ebre lin\'eaire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________d\'eterminant_______
+\def\det{\mathop{\rm det}\nolimits} 
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos\'ee ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  
+\def\MC#1{{\cal M}_{#1}(\cmat)}  
+\def\MK#1{{\cal M}_{#1}(\kmat)}  
+
+%________Complexes_________ 
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   
+\def\Arccos{\mathop{\rm Arccos}\nolimits}  
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     
+\def\Argch{\mathop{\rm Argch}\nolimits}     
+\def\Argth{\mathop{\rm Argth}\nolimits}     
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} 
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s\'eries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr\'eg\'ees%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-\`a-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+\def\cala{{\cal A}}
+\def\fhat{\widehat{f}}
+\let\wh=\widehat
+\def\ftilde{\tilde{f}}
+
+% ********************************************************************************************************************** %
+%                                                                                                                                                                                   %
+%                                                                    FIN   DES   MACROS                                                                              %
+%                                                                                                                                                                                   %
+% ********************************************************************************************************************** %
+
+
+
+
+
+
+
+
+
+
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+
+
+
+\overfullrule=0mm
+
+
+\cl{{\bf SEMAINE 14}}\msk
+\cl{{\bf S\'ERIES ENTI\`ERES}}
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+Soit $D_n$ le nombre de partitions de l'ensemble $E_n=\[ent1,n\]ent=
+\{1,2,\ldots,n\}$ pour tout $n\in\net$, avec $D_0=1$ par convention.
+\ssk
+{\bf 1.} Montrer que, pour tout $n\in\nmat$, on a $\;\;D_{n+1}=\sum_{k=0}^nC_n^kD_k$.\ssk
+{\bf 2.} Montrer, pour tout $n\in\nmat$, la relation\vv
+$$D_n={1\s e}\>\sum_{k=0}^{\infty}{k^n\s k!}\;.$$\par
+{\bf 3.} Montrer que la s\'erie enti\`ere $\;\sum_{n\se0}{D_n\s n!}x^n\;$
+a un rayon de convergence infini, et calculer sa somme.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} On a $D_1=1=\sum_{k=0}^0C_0^kD_k$.\ssk\sect
+Soit $n\se1$. Soit une partition de $E_{n+1}$.
+Soit $k$ le cardinal du compl\'ementaire $F$ de la classe
+de l'\'el\'ement $n+1$. Cet entier $k\in\[ent0,n\]ent$ \'etant fix\'e,
+il y a $C_n^k$ fa\c cons de choisir cet ensemble $F$ (de $k$ \'el\'ements choisis dans
+$E_n$) et, pour chaque choix de cet ensemble $F$, il y a $D_k$ partitions de
+cet ensemble. Le nombre de partitions de $E_{n+1}$ est donc\vv
+$$D_{n+1}=\sum_{k=0}^nC_n^kD_k\;.$$
+\ssk
+{\bf 2.} Pour tout $n\in\nmat$, posons $\;S_n={1\s e}\>\sum_{k=0}^{\infty}{k^n\s k!}$~:
+la s\'erie est bien convergente par la r\`egle de d'Alembert~:\vv
+$${(k+1)^n\s(k+1)!}\times{k!\s k^n}={1\s k+1}\lp1+{1\s k}\rp^n\Vers{k}{\infty}0\;.$$
+Alors $S_0=1=D_0$ et, pour tout $n$ entier naturel,\vv
+\begin{eqnarray*}
+\sum_{k=0}^nC_n^kS_k & = & {1\s e}\>\sum_{k=0}^nC_n^k\lp\sum_{p=0}^{\infty}{p^k\s p!}\rp\\
+                                & = & {1\s e}\>\sum_{p=0}^{\infty}\lp{1\s p!}\>\sum_{k=0}^nC_n^kp^k\rp\\
+                                & = & {1\s e}\>\sum_{p=0}^{\infty}{(p+1)^n\s p!}
+                                  = {1\s e}\>\sum_{p=0}^{\infty}{(p+1)^{n+1}\s(p+1)!}\\
+                                & = & {1\s e}\>\sum_{p=1}^{\infty}{p^{n+1}\s p!}
+                                  = {1\s e}\>\sum_{p=0}^{\infty}{p^{n+1}\s p!}
+                                  = S_{n+1}
+\end{eqnarray*}
+(il n'y a pas de probl\`eme d'interversion de sommation puisque l'une des
+deux sommes est finie).
+La suite $(S_n)$ et la suite $(D_n)$ ont le m\^eme premier terme et v\'erifient
+la m\^eme relation de r\'ecurrence, donc $D_n=S_n$ pour tout $n\in\nmat$.
+
+\msk
+{\bf 3.} On cherche \`a calculer (apr\`es avoir prouv\'e son existence) la somme
+$\;f(x)={1\s e}\sum_{n=0}^{\ii}{x^n\s n!}\lp\sum_{k=0}^{\ii}{k^n\s k!}\rp$
+pour $x\in\cmat$ donn\'e. Or, la suite double $\lp{k^nx^n\s k!\> n!}\rp_{(n,k)\in
+\nmat^2}$ est sommable~: en effet,\ssk\new
+- pour tout $k\in\nmat$ fix\'e, la s\'erie $\sum_{n}{k^n|x|^n\s k!\>n!}$ est
+convergente, et $\sum_{n=0}^{\infty}{k^n|x|^n\s k!\>n!}={e^{k|x|}\s k!}$~;\ssk\new
+- la s\'erie $\sum_{k\in\nmat}{e^{k|x|}\s k!}$ est convergente, de somme $e^{e^{|x|}}$.\ssk\sect
+Cela prouve l'existence de $f(x)$ pour tout $x$ r\'eel (la s\'erie enti\`ere $\;\sum_n
+{D_n\s n!}x^n\;$ a un rayon de convergence infini) et on peut intervertir les
+sommations~: pour tout $x\in\cmat$,
+\begin{eqnarray*}
+f(x) & = & {1\s e}\>\sum_{n=0}^{\ii}{x^n\s n!}\lp\sum_{k=0}^{\ii}{k^n\s k!}\rp
+                  = {1\s e}\>\sum_{k=0}^{\ii}{1\s k!}\lp\sum_{n=0}^{\ii}{(kx)^n\s n!}\rp\\ \nssk
+                & = & {1\s e}\>\sum_{k=0}^{\ii}{(e^x)^k\s k!}
+                  = {1\s e}\>e^{e^x}=e^{e^x-1}\;.
+\end{eqnarray*}
+
+Voici une fonction r\'ecursive MAPLE pour calculer les nombres $D_n$ (appel\'es
+{\bf nombres de Bell})~:\msk
+
+{\info
+ >  bell:=proc(n::nonnegint) local k; option remember;
+         if n=0   then 1
+ else add(binome(n-1,k)*bell(k),k=0..n-1)
+  fi
+}
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 2 :}\msk
+Soit $\;\sum_{n\se0}a_nz^n\;$ une s\'erie enti\`ere, de rayon de convergence $R>0$.\msk
+Pour $z\in\cmat$ avec $|z|<R$, on pose $\;f(z)=\sum_{n=0}^{\infty}a_nz^n$.\msk
+Soit $z\in\cmat$ avec $|z|<R$, soit $r$ un r\'eel tel que $|z|<r<R$. Calculer l'int\'egrale\vv
+$$I=\int_0^{2\pi}{\Im f(r\>e^{it})\s r-ze^{-it}}\>dt\;.$$\par
+Que peut-on dire d'une fonction $f$, d\'eveloppable en s\'erie enti\`ere de rayon de convergence $R>0$ s'il existe un r\'eel $r$ ($0<r<R$) tel que $f$ soit r\'eelle sur le cercle de centre $O$ et de rayon $r$~?
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+Utilisons $\;\Im f(r\>e^{it})={1\s 2i}\>\big(f(r\>e^{it})-\ov{f(r\>e^{it})\>}\big)\;$ et calculons s\'epar\'ement les deux int\'egrales\ssk\new $J=\int_0^{2\pi}{f(r\>e^{it})\s r-ze^{-it}}\>dt\;$
+et $\;J'=\int_0^{2\pi}{\ov{f(r\>e^{it})}\s r-ze^{-it}}\>dt$.
+
+\msk
+Comme $\left|{z\s r}\right|<1$, on peut d\'evelopper~: ${1\s r-ze^{-it}}={1\s r}\>\lp1-{z\s r}\>e^{-it}\rp^{-1}={1\s r}\>\sum_{k=0}^{\infty}\lp{z\s r}\rp^k\>e^{-ikt}$. On a donc, pour tout $t\in[0,2\pi]$,\vv
+$${f(r\>e^{it})\s r-z\>e^{-it}}={1\s r}\>f(r\>e^{it})\cdot\sum_{k=0}^{\ii}\lp{z\s r}\rp^k\>e^{-ikt}\;,$$
+la s\'erie (de fonctions de la variable r\'eelle $t$) \'etant normalement convergente sur $[0,2\pi]$ car $f$ est born\'ee ($|f|\ie M_r$) sur le cercle ${\cal C}(O,r)$ et $\;\left|f(r\>e^{it})\>\lp{z\s r}\rp^k\>e^{-ikt}\right|\ie M_r\>\left|{z\s r}\right|^k$.
+\ssk
+Int\'egrons donc terme \`a terme~: $J=\int_0^{2\pi}{f(r\>e^{it})\s r-ze^{-it}}\>dt={1\s r}\>\sum_{k=0}^{\ii}\lp{z\s r}\rp^kJ_k$, avec
+$$J_k = \int_0^{2\pi}f(r\>e^{it})\>e^{-ikt}\>dt = \int_0^{2\pi}\Big(\sum_{n=0}^{\ii}a_nr^n\>e^{i(n-k)t}\Big)\>dt
+                                  = \sum_{n=0}^{\ii}a_nr^n\>\int_0^{2\pi}e^{i(n-k)t}\>dt$$
+car la s\'erie (de fonctions de $t$) $\sum_{n=0}^{\ii}a_nr^n\>e^{i(n-k)t}$ converge normalement sur $[0,2\pi]$. Mais $\;\int_0^{2\pi}e^{i(n-k)t}\>dt=\system{&0\quad&{\rm si }&\;n\not=k\cr
+&2\pi\quad&{\rm si }&\;n=k\cr}$, donc $J_k=2\pi a_kr^k$ pour tout $k\in\nmat$ et
+$$J=\int_0^{2\pi}{f(r\>e^{it})\s r-ze^{-it}}\>dt={2\pi\s r}\>\sum_{k=0}^{\ii}a_k z^k={2\pi\s r}\>f(z)\;.$$
+
+\ssk
+On calcule l'int\'egrale $J'$ de fa\c con analogue~: $J'=\int_0^{2\pi}{\ov{f(r\>e^{it})}\s r-ze^{-it}}\>dt={1\s r}\>\sum_{k=0}^{\ii}\lp{z\s r}\rp^kJ'_k$, avec
+$$J'_k=\int_0^{2\pi}\ov{f(r\>e^{it})}\;e^{-ikt}\>dt = \sum_{n=0}^{\ii}\ov{a_n}\>r^n\>\int_0^{2\pi}e^{-i(n+k)t}\>dt$$
+({\it justifications analogues pour les interversions de $\sum$ et $\int$}).\new Mais $\;\int_0^{2\pi}e^{-i(n+k)t}\>dt=\system{&0\quad&{\rm si }&\;(n,k)\not=(0,0)\cr
+&2\pi\quad&{\rm si }&\;(n,k)=(0,0)\cr}$, donc il reste $\;J'={2\pi\s r}\>\ov{a_0}\;$ et finalement
+$$I=\int_0^{2\pi}{\Im f(r\>e^{it})\s r-ze^{-it}}\>dt={1\s 2i}(J-J')={i\>\pi\s r}\>\big(\ov{a_0}-f(z)\big)\;.$$
+
+Si $f$ est \`a  valeurs r\'eelles sur  le cercle ${\cal C}(O,r)$, on a, pour tout $z\in\cmat$ tel que $|z|<r$,\vv
+$$\int_0^{2\pi}{\Im f(r\>e^{it})\s r-ze^{-it}}\>dt={i\>\pi\s r}\>\big(\ov{a_0}-f(z)\big)=0\;,$$
+donc $f$ est constante~: $f(z)=\ov{a_0}$ sur le disque ouvert $D(O,r)$ de centre $O$ et de rayon $r$. Les coefficients $a_n$ ($n\in\net$) sont donc tous nuls et $f$ est une fonction constante r\'eelle. 
+
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 3 :}\msk
+{\bf Probl\`eme des parenth\'esages de Catalan}\msk
+On pose $P_0=0$, $P_1=1$ et, pour tout entier $n\se2$, $P_n$ est le nombre de fa\c cons de parenth\'eser l'expression $a_1a_2\cdots a_n$ (en conservant l'ordre des $a_i$), o\`u  les $a_i$ sont des symboles que l'on peut interpr\'eter comme des \'el\'ements d'un ensemble muni d'une loi de composition interne a priori non associative. Le nombre $P_n$ est le nombre de fa\c cons a priori diff\'erentes de calculer le ``produit'' $a_1a_2\cdots a_n$.
+Ainsi,\ssk\sect
+$\bullet$ $P_2=1$ : un seul parenth\'esage $a_1a_2$~;\ssk\sect
+$\bullet$ $P_3=2$ : deux parenth\'esages $a_1(a_2a_3)$ et $(a_1a_2)a_3$~;\ssk\sect
+$\bullet$ $P_4=5$ : cinq parenth\'esages $a_1(a_2(a_3a_4))$, $a_1((a_2a_3)a_4)$, $(a_1a_2)(a_3a_4)$, $(a_1(a_2a_3))a_4\;$ et $\;((a_1a_2)a_3)a_4$.\msk
+{\bf 1.} Prouver la relation $\;P_n=\sum_{k=1}^{n-1}P_kP_{n-k}\;$ pour tout $n\se 2$.\msk
+{\bf 2.} Montrer que la s\'erie enti\`ere $\;f(x)=\sum_{n=0}^{\ii}P_nx^n\;$ a un rayon de convergence $R$ non nul ({\it on ne demande pas de calculer $R$ pour le moment}).\msk
+{\bf 3.} Calculer $f(x)$ pour $x\in\>]-R,R[\>$. En d\'eduire une expression simple de $P_n$.
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.}  L'observation des cinq parenth\'esages de $a_1a_2a_3a_4$, \'ecrits dans l'ordre o\`u ils sont list\'es dans l'\'enonc\'e, nous guide un peu. Si la loi n'est pas suppos\'ee associative, seul un produit de deux facteurs peut \^etre d\'efini sans ambigu\"\i t\'e en l'absence de parenth\`eses~: une \'ecriture correcte d'un produit de $n$ facteurs $a_1$, $\cdots$, $a_n$ pris dans cet ordre est donc n\'ecessairement, pour un certain $k$ variant de 1 \`a $n-1$, le produit de $a_1\cdots a_k$ (\'ecrit avec un certain parenth\'esage~: $P_k$ choix possibles) par $a_{k+1}\cdots a_n$ (\'ecrit avec un certain parenth\'esage~: $P_{n-k}$ choix possibles), d'o\`u la relation \`a d\'emontrer.
+
+\msk
+{\bf 2.} On obtient facilement la majoration $P_n\ie 4^n$~: en effet, un parenth\'esage de l'expression $a_1\cdots a_n$ est d\'etermin\'e par la position des parenth\`eses ouvrantes et fermantes~; or, il y a $n$ positions possibles pour les ouvrantes (avant chaque symbole $a_i$), donc au plus $2^n$ possibilit\'es pour l'ensemble des positions des parenth\`eses ouvrantes, et m\^eme chose pour les fermantes, d'o\`u une majoration grossi\`ere de $P_n$ par $4^n$. 
+La s\'erie enti\`ere $\;\sum_nP_nx^n\;$ a donc un rayon de convergence $R$ au moins \'egal \`a ${1\s4}$.
+
+\msk
+{\bf 3.} La relation obtenue \`a la question {\bf 1.} fait penser \`a un produit de Cauchy~; plus pr\'ecis\'ement, pour $\>x\in]-R,R[\>$,\vv
+$$f(x)^2  =  \Big(\sum_{p=0}^{\infty}P_px^p\Big)\Big(\sum_{q=0}^{\infty}P_qx^q\Big) = \sum_{n=0}^{\infty}\Big(\sum_{k=0}^nP_kP_{n-k}\Big)x^n\;.$$
+Or, $\sum_{k=0}^nP_kP_{n-k}=P_n$ pour tout $n\in\nmat$... sauf pour $n=1$ puisque $\sum_{k=0}^1P_kP_{1-k}=0$ alors que $P_1=1$. On a donc\vv
+$$f(x)^2=\sum_{n=2}^{\infty}P_nx^n=\sum_{n=0}^{\infty}P_nx^n-x=f(x)-x\;.$$
+Pour tout $x\in\>]-R,R[\>$, le r\'eel $f(x)$ v\'erifie donc l'\'equation alg\'ebrique du second degr\'e $\;f(x)^2-f(x)+x=0$, de discriminant $\Delta=1-4x$. Ce discriminant doit \^etre positif, donc $x\ie{1\s 4}$, le rayon de convergence de la s\'erie est donc au plus \'egal \`a ${1\s4}$, donc $R={1\s 4}$. Par ailleurs, $f(x)={1\s2}\big(1\pm\sqrt{1-4x}\big)$. Comme la fonction $f$ est continue sur $]-R,R[$ avec $f(0)=0$, on conclut\vv
+$$\a x\in\lci-{1\s4},{1\s4}\rci\qquad f(x)={1\s2}\big(1-\sqrt{1-4x}\big)\;.$$
+Je laisse \`a l'\'eventuel lecteur le soin de v\'erifier que le d\'eveloppement en s\'erie enti\`ere de $\sqrt{1-u}$ est\vv
+$$\sqrt{1-u}=1-\sum_{n=1}^{\infty}{(2n-2)!\s 2^{2n-1}\>n!\>(n-1)!}\;u^n\qquad (u\in\>]-1,1[\>)\;.$$
+On a donc, pour tout $x\in\>\lci-{1\s4},{1\s4}\rci\>$, $\;f(x)=\sum_{n=1}^{\infty}{(2n-2)!\s n!\>(n-1)!}\;x^n$. Par identification, on a enfin, pour $n\se1$,\vv
+$$P_n={(2n-2)!\s n!\>(n-1)!}={1\s n}\>C_{2n-2}^{n-1}\;.$$
+
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 4 :}\msk
+Soit $\sum_{n\se0}a_n$ une s\'erie convergente (\`a termes complexes).\msk
+{\bf 1.} Montrer que, pour tout r\'eel $C$ strictement positif, la s\'erie enti\`ere $\sum_{n\se0}a_nz^n$ converge uniform\'ement sur la partie du plan\vv
+$${\cal D}_C=\{z\in\cmat\;;\;|1-z|\ie C\big(1-|z|\big)\}\;.$$\ssk
+{\bf 2.} En d\'eduire que cette m\^eme s\'erie enti\`ere converge uniform\'ement sur l'enveloppe convexe ${\cal E}_r$ de l'ensemble $\{1\}\cup\ov{D}(O,r)$ pour tout $r\in\>]0,1[\>$.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Effectuons une transformation d'Abel~: en posant $A_p^q=\sum_{k=p}^qa_k$ pour $q\se p$, on a, pour $n>m$,\vv
+$$\sum_{k=m}^na_kz^k=A_m^nz^n+\sum_{k=m}^{n-1}A_m^k(z^k-z^{k+1})\;.$$
+On en tire\vv
+$$\left|\sum_{k=m}^na_kz^k\right|\ie|A_m^n|\>|z|^n+\sum_{k=m}^{n-1}|A_m^k|\>|z^k-z^{k+1}|\;.$$
+Or, pour tout $z\in{\cal D}_C$, on a $|z|\ie 1$ (${\cal D}_C$ est inclus dans le disque unit\'e ferm\'e et le seul \'el\'ement de ${\cal D}_C$ de module 1 est le nombre 1).\ssk\sect
+Pour tout $m\in\nmat$ fix\'e, posons $K_m=\sup_{k\se m}|A_m^k|$ ($K_m$ existe et $\Lim{m}{\ii}K_m=0$ en vertu du crit\`ere de Cauchy puisque la s\'erie $\sum_na_n$ est convergente). Alors\vv
+$$\left|\sum_{k=m}^na_kz^k\right|\ie K_m\;\Big(1+\sum_{k=m}^{n-1}|z^k-z^{k+1}|\Big)\;.$$
+Or, on a, si $|z|\not=1$,\vv
+$$\sum_{k=m}^{n-1}|z^k-z^{k+1}|=|1-z|\>\sum_{k=m}^{n-1}|z|^k=|1-z|\>|z|^m\>{1-|z|^{n-m}\s 1-|z|}\;,$$
+quantit\'e que l'on peut majorer par ${|1-z|\s1-|z|}$, puis finalement par $C$, lorsque $z\in{\cal D}_C$\break (y compris pour $z=1$ \'evidemment). On a ainsi prouv\'e\vv
+$$\a (m,n)\in\nmat^2\quad(m<n)\quad\a z\in{\cal D}_C\qquad \left|\sum_{k=m}^na_kz^k\right|\ie(1+C)K_m$$
+avec $\Lim{m}{\ii}K_m=0$, autrement dit le crit\`ere de Cauchy uniforme est v\'erifi\'e par la s\'erie enti\`ere $\sum_na_nz^n$ sur ${\cal D}_C$, d'o\`u la convergence uniforme sur cette partie du plan.
+
+\msk
+{\bf 2.} Pour tout $C>0$, l'ensemble ${\cal D}_C$ est une partie convexe du plan~: en effet, si $z\in{\cal D}_C$, $z'\in{\cal D}_C$, $\lam\in\rplus$, $\mu\in\rplus$ avec $\lam+\mu=1$, alors
+$\;|1-z|\ie C(1-|z|)$, $|1-z'|\ie C(1-|z'|)$, d'o\`u\vv
+\begin{eqnarray*}
+|1-(\lam z+\mu z')| & = & |\lam(1-z)+\mu(1-z')| \ie \lam\>|1-z|+\mu\>|1-z'|\\
+                           & \ie & C\>\Big[\lam(1-|z|)+\mu(1-|z'|)\Big] = C\>\big(1-(\lam\>|z|+\mu\>|z'|)\big)\\
+                           & \ie & C\>(1-|\lam z+\mu z'|)\;,
+\end{eqnarray*}
+donc $\lam z+\mu z'\in{\cal D}_C$.
+\ssk\sect
+Par ailleurs, si $|z|\ie r<1$, alors\vv
+$${|1-z|\s 1-|z|}\ie{|1-z|\s 1-r}\ie {1+|z|\s 1-r}\ie{1+r\s 1-r}\;,$$
+donc $z\in{\cal D}_C$ avec $C={1+r\s 1-r}$. Pour $C={1+r\s 1-r}$, l'ensemble ${\cal D}_C$, convexe, contient le disque ferm\'e $\ov{D}(O,r)$ et le nombre 1, donc contient l'ensemble ${\cal E}_r$. Comme la s\'erie enti\`ere $\sum_na_nz^n$ converge uniform\'ement sur ${\cal D}_C$, elle converge donc uniform\'ement sur ${\cal E}_r$~: c'est le {\bf th\'eor\`eme de Picard}.
+
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 5 :}\msk
+Soit $\sum_na_nz^n$ une s\'erie enti\`ere, de rayon de convergence $R>0$, de somme $f(z)$. Pour tout $r\in\>]0,R[\>$, on pose $\;M(r)=\sup_{|z|=r}|f(z)|$.\msk
+{\bf 1.} Montrer que $\;\a n\in\nmat\quad\a r\in[0,R[\quad|a_nr^n|\ie M(r)$.\msk
+{\bf 2.} On suppose que $R=\ii$ et qu'il existe $k>0$ et $\rho>0$ tels que\vv
+$$\a r>0\qquad r\se\rho\impl M(r)\ie e^{kr}\;.$$\sect
+Montrer qu'il existe un entier naturel $N$ tel que\vv
+$$\a n\in\net\qquad n\se N\impl|a_n|\ie\lp{ke\s n}\rp^n\;.$$
+\par
+{\bf 3.} 0n suppose toujours $R=\ii$. Montrer , dans $\ov{\rplus^{}}$, l'\'egalit\'e\vv
+\def\limsup#1#2{\;\build{\rm lim\;sup}_{{#1}\vers {#2}}^{}}
+$$\limsup{n}{\ii}\big(n\>\root n\of{|a_n|}\big)=e\cdot\limsup{r}{\ii}{\ln M(r)\s r}\;.$$
+{\it Indication : on pourra d\'emontrer, puis utiliser l'in\'egalit\'e} $\;n^n\se e^{n-1}\>(n-1)!$
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Pour $r<R$ et $n\in\nmat$, on a\vv
+$$\int_0^{2\pi}f(r\>e^{it})\>e^{-int}\>dt=\int_0^{2\pi}\big(\sum_{k=0}^{\infty}a_kr^k\>e^{i(k-n)t}\big)\>dt=
+\sum_{k=0}^{\infty}a_kr^k\>\int_0^{2\pi}e^{i(k-n)t}\>dt=2\pi a_nr^n$$
+car la s\'erie de fonctions $\;t\mapsto a_k r^k\>e^{i(k-n)t}\;$ converge normalement sur $[0,2\pi]$. On en d\'eduit la majoration\vv
+$$|a_n|r^n={1\s2\pi}\>\left|\int_0^{2\pi}f(r\>e^{it})\>e^{-int}\>dt\right|\ie{1\s 2\pi}\cdot2\pi\;M(r)=M(r)\;.$$
+
+{\bf 2.} Soit $n\in\net$. Pour tout $r\se\rho$, on a $|a_n|\ie{e^{kr}\s r^n}$, donc $|a_n|\ie\inf_{r\se\rho}{e^{kr}\s r^n}$. La fonction $\ffi_n:r\mapsto{e^{kr}\s r^n}$ est d\'ecroissante sur $\lci0,{n\s k}\rc$, puis croissante sur $\lc{n\s k},\ii\rci$ et atteint au point ${n\s k}$ un minimum de valeur $m_n=\ffi_n\lp{n\s k}\rp=\lp{ke\s n}\rp^n$. Si $\rho\ie{n\s k}$, c'est-\`a-dire si $n\se k\rho$, alors
+$$\inf_{r\se\rho}{e^{kr}\s r^n}=\inf_{r\in[\rho,\ii[}\ffi_n(r)=\ffi_n\lp{n\s k}\rp=\lp{ke\s n}\rp^n\;,$$
+donc en choisissant $N=E(k\rho)+1$, on a bien\vv
+$$\a n\in\net\qquad n\se N\impl|a_n|\ie\lp{ke\s n}\rp^n\;.$$
+
+{\bf 3.} Posons $\;\alpha=\limsup{n}{\ii}\big(n\>\root n\of{|a_n|}\big)\;$ et $\;\beta=\limsup{r}{\ii}{\ln M(r)\s r}$.
+\msk\sect
+$\bullet$ Supposons $\beta<\ii$ et montrons qu'alors $\alpha\ie\beta$ (si $\beta=\ii$, cette in\'egalit\'e est triviale). De la d\'efinition d'une limite sup\'erieure, il r\'esulte que\vv
+$$\a\eps>0\quad\e\rho>0\qquad r>\rho\impl{\ln M(r)\s r}\ie\beta+\eps\;.$$
+Pour $r>\rho$, on a donc $\;M(r)\ie e^{(\beta+\eps)r}$, donc (question {\bf 2.}) il existe un entier $N$ tel que\vv
+$$n\se N\impl|a_n|\ie\lp{(\beta+\eps)\>e\s n}\rp^n\;,\quad\hbox{c'est-\`a-dire}\quad n\se N\impl n\root n\of{|a_n|}\ie e(\beta+\eps)\;.$$
+On en d\'eduit que $\alpha\ie e(\beta+\eps)$. Cette in\'egalit\'e \'etant vraie pour tout $\eps>0$, on a donc $\;\alpha\ie e\>\beta$.
+\msk\sect
+$\bullet$ Supposons $\alpha<\ii$ et montrons $\beta\ie{\alpha\s e}$. On a\vv
+$$\a \eps>0\quad\e N\in\nmat\qquad n\se N\impl n\root n\of{|a_n|}\ie\alpha+\eps\;,$$
+donc $\;|a_n|\ie\lp{\alpha+\eps\s n}\rp^n\;$ pour $n\se N$.\ssk\new
+Si $|z|=r$, alors $|f(z)|\ie\sum_{n=0}^{\infty}|a_n|\>r^n$, donc\vv
+$$\a r\in\rpe\qquad M(r)\ie\sum_{n=0}^N|a_n|\>r^n+\sum_{n=N+1}^{\ii}\lp{\alpha+\eps\s n}\rp^n\>r^n\;.$$
+De l'in\'egalit\'e $\;n^n\se e^{n-1}\>(n-1)!$ ({\it cf. ci-dessous}), on tire\vv
+\begin{eqnarray*}
+M(r) & \ie & \sum_{n=0}^N|a_n|\>r^n+e\>\sum_{n=N+1}^{\ii}\lp{\alpha+\eps\s e}\rp^n\>{r^n\s(n-1)!}
+= \sum_{n=0}^N|a_n|\>r^n+(\alpha+\eps)r\>\sum_{n=N}^{\ii}{1\s n!}\>\lp{\alpha+\eps\s e}\>r\rp^n\\
+& \ie & \sum_{n=0}^N|a_n|\>r^n+(\alpha+\eps)r\>e^{{}^{{\sst\alpha+\eps\sur\sst e}\sst r}}
+= e^{{}^{{\sst\alpha+\eps\sur\sst e}\sst r}}\;\ffi_N(r)\;,
+\end{eqnarray*}
+en ayant pos\'e $\;\ffi_N(r)=(\alpha+\eps)r+e^{{}^{\sst -{\sst\alpha+\eps\sur\sst e}\sst r}}\cdot\sum_{n=0}^N|a_n|r^n$.\msk\new
+Il en r\'esulte $\;{\ln M(r)\s r}\ie{\alpha+\eps\s e}+{1\s r}\>\ln\ffi_N(r)\;$ pour tout $r>0$. Mais $\ffi_N(r)\Equi{r}{\ii}(\alpha+\eps)r$, donc $\Lim{r}{\ii}{1\s r}\ln\ffi_N(r)=0$, donc $\limsup{r}{\ii}{\ln M(r)\s r}\ie{\alpha+\eps\s e}\;$ et ceci pour tout $\eps>0$, donc $\beta\ie{\alpha\s e}$.
+
+\bsk
+{\it D\'emonstration de $\;n^n\se e^{n-1}\>(n-1)!\;$~: cette in\'egalit\'e \'equivaut \`a $\;\ln\big[(n-1)!\big]\ie n\>\ln n-n+1$.\par Or, par comparaison \`a une int\'egrale, la fonction $\ln$ \'etant croissante, on a imm\'ediatement\vv
+$$\ln\big[(n-1)!\big]=\sum_{k=1}^{n-1}\ln k\ie\sum_{k=1}^{n-1}\int_k^{k+1}\ln x\>dx=\int_1^n\ln x\>dx=n\>\ln n-n+1\;.$$}
+
+
+\bsk
+\hrule
+\bsk
+
+
+{\bf EXERCICE 6 :}\msk
+Pour tout $x>0$, on pose $\;\Gamma(x)=\int_0^{\ii}e^{-t}\>t^{x-1}\>dt$.\msk
+Pour tout $x>1$, on pose $\;\zeta(x)=\sum_{n=1}^{\ii}{1\s n^x}$.\msk
+Enfin, la {\bf constante d'Euler} est d\'efinie par $\;\gamma=\Lim{n}{\infty}\lp\sum_{k=1}^n{1\s k}-\ln n\rp$.\msk
+{\bf 1.} D\'emontrer la relation~: \qquad $\a x\in\rpe\qquad\Gamma(x)=\Lim{n}{\infty}\int_0^n\lp1-{t\s n}\rp^n\>t^{x-1}\>dt$.\msk
+{\bf 2.} En d\'eduire~:\qquad$\a x\in\rpe\qquad \Gamma(x)=\Lim{n}{\ii}{n^x\;n!\s x(x+1)\cdots(x+n)}$.\msk
+{\bf 3.} Soit $x\in]0,1[$. D\'emontrer la relation\vv
+$$\ln\Gamma(x)=-\ln x-\gamma x+\sum_{k=2}^{\ii}{(-1)^k\s k}\>\zeta(k)\>x^k\;.$$\par
+{\bf 4.} Prouver que $\;\gamma=\sum_{k=2}^{\ii}{(-1)^k\s k}\>\zeta(k)$.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Plus g\'en\'eralement, soit $f:\;]0,\ii[\vers\cmat$ une fonction continue telle que la
+fonction\break $g:t\mapsto e^{-t}\>f(t)$ soit int\'egrable sur $\rmat_+^*$. Alors\vv
+$$\int_0^{\ii}e^{-t}\;f(t)\;dt=\Lim{n}{\ii}\int_0^n\lp1-{t\s n}\rp
+^n\;f(t)\;dt\;.$$
+En effet, pour tout r\'eel $t$, on a $e^{-t}=\Lim{n}{\ii}
+\lp1-{t\s n}\rp^n$. D\'efinissons, pour tout $n\in\nmat^*$, une
+fonction $u_n:\;]0,\ii[\vers\rmat$ par\vv
+$$u_n(t)\;=\system{&\lp1-{t\s n}\rp^n\quad&\hbox{si}\quad&0<t\le n\cr
+                   &\hfill0\hfill         &\hbox{si}\quad&t>n\;.\cr}$$
+Alors $u_n$ est continue sur $\rmat_+^*$ et la suite $(u_n)$ converge
+simplement, sur $\rmat_+^*$, vers la fonction $t\mapsto e^{-t}$.\pn
+En posant $g_n=u_n\cdot f$, on a une suite $(g_n)$ de fonctions continues
+sur $\rmat_+^*$, convergeant simplement vers $g$ sur $\rmat_+^*$.
+L'in\'egalit\'e classique $\;\ln\lp1-{t\s n}\rp\le-{t\s n}$, va\-lable pour
+$t\in[0,n[\;$, montre que\vv
+$$\a n\in\nmat^*\quad\a t\in\rmat_+^*\qquad 0\le u_n(t)\le e^{-t}\quad
+\hbox{donc}\quad|g_n(t)|\le|g(t)|\;.$$
+L'hypoth\`ese de domination est alors v\'erifi\'ee et le th\'eor\`eme de convergence
+domin\'ee s'applique. Il suffit donc d'appliquer ce r\'esultat avec $\;f(t)=t^{x-1}$.
+
+\msk
+{\bf 2.} Le changement de variable $t=nu$ donne\vv
+$$\int_0^n\lp1-{t\s n}\rp^n\>t^{x-1}\;dt =n^x\;\int_0^1(1-u)^n
+                                                         \>u^{x-1}\;du
+                                                    =n^x\;B(x,n+1)\;,$$
+en notant $\;B(p,q)=\int_0^1u^{p-1}\>(1-u)^{q-1}\>du\;$ pour $p$ et $q$ r\'eels strictement positifs ({\bf int\'egrale eul\'erienne de premi\`ere esp\`ece}). La fonction $u\mapsto u^{p-1}(1-u)^{q-1}$
+est bien int\'egrable sur $]0,1[$ et, pour tout $n\in\net$ et $x>0$, une int\'egration
+par parties donne\vv
+\begin{eqnarray*}
+B(x,n+1) & = & \int_0^1u^{x-1}(1-u)^n\;du
+                      =\lc(1-u)^n{u^x\s x}\rc_0^1+{n\s x}\;
+                                 \int_0^1u^x(1-u)^{n-1}\;du\\
+                    & = & {n\s x}\;B(x+1,n)\;.
+\end{eqnarray*}
+\`A partir de $B(x,1)=\int_0^1u^{x-1}\;du={1\s x}$ pour tout $x>0$, une
+r\'ecurrence imm\'ediate donne
+$$B(x,n)={(n-1)!\s x(x+1)(x+2)\cdots(x+n-1)}\;.$$
+Finalement,\vv
+$$\a x\in\rpe\quad\a n\in\net\qquad\int_0^n\lp1-{t\s n}\rp^n\>t^{x-1}\;dt={n^x\;n!\s x(x+1)\cdots(x+n)}\;,$$
+d'o\`u le r\'esultat. 
+
+\msk
+{\bf 3.} On a $\;\ln n=\sum_{k=1}^n{1\s k}-\gamma+o(1)$.
+De la relation obtenue \`a la question {\bf 2.}, on d\'eduit donc, pour tout $x>0$,\vv\vvvv
+\begin{eqnarray*}
+\ln\Gamma(x) & = & \Lim{n}{\ii}\lc x\ln n+\sum_{k=1}^n\ln k-
+                              \sum_{k=0}^n\ln(x+k)\rc\\
+                        & = & \Lim{n}{\ii}\lc x\ln n-\ln x-\sum_{k=1}^n
+                              \ln\lp1+{x\s k}\rp\rc\\
+                        & = & -\ln x+\Lim{n}{\ii}\lc x\>\lp\sum_{k=1}^n{1\s k}
+                              -\gamma\rp-\sum_{k=1}^n\ln\lp1+{x\s k}\rp\rc\\
+                        & = & -\ln x-\gamma x+\sum_{n=1}^{\ii}\lp{x\s n}-\ln\lp
+                              1+{x\s n}\rp\rp\;.
+\end{eqnarray*}
+\sect
+Si $x\in\>]0,1[\>$, alors ${x\s n}\in\>]0,1[$ pour tout $n\in\net$ et on peut d\'evelopper~:\vv
+$${x\s n}-\ln\lp1+{x\s n}\rp=\sum_{k=2}^{\infty}(-1)^k\>{x^k\s k\>n^k}\;.$$
+Cherchons \`a intervertir les sommations~; pour cela, v\'erifions que la famille $\lp(-1)^k\>{x^k\s k\>n^k}\rp_{n\se1,k\se2}$ est sommable~: en effet,\ssk\new 
+- pour $n\se1$ fix\'e, on a $\;u_n=\sum_{k=2}^{\infty}{x^k\s k\>n^k}=-{x\s n}-\ln\lp1-{x\s n}\rp$~;\ssk\new
+- la s\'erie de terme g\'en\'eral $u_n$ est convergente puisque $u_n\sim{x^2\s2n^2}$.\msk\sect
+On peut donc \'ecrire\vv
+$$\sum_{n=1}^{\ii}\lp{x\s n}-\ln\lp1+{x\s n}\rp\rp=\sum_{k=2}^{\infty}\lp\sum_{n=1}^{\infty}(-1)^k\>{x^k\s k\>n^k}\rp=\sum_{k=2}^{\ii}{(-1)^k\s k}\>\zeta(k)\>x^k\;,$$
+ce qu'il fallait d\'emontrer.
+
+\msk
+{\bf 4.} L'identit\'e\vv
+$$\ln\Gamma(x)+\ln x+\gamma x=\sum_{k=2}^{\ii}{(-1)^k\s k}\>\zeta(k)\>x^k$$
+est valable pour tout $x\in\>]0,1[\>$. Faisons tendre $x$ vers 1. Le premier membre tend vers $\gamma$. Pour ce qui est du second membre, la convergence de la s\'erie $\sum_{k\se2}{(-1)^k\s k}\>\zeta(k)$, en vertu du crit\`ere pour les s\'eries altern\'ees (rappelons que $\>\Lim{x}{\ii}\zeta(x)=1$), assure la continuit\'e au point 1 de la fonction $\;f:x\mapsto\sum_{k=2}^{\infty}{(-1)^k\s k}\>\zeta(k)\>x^k$ ({\bf lemme d'Abel radial}), d'o\`u le r\'esultat.\msk\sect
+{\it Plus conform\'ement au programme, la s\'erie d\'efinissant $f(x)$ v\'erifie, pour tout $x\in\>]0,1]$, le crit\`ere des s\'eries altern\'ees, ce qui permet de majorer le reste d'ordre $n$ en valeur absolue par ${\zeta(n+1)\s n+1}\>x^{n+1}$, donc a fortiori par ${\zeta(n+1)\s n+1}$ qui tend vers z\'ero ind\'ependamment de $x$, d'o\`u la convergence uniforme de cette s\'erie sur $]0,1]$ et donc la continuit\'e de $f$ sur cet intervalle.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

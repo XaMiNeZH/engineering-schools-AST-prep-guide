@@ -1,0 +1,646 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % ‚vite le textstyle en mode
+                                % math‚matique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math‚matiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de presentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% personnel Monasse
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'‚criture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% … l'int‚rieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d‚croissante),
+% \nondef (la fonction est non d‚finie)
+% si l'on termine la derniŠre ligne par \cr, un trait est tir‚ en dessous
+% sinon elle est laiss‚e sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   % MONASSE
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  % MONASSE
+\def\rmat{{\rm I\kern-0.6mm R}}  % MONASSE
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  % MONASSE
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  % MONASSE
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____def de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% AlgŠbre lin‚aire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________determinant_______
+\def\det{\mathop{\rm det}\nolimits}  % MONASSE
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  % MONASSE
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  % MONASSE
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}  % MONASSE
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos‚e ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  % MONASSE
+\def\MC#1{{\cal M}_{#1}(\cmat)}  % MONASSE
+\def\MK#1{{\cal M}_{#1}(\kmat)}  % MONASSE
+
+%________Complexes_________ % MONASSE
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   % CLENET
+\def\Arccos{\mathop{\rm Arccos}\nolimits}   % CLENET
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   % CLENET
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     % CLENET
+\def\Argch{\mathop{\rm Argch}\nolimits}     % CLENET
+\def\Argth{\mathop{\rm Argth}\nolimits}     % CLENET
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} %CLENET
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s‚ries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  % MONASSE
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  % MONASSE
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  % MONASSE
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  % MONASSE
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  % MONASSE
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr‚g‚es%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-…-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\catcode`@=12 % at signs are no longer letters
+\catcode`\‚=\active
+\def‚{\'e}
+\catcode`\Š=\active
+\defŠ{\`e}
+\catcode`\ˆ=\active
+\defˆ{\^e}
+\catcode`\…=\active
+\def…{\`a}
+\catcode`\—=\active
+\def—{\`u}
+\catcode`\–=\active
+\def–{\^u}
+\catcode`\ƒ=\active
+\defƒ{\^a}
+\catcode`\"=\active
+\def"{\^o}
+\catcode`\‰=\active
+\def‰{\"e}
+\catcode`\‹=\active
+\def‹{\"\i}
+\catcode`\=\active
+\def{\"u}
+\catcode`\‡=\active
+\def‡{\c c}
+\catcode`\Œ=\active
+\defŒ{\^\i}
+
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+
+
+
+
+
+\overfullrule=0mm
+
+
+\cl{{\bf SEMAINE 7}}\msk
+\cl{{\bf ESPACES VECTORIELS NORM\'ES, PARTIES CONVEXES}}
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+Soit $E={\cal C}\big([0,1],\rmat\big)$ le $\rmat$-espace vectoriel des applications continues de $[0,1]$ vers $\rmat$, muni de la norme $N_{\infty}$~:\vv
+$$N_{\infty}(f)=\max_{x\in[0,1]}|f(x)|\;.$$\par
+Soit $g\in E$. Pour toute fonction $f$ de $E$, on pose $N_g(f)=N_{\infty}(fg)$.\msk
+{\bf 1.} Donner une condition n\'ecessaire et suffisante sur la fonction $g$ pour que $N_g$ soit une norme sur $E$.\msk
+{\bf 2.} Dans ce cas, \`a quelle condition sur $g$ les normes $N_g$ et $N_{\infty}$ sont-elles \'equivalentes ?
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+Dans tout l'exercice, on notera $Z_g=\{x\in[0,1]\;|\;g(x)=0\}$ l'ensemble des z\'eros de $g$.\msk
+{\bf 1.} L' axiome $N_g(\lam f)=|\lam|\> N_g(f)$ et l'in\'egalit\'e triangulaire sont toujours v\'erifi\'es. Le seul probl\`eme vient de l'axiome de s\'eparation $N_g(f)=0\impl f=0$.\ssk\sect
+$\bullet$ Si $\interieur{Z_g}\not=\emptyset$ (il existe un intervalle non trivial sur lequel $g$ est la fonction nulle), alors $N_g$ n'est pas une norme~: en effet, soit $a\in\interieur{Z_g}$, on peut supposer $a\not\in\{0,1\}$, il existe $\eps>0$ tel que $[a-\eps,a+\eps]\subset Z_g$~; on peut trouver une fonction $f$ de $E$ diff\'erente de la fonction nulle mais qui est nulle en dehors du segment $[a-\eps,a+\eps]$ (consid\'erer une fonction continue qui fait un ``pic'' en $a$), on a alors $f\not=0$ mais $fg=0$, donc $N_g(f)=N_{\infty}(fg)=0$, ce qui contredit l'axiome de s\'eparation.\ssk\sect
+$\bullet$ Si $\interieur{Z_g}=\emptyset$, montrons que $N_g$ est une norme. Si $f\in E$ v\'erifie $N_g(f)=0$, alors $fg=0$ donc $f$ est nulle en tout point de $[0,1]\setminus Z_g$. Mais $[0,1]\setminus Z_g$ est dense dans $[0,1]$ et $f$ est continue sur $[0,1]$, donc $f$ est la fonction nulle (tout point de $(0,1]$ est limite d'une suite de points o\`u la fonction $f$ est nulle).\msk\sect
+En conclusion, $N_g$ est une norme sur $E$ si et seulement si $\interieur{Z_g}=\emptyset$.\bsk
+
+{\bf 2.} $\bullet$ Si la fonction $g$ ne s'annule pas sur $[0,1]$, alors il existe deux r\'eels strictement positifs $m$ et $M$ tels que\vvv
+$$\a x\in[0,1]\qquad m\ie |g(x)|\ie M\;.$$
+On a alors $\;m\cdot N_{\infty}(f)\ie N_{g}(f)\ie M\cdot N_{\infty}(f)\;$ pour tout $f\in E$ et les normes $N_{\infty}$ et $N_g$ sont \'equivalentes.
+\ssk\sect
+$\bullet$ Si la fonction $g$ s'annule en au moins un point $a$ de $[0,1]$ ({\it on suppose $a$ diff\'erent de} 0 {\it et de} 1 {\it pour r\'ediger ce qui suit, mais  il est facile d'adapter la d\'emonstration...}) , donnons-nous $\eps>0$, il existe $\alpha>0$ ($\alpha<\min\{a,1-a\}$) tel que\vvv
+$$\a x\in[a-\alpha,a+\alpha]\qquad |g(x)|\ie\eps\;.$$
+Soit $f$ une fonction nulle en dehors de l'intervalle $[a-\alpha,a+\alpha]$, affine sur chacun des intervalles $[a-\alpha,a]$ et $[a,a+\alpha]$, prenant la valeur 1 au point $a$. On a alors $N_{\infty}(f)=1$ et $N_g(f)=N_{\infty}(fg)\ie\eps$. Comme $\eps$ peut \^etre choisi arbitrairement petit, les normes $N_g$ et $N_{\infty}$ ne sont pas \'equivalentes.
+
+\msk\sect
+En conclusion, les normes $N_g$ et $N_{\infty}$ sont \'equivalentes si et seulement si la fonction $g$ ne s'annule pas.
+
+
+\eject
+
+{\bf EXERCICE 2 :}\msk
+{\bf 1.} Montrer que l'ensemble des matrices diagonalisables de ${\cal M}_p(\cmat)$ est dense dans cet espace.
+\msk
+{\bf 2.} Soit $P=X^p+a_{p-1}X^{p-1}+\cdots+a_1X+a_0\in\cmat[X]$ un polyn\^ome normalis\'e de degr\'e $p$. Montrer que les racines de $P$ sont toutes dans le disque ferm\'e $D$ de centre 0 et de rayon $R=\max\{1,pM\}$, avec $M=\max_{0\ie i\ie p-1}|a_i|$.
+\msk
+{\bf 3.} En d\'eduire que l'ensemble des polyn\^omes de degr\'e $p$ normalis\'es et scind\'es sur $\rmat$ est un ferm\'e de $\rmat_p[X]$.\msk
+{\bf 4.} Quelle est l'adh\'erence, dans ${\cal M}_p(\rmat)$, de l'ensemble des matrices diagonalisables~?
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf 1.} Soit $A\in{\cal M}_p(\cmat)$ une matrice quelconque. On peut la trigonaliser~: $A=PTP^{-1}$ avec $P$ inversible et $T$ triangulaire sup\'erieure, notons $\lam_1$, $\cdots$, $\lam_p$ les coefficients diagonaux de la matrice $T$ (valeurs propres de $A$). Pour tout $n\in\net$, soit la matrice $D_n=\diag\lp{1\s n},{2\s n},\cdots,{p\s n}\rp$. Alors, pour $n$ assez grand, les $\lam_i+{i\s n}$ ($1\ie i\ie p$) sont distincts~: en effet, l'\'egalit\'e $\lam_i+{i\s n}=\lam_j+{j\s n}$ avec $i\not=j$ ne peut se produire si $\lam_i=\lam_j$ et entra\^\i ne $n\ie{p-1\s|\lam_i-\lam_j|}$ si $\lam_i\not=\lam_j$. Pour $n$ assez grand, la matrice $T+D_n$ est donc diagonalisable, donc aussi la matrice $A_n=P(T+D_n)P^{-1}$ et, comme $\Lim{n}{\infty}D_n=0$, on a $A=\Lim{n}{\infty}A_n$.
+
+\msk
+{\bf 2.} Soit $z\in\cmat$ tel que $P(z)=0$. Il faut montrer que $|z|\ie1$ ou $|z|\ie pM$. Si on suppose $|z|>1$, alors, de $z^p=-(a_{p-1}z^{p-1}+\cdots+a_0)$, on d\'eduit $|z^p|\ie|a_{p-1}|\>|z^{p-1}|+\cdots+|a_0|\ie pM|z|^{p-1}$ puisque $|z^k|\ie|z^{p-1}|$ pour $k\ie p-1$, donc $|z|\ie pM$.
+
+\msk
+{\bf 3.} Soit $(P_n)$ une suite de polyn\^omes normalis\'es de degr\'e $p$ scind\'es sur $\rmat$, notons\vvv
+$$P_n=X^p+a_{p-1}^{(n)}X^{p-1}+\cdots+a_1^{(n)}X+a_0^{(n)}\;.$$
+Sur l'espace $\rmat_p[X]$, de dimension finie, les normes sont toutes \'equivalentes, choisissons par exemple la norme $N$ d\'efinie par $N(P)=\max_{0\ie i\ie p}|a_i|$ si $P=\sum_{i=0}^pa_iX^i$. La convergence de la suite $(P_n)$ vers un certain polyn\^ome $P=\sum_{i=0}^pa_iX^i$ \'equivaut \`a la condition~: $\Lim{n}{\infty}a_i^{(n)}=a_i$ pour tout $i\in\[ent0,p\]ent$.\msk\sect
+Supposons donc la suite $(P_n)$ convergente vers $P=\sum_{i=0}^pa_iX^i$ dans $\rmat_p[X]$. On a donc $a_p=1$ et le polyn\^ome $P$ est normalis\'e. Par ailleurs, les $p$ suites $\big(a_i^{(n)}\big)_{n\in\nmat}$ sont convergentes, donc sont born\'ees (et ont bien s\^ur une borne commune)~: soit $M\in\rpe$ tel que $|a_i^{(n)}|\ie M$ pour tout $i\in\[ent0,p-1\]ent$ et pour tout entier $n$. Les z\'eros complexes des polyn\^omes $P_n$ sont alors tous dans le disque ferm\'e $D$ d\'efini dans la question {\bf 2.} Pour tout entier naturel $n$, notons $Z_n=(z_1^{(n)},\cdots,z_p^{(n)})$ une liste des z\'eros (suppos\'es r\'eels) du polyn\^ome $P_n$ pris dans un ordre arbitraire, mais bien s\^ur compt\'es avec leurs multiplicit\'es. La suite $(Z_n)$ est \`a valeurs dans le compact $[-R,R]^p$ de $\rmat^p$, donc admet une suite extraite $(Z_{\ffi(n)})$ convergente, de limite $Z=(z_1,\cdots,z_p)$~: $z_i=\Lim{n}{\infty}z_i^{(\ffi(n))}$ pour tout $i\in\[ent1,p\]ent$.\ssk\new
+ Pour tout $n$, le polyn\^ome $P_n$ se factorise en $P_n=\prod_{i=1}^p(X-z_i^{(n)})$. En passant \`a la limite (les coefficients d'un polyn\^ome sont fonctions continues des racines puisque ce sont les fonctions sym\'etriques \'el\'ementaires de ces racines), on obtient, dans $\rmat[X]$,\vv
+$$P=\Lim{n}{\infty}P_{\ffi(n)}=\prod_{i=1}^p(X-z_i)\;,$$
+donc le polyn\^ome $P$ est scind\'e sur $\rmat$.\msk\sect
+On a ainsi prouv\'e que l'ensemble des polyn\^omes normalis\'es de degr\'e $p$ et scind\'es sur $\rmat$ est ferm\'e dans $\rmat_p[X]$.
+\bsk
+{\bf 4.} R\'eponse~: c'est l'ensemble des matrices trigonalisables. En effet,\msk\sect
+$\bullet$ si une matrice $A\in{\cal M}_p(\rmat)$ est trigonalisable sur $\rmat$, on peut l'approcher par des matrices diagonalisables en reprenant le raisonnement de la question {\bf 1.}\ssk\sect
+$\bullet$ si $A\in{\cal M}_p(\rmat)$ est limite d'une suite $(A_n)$ de matrices diagonalisables, les coefficients du polyn\^ome caract\'eristique d'une matrice d\'ependant contin\^ument de ses coefficients, on a $\chi_A=\Lim{n}{\infty}\chi_{A_n}$~; comme chaque $\chi_{A_n}$ est scind\'e sur $\rmat$ et normalis\'e de degr\'e $p$ ({\it bon, au signe pr\`es...}), le polyn\^ome $\chi_A$ l'est aussi d'apr\`es la question {\bf 3.}, donc $A$ est trigonalisable.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 3 :}\msk
+Soit $E$ un $\cmat$-espace vectoriel de dimension finie, soit $u\in{\cal L}(E)$, soit $N$ une norme sur ${\cal L}(E)$.\msk
+D\'eterminer $\;\Lim{n}{\infty}\big(N(u^n)\big)^{{}^{\sst1\sur\sst n}}$.
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf 1.} Si $N_1$ et $N_2$ sont des normes sur ${\cal L}(E)$, elles sont \'equivalentes~: $c N_1\ie N_2\ie c' N_2$ avec $0<c<c'$. Si on obtient $\;\Lim{n}{\infty}\big(N_1(u^n)\big)^{{}^{\sst1\sur\sst n}}=l\in\rplus$, alors, des in\'egalit\'es\vv
+$$c^{{}^{\sst1\sur\sst n}}\big(N_1(u^n)\big)^{{}^{\sst1\sur\sst n}}\ie\big(N_2(u^n)\big)^{{}^{\sst1\sur\sst n}}\ie c'^{{}^{\sst 1\sur\sst n}}\big(N_1(u^n)\big)^{{}^{\sst1\sur\sst n}}\;,$$
+il r\'esulte aussi $\Lim{n}{\infty}\big(N_2(u^n)\big)^{{}^{\sst1\sur\sst n}}=l$. Il suffit donc de faire le calcul pour une norme $N$ (en esp\'erant trouver une limite), choisissons d\'esormais pour $N$ la norme subordonn\'ee \`a une certaine norme $\|\cdot\|$ sur $E$.
+\msk
+{\bf 2.} Soit $\lam$ une valeur propre de $u$, soit $x\in E$ un vecteur propre associ\'e. On a alors $\;u^n(x)=\lam^n x$, donc $\;{\|u^n(x)\|\s\|x\|}=|\lam|^n\;$ et $\;N(u^n)\se|\lam|^n\;$ pour tout $n$\quad. On en d\'eduit que, pour tout $n$ entier naturel, $\;\big(N(u^n)\big)^{{}^{\sst1\sur\sst n}}\se\rho(u)$, o\`u $\rho(u)=\max_{\lam\in\Sp(u)}|\lam|$\quad ({\bf rayon spectral} de $u$).
+\msk
+{\bf 3.} Supposons $u$ diagonalisable, soit $(e_1,\cdots,e_d)$ une base de diagonalisation, soient $\lam_1$, $\cdots$, $\lam_d$ les valeur propres associ\'ees. Si $x=x_1e_1+\cdots+x_de_d$, alors\vv
+$$\|u^n(x)\|=\left\|\sum_{i=1}^d\lam_i^nx_ie_i\right\|\ie\sum_{i=1}^d|\lam_i|^n|x_i|\>\|e_i\|\ie M\>\big(\rho(u)\big)^n\>\lp\sum_{i=1}^d|x_i|\rp\;,$$
+avec $M=\max_{1\ie i\ie d}\|e_i\|$. Les normes sur $E$ \'etant \'equivalentes, et $x=\sum_{i=1}^dx_ie_i\mapsto\sum_{i=1}^d|x_i|$ en \'etant une, il existe une constante $M'$ telle que\vv
+$$\a x\in E\quad\a n\in\nmat\qquad \|u^n(x)\|\ie M'\>\big(\rho(u)\big)^n\>\|x\|\;,$$
+donc $N(u^n)\ie M'\>\big(\rho(u)\big)^n$ pour tout $n$ et, d'apr\`es la minoration obtenue en {\bf 2.}, on a\vv
+$$\rho(u)\ie\big(N(u^n)\big)^{{}^{\sst1\sur\sst n}}\ie M'^{{}^{\sst1\sur\sst n}}\rho(u)\;,\quad{\rm donc}\quad \Lim{n}{\infty}\big(N(u^n)\big)^{{}^{\sst1\sur\sst n}}=\rho(u)\;.$$
+\ssk
+{\bf 4.} Soit $u\in{\cal L}(E)$ quelconque, utilisons la d\'ecomposition de Dunford $u=\delta+\nu$, avec $\delta$ diagonali\-sable et $\nu$ nilpotent qui commutent. Soit $r$ l'indice de nilpotence de $\nu$ ($\nu^{r-1}\not=0$ et $\nu^r=0$). Pour $n>r$, on a $\;u^n=\;\sum_{k=0}^rC_n^k\delta^{n-k}\nu^k=\delta^{n-r}\>\sum_{k=0}^rC_n^k\delta^{r-k}\nu^k$, donc\vv
+\begin{eqnarray*}
+N(u^n) & \ie & N(\delta^{n-r})\>\sum_{k=0}^r C_n^k\>N(\delta^{r-k}\nu^k)\\
+          & \ie & \alpha\>\lp\sum_{k=0}^rC_n^k\rp\>N(\delta^{n-r})
+           \ie  \alpha\>(r+1)\>n^r\>N(\delta^{n-r})
+\end{eqnarray*}
+en posant $\alpha=\max\{N(\delta^{r-k}\nu^k)\;;\;0\ie k\ie r\}$. {\it On a utilis\'e le fait que la norme $N$ v\'erifie $N(uv)\ie N(u)\>N(v)$ pour tous endomorphismes $u$ et $v$, et on a major\'e (grossi\`erement) $C_n^k={n(n-1)\cdots(n-k+1)\s k!}$ par $n^r$ pour $k\ie r$}.
+\ssk\sect
+Or, d'apr\`es {\bf 3.}, on a $\;\Lim{n}{\infty}\big(N(\delta^{n-r})\big)^{{}^{\sst1\sur\sst n-r}}=\rho(\delta)=\rho(u)\;$ car $u$ et $\delta$ ont les m\^emes valeurs propres, donc\vv
+$$\big(N(\delta^{n-r})\big)^{{}^{\sst1\sur\sst n}}=\lc\big(N(\delta^{n-r})\big)^{{}^{\sst1\sur\sst n-r}}\rc^{{}^{\sst 1-{\sst r\sur\sst n}}}\Vers{n}{\infty}\rho(u)\;.$$
+On a donc $\;\Lim{n}{\infty}\big[\alpha\>(r+1)\>n^r\>N(\delta^{n-r})\big]^{{}^{\sst1\sur\sst n}}=\rho(u)$ et l'encadrement\vv
+$$\rho(u)\ie\big(N(u^n)\big)^{{}^{\sst1\sur\sst n}}\ie\big[\alpha\>(r+1)\>n^r\>N(\delta^{n-r})\big]^{{}^{\sst1\sur\sst n}}$$
+permet de conclure que $\;\Lim{n}{\infty}\big(N(u^n)\big)^{{}^{\sst1\sur\sst n}}=\rho(u)$.
+
+\eject
+
+{\bf EXERCICE 4 :}\msk
+{\bf 1.} Soit $E$ un $\rmat$-espace vectoriel, soit $N:E\vers\rplus$ une application telle que\ssk\sect
+$\bullet$ $\a x\in E\quad N(x)=0\iff x=O_E$~;\ssk\sect
+$\bullet$ $\a x\in E\quad\a\lam\in\rmat\qquad N(\lam x)=|\lam|\>N(x)$~;\ssk\sect
+$\bullet$ l'ensemble $B=\{x\in E\;|\;N(x)\ie 1\}$ est convexe.\ssk\sect
+Montrer que $N$ est une norme sur $E$.
+\msk
+{\bf 2.} Soit $E$ un $\rmat$-espace vectoriel de dimension finie, soit $K$ une partie de $E$. Montrer l'\'equivalence entre les assertions {\bf (1)} et {\bf (2)} ci-dessous~:\ssk\sect
+{\bf (1)}~: $K$ est compact, convexe, sym\'etrique par rapport \`a $0_E$, et $0_E$ est int\'erieur \`a $K$~;\ssk\sect
+{\bf (2)}~: il existe une norme $N$ sur $E$ pour laquelle $K$ est la boule unit\'e ferm\'ee~:\vvv 
+$$K=\{x\in E\;|\;N(x)\ie 1\}\;.$$
+
+\msk
+
+{\it Source : Fran\c cois ROUVI\`ERE, Petit guide de calcul diff\'erentiel, \'Editions Cassini, ISBN 2-84225-008-7}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+ 
+{\bf 1.} Il suffit de prouver l'in\'egalit\'e triangulaire $N(x+y)\ie N(x)+N(y)$. Si $x=0_E$ ou $y=0_E$, c'est \'evident. Sinon, consid\'erons les vecteurs unitaires associ\'es, c'est-\`a-dire $u={x\s N(x)}\in B$ et $v={y\s N(y)}\in B$ et posons $w={x+y\s N(x)+N(y)}$. Alors $w\in B$ car $B$ est convexe et
+$$w={N(x)\s N(x)+N(y)}\>u+{N(y)\s N(x)+N(y)}\>v\;,$$
+donc $N(w)\ie 1$, soit $N(x+y)\ie N(x)+N(y)$.
+
+\msk
+{\bf 2.} Tout d'abord, l'espace $E$ \'etant de dimension finie, il admet une unique topologie d'espace vectoriel norm\'e, les notions de ``compact'' et d'``int\'erieur'' mentionn\'ees dans l'assertion {\bf (1)} ont donc un sens intrins\`eque, c'est-\`a-dire ind\'ependant du choix d'une norme, ce qui rassure.
+\ssk\sect
+$\bullet$ Montrons {\bf (2)} $\impl$ {\bf (1)}~:\ssk\new
+Si $K=\{x\in E\;|\; N(x)\ie 1\}$, o\`u $N$ est une norme sur $E$, alors\ssk\new
+$\triangleright$ $K=N^{-1}\big([0,1]\big)$ est ferm\'e born\'e donc compact ({\it dimension finie}),\ssk\new
+$\triangleright$ $K$ est convexe gr\^ace \`a l'in\'egalit\'e triangulaire~: si $x\in K$, $y\in K$, $\lam\se0$, $\mu\se 0$, $\lam+\mu=1$, alors\vvvv
+$$N(\lam x+\mu y)\ie N(\lam x)+N(\mu y)=\lam N(x)+\mu N(y)\ie\lam +\mu=1\;,$$
+donc $\lam x+\mu y\in K$~;\ssk\new
+$\triangleright$ $K$ est sym\'etrique par rapport \`a $0_E$ car $N(-x)=N(x)$~;\ssk\new
+$\triangleright$ $\interieur{K}=\{x\in E\;|\;N(x)<1\}$ est un voisinage de $0_E$ inclus dans $K$, et $0_E$ est int\'erieur \`a $K$.
+
+\eject\sect 
+$\bullet$ Montrons {\bf (1)} $\impl$ {\bf (2)}~:\ssk\new
+Pour tout $x\in E$, posons $I(x)=\{k\in\rpe\;|\;kx\in K\}$.\ssk\new
+$\triangleright$ si $x=0_E$, alors $I(0_E)=\rpe$ et on pose $N(0_E)=0$~;\ssk\new
+$\triangleright$ si $x\not=0_E$, alors\ssk\new
+- $I(x)$ est non vide car $0_E$ est int\'erieur \`a $K$ donc, si $\|\cdot\|$ repr\'esente une quelconque norme sur $E$, $K$ contient une boule ferm\'ee de centre $0_E$ et de rayon $r>0$ pour cette norme et ${r\s\|x\|}\in I(x)$ puisque ${r\s\|x\|}x\in K$~:\ssk\new
+- $I(x)$ est major\'e, sinon $K$ ne serait pas born\'e donc pas compact.\ssk\new
+Posons alors $N(x)={1\s\sup I(x)}\in\rpe$.\msk\new
+Remarquons que, de la convexit\'e de $K$ et de $0_E\in K$, il r\'esulte que $I(x)$ est un intervalle qui est soit $\Big] 0,{1\s N(x)}\Big[$, soit $\Big] 0,{1\s N(x)}\Big]$. Mais $I(x)$ est un ferm\'e relatif de $\rpe$ car c'est l'image r\'eciproque de $K$ par l'application continue $\rpe\vers E$, $k\mapsto kx$. Finalement,\break $I(x)=\Big]0,{1\s N(x)}\Big]$.
+\msk\new
+On a bien alors $K=\{x\in E\;|\;N(x)\ie1\}$ puisque\vv
+$$N(x)\ie1\iff\sup I(x)\se1\iff 1\in I(x)\iff x\in K\;.$$
+L'application $N$ ainsi d\'efinie va de $E$ vers $\rplus$ et v\'erifie l'axiome de s\'eparation\break $N(x)=0\iff x=0_E$.\ssk\new
+Si $x\in E$ et $\lam\in\rmat$, alors $N(\lam x)=|\lam|\>N(x)$~:\ssk\new
+- c'est \'evident si $x=0_E$ ou $\lam=0$~;\ssk\new
+- si $x\not=0_E$ et $\lam>0$, cela r\'esulte de $k\in I(\lam x)\iff\lam k\in I(x)$~;\ssk\new
+- si $x\not=0_E$ et $\lam<0$, cela r\'esulte de la sym\'etrie de $K$ par rapport \`a $0_E$.\ssk\new
+Enfin, l'in\'egalit\'e triangulaire r\'esulte de la question {\bf 1.}
+
+\bsk\hrule\bsk
+
+{\bf EXERCICE 5 :}\msk
+{\bf 1.} Soient $x_1$, $\ldots$, $x_k$ des \'el\'ements de $\rmat^n$,
+avec $k>n+1$. Montrer l'existence de r\'eels $a_1$, $\ldots$, $a_k$ non tous nuls
+tels que\vv
+$$\sum_{i=1}^ka_i=0\qquad{\rm et}\qquad\sum_{i=1}^ka_ix_i=0\;.\eqno\hbox{\bf (*)}$$\par
+{\bf 2. Th\'eor\`eme de Carath\'eodory.} Soit $A$ une partie de $\rmat^n$. On note ${\cal E}(A)$ l'{\bf enveloppe
+convexe} de $A$ (``plus petit'' convexe contenant $A$~: c'est l'ensemble des
+barycentres \`a coefficients positifs des familles finies de points de $A$). Montrer que tout
+point de ${\cal E}(A)$ est barycentre \`a coefficients positifs d'une famille
+de $n+1$ points de $A$.\msk
+{\bf 3. Th\'eor\`eme de Helly.} Soient $A_1$, $A_2$, $\ldots$, $A_k$ des parties
+convexes de $\rmat^n$, avec $k>n+1$. On suppose que toute sous-famille de
+$n+1$ parties choisies parmi $A_1$, $\ldots$, $A_k$ a une intersection
+non vide.\sect
+D\'emontrer que $\;\bigcap_{i=1}^kA_i\not=\emptyset$.
+
+\msk
+
+{\it Source : Marcel BERGER, G\'eom\'etrie 2, \'Editions Nathan, ISBN 209 191 731-1.}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} L'application $F:\rmat^k\vers\rmat\times\rmat^n$ d\'efinie par
+$\;F(a_1,\ldots,a_k)=\biggl(\sum_{i=1}^ka_i\;,\;\sum_{i=1}^ka_ix_i\biggr)\;$
+est lin\'eaire et ne peut \^etre injective, compte tenu des dimensions des
+espaces de d\'epart et d'arriv\'ee.
+\msk
+
+{\bf 2.} Soit $x$ un \'el\'ement de ${\cal E}(A)$. On peut \'ecrire $x=\sum_{i=1}^k
+\lam_ix_i$ avec $k\in\net$, les $x_i$ appartenant \`a $A$, les $\lam_i$ \'etant des
+r\'eels positifs ou nuls tels que $\sum_{i=1}^k\lam_i=1$ ($x$ est barycentre
+\`a coefficients positifs d'une famille de $k$ points de $A$).\ssk\sect
+Supposons $k>n+1$ et prouvons que $x$ est barycentre \`a coefficients positifs
+d'une sous-famille stricte de $(x_1,\ldots,x_k)$, ce qui ach\'evera la d\'emonstration.
+\ssk\sect
+Soient $a_1$, $\ldots$, $a_k$ des r\'eels non tous nuls v\'erifiant {\bf (*)},
+l'un au moins des $a_i$ est strictement positif.
+Posons alors\vv
+$$C=\min\left\{{\lam_i\s a_i}\;;\;i\in\[ent1,k\]ent\>,\>a_i>0\right\}\;.$$
+De $\;\sum_{i=1}^ka_ix_i=0$, on d‚duit que $\;x=\sum_{i=1}^k(\lam_i-Ca_i)x_i$.
+On v\'erifie que les coefficients $\lam_i-Ca_i$ sont positifs ou nuls et que leur
+somme vaut 1 (cons\'equence de $\sum_{i=1}^ka_i=0$)~; mais l'un au moins de ces
+coefficients est nul, ce qui prouve que $x$ est barycentre \`a coefficients
+positifs de $k-1$ points de $A$.\msk\sect
+{\it Cons\'equence}. Si $A$ est compact, alors ${\cal E}(A)$ est compact~: en effet,
+l'ensemble\vv
+$$K=\{(\lam_1,\ldots,\lam_{n+1})\in(\rplus)^{n+1}\;|\;\sum_{i=1}^{n+1}\lam_i=1\}$$
+est un compact de $\rmat^{n+1}$ et ${\cal E}(A)$ est l'image du compact
+$K\times A^{n+1}$ par l'application continue\vv
+$$\big((\lam_1,\ldots,\lam_{n+1}),x_1,\ldots,x_{n+1}\big)\mapsto
+  \sum_{i=1}^{n+1}\lam_ix_i\;.$$
+
+\par
+{\bf 3.} Montrons d'abord le r\'esultat suivant~: si $k>n+1$, si
+$A_1$, $A_2$, $\ldots$, $A_k$ sont des convexes de $\rmat^n$
+tels que $k-1$ quelconques d'entre eux aient une intersection
+non vide, alors $\bigcap_{i=1}^kA_i\not=\emptyset$.\ssk\new
+Pour cela, choisissons un $x_i\in\bigcap_{j\not=i}A_j$
+pour tout $i\in\[ent1,k\]ent$.\ssk\new
+Soient $a_1$, $\ldots$, $a_k$ des r\'eels non tous nuls v\'erifiant {\bf (*)}.
+Posons\vv
+$$I=\{i\in\[ent1,k\]ent\;|\;a_i\se0\}\quad{\rm et}\qquad
+  J=\[ent1,k\]ent\setminus I=\{j\in\[ent1,k\]ent\;|\;a_j<0\}\;.$$\new
+On a $\;\sum_{i\in I}a_ix_i=-\sum_{j\in J}a_jx_j$.
+Posons $s=\sum_{i\in I}a_i=-\sum_{j\in J}a_j$ (on a $s>0$).\ssk\new
+Soit enfin $\;x={1\s s}\sum_{i\in I}a_ix_i={1\s s}\sum_{j\in J}(-a_j)x_j$.\ssk\new
+Alors $x$ est barycentre \`a coefficients positifs des $x_i$, $i\in I$. Or, si
+on fixe un indice $j\in J$, alors $\;\a i\in I\quad x_i\in A_j$~; comme
+$A_j$ est convexe, on en d\'eduit que $x\in A_j$ et ceci pour tout $j\in J$.\ssk\new
+De m\^eme, $x$ est barycentre \`a coefficients positifs des $x_j$, $j\in J$. Or, si
+on fixe un indice $i\in I$, alors $\;\a j\in J\quad x_j\in A_i$~; comme
+$A_i$ est convexe, on en d\'eduit que $x\in A_i$ et ceci pour tout $i\in I$.\ssk\new
+Finalement, $x\in\bigcap_{i=1}^kA_i$.
+\msk\sect
+Soit maintenant $k>n+1$ et soient $A_1$, $\ldots$, $A_k$ des parties convexes
+de $\rmat^n$ tels que toute sous-famille de $n+1$ parties ait une intersection non
+vide. On en d\'eduit que toute sous-famille de $n+2$ parties a une intersection
+non vide, puis toute sous-famille de $n+3$ parties... Bref, par une r\'ecurrence finie, on montre
+que la famille $(A_1,\ldots,A_k)$ a une intersection non vide.
+
+\bsk\hrule\bsk
+
+{\bf EXERCICE 6 :}\msk
+\def\Fr{{\rm Fr}}
+Soit $E$ un espace euclidien, soit $A$ une partie de $E$. On dit qu'un hyperplan affine $H$ est un {\bf hyperplan d'appui} de $A$ si $H\cap A\not=\emptyset$ et si la partie $A$ est enti\`erement contenue dans l'un des deux demi-espaces ferm\'es d\'elimit\'es par $H$.\msk
+Dans la suite de l'exercice, $C$ est un convexe ferm\'e non vide de $E$.\msk
+{\bf 1.} Soit $a\in E\setminus C$. Montrer qu'il existe un unique point $x$ de $C$ tel que $\;\|x-a\|=d(a,C)\;$ (le point $x$ est appel\'e le {\bf projet\'e de $a$ sur $C$}). Montrer qu'il existe un hyperplan d'appui de $C$ passant par $x$.\msk
+{\bf 2.} Soit $x$ un point de la fronti\`ere du convexe $C$. Montrer que, par le point $x$, il passe au moins un hyperplan d'appui.
+
+\msk
+
+{\it Source : Marcel BERGER, G\'eom\'etrie 2, \'Editions Nathan, ISBN 209 191 731-1.}
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf 1.} $\bullet$ Posons $\delta=d(a,C)=\inf_{c\in C}\|c-a\|$. Il existe alors $c\in C$ tel que $\|c-a\|\ie\delta+1$. En notant $B$ la boule ferm\'ee de centre $a$ et de rayon $\delta+1$, il est clair que $\delta=\inf_{c\in C}\|c-a\|=\inf_{c\in C\cap B}\|c-a\|$. Comme $C\cap B$ est ferm\'e born\'e, c'est un compact, donc cette borne inf\'erieure est atteinte ({\it comme la tarte}), ce qui prouve l'existence d'un \'el\'ement $x$ de $C$ tel que $d(a,C)=\|x-a\|$.\msk\sect
+$\bullet$ Supposons que deux points distincts $x$ et $y$ de $C$ r\'ealisent ce minimum~: $\|x-a\|=\|y-a\|=\delta$. Posons $z={x+y\s 2}$. Comme $C$ est convexe, on a $z\in C$, mais
+$$\|z-a\|=\left\|{x+y\s2}-a\right\|={1\s2}\>\big\|(x-a)+(y-a)\big\|<{1\s2}\big(\|x-a\|+\|y-a\|\big)=\delta$$
+(l'in\'egalit\'e est stricte car le cas d'\'egalit\'e signifierait que les vecteurs $\vect{ax}=x-a$ et $\vect{ay}=y-a$ sont colin\'eaires et de m\^eme sens, donc \'egaux puisqu'ils ont la m\^eme norme, donc que $x=y$), on a ainsi obtenu une absurdit\'e.
+Cela prouve l'unicit\'e du ``projet\'e de $a$ sur le convexe ferm\'e $C$''. Ce projet\'e $x$ appartient bien s\^ur \`a la fronti\`ere de $C$.
+\msk\sect
+$\bullet$ Montrons que $\;\a c\in C\quad (x-a|x-c)\ie0$. En effet, si $c\in C$, le segment $[x,c]$ est inclus dans $C$, donc $\;\a\lam\in[0,1]\quad(1-\lam) x+\lam c\in C$, donc\vv
+$$\a\lam\in[0,1]\qquad \big\|(1-\lam) x+\lam c-a\big\|^2\se\|x-a\|^2=\delta^2$$
+ou encore\vv
+$$\a\lam\in[0,1]\qquad \big\|(1-\lam) (x-a)+\lam (c-a)\big\|^2\se\|x-a\|^2=\delta^2$$
+({\it bref, on prend $a$ comme origine}). En d\'eveloppant, on obtient\vv
+$$\a\lam\in[0,1]\qquad\lam^2\|c-a\|^2+\lam(\lam-2)\|x-a\|^2+2\lam(1-\lam)\>(x-a|c-a)\se0\;.$$
+Notons $f(\lam)$ le premier membre de l'in\'egalit\'e ci-dessus, la fonction $f:[0,1]\vers\rmat$ est d\'erivable (c'est un polyn\^ome du second degr\'e), on a $f(0)=0$ et $f(\lam)\se0$ pour tout $\lam\in[0,1]$, donc $f'(0)\se0$, ce qui donne\vv
+$$-2\|x-a\|^2+2(x-a|c-a)\se0\;,\qquad\hbox{ou encore}\quad (x-a|c-x)\se0\;.$$\ssk\new
+Notons alors $H$ l'hyperplan affine passant par $x$ et de vecteur normal $\vect{\nu}=\vect{ax}=x-a$. Les deux demi-espaces ferm\'es d\'elimit\'es par cet hyperplan sont\vv
+$$E_+=\{c\in E\;|\;(\vect{xc}|\vect{xa})\se0\}=\{c\in E\;|\; (c-x|a-x)\se0\}\quad{\rm et}\quad
+E_-=\{c\in E\;|\; (c-x|a-x)\ie0\}$$
+(le premier contenant le point $a$). On a prouv\'e que $C\subset E_-$, donc $H$ est un hyperplan d'appui de $C$.
+
+\bsk
+{\bf 2.} Soit $x\in\Fr(C)$ (fronti\`ere de $C$), alors $x\not\in\interieur{C}$, donc $x$ appartient \`a l'adh\'erence du compl\'ementaire $E\setminus C$~; il existe donc une suite $(a_n)$ de points de $E\setminus C$ convergeant vers $x$. Notons $x_n$ le projet\'e du point $a_n$ sur le convexe $C$ et posons $\vect{\nu_n}={\vect{a_nx_n}\s\|\vect{a_nx_n}\|}={x_n-a_n\s\|x_n-a_n\|}$. Pour tout entier naturel $n$, l'hyperplan $H_n$ passant par $x_n$ et de vecteur normal $\vect{\nu_n}$ est un hyperplan d'appui de $C$, donc\vv
+$$\a c\in C\quad \a n\in\nmat\qquad (\vect{x_nc}\;|\;\vect{\nu_n})=(c-x_n\;|\;\vect{\nu_n})\se0\;.\eqno\hbox{\bf (*)}$$\msk\sect
+On a $\;\Lim{n}{\ii}x_n=x\;$ car $\;\|x_n-x\|\ie\|x_n-a_n\|+\|a_n-x\|\;$ et $\Lim{n}{\ii}\|a_n-x\|=0$ et $\|x_n-a_n\|=d(a_n,C)\ie\|a_n-x\|\Vers{n}{\infty}0$. La suite $(\vect{\nu_n})$, \`a valeurs dans la sph\`ere unit\'e (compacte) admet une valeur d'adh\'erence $\vect{\nu}=\Lim{n}{\ii}\vect{\nu_{\ffi(n)}}$. En passant \`a la limite dans {\bf (*)} suivant l'extraction $\ffi$, on obtient\vv
+$$\a c\in C\qquad (\vect{xc}\;|\;\vect{\nu})=(c-x\;|\;\vect{\nu})\se0\;,$$
+donc l'hyperplan $H$ passant par $x$ et de vecteur normal $\vect{\nu}$ est un hyperplan d'appui de $C$ passant par $x$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

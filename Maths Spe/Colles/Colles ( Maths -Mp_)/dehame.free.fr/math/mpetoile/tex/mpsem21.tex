@@ -1,0 +1,555 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % \'evite le textstyle en mode
+                                % math\'ematique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math\'ematiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de pr\'esentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% divers
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'\'ecriture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% \`a l'int\'erieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d\'ecroissante),
+% \nondef (la fonction est non d\'efinie)
+% si l'on termine la derni\`ere ligne par \cr, un trait est tir\'e en dessous
+% sinon elle est laiss\'ee sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  
+\def\rmat{{\rm I\kern-0.6mm R}}  
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____d\'ef de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% Alg\`ebre lin\'eaire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________d\'eterminant_______
+\def\det{\mathop{\rm det}\nolimits} 
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos\'ee ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  
+\def\MC#1{{\cal M}_{#1}(\cmat)}  
+\def\MK#1{{\cal M}_{#1}(\kmat)}  
+
+%________Complexes_________ 
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   
+\def\Arccos{\mathop{\rm Arccos}\nolimits}  
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     
+\def\Argch{\mathop{\rm Argch}\nolimits}     
+\def\Argth{\mathop{\rm Argth}\nolimits}     
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} 
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s\'eries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr\'eg\'ees%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-\`a-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+\def\cala{{\cal A}}
+\def\fhat{\widehat{f}}
+\let\wh=\widehat
+\def\ftilde{\tilde{f}}
+
+% ********************************************************************************************************************** %
+%                                                                                                                                                                                   %
+%                                                                    FIN   DES   MACROS                                                                              %
+%                                                                                                                                                                                   %
+% ********************************************************************************************************************** %
+
+
+
+
+
+
+
+
+
+
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+
+
+
+\overfullrule=0mm
+
+
+\cl{{\bf SEMAINE 21}}\msk
+\cl{{\bf \'EQUATIONS DIFF\'ERENTIELLES}}\msk
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+On consid\`ere l'\'equation diff\'erentielle\vv
+$$y''+p(x)\>y=0\;,\leqno\hbox{\bf (E)}$$
+o\`u $p$ est une fonction croissante sur $\rplus$, \`a valeurs dans $\rpe$.\msk
+Soit $f$ une solution non nulle de {\bf (E)} sur $\rpe$.\msk
+{\bf 1.} \'Etudier l'ensemble des z\'eros de $f$, puis de $f'$.\msk
+{\bf 2.} Dans cette question, on suppose $p$ d\'erivable. En consid\'erant la fonction $h$ d\'efinie par\vv
+$$h(x)=f(x)^2+{f'(x)^2\s p(x)}\;,$$
+montrer que $f$ est born\'ee sur $\rplus$. Montrer que, si $a$ et $b$ sont deux extremums cons\'ecutifs de $f$, on a $|f(b)|\ie|f(a)|$.
+
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Notons $E=f^{-1}(\{0\})$ l'ensemble des z\'eros de $f$, et $E'=(f)'^{-1}(\{0\})$ l'ensemble des z\'eros de $f'$. On a $E\inter E'=\emptyset$ puisque, si une solution $f$ de {\bf (E)} n'est pas la fonction nulle, on a $\big(f(x),f'(x)\big)\not=(0,0)$ pour tout $x\in\rplus$ en vertu du th\'eor\`eme de Cauchy-Lipschitz.\msk\sect
+Les z\'eros de $f$ sont isol\'es~: en effet, si $a\in\rplus$ \'etait un point d'accumulation de $E$, c'est-\`a-dire s'il existait une suite $(a_n)$ de points de $E$ distincts de $a$ et convergeant vers $a$, on aurait alors $a\in E$ car $E$ est ferm\'e, puis $f'(a)=\Lim{n}{\ii}{f(a_n)-f(a)\s a_n-a}=0$ puisque ces taux d'accroissement sont tous nuls et $a\in E\inter E'$, ce qui est absurde. \msk\sect
+On montre de m\^eme que les z\'eros de $f'$ sont isol\'es (car $f''(a)=0\impl f(a)=0$).\msk\sect
+L'ensemble $E$ des z\'eros de $f$ est infini. Nous allons montrer que $\;\a a\in\rplus\quad E\inter[a,\ii[\not=\emptyset$. Pour cela, d\'emontrons le lemme suivant~:
+\msk\new
+{\it Soient $p_1$ et $p_2$ deux fonctions r\'eelles continues sur un intervalle $I$, v\'erifiant $p_2\se p_1$ sur $I$.\ssk\new
+Soit $f_1$ une solution de {\bf (E}$_1${\bf )}~: $y''+p_1(x)\>y=0$ sur $I$, on suppose que $a$ et $b$ ($a<b$) sont deux \'el\'ements de $I$ tels que $f_1(a)=f_1(b)=0$ et $\;\a x\in]a,b[\quad f_1(x)\not=0$.\ssk\new
+Soit $f_2$ une solution de {\bf (E}$_2${\bf )}~: $y''+p_2(x)\>y=0$ sur $I$.\ssk\new
+Alors $f_2$ admet au moins un z\'ero sur $[a,b]$.}
+\msk\sect
+$<$D\'emonstration du lemme$>$~: supposons $f_1>0$ sur $]a,b[$, ce qui entra\^\i ne $f'_1(a)>0$ et $f'_1(b)<0$. Supposons que $f_2$ ne s'annule pas sur $[a,b]$, par exemple que $f_2>0$ sur $[a,b]$. Consid\'erons le ``wronskien crois\'e'' $\;W=f_1f'_2-f_2f'_1$. La fonction $W$ est d\'erivable avec\vv
+$$W'=f_1f''_2-f_2f''_1=(p_1-p_2)f_1f_2\ie0\quad{\rm sur}\quad[a,b]\;,$$
+donc $W$ est d\'ecroissante sur cet intervalle. Or, $W(a)=-f_2(a)f'_1(a)<0\;$ et\break $W(b)=-f_2(b)f'_1(b)>0$, d'o\`u une contradiction. En faisant d'autres hypoth\`eses sur les signes de $f_1$ et $f_2$ dans $]a,b[$, on aboutit aussi \`a des contradictions. En conclusion, $f_2$ ne peut garder un signe constant sur $[a,b]$, donc s'annule sur cet intervalle.\new $<$/D\'emonstration du lemme$>$\msk\sect
+Soit maintenant $a\in\rplus$, soit $p_0=p(a)>0$. L'\'equation (\`a coefficients constants) $y''+p_0\>y=0$ admet pour solution sur $I=[a,\ii[$ la fonction $\;x\mapsto\sin\sqrt{p_0}(x-a)$, qui admet les r\'eels $a$ et $b=a+{\pi\s\sqrt{p_0}}$ comme z\'eros cons\'ecutifs. La fonction $p$ \'etant croissante, on a $p(x)\se p_0$ sur $I$, ce qui permet d'appliquer le lemme~: la fonction $f$ admet au moins un z\'ero dans l'intervalle $[a,b]$.
+\msk\sect
+Les z\'eros de $f$ peuvent donc \^etre ordonn\'es en une suite strictement croissante $(x_n)_{n\in\nmat}$ puisque $f$ admet au moins un z\'ero, et chaque z\'ero de $f$ admet un z\'ero ``cons\'ecutif''.\ssk\sect
+Par le th\'eor\`eme de Rolle, entre deux z\'eros cons\'ecutifs de $f$, il y a au moins un z\'ero de $f'$. Mais, entre deux z\'eros de $f'$, il y a au moins un z\'ero de $f''$ qui est aussi un z\'ero de $f$. En conclusion, les z\'eros de $f'$ peuvent aussi \^etre ordonn\'es en une suite strictement croissante $(x'_n)_{n\in\nmat}$ et les deux suites $(x_n)$ et $(x'_n)$ sont ``entrelac\'ees'', c'est-\`a-dire que l'on a\vv
+$${\rm soit}\quad 0\ie x_1<x'_1<x_2<x'_2<\cdots\;,\qquad{\rm soit}\quad 0\ie x'_1<x_1<x'_2<x_2<\cdots$$
+\ssk
+{\bf 2.} D\'erivons $h$~: $h'=2ff'+{2f'f''\s p}-{f'^2p'\s p^2}=-f'^2\>{p'\s p^2}\ie 0$, donc la fonction $h$ est d\'ecroissante sur $\rplus$, donc major\'ee. A fortiori, $f^2$ est major\'ee, donc $f$ est born\'ee. Enfin, si $a$ et $b$ sont deux z\'eros cons\'ecutifs de la d\'eriv\'ee (ce sont des extremums car la d\'eriv\'ee seconde ne peut s'annuler en ces points), alors $h(b)\ie h(a)$, c'est-\`a-dire $f(b)^2\ie f(a)^2$, ou encore $|f(b)|\ie|f(a)|$.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 2 :}\msk
+Soient $f$ et $g$ continues de $[a,b]$ vers $\rmat$, avec $f\ie0$ sur $[a,b]$. Montrer que l'\'equation diff\'erentielle\break {\bf (E)}~:$\;y''+f(x)\>y=g(x)\;$ admet une unique solution sur $[a,b]$ v\'erifiant les conditions aux limites $\;y(a)=y(b)=0$.
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+Montrons d'abord que toute solution (autre que la fonction nulle) de l'\'equation sans second membre $y''+f(x)y=0$ s'annule au plus une fois sur $[a,b]$~: soit $y$ une telle solution, supposons qu'elle admette au moins deux z\'eros distincts dans $[a,b]$. Soit $x_0\in[a,b]$ un de ces z\'eros, supposons $x_0\not=\max\big(y^{-1}(\{0\})\big)$. On a alors $y'(x_0)\not=0$, sinon $y$ serait identiquement nulle par le th\'or\`eme de Cauchy-Lipschitz. Supposons $y'(x_0)>0$. Les z\'eros de $y$ \'etant isol\'es ({\it cf}. exercice 1), soit $x_1$ le z\'ero de $y$ cons\'ecutif \`a $x_0$. On a alors $y>0$ sur l'intervalle $]x_0,x_1[$, donc $fy\ie0$ et $y''=-fy\se0$ sur $[x_0,x_1]$~; sur cet intervalle, la fonction $y'$ est donc croissante, d'o\`u $y'\se y(x_0)>0$, et $y$ est strictement croissante sur $[x_0,x_1]$, ce qui est absurde.
+
+\msk
+Notons ${\cal S}_0$ l'ensemble des solutions de l'\'equation sans second membre $\;y''+f(x)y=0$. On sait que ${\cal S}_0$ est un sous-espace vectoriel de dimension deux de ${\cal C}^2\big([a,b],\rmat\big)$. Soit l'application $\;\Phi:\system{&{\cal S}_0&\vers&\rmat^2\hfill\cr &y&\mapsto&\big(y(a),y(b)\big)\cr}$. L'application $\Phi$ est lin\'eaire, injective d'apr\`es ce qui pr\'ec\`ede, donc $\Phi$ est un isomorphisme de ${\cal S}_0$ sur $\rmat^2$ puisqu'on a \'egalit\'e des dimensions.
+\ssk
+Soit alors $y$ une quelconque solution de l'\'equation {\bf (E)} sur $[a,b]$ ({\it il en existe, la m\'ethode de variation des constantes permet de les exprimer \`a partir d'un syst\`eme fondamental de ${\cal S}_0$}). Posons $\alpha=y(a)$ et $\beta=y(b)$. Soit $y_0$ l'unique \'el\'ement de ${\cal S}_0$ tel que $\system{&y_0(a)&=&-\alpha\cr &y_0(b)&=&-\beta\cr}$, c'est-\`a-dire $\;y_0=\Phi^{-1}(-\alpha,-\beta)$. La fonction $y_1=y+y_0$ v\'erifie l'\'equation diff\'erentielle {\bf (E)} et les conditions aux limites impos\'ees, et c'est la seule solution du probl\`eme pos\'e.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 3 :}\msk
+Soit $g:\rpe\vers\rpe$ une application continue telle que $\Lim{x}{0^+}g(x)=0$.\ssk
+On suppose que la fonction ${1\s g}$ n'est pas int\'egrable sur $]0,1]$.\msk
+Montrer que, pour tout $\lam>0$, il existe une unique fonction $h_{\lam}$, d\'efinie et continue sur un intervalle de la forme $I_{\lam}=]-\infty,b_{\lam}[$ (avec $b_{\lam}\in\>]0,\ii]$), telle que\vv
+$$\a t \in I_{\lam}\qquad h_{\lam}(t)=\lam+\int_0^t g\big(h_{\lam}(u)\big)\>{\rm d}u\;.\leqno\hbox{\bf (I)}$$\par
+Dans quel cas a-t-on $\;b_{\lam}=\ii$~?
+
+
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+Si une fonction $h_{\lam}$, continue sur un intervalle $I$ contenant 0, v\'erifie l'\'equation int\'egrale {\bf (I)}, alors $h_{\lam}$ est d\'erivable sur $I$ et est solution du probl\`eme de Cauchy {\bf (*)}~: $\system{&\hfill y'&=&g(y)\cr &y(0)&=&\lam\hfill\cr}$,\break et $h_{\lam}$ est alors de classe $\ceun$ sur $I$.\msk
+R\'eciproquement, si $h_{\lam}:I\vers\rplus$, de classe $\ceun$, est solution du probl\`eme  {\bf (*)}, alors elle v\'erifie {\bf (I)} sur l'intervalle $I$.\msk
+R\'esolvons donc le probl\`eme de Cauchy {\bf (*)}~:\ssk
+Soit $h$ une fonction de classe $\ceun$ sur un intervalle $I$ de $\rmat$, \`a valeurs strictement positives, et solution du probl\`eme de Cauchy {\bf (*)}. On a alors, pour tout $t\in I$, ${h'(t)\s g\big(h(t)\big)}=1$ soit, en notant $G$ une primitive de la fonction ${1\s g}$ sur $\rpe$ $\bigg($ par exemple $\;G(x)=\int_1^x{{\rm d}u\s g(u)}\bigg)$, la relation $(G\circ h)'=1$ sur $I$, d'o\`u $G\big(h(t)\big)=t+C$.\ssk\sect Or, la fonction $G$ est de classe $\ceun$ et strictement croissante sur $\rpe$ et v\'erifie $\Lim{x}{0}G(x)=-\infty$ puisque la fonction positive ${1\s g}$ n'est pas int\'egrable sur $]0,1]$. Posons $\omega=\Lim{x}{\ii}G(x)$~: on a $\omega=\ii$ si la fonction ${1\s g}$ n'est pas int\'egrable sur $[1,\ii[$. La fonction $G$ est alors un $\ceun$-diff\'eomorphisme de $\rpe$ vers son image $J=]-\infty,\omega[$.\ssk\sect
+Ce qui pr\'ec\`ede montre que, n\'ecessairement, $t+C\in\>]-\infty,\omega[$ et $h(t)=G^{-1}(t+C)$~; la condition initiale enfin permet de d\'eterminer la constante~: $C=G(\lam)=\int_1^{\lam}{{\rm d}u\s g(u)}$. La fonction $h_{\lam}$ est donc n\'ecessairement donn\'ee par l'expression\vv
+$$h_{\lam}(t)=G^{-1}\lp t+\int_1^{\lam}{{\rm d}u\s g(u)}\rp=G^{-1}\big(t+G(\lam)\big)$$
+et on v\'erifie (r\'eciproque) qu'une telle fonction est bien solution de {\bf (*)} sur l'intervalle\break $I_{\lam}=]-\infty,b_{\lam}[\>$ avec $b_{\lam}=\omega-G(\lam)$. Une telle solution ne peut \^etre prolong\'ee puisque $\Lim{t}{b_{\lam}}h_{\lam}(t)=\Lim{x}{\omega}G^{-1}(x)=\ii$.\msk
+On a donc $\;b_{\lam}=\ii$ si et seulement si la fonction ${1\s g}$ n'est pas int\'egrable sur $[1,\ii[$.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 4 :}\msk
+On note $(I,f)$ la solution maximale du probl\`eme de Cauchy\vv
+$${\bf (E)}\;:\;y''={1\s2}(1-3y^2)\;;\qquad y(0)=0\;;\quad y'(0)=0\;.$$\par
+{\bf 1.} Montrer qu'il existe un r\'eel $a>0$ tel que $[0,a]\subset I$, $f$ est strictement croissante sur $[0,a]$ et $f'(a)=0$.\msk
+{\bf 2.} Montrer que $I=\rmat$, que $f$ est paire et $2a$-p\'eriodique.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf 1.} Si $(I,f)$ est la solution maximale, alors la fonction $g$ d\'efinie sur $-I$ par $g(-x)=f(x)$ v\'erifie le m\^eme probl\`eme de Cauchy, donc $-I\subset I$ (ce qui signifie en fait que $-I=I$~: l'intervalle $I$ est sym\'etrique par rapport \`a 0) et $g=f$. On a donc prouv\'e la parit\'e de $f$.\ssk\sect
+$\bullet$ {\bf Analyse~:} 
+L'intervalle $I$ est de la forme $]-\omega,\omega[$ avec $0<\omega\ie\ii$. On a $f''(0)={1\s2}$, donc $f'$ est strictement positive \`a droite de 0. Consid\'erons le plus grand intervalle de la forme $J=]0,a[$ sur lequel $f'$ reste strictement positive ($0<a\ie\ii$)~: l'ensemble $\{x\in I\;|\;f'(x)>0\}$ est un ouvert de $\rmat$ contenant un intervalle de la forme $]0,\eps[$ et $J$ est la composante connexe par arcs de cet ensemble contenant $]0,\eps[$.\ssk\sect
+Sur l'intervalle $J$, la fonction $f$ est solution de $\;2y'y''=(1-3y^2)y'$~; en int\'egrant cette relation de 0 \`a $t$ avec $t\in J$, on obtient\vv
+$$\a t\in J\qquad f'(t)^2-f'(0)^2=f(t)-f(0)-f(t)^3+f(0)^3\;,$$
+soit $\;f'(t)^2=f(t)-f(t)^3\;$ et, comme $f'>0$ sur $J$, cela entra\^\i ne que $f-f^3$ est strictement positive sur le m\^eme intervalle, puis que\vv
+$$\a t\in J\qquad {f'(t)\s\sqrt{f(t)-f(t)^3}}=1\;.$$
+En int\'egrant de 0 \`a $x$ (avec $x\in J$), on a $\;\int_0^x{f'(t)\s\sqrt{f(t)-f(t)^3}}\;{\rm d}t=x\;$ soit, en posant $u=f(t)$, ce qui est l\'egitime puisque $f$ est un $\ceun$-diff\'eomorphisme de $J$ sur son image,\vv
+$$\a x\in J\qquad \int_0^{f(x)}{{\rm d}u\s\sqrt{u-u^3}}=x\;.$$
+{\it La fonction $u\mapsto{1\s\sqrt{u-u^3}}$ est int\'egrable dans un voisinage de $0$, ce qui justifie l'existence des int\'egrales ci-dessus}.\ssk\sect
+On a donc, pour tout $x\in J$, $\ffi\big(f(x)\big)=x$, en posant $\;\ffi(y)=\int_0^y{{\rm d}u\s\sqrt{u-u^3}}\;$ pour tout $y\in f(J)$.
+\msk\sect
+$\bullet$ {\bf Synth\`ese~:} Soit $\ffi$ l'application d\'efinie sur $[0,1]$ par $\;\ffi(y)=\int_0^y{{\rm d}u\s\sqrt{u-u^3}}$. L'int\'egrabilit\'e de $u\mapsto{1\s\sqrt{u-u^3}}$ sur $]0,1[$ garantit l'existence et la continuit\'e de $\ffi$ sur $[0,1]$. La fonction $\ffi$ est strictement croissante sur $[0,1]$ et \'etablit donc une bijection de $[0,1]$ vers $[0,a]$, avec $\;a=\ffi(1)=\int_0^1{{\rm d}u\s\sqrt{u-u^3}}$. On peut pr\'eciser que $\ffi$ est d\'erivable (et m\^eme $\ceinf$) sur $]0,1[$, avec $\ffi'(y)={1\s\sqrt{y-y^3}}>0$ et $\ffi$ est un $\ceinf$-diff\'eomorphisme de $]0,1[$ vers $]0,a[$. Notons $f:[0,a]\vers[0,1]$ l'application r\'eciproque, continue sur $[0,a]$ et de classe $\ceinf$ sur $]0,a[$. Sur $]0,a[$, on peut \'ecrire $\;f'(t)=(\ffi^{-1})'(t)=\sqrt{f(t)-f(t)^3}$. En \'elevant au carr\'e, en d\'erivant et en simplifiant par $f'(t)$ non nul, on obtient $\;\a t\in]0,a[\quad f''(t)={1\s2}\big(1-3\>f(t)^2\big)$. Enfin, des relations \'ecrites ci-dessus, on d\'eduit que $\lim_0f'=0$, $\lim_af'=0$, et que $f''$ aussi admet des limites finies en $0^+$ et en $a^-$, donc $f$ est de classe $\cedeux$ sur $[0,a]$. En posant $f(x)=f(-x)$ pour tout $x\in[-a,0[$, on prolonge $f$ en une fonction de classe $\cedeux$ sur l'intervalle $[-a,a]$ qui est solution du probl\`eme de Cauchy pos\'e, mais qui n'est certainement pas la solution maximale (l'intervalle de d\'efinition n'\'etant pas ouvert).
+
+\msk
+{\bf 2.} On a $f(-a)=f(a)=1$ et $f'(-a)=f'(a)=0$, ce qui permet de ``translater la solution'' (par exemple, la fonction $g$, d\'efinie sur $[a,3a]$ par $g(x)=f(x-2a)$ v\'erifie le m\^eme probl\`eme de Cauchy que la solution maximale $f$ au point $a$, donc co\"\i ncide avec $f$ sur cet intervalle). Donc la solution maximale est d\'efinie sur $\rmat$~; elle est paire et $2a$-p\'eriodique.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 5 :}\msk
+{\bf \'Etude de l'\'equation du pendule}\msk
+Soit l'\'equation diff\'erentielle {\bf (E)}~: $y''+k^2\>\sin y=0$\qquad ($k>0$ donn\'e).\msk
+\'Etudier le comportement de la solution maximale satisfaisant aux conditions initiales\vv
+$$y(0)=0\quad;\quad y'(0)=v\qquad(v>0\;\hbox{donn\'e}\;)\;.$$\par
+Interpr\'eter physiquement.
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf Analyse~:} Notons $(I,f)$ la solution maximale correspondant aux conditions initiales impos\'ees. Constatons d'abord que la fonction $g:-I\vers\rmat$ d\'efinie par $g(t)=-f(-t)$ est solution du m\^eme probl\`eme de Cauchy, donc $-I\subset I$ ce qui entra\^\i ne en fait $-I=I$ (l'intervalle $I$ est sym\'etrique par rapport \`a 0) et $g=f$~: la fonction $f$ est impaire.\ssk\sect
+On a donc $I=]-\omega,\omega[$ avec $0<\omega\ie\ii$. On a $f'(0)=v>0$ et $f'$ est continue, soit $J=]-a,a[$ avec $0<a\ie\ii$ le plus grand intervalle contenant 0 sur lequel $f'>0$ ({\it l'ensemble $\{t\in I\;|\;f'(t)>0\}$ est un ouvert de $\rmat$ contenant $0$, $J$ est sa composante connexe par arcs contenant $0$}).\ssk\sect
+Sur l'intervalle $J$, $f$ est solution de $\;y'y''=-k^2\>y'\>\sin y$~; en int\'egrant cette relation de 0 \`a $t$ (avec $t\in J$), on a $\;{1\s2}(y'^2-v^2)=k^2(\cos y-1)$, soit $\;y'^2=v^2-2k^2+2k^2\cos y$, donc, puisque $f'>0$ sur $J$,\vvv
+$$\a t\in J\qquad f'(t)=\sqrt{v^2-2k^2+2k^2\>\cos f(t)}\;.$$\sect
+``S\'eparons les variables''~: ${f'(t)\s\sqrt{v^2-2k^2+2k^2\>\cos f(t)}}=1\;$ pour $t\in J$ donc, en int\'egrant de 0 \`a $x$ avec $x\in J$,\vv
+$$\a x\in J\qquad\int_0^x{f'(t)\>{\rm d}t\s\sqrt{v^2-2k^2+2k^2\>\cos f(t)}}=\int_0^x{\rm d}t=x$$
+ou, en posant $u=f(t)$, ce qui est l\'egitime puisque la fonction $f$ est un ${\cal C}^1$-diff\'eomorphisme de l'intervalle $J$ sur son image,\vvv
+$$\a x\in J\qquad\int_0^{f(x)}{{\rm d}u\s\sqrt{v^2-2k^2+2k^2\>\cos u}}=x\;.$$
+On a donc, pour tout $x\in J$, $\ffi\big(f(x)\big)=x$ en posant $\;\ffi(y)=\int_0^y{{\rm d}u\s\sqrt{v^2-2k^2+2k^2\>\cos u}}$ pour tout $y\in f(J)$.\msk
+{\bf Synth\`ese~:} Soit $U$ le plus grand intervalle contenant 0 sur lequel l'expression $v^2-2k^2+2k^2\cos u$ reste strictement positive. L'application $\;\ffi:y\mapsto\int_0^y{{\rm d}u\s\sqrt{v^2-2k^2+2k^2\>\cos u}}\;$ est de classe $\ceinf$ et strictement croissante sur $U$, donc r\'ealise un $\ceinf$-diff\'eomorphisme de l'intervalle $U$ vers son image $V=\ffi(U)$. Notons $f=\ffi^{-1}:V\vers U$ l'application r\'eciproque. Sur $V$, on a $\;f'(t)={1\s\ffi'\big(\ffi^{-1}(t)\big)}=\sqrt{v^2-2k^2+2k^2\cos\big(f(t)\big)}$. En \'elevant au carr\'e, en d\'erivant, puis en simplifiant par $f'(t)$ qui est non nul, et enfin en v\'erifiant les conditions initiales, on voit que $(V,f)$ est une solution du probl\`eme de Cauchy pos\'e ({\it mais ce n'est peut-\^etre pas la solution maximale}).
+\bsk
+{\bf \'Etude des diff\'erents cas~:}
+\ssk
+$\bullet$ si $v=2k$, on a $v^2-2k^2+2k^2\cos u=2k^2(1+\cos u)$ donc, avec les notations ci-dessus ({\it cf. synth\`ese}), $U=]-\pi,\pi[$ et, la fonction $\;u\mapsto{1\s\sqrt{1+\cos u}}$ n'\'etant pas int\'egrable sur $[0,\pi[$ puisque $\sqrt{1+\cos u}=\sqrt{2}\>\cos{u\s2}\sim{\pi-u\s\sqrt{2}}$ au voisinage de $\pi$, on a $V=\ffi(U)=\rmat$. La solution maximale est donc dans ce cas $(V,f)$ et $f$ est un diff\'eomorphisme croissant de $\rmat$ vers $]-\pi,\pi[$.\ssk\new
+{\it Ce cas est ``physiquement'' improbable, le pendule tend vers sa position d'\'equilibre instable.\ssk\new
+Remarquons qu'ici, le calcul peut \^etre compl\`etement explicit\'e~: $\;\ffi(y)={1\s k}\>\ln\tan\lp{\pi+y\s4}\rp$ pour $y\in\>]-\pi,\pi[$, puis $\;f(t)=\ffi^{-1}(t)=4\>\arctan(e^{kt})-\pi$ pour $t\in\rmat$.}
+\msk
+$\bullet$ si $v>2k$, alors $U=\rmat$. La fonction $u\mapsto{1\s\sqrt{v^2-2k^2+2k^2\>\cos u}}$ n'\'etant pas int\'egrable sur $\rplus$, on a $V=\ffi(U)=\rmat$. Ici encore, la solution maximale est $(V,f)$ et $f$ est un diff\'eomorphisme croissant de $\rmat$ vers $\rmat$.
+Posons $\;T_0=\ffi(2\pi)=\int_0^{2\pi}{{\rm d}u\s\sqrt{v^2-2k^2+2k^2\>\cos u}}$. On a alors
+$$\a y\in\rmat\qquad\ffi(y+2\pi)=\ffi(y)+\int_y^{y+2\pi}{{\rm d}u\s\sqrt{v^2-2k^2+2k^2\>\cos u}}=\ffi(y)+T_0\;,$$
+donc la bijection r\'eciproque $f=\ffi^{-1}$ v\'erifie $\;\a t\in\rmat\quad f(t+T_0)=f(t)+2\pi$.\ssk\sect
+{\it Le pendule tourne ind\'efiniment et repasse par sa position d'\'equilibre \`a intervalles r\'eguliers et \`a la m\^eme vitesse~: le mouvement est p\'eriodique}.
+\msk
+$\bullet$ si $v<2k$, posons $y_0=\arccos\lp1-{v^2\s2k^2}\rp$. On a $U=\>]-y_0,y_0[\>$.\ssk\new
+La fonction $u\mapsto{1\s\sqrt{v^2-2k^2+2k^2\>\cos u}}$ est int\'egrable sur $[0,y_0[$ ({\it en effet, en posant\break $u=y_0-h$, on obtient facilement l'\'equivalent $v^2-2k^2+2k^2\cos(y_0-h)\sim(2k^2\sin y_0)h$ lorsque $h$ tend vers} 0). Posons $a=\int_0^{y_0}{{\rm d}u\s\sqrt{v^2-2k^2+2k^2\>\cos u}}$~; on a alors $V=\ffi(U)=]-a,a[$, mais ici $(V,f)$ n'est pas la solution maximale~: en effet, en posant $f(a)=y_0$, la fonction $f$ est continue sur $]-a,a]$ et d\'erivable au point $a$ avec $f'(a)=0$ car $\Lim{y}{y_0^-}\ffi'(y)=\ii$~; la solution maximale $f$ peut donc \^etre prolong\'ee au-del\`a du point $a$, et de m\^eme \`a gauche du point $-a$.\ssk\sect
+Soit $I$ l'intervalle de d\'efinition de la solution maximale, on sait que $[-a,a]\subset I$. Notons $J=2a-I$ l'intervalle sym\'etrique de $I$ par rapport \`a la valeur $a$. La fonction $g:J\vers\rmat$ d\'efinie par $g(x)=f(2a-x)$ est de classe $\cedeux$ sur $J$ avec $g''(x)=f''(2a-x)$, donc elle v\'erifie $\;\system{&g''&=&-k^2\>\sin g\hfill\cr &g(a)&=&f(a)=y_0\hfill\cr &g'(a)&=&-f'(a)=0=f'(a)\cr}$, probl\`eme de Cauchy aussi v\'erifi\'e par la solution $(I,f)$~; on a donc $J\subset I$ (ce qui signifie en fait que $J=I$) et $g=f$, autrement dit la solution maximale $f$ (qui est maintenant d\'efinie au moins sur $[-a,3a]$) poss\`ede la sym\'etrie $f(2a-x)=f(x)$.\ssk\sect
+Enfin, $f(3a)=f(a)$ et $f'(3a)=-f'(a)=0=f'(a)$, ce qui permet de ``translater la solution obtenue'', autrement dit la fonction $4a$-p\'eriodique d\'efinie sur $\rmat$ et co\"\i ncidant avec $f$ sur $[0,3a]$ est la solution maximale.\ssk\sect
+{\it Le pendule effectue des oscillations autour de sa position d'\'equilibre stable, la p\'eriode de ces oscillations est $T=4a$ et l'angle maximal atteint est $y_0$}. 
+
+\bsk
+\hrule
+\eject
+
+{\bf EXERCICE 6 :}\msk
+Soit $A\in{\cal M}_n(\rmat)$ dont toutes les valeurs propres ont des parties r\'eelles strictement n\'egatives.\msk
+{\bf 1.} Montrer que l'application $\;b:(x,y)\mapsto\int_0^{\ii}\Big(e^{tA}x\>\big|\>e^{tA}y\Big)\>{\rm d}t\;$ d\'efinit un produit scalaire sur $\rmat^n$.\msk
+{\bf 2.} Soit $f:\rmat^n\vers\rmat^n$, de classe ${\cal C}^1$, avec $\system{&f(0)&=&&0\cr &{\rm d}f(0)&=&&A\cr}\;$ .\msk\sect Soit $x_0\in\rmat^n$.
+Montrer que, pour $\|x_0\|$ suffisamment petit, la solution maximale $x$ du probl\`eme {\bf (*)}~: $\system{&x'&=&f(x)\cr &x(0)&=&x_0\cr}\;$ est d\'efinie sur $\rplus$ et v\'erifie $\Lim{t}{\ii}x(t)=0$.
+
+\msk
+
+{\it Source : Fran\c cois ROUVI\`ERE, Petit guide de calcul diff\'erentiel, \'Editions Cassini, ISBN 2-84225-008-7}
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Utilisons la r\'eduction de $A$ suivant ses sous-espaces caract\'eristiques. Notons $E=\cmat^n$, notons $u$ l'endomorphisme de $E$ canoniquement associ\'e \`a la matrice $A$. Alors $E=\bigoplus_{j=1}^mE_j$, avec $E_j=\Ker(u-\lam_j\id_E)^{r_j}$. {\it Rappelons que $r_j$ est ici l'ordre de multiplicit\'e de la valeur propre $\lam_j$ en tant que racine du polyn\^ome minimal de $A$, et c'est aussi l'indice de nilpotence de la restriction \`a $E_j$ de l'endomorphisme $u-\lam_j\id_E$.}\ssk\sect
+Si $x\in E$, on le d\'ecompose en $x=x_1+\cdots+x_m$ avec $x_j\in E_j$ pour tout $j$. Alors, en notant $\|\cdot\|$ une norme quelconque sur $\cmat^n$, on a $\|e^{tA}\>x\|\ie\sum_{j=1}^m\|e^{tA}\>x_j\|$, mais
+$$e^{tA}\>x_j=e^{t\lam_j}\>e^{t(A-\lam_j I)}\>x_j=e^{t\lam_j}\lp\sum_{k=0}^{r_j-1}{t^k\s k!}(A-\lam_j I)^kx_j\rp\;.$$
+Ainsi,\vvv
+$$\|e^{tA}\>x_j\|\ie e^{t\lam_j}\>\lp\sum_{k=0}^{r_j-1}{1\s k!}\>\|(A-\lam_j I)^kx_j\|\>|t|^k\rp\ie P_j(|t|)\>e^{t\lam_j}\;,$$
+o\`u $P_j$ est un polyn\^ome. On a $|e^{t\lam_j}|=e^{t\cdot\Re(\lam_j)}$ donc, en notant $\max_{1\ie j\ie m}\Re(\lam_j)=-a<0$ et $r=\max_{1\ie j\ie m}(r_j)-1$, chaque terme $\|e^{tA}\>x_j\|$ est un $O(t^r\>e^{-at})$ lorsque $t$ tend vers $\ii$, donc $\|e^{tA}\>x\|=O(t^r\>e^{-at})$ lorsque $t\vers\ii$.
+\msk\sect
+\`A partir de maintenant, notons $\|\cdot\|$ la norme euclidienne canonique sur $\rmat^n$. Pour tout\break $(x,y)\in(\rmat^n)^2$, on a\vv
+$$\Big|\big(e^{tA}x\>|e^{tA}y\big)\Big|\ie\|e^{tA}\>x\|\>\|e^{tA}\>y\|=O(t^{2r}\>e^{-2at})$$
+lorsque $t$ tend vers $\ii$, donc la fonction $t\mapsto\big(e^{tA}x\>|e^{tA}y\big)$ est int\'egrable sur $\rplus$, d'o\`u l'existence de $b(x,y)$.\msk\sect
+La bilin\'earit\'e, la sym\'etrie et la positivit\'e de $b$ sont imm\'ediates. Si $b(x,x)=0$, alors $e^{tA}\>=0$ pour tout $t\in\rplus$, donc $x=0$.\msk\sect
+{\it La forme quadratique d\'efinie positive $q:x\mapsto b(x,x)$ est appel\'ee} {\bf fonction de Liapounov}. {\it Nous poserons d\'esormais $N(x)=\sqrt{q(x)}$~: ainsi, $N$ est une norme euclidienne sur $\rmat^n$.}
+
+\msk
+{\bf 2.} Soit $x:I\vers\rmat^n$ la solution maximale du probl\`eme de Cauchy {\bf (*)}. On sait que $I\cap\rplus=[0,\omega[$ avec $0<\omega\ie\ii$.\msk\sect
+Notons que, pour tout vecteur $y$ de $\rmat^n$, on a $\;{{\rm d}\s{\rm d}t}\big(e^{tA}\>y\big)=A\>e^{tA}\>y$, d'o\`u\vv
+\begin{eqnarray*}
+b(y,Ay) & = & \int_0^{\ii}\big(e^{tA}\>y\>|\>A\>e^{tA}\>y\big)\>{\rm d}t={1\s2}\>\int_0^{\ii}\lp{{\rm d}\s{\rm d}t}\>\|e^{tA}\>y\|^2\rp\>{\rm d}t\\
+& = & {1\s2}\>\Big[\|e^{tA}\>y\|^2\Big]_0^{\ii}=-{1\s2}\>\|y\|^2\;.
+\end{eqnarray*}
+Les normes $N$ et $\|\cdot\|$ sur $\rmat^n$ sont \'equivalentes~:\vv
+$$\e(C_1,C_2)\in(\rpe)^2\quad\a y\in\rmat^n\qquad C_1\|y\|\ie N(y)\ie C_2\|y\|\;.$$
+La fonction $f$ \'etant diff\'erentiable en 0 avec $f(0)=0$ et ${\rm d}f(0)=A$, si on se donne $\rho>0$, on peut trouver $r>0$ tel que\vv
+$$\a y\in\rmat^n\qquad N(y)\ie r\impl N\big(f(y)-Ay\big)\ie\rho\>N(y)\;.$$
+Supposons $N(x_0)<r$ et soit $\;J=\{t\in I\cap\rplus\;|\;\a s\in[0,t]\quad N\big(x(s)\big)<r\}$. Alors $J$ est un intervalle inclus dans $\rplus$, contenant 0 et non r\'eduit \`a $\{0\}$. Pour $t\in J$, on a\vv
+\begin{eqnarray*}
+{{\rm d}\s {\rm d}t}\>q\big(x(t)\big) & = & 2\>b\big(x(t),x'(t)\big)\\
+& = & 2\>b\big(x(t),A\>x(t)\big)+2\>b\Big(x(t),f(x(t))-A\>x(t)\Big)\\
+& \ie & -\|x(t)\|^2+2\>N\big(x(t)\big)\>N\big(f\big(x(t)\big)-A\>x(t)\big)\\
+& \ie & -{1\s C_2^2}\>q\big(x(t)\big)+2\>\rho\>q\big(x(t)\big)
+=\lp2\rho-{1\s C_2^2}\rp\>q\big(x(t)\big)\;.
+\end{eqnarray*}
+Choisissons $\rho$ tel que $0<\rho<{1\s2C_2^2}$ et posons $m={1\s C_2^2}-2\rho>0$. On a alors
+$$\a t\in J\qquad {{\rm d}\s{\rm d}t}\>q\big(x(t)\big)\ie-m\>q\big(x(t)\big)\;.$$
+La fonction $\;z:t\mapsto z(t)=e^{mt}\>q\big(x(t)\big)\;$ est alors d\'ecroissante sur $J$ puisque $z'\ie0$ sur $J$, donc $\;\a t\in J\quad q\big(x(t)\big)\ie e^{-mt}\>q(x_0)\;$ {\bf (**)}.\ssk\sect
+Soit $\beta=\sup J$. On a $0<\beta\ie\omega$ car $J\subset I$. Si on avait $\beta<\omega$, alors n\'ecessairement $\beta<\ii$ et, de $\;\a t\in\lc{\beta\s2},\beta\rci\quad N\big(x(t)\big)\ie e^{{}^{\sst-m{\sst\beta\sur\sst4}}}r$, on tire $N\big(x(\beta)\big)<r$ et, par continuit\'e, $\sup J>\beta$, ce qui est contradictoire. Donc $\beta=\omega$.\ssk\sect
+On a $\omega=\ii$~: si on avait $\omega<\ii$, alors la fonction $x$ resterait born\'ee dans $[0,\omega[$, ainsi que la fonction $x'=f\circ x$ puisque $f$ est de classe ${\cal C}^1$~; la fonction $x$ serait donc lipschitzienne sur $[0,\omega[$ donc prolongeable par continuit\'e en $\omega$ (elle v\'erifie le crit\`ere de Cauchy en ce point), et le th\'eor\`eme de Cauchy-Lipschitz permettrait de ``prolonger la solution'' au-del\`a de $\omega$, ce qui contredit la maximalit\'e de cette solution.\ssk\sect
+Enfin, l'in\'egalit\'e {\bf (**)} montre que $\Lim{t}{\ii}x(t)=0$. {\it L'origine est un point fixe} {\bf asymptotiquement stable} {\it (ou ``point d'\'equilibre attractif'') du syst\`eme diff\'erentiel non lin\'eaire} $x'=f(x)$.
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,966 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % \'evite le textstyle en mode
+                                % math\'ematique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math\'ematiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de pr\'esentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% divers
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'\'ecriture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% \`a l'int\'erieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d\'ecroissante),
+% \nondef (la fonction est non d\'efinie)
+% si l'on termine la derni\`ere ligne par \cr, un trait est tir\'e en dessous
+% sinon elle est laiss\'ee sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  
+\def\rmat{{\rm I\kern-0.6mm R}}  
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____d\'ef de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% Alg\`ebre lin\'eaire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________d\'eterminant_______
+\def\det{\mathop{\rm det}\nolimits} 
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos\'ee ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  
+\def\MC#1{{\cal M}_{#1}(\cmat)}  
+\def\MK#1{{\cal M}_{#1}(\kmat)}  
+
+%________Complexes_________ 
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   
+\def\Arccos{\mathop{\rm Arccos}\nolimits}  
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     
+\def\Argch{\mathop{\rm Argch}\nolimits}     
+\def\Argth{\mathop{\rm Argth}\nolimits}     
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} 
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s\'eries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr\'eg\'ees%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-\`a-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+\def\cala{{\cal A}}
+\def\fhat{\widehat{f}}
+\let\wh=\widehat
+\def\ftilde{\tilde{f}}
+
+% ********************************************************************************************************************** %
+%                                                                                                                                                                                   %
+%                                                                    FIN   DES   MACROS                                                                              %
+%                                                                                                                                                                                   %
+% ********************************************************************************************************************** %
+
+
+
+
+
+
+
+
+
+
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+
+
+
+\overfullrule=0mm
+
+
+\cl{{\bf SEMAINE 13}}\msk
+\cl{{\bf INT\'EGRALES D\'EPENDANT d'UN PARAM\`ETRE}}
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+Si $f:\rplus\vers\cmat$ est une fonction continue par morceaux, la {\bf transform\'ee de Laplace} de $f$ est la fonction ${\cal L}[f]$ d\'efinie par\vv
+$$\lap{f}(p)=\int_0^{\ii}e^{-pt}\>f(t)\>dt$$
+pour tout r\'eel $p$ tel que cette int\'egrale est convergente.
+\msk
+{\bf 1.} {\bf Th\'eor\`eme de la valeur finale}\pn
+Soit $f:\rplus\vers\cmat$, continue par morceaux, admettant une limite finie
+en $\ii$~: $\Lim{t}{\ii}f(t)=l$.\pn
+Montrer que la transform\'ee $\lap{f}$ est d\'efinie (au moins) sur $\rpe$ et
+que\vv
+$$\Lim{p}{0^+}p\cdot\lap{f}(p)=l=\Lim{t}{\ii}f(t)\;.$$
+\par
+{\bf 2.} Soit $f:\rplus\vers\cmat$, continue, telle que l'int\'egrale $\int_0^{\ii}f(t)
+\;dt$ soit convergente (\'eventuellement ``semi-convergente''). Montrer alors
+que, pour tout $p\ge0$, l'int\'egrale $\int_0^{\ii}f(t)\>e^{-pt}\;dt\;$ converge
+et que la fonction $\;p\mapsto\int_0^{\ii}f(t)\>e^{-pt}\;dt\;$ est continue
+sur $\rplus$.
+\msk
+{\bf 3.} Utiliser la question pr\'ec\'edente pour calculer l'int\'egrale $\;I=\int_0^{\ii}{\sin t\s t}\>dt$.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} La fonction $f$ est born\'ee sur $\rplus$ donc, pour tout $p>0$, la fonction $\>t\mapsto e^{-pt}\>f(t)\>$ est int\'egrable sur $\rplus$. \'Ecrivons\vv
+$$p\cdot\lap{f}(p)-l=\int_0^{\ii}p\>e^{-pt}\>\big(f(t)-l\big)\;dt\;.$$
+Soit $M$ un majorant de $|f(t)-l|$ sur $\rplus$. Pour tout $A>0$, on peut alors \'ecrire\vv
+\begin{eqnarray*}
+|p\cdot\lap{f}(p)-l| & \ie & \left|\int_0^Ap\>e^{-pt}\>\big(f(t)-l\big)\;dt\right|+\left|\int_A^{\ii}p\>e^{-pt}\>\big(f(t)-l\big)\;dt\right|\\
+& \ie & M\>\int_0^A p\>e^{-pt}\>dt+\int_A^{\ii}p\>e^{-pt}\>|f(t)-l|\>dt\;.\qquad\hbox{\bf (*)}
+\end{eqnarray*}
+\sect
+Donnons-nous alors $\eps>0$. Fixons $A$ tel que $|f(t)-l|<{\eps\s2}$ pour $t\se A$, ce qui rend la deuxi\`eme int\'egrale de {\bf (*)} inf\'erieure \`a ${\eps\s2}$. Comme $\int_0^A p\>e^{-pt}\>dt=1-e^{-pA}\Vers{p}{0}0$, on peut rendre la premi\`ere int\'egrale inf\'erieure \`a ${\eps\s2}$ en prenant $p$ suffisamment proche de $0$. On a ainsi prouv\'e que $\Lim{p}{0^+}\big(p\cdot\lap{f}(p)-l\big)=0$.\msk
+{\it On en d\'eduit que, si $l\not=0$, alors l'ensemble de d\'efinition de $\lap{f}$ est exactement $\rpe$ et que\break$\lap{f}(p)
+\equi_{p\vers0}{l\s p}$}.
+
+\msk
+{\bf 2.} Soit $F$ la primitive de $f$ qui s'annule en z\'ero. La fonction
+$F$ est de classe ${\cal C}^1$ sur $\rplus$ et admet une limite finie en $\ii$, donc est born\'ee sur $\rplus$.
+Pour tout $p>0$, la fonction $t\mapsto F(t)\>e^{-pt}$ est int\'egrable sur $\rplus$ et $\Lim{t}{\ii}F(t)\>e^{-pt}=0$, ce qui permet une int\'egration par parties~:
+$$\a p\in\rpe\qquad\int_0^{\ii}f(t)\>e^{-pt}\;dt=p\cdot\int_0^{\ii}F(t)\>e^{-pt}\;dt\;.$$
+La transform\'ee de Laplace $\lap{f}$ est donc d\'efinie (au moins) sur $\rplus$ et on a\vv
+$$\a p\in\rpe\qquad \lap{f}(p)=p\cdot\lap{F}(p)\;.\qquad\hbox{\bf (*)}$$
+La transform\'ee $\lap{F}$, d\'efinie au moins sur $\rpe$, est continue sur cet intervalle~: en effet, si on fixe $p_0>0$, la fonction $t\mapsto F(t)\>e^{-p_0t}$ est int\'egrable sur $\rplus$ et une domination \'evidente montre la continuit\'e de $\lap{F}$ sur l'intervalle $[p_0,\ii[\>$. Gr\^ace \`a {\bf (*)}, on d\'eduit la continuit\'e de $\lap{f}$ sur $\rpe$. Enfin,\vv
+$$\lap{f}(0)=\int_0^{\ii}f(t)\>dt=\lim_{\ii}F=\Lim{p}{0^+}p\cdot\lap{F}(p)=\Lim{p}{0^+}\lap{f}(p)$$
+d'apr\`es le th\'eor\`eme de la valeur finale, d'o\`u la continuit\'e de la fonction $\lap{f}$ en 0.
+
+\msk
+{\bf 3.} Il est bien connu que cette int\'egrale $I$ est ``semi-convergente''.
+Appliquons alors la question {\bf 2.} \`a la fonction ``sinus cardinal'', \`a savoir $f:t\mapsto{\sin t\s t}$, prolong\'ee par continuit\'e en z\'ero~: sa transform\'ee de Laplace est donc d\'efinie et continue sur $\rplus$. Or, il est assez ais\'e de calculer l'expression de $\;\lap{f}(p)=\int_0^{\ii}e^{-pt}\>{\sin t\s t}\>dt\;$ pour $p>0$.\msk\sect
+Pour cela, consid\'erons $g:(p,t)\mapsto e^{-pt}\;{\sin t\s t}$. La fonction $g$ est
+continue sur
+$(\rpe)^2$ et, si $a>0$, on~a $|g(p,t)|\le{e^{-at}\>|\sin t|\s t}$ pour
+$(p,t)\in[a,\ii[\times\rpe$. La fonction $\;t\mapsto{e^{-at}\>|\sin t|\s t}$
+\'etant int\'egrable sur $\rpe$, cela prouve la continuit\'e de la fonction $\lap{f}$ sur $[a,\ii[$
+pour tout $a>0$, donc sur $\rpe$.\ssk\sect
+De plus, $\DP{g}{p}(p,t)=-e^{-pt}\;\sin t\;$ et, si $a>0$, la majoration\vv
+$$\left|\DP{g}{p}(p,t)\right|\le e^{-at}\;,\;\hbox{valable pour}\quad
+  (p,t)\in[a,\ii[\times\rpe\;,$$
+prouve que la fonction $\Phi=\lap{f}$ est de classe ${\cal C}^1$ sur $[a,\ii[$ pour tout $a>0$,
+donc sur $\rpe$, avec\vv
+$$\Phi'(p)=-\int_0^{\ii}e^{-pt}\;\sin t\;dt=-{1\s1+p^2}\;.$$
+Donc $\;\Phi(p)=C-\arctan p\;$ sur $\rpe$ et le th\'eor\`eme de convergence domin\'ee
+(``version familiale'', c'est-\`a-dire appliqu\'e \`a une famille de fonctions) permet de montrer que $\lim_{\ii}\Phi=0$, donc
+$C={\pi\s2}$ et $$\a p\in\rpe\qquad \Phi(p)=\lap{f}(p)={\pi\s2}-\Arctan p\;.$$
+La question {\bf 2.} permet d'affirmer que la fonction $\lap{f}$ est continue en z\'ero ({\it ce que les th\'eor\`emes du cours ne suffisent pas \`a garantir puisque la fonction sinus cardinal n'est pas int\'egrable sur $\rplus$}), d'o\`u\vv
+$$I=\int_0^{\ii}{\sin t\s t}\>dt=\lap{f}(0)=\Lim{p}{0^+}\lap{f}(p)={\pi\s2}\;.$$
+
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 2 :}\msk
+Pour tout $x>0$, on pose $\;\Gamma(x)=\int_0^{\ii}e^{-t}\>t^{x-1}\>dt$.\msk
+{\bf 1.} D\'emontrer la relation~: \qquad $\a x\in\rpe\qquad\Gamma(x)=\Lim{n}{\infty}\int_0^n\lp1-{t\s n}\rp^n\>t^{x-1}\>dt$.\msk
+{\bf 2.} En d\'eduire~:\qquad$\a x\in\rpe\qquad \Gamma(x)=\Lim{n}{\ii}{n^x\;n!\s x(x+1)\cdots(x+n)}$.\msk\sect
+En d\'eduire, pour tout $x>0$ fix\'e, l'\'equivalence\vv
+$$x(x+1)\cdots(x+n)\sim{n^x\>n!\s\Gamma(x)}$$
+lorsque $n$ tend vers $\ii$.\msk
+Dans la suite de l'exercice, on note  $f$ une fonction logarithmiquement convexe (c'est-\`a-dire
+la fonction $x\mapsto\ln\big(f(x)\big)$ est convexe) de $\rpe$ vers $\rpe$, v\'erifiant $f(1)=1$ et
+la relation fonctionnelle $\;\a x\in\rpe\quad f(x+1)=x\>f(x)$.\msk
+{\bf 3.} Soient $x>0$, $y>0$, $\lam\in[0,1]$. Posons $t=\lam x+(1-\lam)y$.
+Montrer, pour tout $n\in\nmat$, l'in\'egalit\'e\vv
+$$t(t+1)\cdots(t+n)\>f(t)\le\big(x(x+1)\cdots(x+n)\;f(x)\big)
+  ^{\lam}\cdot\big(y(y+1)\cdots(y+n)\;f(y)\big)^{1-\lam}\;.$$\ssk\sect
+En d\'eduire que\vvvv
+$${f(t)\s\Gamma(t)}\le\lp{f(x)\s\Gamma(x)}\rp^{\lam}\>
+  \lp{f(y)\s\Gamma(y)}\rp^{1-\lam}\;.$$\ssk
+{\bf 4.} Montrer que $f=\Gamma$.
+
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Plus g\'en\'eralement, soit $f:\;]0,\ii[\vers\cmat$ une fonction continue telle que la
+fonction\break $g:t\mapsto e^{-t}\>f(t)$ soit int\'egrable sur $\rmat_+^*$. Alors\vv
+$$\int_0^{\ii}e^{-t}\;f(t)\;dt=\Lim{n}{\ii}\int_0^n\lp1-{t\s n}\rp
+^n\;f(t)\;dt\;.$$
+En effet, pour tout r\'eel $t$, on a $e^{-t}=\Lim{n}{\ii}
+\lp1-{t\s n}\rp^n$. D\'efinissons, pour tout $n\in\nmat^*$, une
+fonction $u_n:\;]0,\ii[\vers\rmat$ par\vv
+$$u_n(t)\;=\system{&\lp1-{t\s n}\rp^n\quad&\hbox{si}\quad&0<t\le n\cr
+                   &\hfill0\hfill         &\hbox{si}\quad&t>n\;.\cr}$$
+Alors $u_n$ est continue sur $\rmat_+^*$ et la suite $(u_n)$ converge
+simplement, sur $\rmat_+^*$, vers la fonction $t\mapsto e^{-t}$.\pn
+En posant $g_n=u_n\cdot f$, on a une suite $(g_n)$ de fonctions continues
+sur $\rmat_+^*$, convergeant simplement vers $g$ sur $\rmat_+^*$.
+L'in\'egalit\'e classique $\;\ln\lp1-{t\s n}\rp\le-{t\s n}$, va\-lable pour
+$t\in[0,n[\;$, montre que\vv
+$$\a n\in\nmat^*\quad\a t\in\rmat_+^*\qquad 0\le u_n(t)\le e^{-t}\quad
+\hbox{donc}\quad|g_n(t)|\le|g(t)|\;.$$
+L'hypoth\`ese de domination est alors v\'erifi\'ee et le th\'eor\`eme de convergence
+domin\'ee s'applique. Il suffit donc d'appliquer ce r\'esultat avec $\;f(t)=t^{x-1}$.
+
+\msk
+{\bf 2.} Le changement de variable $t=nu$ donne\vv
+$$\int_0^n\lp1-{t\s n}\rp^n\>t^{x-1}\;dt =n^x\;\int_0^1(1-u)^n
+                                                         \>u^{x-1}\;du
+                                                    =n^x\;B(x,n+1)\;,$$
+en notant $\;B(p,q)=\int_0^1u^{p-1}\>(1-u)^{q-1}\>du\;$ pour $p$ et $q$ r\'eels strictement positifs ({\bf int\'egrale eul\'erienne de premi\`ere esp\`ece}). La fonction $u\mapsto u^{p-1}(1-u)^{q-1}$
+est bien int\'egrable sur $]0,1[$ et, pour tout $n\in\net$ et $x>0$, une int\'egration
+par parties donne\vv
+\begin{eqnarray*}
+B(x,n+1) & = & \int_0^1u^{x-1}(1-u)^n\;du
+                      =\lc(1-u)^n{u^x\s x}\rc_0^1+{n\s x}\;
+                                 \int_0^1u^x(1-u)^{n-1}\;du\\
+                    & = & {n\s x}\;B(x+1,n)\;.
+\end{eqnarray*}
+\`A partir de $B(x,1)=\int_0^1u^{x-1}\;du={1\s x}$ pour tout $x>0$, une
+r\'ecurrence imm\'ediate donne
+$$B(x,n)={(n-1)!\s x(x+1)(x+2)\cdots(x+n-1)}\;.$$
+Finalement,\vv
+$$\a x\in\rpe\quad\a n\in\net\qquad\int_0^n\lp1-{t\s n}\rp^n\>t^{x-1}\;dt={n^x\;n!\s x(x+1)\cdots(x+n)}\;,$$
+d'o\`u le r\'esultat. L'\'equivalence demand\'ee est alors une cons\'equence imm\'ediate.
+
+\msk
+{\bf 3.} En vertu de la relation fonctionnelle satisfaite par $f$, l'in\'egalit\'e \`a prouver \'equivaut \`a\vv
+$$f\big(\lam(x+n+1)+(1-\lam)(y+n+1)\big)\le\big(f(x+n+1)\big)^{\lam}
+  \>\big(f(y+n+1)\big)^{1-\lam}\;,$$
+ou encore \`a\vv
+$$\ln\Big[f\big(\lam(x+n+1)+(1-\lam)(y+n+1)\big)\Big]\le\lam\>\ln\big(f(x+n+1)\big)+
+  (1-\lam)\>\ln\big(f(y+n+1)\big)\;,$$
+ce qui r\'esulte de la convexit\'e de la fonction $\ln\circ f$.\msk\sect
+L'in\'egalit\'e obtenue peut aussi s'\'ecrire\vv
+$${f(t)\s\big(f(x)\big)^{\lam}\>\big(f(y)\big)^{1-\lam}}\le
+  {\big(x(x+1)\cdots(x+n)\big)^{\lam}\;\big(y(y+1)\cdots(y+n)\big)^{1-\lam}
+  \s t(t+1)\cdots(t+n)}\;.\qquad\quad\hbox{\bf (*)}$$
+Faisons tendre $n$ vers $\ii$ en utilisant l'\'equivalence d\'emontr\'ee \`a la fin de la question {\bf 2.} 
+Le second membre de {\bf (*)} tend vers $\;{\Gamma(t)\s\big(\Gamma(x)\big)^{\lam}\>\big(\Gamma(y)\big)^{1-\lam}}$.
+Il vient alors
+$${f(t)\s\Gamma(t)}\le\lp{f(x)\s\Gamma(x)}\rp^{\lam}\>
+  \lp{f(y)\s\Gamma(y)}\rp^{1-\lam}\;.$$
+\ssk
+{\bf 4.} L'in\'egalit\'e obtenue ci-dessus signifie que la fonction $\ln\lp
+{f\s\Gamma}\rp\;$ est convexe sur $\rpe$. Or, cette fonction est
+1-p\'eriodique. Elle est donc constante~: en effet, si une fonction $g$ est convexe et 1-p\'eriodique sur $\rpe$ avec $g(1)=g(2)=C$, on obtient ais\'ement $g\ie C$ sur $[1,2]$ et $g\se C$ sur $[2,3]$ et la p\'eriodicit\'e entra\^\i ne $g=C$ sur $[1,3]$, donc sur $\rpe$.\msk\sect
+Comme $f(1)=\Gamma(1)=1$, on a donc $f=\Gamma$.
+
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 3 :}\msk
+{\bf 1.}. Soit $\ffi:[0,1]\vers\rmat$ une application de classe $\ce^2$.
+D\'emontrer l'\'egalit\'e\vvv
+$$\int_0^1\ffi(t)\;dt={1\s2}\big(\ffi(0)+\ffi(1)\big)-{1\s2}\>\int_0^1
+  t(1-t)\>\ffi''(t)\;dt\;.\eqno\hbox{\bf (*)}$$
+On suppose maintenant que $\ffi(0)=\ffi(1)=0$. Montrer l'existence d'une
+constante $C$ telle
+que $\;\left|\int_0^1\ffi\right|\le C\cdot M$, o\`u $M=\max_{[0,1]}|\ffi''|$.
+\msk
+{\bf 2.} On note $K$ le pav\'e $[0,1]^2$. Soit $f:K\vers\rmat$, de classe
+$\ce^4$. On suppose que $f$ est nulle sur le bord $\ddd K$ du pav\'e $K$ et
+que $\;\left|{\ddd^4f\s\ddd x^2\>\ddd y^2}\right|\le M'\;$
+sur $K$. Trouver une constante $C'$ telle que
+$$\left|\intd_Kf\right|\le C'\cdot M'\;.$$
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Par deux int\'egrations par parties successives, on obtient\vv
+\begin{eqnarray*}
+\int_0^1t(1-t)\>\ffi''(t)\;dt & = & \big[t(1-t)\>\ffi'(t)\big]_0^1
+                                             +\int_0^1(2t-1)\>\ffi'(t)\;dt\\
+                                         & = & \big[(2t-1)\>\ffi(t)\big]_0^1-
+                                             2\>\int_0^1\ffi(t)\;dt\\
+                                         & = & \ffi(1)+\ffi(0)-2\int_0^1\ffi
+                                             \;,
+\end{eqnarray*}
+d'o\`u la relation {\bf (*)}. Si $\ffi(0)=\ffi(1)=0$, il est alors imm\'ediat
+que\vv
+$$\left|\int_0^1\ffi\right|={1\s2}\left|\int_0^1t(1-t)\>\ffi''(t)\;dt\right|
+  \le{M\s2}\>\int_0^1t(1-t)\;dt={M\s12}\;,$$
+d'o\`u la possibilit\'e de choisir $C={1\s12}$.\pn
+Ce choix est le ``meilleur'' possible, ainsi qu'on le voit en consid\'erant la
+fonction\break $\ffi:t\mapsto t(1-t)\;$ (fonction v\'erifiant $\ffi(0)=\ffi(1)=0$ et
+$\ffi''$ constante sur $[0,1]$).
+
+\msk
+{\bf 2.} La formule de Fubini permet d'\'ecrire\vv
+$$\intd_Kf=\int_0^1\lp\int_0^1f(x,y)\;dy\rp\>dx\;.$$
+Or, en appliquant {\bf (*)} \`a $\;y\mapsto f(x,y)\;$ pour un $x\in[0,1]$
+fix\'e, puisque $f(x,0)=f(x,1)=0$,\vv
+$$\int_0^1f(x,y)\;dy=-{1\s2}\>\int_0^1y(1-y)\>{\ddd^2f\s\ddd y^2}(x,y)\;dy
+  \;,$$
+puis\vv
+\begin{eqnarray*}
+\intd_Kf & = & -{1\s2}\>\int_0^1\lp\int_0^1y(1-y)\>{\ddd^2f\s
+                            \ddd y^2}(x,y)\;dy\rp\>dx\\
+                    & = & -{1\s2}\>\int_0^1y(1-y)\>\lp\int_0^1
+                            {\ddd^2f\s\ddd y^2}(x,y)\;dx\rp\>dy\qquad\quad
+                            \hbox{(Fubini)}
+\end{eqnarray*}
+et, de nouveau gr\^ace \`a {\bf (*)}, pour tout $y\in[0,1]$ fix\'e, puisque
+$\;{\ddd^2f\s\ddd y^2}(0,y)={\ddd^2f\s\ddd y^2}(1,y)=0$,\vv
+$$\int_0^1{\ddd^2f\s\ddd y^2}(x,y)\;dx=-{1\s2}\>\int_0^1x(1-x)\>
+  {\ddd^4f\s\ddd x^2\>\ddd y^2}(x,y)\;dx$$
+et, finalement, en utilisant une derni\`ere fois Fubini,\vv
+$$\intd_Kf={1\s4}\intd_Kxy(1-x)(1-y)\>{\ddd^4f\s\ddd x^2\>\ddd y^2}(x,y)
+  \>dx\>dy\;,$$
+d'o\`u la majoration\vv
+$$\left|\intd_Kf\right|\le{M'\s4}\>\intd_Kxy(1-x)(1-y)\;dx\>dy={M'\s4}\>
+  \lp\int_0^1x(1-x)\>dx\rp^2={M'\s144}$$
+qui permet de choisir $C'={1\s144}$. Ici encore, la fonction $\;f:(x,y)
+\mapsto xy(1-x)(1-y)$, nulle sur le bord du pav\'e $K$ et dont la d\'eriv\'ee
+partielle ${\ddd^4f\s\ddd x^2\>\ddd y^2}$ garde une valeur constante, montre
+que $C'={1\s144}$ est ``la meilleure'' constante possible.
+
+
+\eject
+
+
+{\bf EXERCICE 4 :}\msk
+{\bf Produit de convolution dans} $\ce_{2\pi}$\msk
+Soit ${\cal E}=\ce_{2\pi}$ le $\cmat$-espace vectoriel des fonctions continues
+et $2\pi$-p\'eriodiques de
+$\rmat$ vers $\cmat$. Pour tous $f$, $g$ de ${\cal E}$, on d\'efinit une fonction
+$f*g$ par la relation\vv
+$$\a x\in\rmat\qquad (f*g)(x)=\int_0^{2\pi}f(t)\>g(x-t)\;dt\;.$$\par
+{\bf 1.} V\'erifier que $*$ est une loi interne commutative dans ${\cal E}$.\pn
+Si l'une des fonctions $f$ ou $g$ est suppos\'ee de classe $\ceun$,
+que peut-on dire de $f*g$ ?\msk
+{\bf 2.} Montrer que ${\cal E}$, muni des lois $+$ (addition usuelle) et $*$,
+poss\`ede une structure de pseudo-alg\`ebre sur $\cmat$ (pas d'\'el\'ement unit\'e).\msk
+{\bf 3.} On appelle {\itbf approximation de l'unit\'e $2\pi$-p\'eriodique} toute suite
+$(e_n)_{n\in\nmat}$ de fonctions de ${\cal E}$ v\'erifiant\ssk\sect
+$\bullet$ $\quad \a n\in\nmat\qquad e_n\ge0\;$ sur $\rmat$~;\ssk\sect
+$\bullet$ $\quad \a n\in\nmat\qquad \int_{-\pi}^{\pi}e_n=1\;$~; \ssk\sect
+$\bullet$ \quad pour tout $\alpha\in\>]0,\pi[\;$, la suite $(e_n)$
+               converge uniform\'ement vers la fonction nulle sur
+                $\;[-\pi,-\alpha]\;$ et sur $\;[\alpha,\pi]\;$.\msk\sect
+Montrer qu'alors, pour tout $f\in {\cal E}$, la suite de fonctions $(e_n*f)$
+converge uniform\'ement vers $f$ sur $\rmat$.\msk
+{\bf 4.} Montrer que, pour tous $f$, $g\in {\cal E}$, on a\vv
+$$\int_0^{2\pi}f*g=\lp\int_0^{2\pi}f\rp\>\lp\int_0^{2\pi}g\rp\;.$$
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+
+{\bf 1.} La continuit\'e de $\;(x,t)\mapsto f(t)\>g(x-t)\;$ sur $\rmat\times
+[0,2\pi]$ garantit la continuit\'e de $f*g$ sur $\rmat$. La p\'eriodicit\'e est
+imm\'ediate.\ssk\sect
+La commutativit\'e se d\'emontre en faisant le changement de variable $u=x-t$
+et en notant que l'int\'egrale d'une fonction $2\pi$-p\'eriodique sur
+$[a,a+2\pi]$ ne d\'epend pas du r\'eel $a$.\ssk\sect
+Si $g$ est de classe $\ceun$ sur $\rmat$, la formule de Leibniz montre que
+$f*g$ est de classe $\ceun$ sur $\rmat$ avec $(f*g)'=f*g'$.
+Gr\^ace \`a la commutativit\'e, si $f$ est $\ceun$, alors $f*g$ est $\ceun$ et
+$(f*g)'=f'*g$. Notons que, si $f$ et $g$ sont toutes deux $\ceun$,
+alors $f*g'=f'*g$, ce que l'on retrouve par une int\'egration par parties.
+\msk
+{\bf 2.} La distributivit\'e de la convolution par rapport \`a l'addition\vvv
+$$f*(g+h)=f*g+f*h$$\sect
+est imm\'ediate.\ssk\sect
+Prouvons l'associativit\'e de la loi de convolution~:\vv
+\begin{eqnarray*}
+\big[(f*g)*h\big](x) & = & \int_0^{2\pi}(f*g)(t)\>h(x-t)\;dt\\
+                                & = & \int_0^{2\pi}\lp\int_0^{2\pi}f(u)\>
+                                       g(t-u)\;du\rp\>h(x-t)\;dt\\
+                                & = & \int_0^{2\pi}f(u)\>\lp\int_0^{2\pi}
+                                       g(t-u)\>h(x-t)\;dt\rp\;du\;,
+\end{eqnarray*}
+d'apr\`es la formule de Fubini. Par ailleurs,\vv
+\begin{eqnarray*}
+\int_0^{2\pi}g(t-u)\>h(x-t)\;dt & = & \int_{-u}^{2\pi-u}g(s)\>
+                                                  h(x-u-s)\;ds\\
+                                           & = & \int_0^{2\pi}g(s)\>h(x-u-s)\;
+                                                  ds=(g*h)(x-u)\;,
+\end{eqnarray*}
+donc $\;\big[(f*g)*h\big](x)=\int_0^{2\pi}f(u)\>(g*h)(x-u)\;du=\big[f*(g*h)
+\big](x)$.\ssk\sect
+$({\cal E},+,*)$ est donc muni d'une structure de pseudo-anneau (pas
+d'\'el\'ement unit\'e) et il est imm\'ediat que $\lam (f*g)=(\lam f)*g=f*(\lam g)$
+pour $\lam\in\cmat$, $f\in {\cal E}$, $g\in {\cal E}$.\msk\sect
+V\'erifions qu'il n'y a effectivement pas d'\'el\'ement unit\'e : si une telle fonction $e$
+existait, pour tout $n\in\nmat$, notons $c_n$ la fonction de ${\cal E}$ d\'efinie
+par $c_n(x)=\cos nx$. Nous aurions alors, pour tout $n\in\nmat$,
+$(c_n*e)(0)=c_n(0)$, soit $\;\int_0^{2\pi}e(-t)\>\cos nt\;dt=1$, ce
+qui contredit manifestement le th\'eor\`eme de Riemann-Lebesgue.
+
+\msk
+{\bf 3.} Soit $f\in {\cal E}$. Notons $\;M=\|f\|_{\infty}=\max_{[0,2\pi]}|f|$.\ssk\sect
+Soit $\alpha\in\>]0,\pi[$. Nous avons, pour tout $x\in\rmat$,\vv
+$$(e_n*f)(x)-f(x)=\int_{-\pi}^{\pi}e_n(t)\>\big(f(x-t)-f(x)\big)\;dt
+  =I_1+I_2+I_3\;,$$
+o\`u $I_1$, $I_2$, $I_3$ sont les int\'egrales de cette m\^eme expression sur les
+intervalles $[-\pi,-\alpha]$, $[-\alpha,\alpha]$ et $[\alpha,\pi]$
+respectivement.\ssk\sect
+Donnons-nous alors un $\eps>0$. Comme $f$ est uniform\'ement continue sur
+$\rmat$ (car elle est continue et p\'eriodique), nous pouvons trouver un
+$\alpha>0$ tel que\vv
+$$\a(x,y)\in\rdeux\qquad|x-y|\le\alpha\impl|f(x)-f(y)|\le{\eps\s3}\;.$$
+Pour un tel choix de $\alpha$, nous avons\vv
+$$|I_2|\le\int_{-\alpha}^{\alpha}e_n(t)\>|f(x-t)-f(x)|\;dt\le{\eps\s3}\>
+  \int_{-\alpha}^{\alpha}e_n(t)\;dt\le{\eps\s3}\int_{-\pi}^{\pi}e_n=
+  {\eps\s3}\;.$$
+Cet $\alpha$ \'etant maintenant fix\'e, nous avons\vv
+$$|I_3|=\left|\int_{\alpha}^{\pi}e_n(t)\>\big(f(x-t)-f(x)\big)\;dt\right|\le
+  2M\>\int_{\alpha}^{\pi}e_n(t)\;dt\;,$$
+et cette derni\`ere expression tend vers 0 lorsque $n$ tend vers $\ii$ en vertu
+de la convergence uniforme de la suite $(e_n)$ vers 0 sur $[\alpha,\pi]$~;
+il est donc possible de la rendre inf\'erieure \`a ${\eps\s3}$ pour $n$ assez
+grand (et ceci ind\'ependamment de $x$). Proc\'edant de m\^eme pour majorer
+$|I_1|$, nous d\'eduisons l'existence d'un entier $N$ tel que\vv
+$$\a n\in\nmat\qquad n\ge N\impl\|e_n*f-f\|_{\infty}\le \eps\;,$$
+donc la convergence uniforme de $(e_n*f)$ vers $f$ sur $\rmat$.\pn
+On dit que la suite $(e_n)$ est une {\bf approximation de l'unit\'e}
+$2\pi$-{\bf p\'eriodique} car, pour
+tout $f$ de ${\cal E}$, les fonctions $e_n*f$ approchent $f$ uniform\'ement. 
+\msk
+{\bf 4.} C'est une cons\'equence imm\'ediate de la formule de Fubini~:\vv
+$$\int_0^{2\pi}f*g = \int_0^{2\pi}\lp\int_0^{2\pi}f(t)\>g(x-t)\;
+                                    dt\rp\;dx=\int_0^{2\pi}f(t)\>\lp
+                                    \int_0^{2\pi}g(x-t)\;dx\rp\;dt$$
+et l'int\'egrale int\'erieure est \'egale \`a $\;\int_0^{2\pi}g(s)\;ds$,
+d'o\`u le r\'esultat.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 5 :}\msk
+{\bf Produit de convolution dans} $\ce(\rplus)$\msk
+Pour traiter cet exercice, on pourra admettre la ``formule de Fubini dans un triangle''~:\ssk\new
+{\it Soit $a\in\rpe$. Soit $f:T_a\vers\cmat$, continue, o\`u $T_a$ est le ``triangle''~:
+\vv
+$$T_a=\{(x,y)\in\rdeux\;|\;x\ge0\,,\,y\ge0\,,\,x+y\le a\}\;.$$
+On a alors l'\'egalit\'e\vv
+$$\int_0^a\lp\int_0^{a-x}f(x,y)\;dy\rp\;dx=\int_0^a\lp\int_0^{a-y}f(x,y)\;
+  dx\rp\;dy$$
+et la valeur commune de ces deux int\'egrales sera not\'ee $\;\intd_{T_a}f(x,y)
+\;dx\>dy\;$ ou $\;\intd_{T_a}f\;$}.\msk
+Soit ${\cal E}=\ce(\rplus)$ le $\cmat$-espace vectoriel des fonctions
+continues de $\rplus$ vers $\cmat$. Pour tous $f$, $g$ de ${\cal E}$, on
+d\'efinit une fonction $f*g$ par la relation\vv
+$$\a x\in\rplus\qquad (f*g)(x)=\int_0^x f(t)\>g(x-t)\;dt\;.$$\par
+{\bf 1.} V\'erifier que $*$ est une loi interne commutative dans ${\cal E}$.\msk
+{\bf 2.} Montrer que ${\cal E}$, muni des lois $+$ (addition usuelle) et $*$,
+poss\`ede une
+structure de pseudo-alg\`ebre sur $\cmat$ (pas d'\'el\'ement unit\'e).\ssk
+{\bf 3.} Montrer que, pour tout $a\in\rplus$, l'int\'egrale $\;\int_0^a(f*g)(x)
+\;dx\;$ peut s'exprimer comme une int\'egrale double.\ssk
+{\bf 4.} Montrer que, si $f$ et $g$ sont int\'egrables sur $\rplus$, alors
+$f*g$ est int\'egrable sur $\rplus$ et\vv
+$$\int_{\rplus}f*g=\lp\int_{\rplus}f\rp\>\lp\int_{\rplus}g\rp\;.$$
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Le changement de variable lin\'eaire $t=xu$ donne\vv $$(f*g)(x)=x\>\int_0^1f(xu)\>g\big(x(1-u)\big)\>du$$ 
+et on en d\'eduit la continuit\'e de $f*g$ sur $\rplus$ ``par application des th\'eor\`emes usuels'' ({\it comme il est d'usage de dire}),
+donc $*$ est une loi interne dans ${\cal E}$.
+La commutativit\'e r\'esulte imm\'ediatement du changement de variable $u=x-t$.\msk
+{\bf 2.} La distributivit\'e de la convolution par rapport \`a l'addition
+$\;f*(g+h)=f*g+f*h\;$ est imm\'ediate.\ssk\sect
+L'associativit\'e
+utilise ``Fubini dans un triangle''~:\vv
+\begin{eqnarray*}
+\big[(f*g)*h\big](x) & = & \int_0^x(f*g)(x-t)\>h(t)\;dt\\
+                                & = & \int_0^x\lp\int_0^{x-t}f(u)\>
+                                       g(x-t-u)\;du\rp\>h(t)\;dt\\
+                                & = & \int_0^x\lp\int_0^{x-u}
+                                       g(x-t-u)\>h(t)\;dt\rp\>f(u)\>du\\
+                                & = & \int_0^x(g*h)(x-u)\>f(u)\>du = \big[f*(g*h)\big](x)\;.
+\end{eqnarray*}
+Pour prouver qu'il n'y a
+pas d'\'el\'ement neutre, on montre que la relation $e*1=1$, avec $e\in{\cal E}$, est impossible~: en effet, cela entra\^\i nerait $\int_0^xe(t)\>dt=1$ pour tout $x\in\rplus$, ce qui est manifestement impossible pour $x=0$.
+\msk
+{\bf 3.} Gr\^ace \`a ``Fubini dans un triangle'', on obtient\vv
+\begin{eqnarray*}
+\int_0^a (f*g)(x)\>dx & = & \int_0^a(f*g)(a-t)\;dt\\
+                                & = & \int_0^a\lp\int_0^{a-t}f(u)\>
+                                       g(a-t-u)\;du\rp\;dt\\
+                                & = & \int_0^a\lp\int_0^{a-u}
+                                       g(a-u-t)\;dt\rp\>f(u)\>du\\
+                                & = & \int_0^a\lp\int_0^{a-u}
+                                       g(t)\;dt\rp\>f(u)\>du\\
+                                & = & \intd_{T_a}f(x)\>g(y)\;dx\>dy\;,
+\end{eqnarray*}
+avec $\;T_a=\{(x,y)\in\rdeux\;|\;x\ge0\,,\,y\ge0\,,\,x+y\le a\}$.\msk
+{\bf 4.} Supposons $f$ et $g$ int\'egrables sur $\rplus$. Notons d'abord que $|f*g|\ie|f|*|g|$. Ensuite, pour tout $a>0$, notons $R_a$ le pav\'e $[0,a]^2$, on a, d'apr\`es la question pr\'ec\'edente,\vv
+$$\int_0^a|f*g|\ie\int_0^a|f|*|g|=\intd_{T_a}|f(x)\>g(y)|\;dx\>dy\ie\intd_{R_a}|f(x)\>g(y)|\;dx\>dy=\lp\int_0^a|f|\rp\lp\int_0^a|g|\rp\;,$$
+ce qui prouve l'int\'egrabilit\'e de $f*g$ sur $\rplus$.\msk\sect
+Pour tout $a>0$, posons\vv
+$$\ffi(a)=\lp\int_0^af\rp\>\lp\int_0^ag\rp-\int_0^af*g=\intd_{R_a}f(x)\>g(y)\;dx\>dy-\intd_{T_a}f(x)\>g(y)\;dx\>dy\;.$$
+Alors $\;\ffi(a)=\intd_{R_a\setminus T_a}f(x)\>g(y)\;dx\>dy$, donc $$|\ffi(a)|\ie\intd_{R_a\setminus T_a}|f(x)\>g(y)|\;dx\>dy\ie\intd_{R_a\setminus R_{a\sur 2}}|f(x)\>g(y)|\;dx\>dy\;,$$
+c'est-\`a-dire\vv
+$$|\ffi(a)|\le\lp\int_0^a|f|\rp\>\lp\int_0^a|g|\rp-\lp\int_0^{a\sur2}|f|\rp\>
+  \lp\int_0^{a\sur2}|g|\rp\;,$$
+d'o\`u $\Lim{a}{\ii}\ffi(a)=0$, ce qu'il fallait d\'emontrer.
+
+\msk
+{\it Pour prouver la ``formule de Fubini dans un triangle'', on peut montrer d'abord que, pour toute fonction d'une variable $\ffi:[0,a]\vers \cmat$, continue, on a\vv
+$$\int_0^a\lp\int_0^{a-y}\ffi(x)\;dx\rp\>dy=\int_0^a(a-x)\>\ffi(x)\;dx\;,$$
+puis appliquer Fubini (celui qui est au programme) \`a la fonction $g:[0,a]^2\vers\cmat$ d\'efinie par $\;g(x,y)=f(x,y)-f(x,a-x)\;$ si $(x,y)\in T_a$ et $g(x,y)=0$ sinon.}
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 6 :}\msk
+{\bf 1.} On admet $\;\int_0^{\ii}{\sin x\s x}\;dx={\pi\s2}$.
+\ssk\sect
+Soit $f:\rplus\vers\cmat$, continue par
+morceaux, int\'egrable sur $\rplus$. On suppose que la fonction $g:t\mapsto
+{f(t)-f(0^+)\s t}$ est int\'egrable sur $]0,1]$.
+Montrer que\vv
+$$\Lim{\lam}{\ii}\int_0^{\ii}f(t)\;{\sin\lam t\s t}\;dt={\pi\s2}\;f(0^+)\;.$$
+\eject
+{\bf D\'efinition}\ssk\new
+{\it Soit $f:\rmat\vers\cmat$ une fonction continue par morceaux (c.p.m.) et int\'egrable sur $\rmat$. Pour tout $\lam\in\rmat$, on peut d\'efinir l'int\'egrale\vv
+$$\fhat(\lam)=\int_{-\infty}^{\ii}f(t)\;e^{-i\lam t}\;dt\;.$$
+La fonction $\fhat:\rmat\vers\cmat$ est la {\bf transform\'ee de Fourier} de $f$.}
+\msk
+Dans ce qui suit, la fonction $f$ est suppos\'ee continue par morceaux et de classe ${\cal C}^1$
+par morceaux, int\'egrable sur $\rmat$.
+On se propose de d\'emontrer la {\bf formule de r\'eciprocit\'e} suivante~:\vv
+$$\a x\in\rmat\qquad {f(x^+)+f(x^-)\s2}={1\s2\pi}\;\Lim{A}{\ii}
+  \int_{-A}^{A}\fhat(\lam)\;e^{ix\lam}\;d\lam\;.\eqno\hbox{\bf (*)}$$
+\msk
+{\bf 2.} Pour tous $n\in\nmat^*$ et $\lam\in\rmat$, on pose $F_n(\lam)=
+\int_{-n}^nf(t)\;e^{-i\lam t}\;dt$.\pn
+Montrer, pour tous $n\in\net$, $x\in\rmat$ et $A\in\rpe$, l'\'egalit\'e\vv
+$$\int_{-A}^AF_n(\lam)\;e^{i\lam x}\;d\lam=2\;\int_{x-n}^{x+n}f(x-u)\;
+  {\sin Au\s u}\;du\;.$$\ssk
+{\bf 3.} En utilisant la question {\bf 1.}, montrer l'\'egalit\'e {\bf (*)} ci-dessus.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} L'int\'egrale $\;F(\lam)=\int_0^{\ii}f(t)\;{\sin\lam t\s t}\;dt\;$ est bien
+d\'efinie pour tout $\lam\in\rmat$~: en effet, on a $\left|f(t)\>{\sin\lam t\s t}\right|\ie|\lam\>f(t)|$, donc la fonction $\;t\mapsto f(t)\>{\sin\lam t\s t}\;$ est int\'egrable sur $\rpe$ pour tout r\'eel $\lam$.
+\msk\sect
+Pour tout $\lam\in\rmat_+^*$, le changement de variable $x=\lam t$ donne
+imm\'ediatement\vv
+$$\int_0^{\ii}{\sin\lam t\s t}\;dt=\int_0^{\ii}{\sin x\s x}\;dx={\pi\s2}\;,
+  \quad\hbox{donc}$$\ssk\sect
+$F(\lam)-{\pi\s2}\>f(0^+)=\int_0^{\ii}\big(f(t)-f(0^+)\big)\;
+                                           {\sin\lam t\s t}\;dt$
+$$\qquad=\int_0^1{f(t)-f(0^+)\s t}\;\sin\lam t
+                                           \;dt+\int_1^{\ii}{f(t)\s t}\;
+                                           \sin\lam t\;dt-f(0^+)\;\int_{\lam}
+                                           ^{\ii}{\sin x\s x}\;dx\;.$$
+La fonction $t\mapsto{f(t)\s t}$ est int\'egrable
+sur $[1,\ii[$ et la fonction $g$ est int\'egrable sur $]0,1]$.
+Les deux premiers
+termes tendent donc vers z\'ero lorsque $\lam$ tend vers $\ii$ (th\'eor\`eme de
+Riemann-Lebesgue, {\it cf}. \`a la fin). Enfin, la (semi-)convergence de
+l'int\'egrale $\int_0^{\ii}{\sin t\s t}\;dt$ montre que le troisi\`eme terme
+aussi tend vers 0 lorsque $\lam$ tend vers $\ii$.
+\eject
+{\bf 2.} Pour tous $n\in\net$, $x\in\rmat$ et $A\in\rpe$, on a\vv
+\begin{eqnarray*}
+\int_{-A}^AF_n(\lam)\;e^{ix\lam}\;d\lam
+             & = & \int_{-A}^A\lp\int_{-n}^nf(t)\;
+                    e^{-i\lam t}\;dt\rp\;e^{ix\lam}\;d\lam\\
+             & = & \int_{-n}^nf(t)\;\lp\int_{-A}^A
+                    e^{i(x-t)\lam}\;d\lam\rp\;dt
+\end{eqnarray*}
+(cette interversion des int\'egrations est justifi\'ee par le th\'eor\`eme de
+Fubini si $f$ est continue sur $[-n,n]$ et
+reste valable si $f$ est
+seulement continue par morceaux~: il suffit alors de d\'ecomposer
+par la relation de Chasles en faisant intervenir les points de discontinuit\'e
+de $f$ dans le segment $[-n,n]$). On a donc\vv
+$$\int_{-A}^AF_n(\lam)\;e^{ix\lam}\;d\lam
+              = 2\int_{-n}^nf(t)\;{\sin A(x-t)\s x-t}\;dt
+              = 2\int_{x-n}^{x+n}f(x-u)\;{\sin Au\s u}\;du\;,$$
+la fonction $u\mapsto{\sin Au\s u}$ \'etant \'evidemment prolong\'ee par
+continuit\'e en z\'ero.
+
+\msk
+{\bf 3.} On en d\'eduit\vv
+$$\int_{-A}^AF_n(\lam)\;e^{ix\lam}\;d\lam =
+  2\;\lp\int_0^{n-x}f(x+v)\;{\sin Av\s v}\;dv
+               + \int_0^{x+n}f(x-u)\;{\sin Au\s u}\; du\rp\;.$$
+Pour $x$ et $A$ fix\'es, ces int\'egrales ont des limites finies lorsque $n$ tend vers $\ii$ car
+$f$ est int\'egrable sur $\rmat$ et ${\sin Au\s u}$ (\'evidemment prolong\'e par
+continuit\'e pour $u=0$) est born\'e.\psn
+D'autre part, la majoration\vv
+$$|\fhat(\lam)\;e^{ix\lam}-F_n(\lam)\;e^{ix\lam}|=
+  |\fhat(\lam)-F_n(\lam)|\le\int_{-\infty}^{-n}|f|+\int_n^{\ii}|f|\;,$$
+avec $f$ int\'egrable sur $\rmat$,
+montre que la suite de fonctions $\;\lp\lam\mapsto F_n(\lam)\;e^{ix\lam}
+\rp_{n\in\net}\;$ converge uniform\'ement sur $\rmat$ vers la fonction
+$\lam\mapsto\fhat(\lam)\;e^{ix\lam}$.\pn
+Pour tout $A\in\rpe$, posons $\;g(A)=\int_{-A}^A\fhat(\lam)\;e^{ix\lam}
+\;d\lam$. On a donc\vv
+\begin{eqnarray*}
+g(A) & = & \Lim{n}{\ii}\int_{-A}^AF_n(\lam)\;e^{ix\lam}\;d\lam\\
+                & = & 2\int_0^{\ii}f(x+u)\;{\sin Au\s u}\;du+2\int_0^{\ii}
+                     f(x-u)\;  {\sin Au\s u}\;du\;.
+\end{eqnarray*}
+Or, si $f$ est c.p.m. et de classe ${\cal C}^1$ par morceaux, les ``taux
+d'accroissement'' $\;{f(x+u)-f(x^+)\s u}\;$ et $\;{f(x-u)-f(x^-)\s u}\;$ ont
+des limites finies lorsque $u$ tend vers z\'ero par valeurs sup\'erieures.
+Les conditions d'application de la question {\bf 1.}
+sont alors remplies, ce
+qui permet d'\'ecrire que $\;\Lim{A}{\ii}g(A)=\pi\;\big(f(x^+)+f(x^-)\big)$.
+
+\msk\sect
+{\it Remarque. Sans hypoth\`ese suppl\'ementaire sur $f$, on a simplement
+d\'emontr\'e l'existence d'une limite de l'expression
+(``int\'egrale sym\'etrique'')
+$\;g(A)=\int_{-A}^A\fhat(\lam)\;e^{ix\lam}\;d\lam\;$
+lorsque $A$ tend vers $\ii$. Cela
+n'implique pas la convergence (m\^eme la ``semi-convergence'') de
+l'int\'egrale g\'en\'eralis\'ee $\;\int_{-\infty}^{\ii}\fhat(\lam)\;e^{ix\lam}
+\;d\lam\;$~: en effet, les int\'egrales $\int_{-\infty}^0$ et
+$\int_0^{\ii}$, consid\'er\'ees s\'epar\'ement, peuvent \^etre divergentes.\msk\sect
+Sous les hypoth\`eses de cet exercice, en supposant
+de plus $f$ continue sur $\rmat$, le ``signal''
+$f$ peut \^etre enti\`erement retrouv\'e lorsqu'on conna\^\i t sa transform\'ee de
+Fourier $\fhat$. Si on suppose de plus $\fhat$ int\'egrable sur $\rmat$
+(ce qui peut r\'esulter d'hypoth\`eses de r\'egularit\'e faites sur la fonction $f$),
+la formule de r\'eciprocit\'e de Fourier peut alors s'\'ecrire\vv
+$$\a x\in\rmat\qquad f(x)={1\s2\pi}\>\int_{-\infty}^{\ii}\fhat(\lam)\>
+  e^{ix\lam}\;d\lam\;,$$
+soit\vv
+$$\a x\in\rmat\qquad f(x)={1\s2\pi}\>\wh{\>\fhat\;}(-x)\;,\;
+  \hbox{ou encore}\quad \wh{\>\fhat\;}(x)=2\pi\>f(-x)\;.$$}
+
+
+Pour finir, voici l'\'enonc\'e et une preuve du {\bf th\'eor\`eme de Riemann-Lebesgue}~:\msk\new
+Soit $I$ un intervalle de $\rmat$. Soit $f:I\vers\cmat$ une fonction
+continue par morceaux et int\'egrable sur $I$.\ssk\new
+Alors l'int\'egrale $\;\ftilde(\lam)=\int_If(t)\;e^{i\lam t}\,dt\;$ tend vers z\'ero lorsque le r\'eel $\lam$ tend vers $\ii$.
+\pmn\sect
+Preuve~:
+L'existence de $\ftilde(\lam)$ r\'esulte trivialement de l'int\'egrabilit\'e de $f$
+sur $I$.\psn
+$\bullet$ Pla\c cons-nous d'abord dans le cas o\`u $I$ est un segment~:
+$I=[a,b]$.\pn
+$\triangleright$ si $f$ est la fonction caract\'eristique d'un intervalle $J=[\alpha,\beta]$
+(ou $]\alpha,\beta]$ ou $[\alpha,\beta[$ ou $]\alpha,\beta[$) avec
+$a\le\alpha\le\beta\le b$,alors\vv
+$$|\ftilde(\lam)|=\left|\int_Je^{i\lam t}\;dt\right|=\left|{e^{i\lam\beta}
+  -e^{i\lam\alpha}\s i\lam}\right|\le{2\s|\lam|}\;,$$
+et le r\'esultat est \'evident.\pn
+$\triangleright$ si $f$ est en escalier sur $[a,b]$, le r\'esultat est encore vrai car $f$
+est combinaison lin\'eaire de fonctions caract\'eristiques d'intervalles.\pn
+$\triangleright$ si $f$ est une fonction c.p.m. quelconque sur $[a,b]$, $f$ est limite
+uniforme sur $I$ d'une suite de fonctions en escalier. Cela signifie que,
+pour tout $\eps>0$, il existe une fonction $\ffi$, en escalier sur $[a,b]$
+telle que $\;\a x\in[a,b]\quad|f(x)-\ffi(x)|\le{\eps\s2(b-a)}$.
+On a alors
+$\int_I|f-\ffi|\le{\eps\s2}$. Donc, pour tout $\lam\in\rmat$,
+$$|\ftilde(\lam)-\tilde\ffi(\lam)|=\left|\int_I\big(f(t)-\ffi(t)\big)\;
+  e^{i\lam t}\;dt\right|\le\int_I|f-\ffi|\le{\eps\s2}\;.$$
+Puisque $\ffi$ est en escalier, on peut trouver un r\'eel $\Lambda$ tel que,
+pour $\lam\ge\Lambda$, on ait $|\tilde\ffi(\lam)|\le{\eps\s2}$ et donc
+$|\ftilde(\lam)|\le\eps$.\pmn
+$\bullet$ Soit maintenant $I$ un intervalle quelconque de $\rmat$.
+Si on se donne $\eps>0$, on peut trouver un
+segment $J$ inclus dans $I$ tel que $\int_K|f|\le{\eps\s2}$,
+en posant $K=I\setminus J$ ($K$ est, soit un intervalle, soit la
+r\'eunion de deux intervalles). Alors\vv
+$$\ftilde(\lam)=\int_Jf(t)\;e^{i\lam t}\;dt+
+  \int_Kf(t)\;e^{i\lam t}\;dt\;,$$
+d'o\`u l'on tire $|\ftilde(\lam)|\le\left|\int_Jf(t)\;e^{i\lam t}\;dt
+\right|+{\eps\s2}$. Or, il r\'esulte de l'\'etude faite sur un segment que
+$\Lim{\lam}{\ii}\int_Jf(t)\;e^{i\lam t}\;dt=0$~;
+on peut alors trouver $\Lambda$ tel que, pour $\lam\ge\Lambda$, on ait
+$\left|\int_Jf(t)\;e^{i\lam t}\;dt\right|\le{\eps\s2}$. Pour
+$\lam\ge\Lambda$, on aura alors $|\ftilde(\lam)|\le\eps$.
+\psn
+{\it Remarque. Lorsque $f$ est une fonction de classe $\ceun$ sur un segment
+$[a,b]$, une int\'egration par parties, puis une majoration des diff\'erents
+termes obtenus, per\-mettent de conclure plus simplement.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

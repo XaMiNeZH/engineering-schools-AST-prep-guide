@@ -1,0 +1,521 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % ‚vite le textstyle en mode
+                                % math‚matique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math‚matiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de presentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% personnel Monasse
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'‚criture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% … l'int‚rieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d‚croissante),
+% \nondef (la fonction est non d‚finie)
+% si l'on termine la derniŠre ligne par \cr, un trait est tir‚ en dessous
+% sinon elle est laiss‚e sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   % MONASSE
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  % MONASSE
+\def\rmat{{\rm I\kern-0.6mm R}}  % MONASSE
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  % MONASSE
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  % MONASSE
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____def de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% AlgŠbre lin‚aire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________determinant_______
+\def\det{\mathop{\rm det}\nolimits}  % MONASSE
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  % MONASSE
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  % MONASSE
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}  % MONASSE
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos‚e ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  % MONASSE
+\def\MC#1{{\cal M}_{#1}(\cmat)}  % MONASSE
+\def\MK#1{{\cal M}_{#1}(\kmat)}  % MONASSE
+
+%________Complexes_________ % MONASSE
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   % CLENET
+\def\Arccos{\mathop{\rm Arccos}\nolimits}   % CLENET
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   % CLENET
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     % CLENET
+\def\Argch{\mathop{\rm Argch}\nolimits}     % CLENET
+\def\Argth{\mathop{\rm Argth}\nolimits}     % CLENET
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} %CLENET
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s‚ries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  % MONASSE
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  % MONASSE
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  % MONASSE
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  % MONASSE
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  % MONASSE
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr‚g‚es%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-…-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\catcode`@=12 % at signs are no longer letters
+\catcode`\‚=\active
+\def‚{\'e}
+\catcode`\Š=\active
+\defŠ{\`e}
+\catcode`\ˆ=\active
+\defˆ{\^e}
+\catcode`\…=\active
+\def…{\`a}
+\catcode`\—=\active
+\def—{\`u}
+\catcode`\–=\active
+\def–{\^u}
+\catcode`\ƒ=\active
+\defƒ{\^a}
+\catcode`\"=\active
+\def"{\^o}
+\catcode`\‰=\active
+\def‰{\"e}
+\catcode`\‹=\active
+\def‹{\"\i}
+\catcode`\=\active
+\def{\"u}
+\catcode`\‡=\active
+\def‡{\c c}
+\catcode`\Œ=\active
+\defŒ{\^\i}
+
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+
+
+
+
+
+\overfullrule=0mm
+
+
+\cl{{\bf SEMAINE 10}}\msk
+\cl{{\bf S\'ERIES NUM\'ERIQUES. FAMILLES SOMMABLES}}
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+Soit $a$ un nombre r\'eel non nul, soit la fonction $f:\rmat\vers\cmat$ d\'efinie par $f(t)={1\s t}\;e^{ia\>\ln t}$.\msk
+{\bf 1.} Quelle est la nature de la s\'erie de terme g\'en\'eral $f(n)$~? Ses sommes partielles sont-elles born\'ees~?\ssk\new
+{\it On pourra commencer par majorer la diff\'erence $\;\left|\int_k^{k+1}f(t)\>dt-f(k)\right|$}.\msk
+{\bf 2.} Quelle est la nature de la s\'erie $\sum_n{e^{ia\>\ln n}\s n\ln n}$~?
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf 1.} La fonction $f$ est de classe ${\cal C}^1$ avec $f'(t)={ia-1\s t^2}\;e^{ia\>\ln t}$.
+Pour $t\in[k,k+1]$, on a $\;|f'(t)|\ie{M\s k^2}$ avec $M=|ia-1|=\sqrt{a^2+1}$, donc $\;|f(t)-f(k)|\ie{M\s k^2}(t-k)$. Pour tout $k\in\net$, posons $u_k=f(k)$ et $v_k=\int_k^{k+1}f(t)\>dt$.
+Alors,\vv
+\begin{eqnarray*}
+|v_k-u_k| & = & \left|\int_k^{k+1}\big(f(t)-f(k)\big)\>dt\right|
+                                                 \ie\int_k^{k+1}|f(t)-f(k)|\>dt\\
+                                             & \ie & {M\s k^2}\>\int_k^{k+1}(t-k)\>dt={M\s 2k^2}\;.
+\end{eqnarray*}
+La s\'erie de terme g\'en\'eral $v_k-u_k$ \'etant absolument convergente, on en d\'eduit que les s\'eries $\;\sum_k u_k\;$ et $\;\sum_kv_k\;$ sont de m\^eme nature. Or,\vv
+$$\int{1\s t}\>e^{ia \ln t}\>dt=\int e^{iau}\>du={1\s ia}\>e^{iau}={1\s ia}\>e^{ia\>\ln t}\;,$$
+donc $\;\sum_{k=1}^nv_k=\int_1^{n+1}f(t)\>dt={1\s ia}\Big(e^{ia\ln(n+1)}-1\Big)$. Or, cette derni\`ere expression n'a pas de limite quand $n$ tend vers $\ii$~: en effet, si la suite de terme g\'en\'eral $z_n=e^{ia\>\ln n}$ convergeait, alors il en serait de m\^eme de sa suite extraite $z_{2^k}=e^{ika\>\ln2}=(e^{ia\ln 2})^k$ (c'est une suite g\'eom\'etrique avec une raison de module 1), ce qui entra\^\i nerait $a\>\ln 2\in2\pi\zmat$~; en consid\'erant la suite extraite $(z_{3^k})$, on aurait $a\>\ln 3\in2\pi\zmat$, et le rapport ${\ln 3\s\ln 2}$ serait rationnel (absurde~: de ${\ln 2\s\ln3}={p\s q}$, on tirerait $3^p=2^q$). La s\'erie $\sum_n v_n$ est donc divergente, donc $\sum_n f(n)$ diverge aussi.\msk\sect
+Posons maintenant $S_n=\sum_{k=1}^n u_k$ et $T_n=\sum_{k=1}^nv_k$. On a obtenu $\;T_n={1\s ia}\Big(e^{ia\ln(n+1)}-1\Big)$, donc $|T_n|\ie{2\s|a|}$~: les sommes partielles de
+la s\'erie $\sum_kv_k$ sont born\'ees. Comme $|S_n-T_n|\ie\sum_{k=1}^n|u_k-v_k|\ie{M\s 2}\sum_{k=1}^n{1\s k^2}$, les sommes partielles $S_n$ sont aussi born\'ees.
+
+\eject
+{\bf 2.} Montrons plus g\'en\'eralement le {\bf th\'eor\`eme d'Abel}~:\msk\new
+{\it Soit $\sum_nu_n$ une s\'erie de nombres complexes dont les sommes partielles $S_n=\sum_{k=1}^nu_k$ sont born\'ees, soit $(a_n)$ une suite de r\'eels positifs d\'ecroissante et de limite nulle. Alors la s\'erie $\sum_na_nu_n$ converge.}\msk\sect
+En effet, soient deux entiers $p$ et $q$ avec $p<q$~; une classique ({\it quoique hors programme}) {\bf transformation d'Abel} donne\vv
+$$\sum_{k=p+1}^qa_ku_k=\sum_{k=p+1}^{q-1}S_k(a_k-a_{k+1})+S_qa_q-S_pa_{p+1}$$
+et, si on a $|S_n|\ie M$ pour tout $n$, on d\'eduit la majoration\vv
+$$\left|\sum_{k=p+1}^qa_ku_k\right|\ie M\Big(\sum_{k=p+1}^{q-1}(a_k-a_{k+1})+a_{p+1}+a_q\Big)=Ma_{p+1}\;.$$
+Comme $\Lim{p}{\infty}a_{p+1}=0$, la s\'erie de terme g\'en\'eral $a_nu_n$ v\'erifie la condition de Cauchy, donc converge.\msk
+\sect
+Il suffit d'appliquer le th\'eor\`eme d'Abel avec $u_n={1\s n}e^{ia\>\ln n}$ et $a_n={1\s \ln n}$ pour d\'eduire que la s\'erie $\;\sum_n{e^{ia\>\ln n}\s n\>\ln n}\;$ est convergente.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 2 :}\msk
+{\bf 1.} Montrer que, pour tout entier naturel non nul $m$, on a $\;\sum_{n=1}^{\infty}{\sqrt{m}\s(m+n)\sqrt{n}}\ie\int_0^{\ii}{dx\s (x+1)\sqrt{x}}$.\msk
+{\bf 2.} Soient $(a_n)_{n\in\net}$ et $(b_n)_{n\in\net}$ deux suites de r\'eels positifs, de carr\'e sommable (c'est-\`a-dire les s\'eries $\sum a_n^2$ et $\sum b_n^2$ sont convergentes). Montrer que la famille $\lp{a_ib_j\s i+j}\rp_{(i,j)\in(\net)^2}$ est sommable et montrer l'in\'egalit\'e\vv
+$$\sum_{(i,j)\in(\net)^2}{a_ib_j\s i+j}\ie\pi\Big(\sum_{n=0}^{\ii}a_n^2\Big)^{{}^{\sst1\sur\sst2}}\Big(\sum_{n=0}^{\ii}b_n^2\Big)^{{}^{\sst1\sur\sst2}}\;.$$
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf 1.} En posant $t=mx$, on a $\int_0^{\ii}{dx\s(x+1)\sqrt{x}}=\sqrt{m}\>\int_0^{\ii}{dt\s(t+m)\sqrt{t}}$. La fonction $t\mapsto{1\s(t+m)\sqrt{t}}$ \'etant d\'ecroissante sur $\rpe$, on a, pour tout entier naturel $n$ l'in\'egalit\'e\vv
+$${1\s(n+m+1)\sqrt{n+1}}\ie\int_n^{n+1}{dt\s(t+m)\sqrt{t}}$$ 
+et, en sommant (ce qui est l\'egitime, tout converge...), $\sum_{n=0}^{\ii}{1\s(m+n+1)\sqrt{n+1}}\ie\int_0^{\ii}{dt\s(t+m)\sqrt{t}}$, ce qui donne bien l'in\'egalit\'e voulue. Comme\vv
+$$\int_0^{\ii}{dx\s(x+1)\sqrt{x}}=\int_0^{\ii}{2u\;du\s(u^2+1)u}=2\int_0^{\ii}{du\s1+u^2}=\pi\;,$$
+on a prouv\'e, pour tout $m\in\net$, l'in\'egalit\'e $\;\sum_{n=1}^{\ii}{1\s(m+n)\sqrt{n}}\ie{\pi\s\sqrt{m}}$.
+
+\msk
+{\bf 2.} Pour tout $n\in\net$, posons $S_n=\sum_{i,j=1}^n{a_ib_j\s i+j}$.
+Posons $\;\|a\|_2=\Big(\sum_{n=0}^{\ii}a_n^2\Big)^{{}^{\sst1\sur\sst2}}\;$ et $\;\|b\|_2=\Big(\sum_{n=0}^{\ii}b_n^2\Big)^{{}^{\sst1\sur\sst2}}$.\msk\sect
+Pour tout $n\in\net$, on a ({\it h\'enaurme astuce})~:\vv
+$$S_n=\sum_{i,j=1}^n{\root 4\of{i}\; a_i\s\root 4\of{j}\;\sqrt{i+j}}\>{\root 4\of{j}\; b_j\s\root 4\of{i}\;\sqrt{i+j}}\ie\lp\sum_{i,j=1}^n{\sqrt{i}\; a_i^2\s\sqrt{j}\;(i+j)}\rp^{\!{\sst1\sur\sst2}}\lp\sum_{i,j=1}^n{\sqrt{j}\; b_j^2\s\sqrt{i}\;(i+j)}\rp^{\!{\sst1\sur\sst2}}$$
+par l'in\'egalit\'e de Cauchy-Schwarz. Ensuite,\vv
+$$S_n\ie\lp\sum_{i=1}^n\bigg(\sum_{j=1}^n{\sqrt{i}\s\sqrt{j}\;(i+j)}\bigg)\;a_i^2\rp^{\!{\sst1\sur\sst2}}\lp\sum_{j=1}^n\bigg(\sum_{i=1}^n{\sqrt{j}\s\sqrt{i}\;(i+j)}\bigg)\;b_j^2\rp^{\!{\sst1\sur\sst2}}\ie\pi\;\|a\|_2\;\|b\|_2$$
+d'apr\`es la question {\bf 1.} En posant, pour tout entier naturel $n$ non nul, $J_n=\[ent1,n\]ent^2$, on vient de montrer que $\;S_n=\sum_{(i,j)\in J_n}{a_ib_j\s i+j}\ie\pi\;\|a\|_2\;\|b\|_2$. Comme les $J_n$ forment une suite croissante de parties finies de $(\net)^2$ dont la r\'eunion est $(\net)^2$, cela prouve la sommabilit\'e de la famille $\lp{a_ib_j\s i+j}\rp_{(i,j)\in(\net)^2}$ et le fait que sa somme, qui est $\sup_{n\in\net}S_n$, est inf\'erieure ou \'egale \`a $\pi\;\|a\|_2\;\|b\|_2$, ce qu'il fallait prouver.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 3 :}\msk
+La {\bf fonction z\'eta de Riemann} est d\'efinie par $\zeta(x)=\sum_{n=1}^{\infty}{1\s n^x}$ pour tout r\'eel $x>1$. L'{\bf indicateur d'Euler} d'un entier naturel non nul $n$ est d\'efini par\vv
+$$\ffi(n)=\Card\{k\in\[ent1,n\]ent\;|\;k\wedge n=1\}\;.$$\par
+{\bf 1.} Pour $n\in\net$, calculer $\sum_{d\divise n}\ffi(d)$.\vv\par
+{\bf 2.} Pour $x\in\;]2,\ii[$, en d\'eduire une expression de la somme $\;\Phi(x)=\sum_{n=1}^{\infty}{\ffi(n)\s n^x}\;$ \`a l'aide de la fonction $\zeta$.\msk
+{\bf 3.} Soit $k$ un entier naturel sup\'erieur ou \'egal \`a 2, pour tout $n\in\net$, on pose $Q_k(n)=0$ s'il existe un nombre premier $p$ tel que $p^k\divise n$ et $Q_k(n)=1$ sinon. D\'emontrer la relation\vv
+$$\a x\in]1,\ii[\qquad {\zeta(x)\s\zeta(kx)}=\sum_{n=1}^{\infty}{Q_k(n)\s n^x}\;.$$
+
+
+
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+Commen\c cons par quelques compl\'ements sur les familles sommables~:
+du cours, on d\'eduit imm\'ediatement le r\'esultat suivant~:\msk\sect
+ {\it Si $(u_k)_{k\in A}$ est une famille de nombres complexes index\'ee par un ensemble d\'enombrable $A$, si $(A_n)_{n\in\nmat}$ est une famille d\'enombrable de parties finies de $A$, deux \`a deux disjointes et de r\'eunion \'egale \`a $A$, si on note $s'_n=\sum_{k\in A_n}|u_k|$ et $s_n=\sum_{k\in A_n}u_k$, alors la famille $(u_k)_{k\in A}$ est sommable si et seulement si la s\'erie de r\'eels positifs $\sum_{n\se0}s'_n$ est convergente et, dans ce cas, on a $\;\sum_{k\in A}u_k=\sum_{n=0}^{\infty}s_n=\sum_{n=0}^{\infty}\Big(\sum_{k\in A_n}u_k\Big)$.}\sect
+Il suffit en effet de consid\'erer la suite croissante $(J_n)$ de parties finies avec $J_n=\bigcup_{i=0}^nA_i$ pour se ramener aux termes exacts du programme officiel.\msk\sect
+Si $A=\nmat^2$, ce r\'esultat est classiquement utilis\'e avec les parties $A_n=\{(p,q)\in\nmat^2\;|\;p+q=n\}$ pour $n\in\nmat$, ce qui conduit \`a la notion de {\bf produit de Cauchy} de deux s\'eries absolument convergentes $\sum_{n\in\nmat} u_n$ et $\sum_{n\in\nmat} v_n$~: la s\'erie $\sum_{n\in\nmat} w_n$, avec $\;w_n=\sum_{p+q=n}u_pv_q=\sum_{p=0}^nu_pv_{n-p}\;$ est absolument convergente et\vv
+$$\sum_{n=0}^{\infty}w_n=\sum_{n=0}^{\infty}\Big(\sum_{p+q=n}u_pv_q\Big)=\sum_{(p,q)\in\nmat^2}u_pv_q=\Big(\sum_{p=0}^{\infty}u_p\Big)\Big(\sum_{q=0}^{\infty}v_q\Big)\;.$$
+\sect
+Si $A=(\net)^2$, on peut aussi consid\'erer les parties $A_n=\{(p,q)\in(\net)^2\;|\;pq=n\}$ avec $n\in\net$ pour arriver \`a la notion de {\bf produit de Dirichlet} de deux s\'eries absolument convergentes $\sum_{n\in\net} u_n$ et $\sum_{n\in\net} v_n$~: la s\'erie $\sum_{n\in\net} x_n$, avec $\;x_n=\sum_{pq=n}u_pv_q=\sum_{d\divise n}u_d\>v_{{}_{\sst n\sur\sst d}}\;$ est absolument convergente et
+$$\sum_{n=1}^{\infty}x_n=\sum_{n=1}^{\infty}\Big(\sum_{pq=n}u_pv_q\Big)=\sum_{(p,q)\in(\net)^2}u_pv_q=\Big(\sum_{p=1}^{\infty}u_p\Big)\Big(\sum_{q=1}^{\infty}v_q\Big)\;.$$
+\ssk
+{\bf 1.} C'est un exercice classique d'arithm\'etique~: $\sum_{d\divise n}\ffi(d)=n$~; en effet, on a $\[ent1,n\]ent=\bigcup_{d\divise n}A_d$ (union disjointe), o\`u\vv $$A_d=\left\{k\in\[ent1,n\]ent\;|\;k\wedge n={n\s d}\right\}=\{q{n\s d}\;;\;q\in\[ent1,d\]ent\;{\rm et}\;q\wedge d=1\}\;,$$
+donc $\Card(A_d)=\ffi(d)$, ce qui donne la relation demand\'ee.
+\msk
+{\bf 2.} Pour $x>2$, la s\'erie \`a termes positifs $\sum_{p\se1}{\ffi(p)\s p^x}$ est absolument convergente (car $\ffi(p)\ie p$), de m\^eme que la s\'erie $\sum_{q\se1}{1\s q^x}$
+et leur produit de Dirichlet est la s\'erie
+$$\sum_{n\se1}\Big(\sum_{pq=n}{\ffi(p)\s p^x q^x}\Big)=\sum_{n\se1}{1\s n^x}\Big(\sum_{pq=n}\ffi(p)\Big)=\sum_{n\se1}{1\s n^x}\Big(\sum_{d\divise n}\ffi(d)\Big)=\sum_{n\se1}{1\s n^{x-1}}\;,$$
+et on a\vvvv\vvv
+$$\Big(\sum_{p=1}^{\infty}{\ffi(p)\s p^x}\Big)\Big(\sum_{q=1}^{\infty}{1\s q^x}\Big)=\Phi(x)\;\zeta(x)= 
+\sum_{n=1}^{\infty}{1\s n^{x-1}}=\zeta(x-1)\;,$$
+donc $\;\Phi(x)={\zeta(x-1)\s\zeta(x)}\;$ pour tout r\'eel $x>2$.
+\msk
+{\bf 3.} La s\'erie $\sum_{n\se1}{Q_k(n)\s n^x}$ est (absolument) convergente pour $x>1$ et on a\vv
+$$\zeta(kx)\>\Big(\sum_{n=1}^{\infty}{Q_k(n)\s n^x}\Big)=\Big(\sum_{p=1}^{\infty}{1\s p^{kx}}\Big)\>\Big(\sum_{q=1}^{\infty}{Q_k(q)\s q^x}\Big)=\sum_{(p,q)\in(\net)^2}{Q_k(q)\s (p^kq)^x}\;.$$
+Pour tout $n\in\net$, consid\'erons la partie $\;A_n=\{(p,q)\in(\net)^2\;|\;p^kq=n\}$. Les $A_n$ sont des parties finies de $(\net)^2$, deux \`a deux disjointes et $(\net)^2=\bigcup_{n=1}^{\infty}A_n$. La suite double $\;\lp{Q_k(q)\s (p^kq)^x}\rp_{(p,q)\in(\net)^2}$ \'etant sommable comme famille-produit de deux suites sommables, sa somme $S(x)$ v\'erifie $S(x)=\sum_{n=1}^{\infty}s_n(x)$ avec $s_n(x)=\sum_{(p,q)\in A_n}{Q_k(q)\s(p^kq)^x}={1\s n^x}\>\sum_{(p,q)\in A_n}Q_k(q)$.\msk\sect
+Soit $n=p_1^{\alpha_1}\cdots p_r^{\alpha_r}$ la d\'ecomposition d'un entier $n$ en produit de facteurs premiers distincts, alors le seul couple $(p,q)$ appartenant \`a $A_n$ et pour lequel $Q_k(q)=1$ est celui pour lequel on choisit $p=p_1^{\nu_1}\cdots p_r^{\nu_r}$ o\`u, pour tout $i\in\[ent1,r\]ent$, $\nu_i=E\lp{\alpha_i\s k}\rp$ est le quotient dans la division euclidienne de $\alpha_i$ par $k$. On a donc $\sum_{(p,q)\in A_n}Q_k(q)=1$ pour tout $n\in\net$, donc $s_n(x)={1\s n^x}$. R\'ecapitulons~:\vvvv
+$$S(x)=\sum_{(p,q)\in(\net)^2}{Q_k(q)\s (p^kq)^x}=\zeta(kx)\>\Big(\sum_{n=1}^{\infty}{Q_k(n)\s n^x}\Big)=\sum_{k=1}^{\infty}{1\s n^x}\;,$$
+ce qui donne bien $\;\sum_{n=1}^{\infty}{Q_k(n)\s n^x}={\zeta(x)\s \zeta(kx)}\;$ pour $x>1$ et $k$ entier, $k\se2$.
+
+\eject
+
+{\bf EXERCICE 4 :}\msk
+Soit $\mu:\net\vers\zmat$ la fonction ({\bf fonction de M\"obius}) d\'efinie par\ssk\sect
+$\triangleright$ $\mu(1)=1$~;\ssk\sect
+$\triangleright$ $\mu(n)=0$ si $n$ a au moins un facteur carr\'e~;\ssk\sect
+$\triangleright$ $\mu(n)=(-1)^r$ si $n$ est le produit de $r$ facteurs premiers distincts.
+\msk
+{\bf 1.} Soit $n\in\net$. Calculer $\;s_n=\sum_{d\divise n}\mu(d)$. En d\'eduire la relation $\;\sum_{k=1}^{\infty}{\mu(k)\s k^2}={6\s\pi^2}$.\msk
+{\bf 2.} Pour tout $n\in\net$, soit $q_n=\Card\big\{(u,v)\in\[ent1,n\]ent^2\;|\;u\wedge v=1\big\}$. D\'emontrer la relation\vv
+$$q_n=\sum_{k=1}^n\mu(k)\>E\lp{n\s k}\rp^2\;.$$
+\ssk
+{\bf 3.} En d\'eduire que $\;\Lim{n}{\ii}{q_n\s n^2}={6\s\pi^2}$.
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\bsk
+
+{\bf 1.} On a $s_1=\mu(1)=1$ et, si $n\se2$,
+soit $n=p_1^{\alpha_1}\cdots p_r^{\alpha_r}$ sa d\'ecomposition en facteurs premiers ($r\se 1$), avec les $p_i$ distincts. Posons $m=p_1\cdots p_r$. De la d\'efinition de la fonction $\mu$, on d\'eduit que $\;s_n=\sum_{d\divise n}\mu(d)=\sum_{d\divise m}\mu(d)$ mais les diviseurs de $m$ sont les entiers de la forme $d=\prod_{i\in I}p_i$, o\`u $I$ d\'ecrit l'ensemble des parties de $\[ent1,r\]ent$ et, pour un tel entier $d$, on a $\mu(d)=(-1)^{\Card(I)}$ donc\vv
+$$s_n=\sum_{d\divise n}\mu(d)=\sum_{I\subset\[ent1,r\]ent}(-1)^{\Card(I)}=\sum_{k=0}^r(-1)^kC_r^k=\big(1+(-1)\big)^r=0\;.$$ 
+En conclusion, $s_n=\system{&1\;&{\rm si}\;n=1\cr &0\;&{\rm sinon}\cr}$.\msk\sect
+Pour tout couple $(k,l)\in(\net)^2$, posons $a_{k,l}={\mu(k)\s k^2l^2}$. La famille (``suite double'') $(a_{k,l})_{(k,l)\in(\net)^2}$ est sommable car c'est la famille produit de deux suites sommables, \`a savoir $\lp{\mu(k)\s k^2}\rp_{k\in\net}$ et $\lp{1\s l^2}\rp_{l\in\net}$ et sa somme vaut
+$$S=\lp\sum_{k=1}^{\infty}{\mu(k)\s k^2}\rp\lp\sum_{l=1}^{\infty}{1\s l^2}\rp={\pi^2\s6}\cdot\sum_{k=1}^{\infty}{\mu(k)\s k^2}\;.$$
+Mais on peut aussi sommer la suite double ``\`a la Dirichlet''~: pour tout $n\in\net$, notons\break $J_n=\{(k,l)\in(\net)^2\;|\; kl\ie n\}$. Alors $(J_n)$ est une suite croissante de parties finies de $(\net)^2$ dont la r\'eunion est \'egale \`a $(\net)^2$, donc\vv
+$$S=\Lim{n}{\infty}\lp\sum_{(k,l)\in J_n}a_{k,l}\rp=\sum_{n=1}^{\infty}\lp\sum_{kl=n}{\mu(k)\s k^2l^2}\rp=\sum_{n=1}^{\infty}\lp{1\s n^2}\>\sum_{d\divise n}\mu(d)\rp=\sum_{n=1}^{\infty}{s_n\s n^2}=1$$
+et cela donne le r\'esultat.
+
+\msk
+{\bf 2.} Soit l'ensemble $Q_n=\big\{(u,v)\in\[ent1,n\]ent^2\;|\;u\wedge v=1\big\}$.
+ Notons $p_1<p_2<\cdots<p_r$ la liste des nombres premiers inf\'erieurs ou \'egaux \`a $n$. Pour tout $i$ ($1\ie i\ie r$), soit $A_i$ l'ensemble des couples $(u,v)\in\[ent1,n\]ent^2$ tels que $p_i\divise u$ et $p_i\divise v$. Alors $\;Q_n=\[ent1,n\]ent^2\setminus\lp\bigcup_{i=1}^r A_i\rp$. On calcule alors le cardinal de $Q_n$ par le {\bf principe d'inclusion-exclusion}, appel\'e aussi {\bf formule du crible}~:\vvvv
+\begin{eqnarray*}
+q_n & = & \Card\big(\[ent1,n\]ent^2\big)-\sum_{i}\Card(A_i)+\sum_{i<j}\Card(A_i\cap A_j)-\cdots+(-1)^r\Card(A_1\cap\cdots\cap A_r)\\
+      & = & n^2+\sum_{k=1}^r(-1)^k\>\sum_{i_1<\cdots<i_k}\Card\big(A_{i_1}\cap\cdots\cap A_{i_k}\big)\;.
+\end{eqnarray*}\sect
+Or, pour tout $k$-uplet $(i_1,\cdots,i_k)$ avec $i_1<\cdots<i_k$, $\;\Card\big(A_{i_1}\cap\cdots\cap A_{i_k}\big)=E\lp{n\s p_{i_1}\cdots p_{i_k}}\rp^2$. Donc\vv
+$$q_n=n^2+\sum_{k=1}^r(-1)^k\>\sum_{i_1<\cdots<i_k}E\lp{n\s p_{i_1}\cdots p_{i_k}}\rp^2=\sum_{k=1}^n\mu(k)\>E\lp{n\s k}\rp^2$$
+({\it nous laissons le lecteur se convaincre de cette derni\`ere \'egalit\'e}).
+
+\msk
+{\bf 3.} On a $\;{q_n\s n^2}={1\s n^2}\;\sum_{k=1}^n\mu(k)\>E\lp{n\s k}\rp^2$ et, du fait que $|\mu(k)|\ie 1$ pour tout $k$, on d\'eduit la majoration\vv
+\begin{eqnarray*}
+\left|{q_n\s n^2}-\sum_{k=1}^n{\mu(k)\s k^2}\right| & = & {1\s n^2}\;\left|\sum_{k=1}^n\mu(k)\;\lc\lp{n\s k}\rp^2-E\lp{n\s k}\rp^2\rc\right|\\
+& \ie & {1\s n^2}\;\sum_{k=1}^n \lc\lp{n\s k}\rp^2-E\lp{n\s k}\rp^2\rc\;.
+\end{eqnarray*}
+Or, pour tout r\'eel $x\se0$, on a\vvv
+$$0\ie x^2-E(x)^2=\big(x-E(x)\big)\>\big(x+E(x)\big)\ie x+E(x)\ie 2x\;,$$
+donc\vvv
+$$\left|{q_n\s n^2}-\sum_{k=1}^n{\mu(k)\s k^2}\right|\ie{1\s n^2}\>\sum_{k=1}^n{2n\s k}={2\s n}\>\sum_{k=1}^n{1\s k}\sim{2\ln n\s n}\Vers{n}{\infty}0\;.$$
+Donc $\Lim{n}{\infty}{q_n\s n^2}=\sum_{k=1}^{\infty}{\mu(k)\s k^2}={6\s\pi^2}$.
+\ssk\sect
+{\it On peut interpr\'eter ce nombre ${6\s\pi^2}$ comme la ``probabilit\'e pour que deux entiers naturels non nuls soient premiers entre eux''}.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

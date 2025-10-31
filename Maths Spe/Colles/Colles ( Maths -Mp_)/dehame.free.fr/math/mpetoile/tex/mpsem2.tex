@@ -1,0 +1,889 @@
+\documentclass{article}
+\begin{document}
+
+
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % ‚vite le textstyle en mode
+                                % math‚matique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math‚matiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de presentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% personnel Monasse
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'‚criture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% … l'int‚rieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d‚croissante),
+% \nondef (la fonction est non d‚finie)
+% si l'on termine la derniŠre ligne par \cr, un trait est tir‚ en dessous
+% sinon elle est laiss‚e sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   % MONASSE
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  % MONASSE
+\def\rmat{{\rm I\kern-0.6mm R}}  % MONASSE
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  % MONASSE
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  % MONASSE
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____def de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% AlgŠbre lin‚aire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________determinant_______
+\def\det{\mathop{\rm det}\nolimits}  % MONASSE
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  % MONASSE
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  % MONASSE
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}  % MONASSE
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos‚e ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  % MONASSE
+\def\MC#1{{\cal M}_{#1}(\cmat)}  % MONASSE
+\def\MK#1{{\cal M}_{#1}(\kmat)}  % MONASSE
+
+%________Complexes_________ % MONASSE
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   % CLENET
+\def\Arccos{\mathop{\rm Arccos}\nolimits}   % CLENET
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   % CLENET
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     % CLENET
+\def\Argch{\mathop{\rm Argch}\nolimits}     % CLENET
+\def\Argth{\mathop{\rm Argth}\nolimits}     % CLENET
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} %CLENET
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s‚ries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  % MONASSE
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  % MONASSE
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  % MONASSE
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  % MONASSE
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  % MONASSE
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr‚g‚es%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-…-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\catcode`@=12 % at signs are no longer letters
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+
+
+
+
+
+
+
+
+\overfullrule=0mm
+\cl{{\bf SEMAINE 2}}\msk
+\cl{{\bf ALG\`EBRE LIN\'EAIRE (Programme de MPSI)}}
+\bsk\bsk
+
+{\bf EXERCICE 1 : Id\'eaux \`a droite de} ${\cal L}(E)$ {\bf en dimension finie}\msk
+
+{\bf a. Th\'eor\`eme de factorisation}\ssk\new
+Soient $E$, $F$, $G$ trois espaces vectoriels, soient $w\in{\cal L}(E,G)$
+et $v\in{\cal L}(F,G)$. Montrer l'\'equivalence\vv
+$$\Im w\subset\Im v\iff\e u\in{\cal L}(E,F)\quad w=v\circ u\;.$$\par
+{\bf b.} Soient $u_1$, $\cdots$, $u_k$ et $v$ des endomorphismes d'un espace vectoriel $E$ tels
+que $\;\Im v\subset\sum_{i=1}^k\Im u_i$. Montrer qu'il existe des endomorphismes
+$a_1$, $\cdots$, $a_k$ de $E$ tels que $\;v=\sum_{i=1}^ku_i\circ a_i$.\ssk
+
+{\bf c.} Soit $E$ un $\kmat$-espace vectoriel de dimension finie. Montrer que les
+id\'eaux \`a droite de l'alg\`ebre ${\cal L}(E)$ sont les ensembles de la forme
+${\cal I}_F=\{u\in{\cal L}(E)\;|\;\Im u\subset F\}$, o\`u $F$ est un sous-espace
+vectoriel de $E$.
+
+\msk
+
+{\it Solution propos\'ee par Fran\c cois CHARLES, \'etudiant en MP* au Lyc\'ee Louis-le-Grand}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf a.} L'implication dans le sens indirect est imm\'ediate.\ssk\sect
+Supposons donc $\Im w\subset\Im v$. Soit $T$ un suppl\'ementaire de $\Ker v$
+dans $F$ ({\it on en admet l'existence}). On sait que $v$ induit un isomorphisme
+(que nous noterons $\ov{v}$) de $T$ sur $\Im v$. Pour tout $x$ de $E$,
+on a $w(x)\in\Im v$ d'apr\`es l'hypoth\`ese, il est donc loisible de poser
+$u(x)=\ov{v}^{-1}\big(w(x)\big)$. On d\'efinit ainsi une application de
+$E$ dans $F$, dont la lin\'earit\'e est imm\'ediate et on a bien
+$v\big(u(x)\big)=w(x)$ pour tout $x$ de $E$.\ssk\sect
+Autre solution en admettant l'existence d'une base $(e_i)_{i\in I}$ de $E$~: si $\Im w\subset\Im v$ alors, pour tout $i\in I$, il existe un vecteur $f_i$ de $F$ tel que $w(e_i)=v(f_i)$. Si on appelle $u$ l'unique application lin\'eaire de $E$ vers $F$ telle que $u(e_i)=f_i$ pour tout $i$, on a bien $v\circ u=w$.
+\msk
+
+{\bf b.} Consid\'erons l'application lin\'eaire $f:E^k\vers E$ d\'efinie par $\;
+f(x_1,\cdots,x_k)=\sum_{i=1}^ku_i(x_i)$. On a clairement $\Im f=\sum_{i=1}^k\Im u_i$, donc $\Im v
+\subset\Im f$ et il existe une application lin\'eaire $A$ de $E$ vers $E^k$
+telle que $v=f\circ A$. En posant $A(x)=\big(a_1(x),\cdots,a_k(x)\big)$ pour tout
+$x$ de $E$, on a\vv
+$$\a x\in E\qquad v(x)=f\big(A(x)\big)=f\big(a_1(x),\cdots,a_k(x)\big)=\sum_{i=1}^ku_i\big(a_i(x)\big)\;,$$
+donc $\;v=\sum_{i=1}^ku_i\circ a_i$.
+
+\eject
+
+
+{\bf c.} {\it On appelle id\'eal \`a droite de ${\cal L}(E)$ toute partie ${\cal I}$ qui
+est un sous-groupe additif de ${\cal L}(E)$ et qui v\'erifie\vv
+$$\a u\in {\cal I}\quad \a a\in{\cal L}(E)\qquad u\circ a\in{\cal I}\;.$$}
+\sect
+$\bullet$ D'abord, si $F$ est un sous-espace vectoriel de $E$, l'ensemble
+$\;{\cal I}_F=\{u\in{\cal L}(E)\;|\;\Im u\subset F\}\;$ est bien un id\'eal
+\`a droite de ${\cal L}(E)$.
+
+\ssk\sect
+$\bullet$ Soit ${\cal I}$ un id\'eal \`a droite de ${\cal L}(E)$.\ssk\sect
+Alors il est clair que ${\cal I}$ est un sous-espace vectoriel de ${\cal L}(E)$, soit $(f_1,\cdots,f_k)$ une base de l'espace vectoriel ${\cal I}$ (on est en dimension finie), posons $F=\sum_{i=1}^k\Im f_i$. On a alors ${\cal I}={\cal I}_F$~: en effet,\ssk\new
+- si $f\in{\cal I}$, on a $f=\sum_{i=1}^k\lam_i f_i$ o\`u les $\lam_i$ sont des scalaires, donc $\Im f\subset F$ et $f\in{\cal I}_F$.\ssk\new
+- si $f\in{\cal I}_F$, d'apr\`es la question {\bf b.}, on peut \'ecrire $f=\sum_{i=1}^kf_i\circ a_i$, o\`u les $a_i$ sont des endomorphismes de $E$, et $f\in{\cal I}$ (car les $f_i$ appartiennent \`a ${\cal I}$ et ${\cal I}$ est un id\'eal \`a droite).
+
+
+
+\msk\sect
+{\it Remarque. Si $p$ est un projecteur sur $F$, on peut noter que\vv
+$${\cal I}_F=p\circ{\cal L}(E)=\{p\circ f\;;\;f\in{\cal L}(E)\}\;:$$
+${\cal I}_F$ est l'``id\'eal \`a droite engendr\'e par $p$''.
+
+\msk\sect
+Ce qui pr\'ec\`ede ne se g\'en\'eralise pas dans un espace vectoriel $E$ de dimension
+infinie~; l'ensemble ${\cal I}$ des endomorphismes de $E$ de rang fini est
+alors un id\'eal (bilat\`ere) de ${\cal L}(E)$ qui n'est pas de la forme ${\cal I}_F$.}
+
+
+
+\bsk\hrule
+\bsk
+
+
+{\bf EXERCICE 2 : Id\'eaux \`a gauche de} ${\cal L}(E)$ {\bf en dimension finie}\msk
+
+{\bf a. Th\'eor\`eme de factorisation}\ssk\sect
+Soient $E$, $F$, $G$ trois espaces vectoriels, soient $w\in{\cal L}(E,G)$
+et $u\in{\cal L}(E,F)$. Montrer l'\'equivalence\vv
+$$\Ker u\subset\Ker w\iff\e v\in{\cal L}(F,G)\quad w=v\circ u\;.$$\par
+{\bf b.} Soient $u_1$, $\cdots$, $u_k$ et $v$ des endomorphismes d'un espace vectoriel $E$ tels
+que $\;\bigcap_{i=1}^k\Ker u_i\subset\Ker v$. Montrer qu'il existe des endomorphismes
+$a_1$, $\cdots$, $a_k$ de $E$ tels que $\;v=\sum_{i=1}^ka_i\circ u_i$.\ssk
+
+{\bf c.} Soit $E$ un $\kmat$-espace vectoriel de dimension finie. Montrer que les
+id\'eaux \`a gauche de l'alg\`ebre ${\cal L}(E)$ sont les ensembles de la forme
+${\cal J}_F=\{u\in{\cal L}(E)\;|\;F\subset \Ker u\}$, o\`u $F$ est un sous-espace
+vectoriel de $E$.
+\msk
+{\it Source : Jacques CHEVALLET, Alg\`ebre MP/PSI, \'Editions Vuibert, ISBN 2-7117-2092-6}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf a.} L'implication dans le sens indirect est imm\'ediate.\ssk\sect
+Supposons donc $\Ker u\subset\Ker w $. Soit $S$ un suppl\'ementaire de $\Ker u$
+dans $E$ ({\it on en admet l'existence}). On sait que $u$ induit un isomorphisme
+(que nous noterons $\ov{u}$) de $S$ sur $\Im u$.\ssk\sect
+Soit, par ailleurs, $T$ un suppl\'ementaire de $\Im u$ dans $F$.
+Pour tout $y$ dans $\Im u$, posons\break $v(y)=w\big(\ov{u}^{-1}(y)\big)\;$
+et, pour tout $y$ dans $T$, posons $v(y)=0_G$~; on a ainsi d\'efini (de fa\c con unique
+puisque $T\oplus\Im u=F$) une application lin\'eaire $v$ de $F$ vers $G$.\ssk\sect
+Si $x\in E$, alors $u(x)\in\Im u$, donc $\ov{u}^{-1}\big(u(x)\big)$ est
+un \'el\'ement $x'$ de $S$, donc de $E$ (pas n\'ecessairement \'egal \`a $x$),
+tel que $u(x')=u(x)$~; puisque $\Ker u\subset\Ker w$ par hypoth\`ese, on a
+aussi $w(x')=w(x)$, ce qui se traduit par $v\big(u(x)\big)=w(x)$, on a
+donc $w=v\circ u$.
+
+
+\msk
+
+{\bf b.} Consid\'erons l'application lin\'eaire $f:E\vers E^k$ d\'efinie par $\;
+f(x)=\big(u_1(x),\cdots,u_k(x)\big)$. On a clairement $\Ker f=\bigcap_{i=1}^k\Ker u_i$, donc
+$\Ker f\subset\Ker v$ et il existe une application lin\'eaire $A$ de $E^k$ vers $E$
+telle que $v=A\circ f$. En posant $a_1(x)=A(x,0,0,\cdots,0)$, $a_2(x)=A(0,x,0,\cdots,0)$, et ainsi de suite, pour tout
+$x$ de $E$, on a\vv
+\begin{eqnarray*}
+\a x\in E\qquad v(x) & = & A\big(f(x)\big)=A\big(u_1(x),\cdots,u_k(x)\big)\\
+                           & = & A\big(u_1(x),0,0,\cdots,0\big)+A\big(0,u_2(x),0,\cdots,0\big)+\cdots\\
+                           & = & \sum_{i=1}^ka_i\big(u_i(x)\big)\;,
+\end{eqnarray*}
+donc $\;v=\sum_{i=1}^ka_i\circ u_i$.
+
+\msk
+
+
+{\bf c.} {\it On appelle id\'eal \` a gauche de ${\cal L}(E)$ toute partie ${\cal J}$ qui
+est un sous-groupe additif de ${\cal L}(E)$ et qui v\'erifie\vv
+$$\a u\in {\cal J}\quad \a a\in{\cal L}(E)\qquad a\circ u\in{\cal J}\;.$$}
+\sect
+$\bullet$ D'abord, si $F$ est un sous-espace vectoriel de $E$, l'ensemble
+$\;{\cal J}_F=\{u\in{\cal L}(E)\;|\;F\subset \Ker u\}\;$ est bien un id\'eal
+\`a gauche de ${\cal L}(E)$.
+\msk\sect
+$\bullet$ Soit ${\cal J}$ un id\'eal \`a gauche de ${\cal L}(E)$.\ssk\sect
+Alors il est clair que ${\cal I}$ est un sous-espace vectoriel de ${\cal L}(E)$, soit $(f_1,\cdots,f_k)$ une base de l'espace vectoriel ${\cal I}$ (on est en dimension finie), posons $F=\bigcap_{i=1}^k\Ker f_i$. On a alors ${\cal I}={\cal J}_F$~: en effet,\ssk\new
+- si $f\in{\cal I}$, on a $f=\sum_{i=1}^k\lam_i f_i$ o\`u les $\lam_i$ sont des scalaires, donc $F\subset\Ker f$ et $f\in{\cal J}_F$.\ssk\new
+- si $f\in{\cal J}_F$, d'apr\`es la question {\bf b.}, on peut \'ecrire $f=\sum_{i=1}^ka_i\circ f_i$, o\`u les $a_i$ sont des endomorphismes de $E$, et $f\in{\cal I}$ (car les $f_i$ appartiennent \`a ${\cal I}$ et ${\cal I}$ est un id\'eal \`a gauche).
+
+
+
+
+
+
+
+
+
+\msk\sect
+{\it Remarque. Si $p$ est un projecteur de direction $F$ (c'est-\`a-dire
+$\Ker p=F$), on peut noter que\vv
+$${\cal J}_F={\cal L}(E)\circ p=\{f\circ p\;;\;f\in{\cal L}(E)\}\;:$$
+${\cal J}_F$ est l'``id\'eal \`a gauche engendr\'e par $p$''.
+
+\msk\sect
+Ce qui pr\'ec\`ede ne se g\'en\'eralise pas dans un espace vectoriel $E$ de dimension
+infinie~; l'ensemble ${\cal J}$ des endomorphismes de $E$ de rang fini est
+alors un id\'eal (bilat\`ere) de ${\cal L}(E)$ qui n'est pas de la forme ${\cal J}_F$.}
+
+\bsk\hrule
+\bsk
+
+
+
+
+
+
+{\bf EXERCICE 3 :}\msk
+
+C'est un paysan, l'a $2n+1$ vaches. Quand qu'y met d'c\^ot\'e l'une quelconque d'ses vaches, ben les $2n$ qui restent, y peut les r\'epartir en deux sous-troupeaux
+de $n$ vaches chacun et ayant le m\^eme poids total.\ssk\par
+Montrer qu'les vaches, \`e z'ont toutes le m\^eme poids.
+
+\msk
+{\it Source : Merci \`a Christophe H\'ENOCQ}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+Soient $p_1$, $\ldots$, $p_{2n+1}$ les poids des vaches (nomm\'ees $V_1$, $\ldots$, $V_{2n+1}$, c'est plus pratique que ``Marguerite'').
+Soit $P=\pmatrix{p_1\cr \vdots\cr p_{2n+1}\cr}\in\rmat^{2n+1}$.\msk\par
+Traduisons l'hypoth\`ese~: pour tout $i\in\[ent1,2n+1\]ent$, les vaches $V_j$
+($j\not=i$) peuvent \^etre r\'eparties en deux sous-troupeaux de m\^eme effectif et de m\^eme
+poids total. Il existe donc des
+coefficients $a_{i,j}$ (avec $1\ie j\ie 2n+1$) tels que\ssk\new
+$\bullet$ {\bf (1)} $\;a_{i,i}=0$ ({\it la vache $V_i$ part brouter dans son coin})~;\ssk\new
+$\bullet$ {\bf (2)} $\;a_{i,j}=\pm1$ si $j\not=i$~; ({\it le signe d\'epend du sous-troupeau dans lequel
+on met la vache $V_j$})\ssk\new
+$\bullet$ {\bf (3)} $\;\sum_{j=1}^{2n+1}a_{i,j}=0$ ({\it les deux sous-troupeaux ont m\^eme effectif})\ssk\new
+$\bullet$ {\bf (4)} $\;\sum_{j=1}^{2n+1}a_{i,j}p_j=0$ ({\it les deux sous-troupeaux ont m\^eme poids total}).\ssk\par
+Autrement dit, il existe une matrice $A=(a_{i,j})\in{\cal M}_{2n+1}(\rmat)$ telle que\ssk\new
+$\bullet$ {\bf (1)} : les coefficients diagonaux sont nuls~;\ssk\new
+$\bullet$ {\bf (2)} : les autres coefficients valent $\pm1$~;\ssk\new
+$\bullet$ {\bf (3)} : la somme des \'el\'ements de chaque ligne est nulle, ce qui revient
+\`a dire que $X_0=\pmatrix{1\cr \vdots\cr 1\cr}$ appartient au noyau $\Ker A$~;\ssk\new
+$\bullet$ {\bf (4)} : la somme des \'el\'ements de chaque ligne, pond\'er\'es des
+coefficients $p_j$, est nulle, c'est-\`a-dire $P\in\Ker A$.
+\msk\par
+Nous allons montrer que toute matrice $A\in{\cal M}_{2n+1}(\rmat)$ v\'erifiant
+les conditions {\bf (1)} et {\bf (2)} est de rang $2n$, ce qui signifie que
+son noyau est de dimension 1. Les conditions {\bf (3)} et {\bf (4)}
+entra\^\i neront alors que les vecteurs $P$ et $X_0$ sont colin\'eaires, donc que les
+vaches ont toutes le m\^eme poids.
+\msk\par
+Soit donc une matrice $A\in{\cal M}_{2n+1}(\rmat)$ v\'erifiant
+les conditions {\bf (1)} et {\bf (2)}. Consid\'erons la matrice extraite
+$B=(a_{ij})_{1\ie i,j\ie 2n}$ obtenue en \^otant la derni\`ere ligne et la
+derni\`ere colonne, et montrons qu'elle est inversible. Son d\'eterminant est\vv
+$$D=\det(B)=\sum_{\sigma\in{\cal S}_{2n}}\eps(\sigma)\;a_{{}_{1,\sigma(1)}}\ldots
+  a_{{}_{2n,\sigma(2n)}}\;.$$
+Les termes diagonaux \'etant nuls, les seuls termes non nuls du d\'eveloppement
+de ce d\'eter\-minant sont ceux pour lesquels $\sigma$ est un {\bf d\'erangement}
+(permutation sans point fixe) de $\[ent1,2n\]ent$. Par ailleurs, chacun de
+ces termes non nuls vaut $\pm1$, donc le d\'eterminant $D$ est un entier relatif
+de m\^eme parit\'e que le nombre de d\'erangements de l'ensemble $\[ent1,2n\]ent$.
+Si nous prouvons que ce nombre est impair, la d\'emonstration est achev\'ee.
+\bsk\par
+Soit donc, pour tout $k$ entier naturel non nul, $d_k$ le nombre de
+d\'erangements de l'ensemble $\[ent1,k\]ent$. Nous allons prouver la
+relation de r\'ecurrence\vv
+$${\bf (R)}\;:\qquad d_k=(k-1)(d_{k-1}+d_{k-2})\qquad\qquad (k\se3)\;.$$
+\par
+Preuve de la relation {\bf (R)}~: soit $k\se3$, soit $\sigma$ un d\'erangement
+de $\[ent1,k\]ent$. Il y a $k-1$ choix possibles pour le nombre $j=\sigma(k)\in
+\[ent1,k-1\]ent$. Deux possibilit\'es s'excluent alors mutuellement~:\ssk\new
+- si $\sigma(j)=k$, alors la restriction de $\sigma$ \`a l'ensemble
+$\[ent1,k\]ent\setminus\{j,k\}$ est un d\'erangement d'un ensemble \`a $k-2$
+\'el\'ements, il y en a $d_{k-2}$~;\ssk\new
+- si $\sigma(j)\not=k$, le d\'enombrement est un peu moins \'evident. Introduisons
+pour cela l'ensemble ${\cal E}_j$ des d\'erangements de $\[ent1,k\]ent$
+tels que $\sigma(k)=j$ et $\sigma(j)\not=k$, puis l'ensemble ${\cal F}$ des d\'erangements
+de $\[ent1,k-1\]ent$. A tout \'el\'ement $\sigma$ de ${\cal E}_j$, associons
+l'\'el\'ement $\tau$ de ${\cal F}$ d\'efini par $\system{&\tau\big(\sigma^{-1}(k)\big)&=&&j&\cr
+&\hfill\tau(p)\hfill&=&p&\quad{\rm si}\;\;p\not=\sigma^{-1}(k)\cr}$ (en quelque
+sorte, on ``zappe'' l'\'el\'ement $k$). On voit facilement que la correspondance
+$\sigma\mapsto\tau$ est une bijection de ${\cal E}_j$ sur ${\cal F}$,
+la bijection r\'eciproque est $\tau\mapsto\sigma$, avec
+$\system{&\sigma\big(\tau^{-1}(j)\big)&=&k\hfill&\cr
+         &\hfill\sigma(k)\hfill&=&j\hfill&\cr
+         &\hfill\sigma(p)\hfill&=&\tau(p)&\quad{\rm sinon}\cr}$. Donc
+le cardinal de ${\cal E}_j$ est $d_{k-1}$, ce qui ach\`eve la d\'emonstration.
+
+\msk
+Revenons \`a nos vaches... De la relation {\bf (R)}, il r\'esulte que
+$\;d_{2n-1}=(2n-2)(d_{2n-2}+d_{2n-3})\;$ est toujours un nombre pair, puis on montre
+par r\'ecurrence sur $n$ que $d_{2n}$ est impair~:\ssk\new
+- pour $n=1$, $d_2=1$~;\ssk\new
+- si $d_{2n-2}$ est impair (pour $n\se2$), alors $d_{2n}=(2n-1)(d_{2n-1}+d_{2n-2})$
+avec $2n-1$ impair, $d_{2n-1}$ pair et $d_{2n-2}$ impair, donc $d_{2n}$ est
+impair, ce qui ach\`eve le troupeau.
+\bsk
+
+\cl{******************************}
+
+\bsk
+Quelques compl\'ements sur les d\'erangements, sans plus d\'eranger les vaches qui
+finiraient par devenir folles...
+
+\msk
+La relation de r\'ecurrence {\bf (R)} permet d'\'ecrire une fonction r\'ecursive en
+MAPLE pour calculer le nombre $d_n$, not‚ {\info der(n)}~:\ssk\new
+
+$\begin{array}{llcl}
+\mbox{\info >} & \mbox{\info der:=} & \mbox{\info  proc(n)} & \mbox{\info  option remember:}\\
+  &     & \mbox{\info if n=1} & \mbox{\info then 0} \\
+  &     &        &  \mbox{\info elif n=2 then 1}\\
+  &     &        &  \mbox{\info else (n-1)*(der(n-1)+der(n-2))}\\
+  &     & \mbox{\info fi}&\\
+ & \mbox{\info end:} & & \end{array} $
+
+
+\msk
+La relation {\bf (R)} peut s'\'ecrire $\;d_n-nd_{n-1}=-\big[d_{n-1}-(n-1)d_{n-2}\big]$~;
+la suite de terme g\'en\'eral\break $u_n=d_n-nd_{n-1}$ est donc g\'eom\'etrique de raison $-1$,
+d'o\`u $u_n=d_n-nd_{n-1}=(-1)^n$ pour $n\se2$. On a donc,
+pour tout $k\se2$, la relation ${d_k\s k!}-{d_{k-1}\s (k-1)!}={(-1)^k\s k!}$.
+En sommant pour $k$ de 2 \`a $n$, on obtient\vv
+$$d_n=n!\>\lp\sum_{k=2}^n{(-1)^k\s k!}\rp$$
+et, comme cons\'equence, l'\'equivalence $\;d_n\sim{n!\s e}$.
+
+
+
+\bsk\hrule
+\bsk
+
+{\bf EXERCICE 4 :}\msk
+Soient $P$ et $Q$ deux polyn\^omes de $\cmat[X]$, de degr\'es $m$ et $n$ respectivement.
+\msk
+{\bf 1.} Montrer que $P$ et $Q$ ont une racine commune si et seulement si
+la famille\vv
+$$(P,XP,\ldots,X^{n-1}P,Q,XQ,\ldots,X^{m-1}Q)$$
+est li\'ee dans $\cmat[X]$.\msk
+{\bf 2.} On pose $P=\sum_{k=0}^ma_kX^k$, $Q=\sum_{j=0}^nb_jX^j$.\ssk\sect
+\'Ecrire un d\'eterminant qui s'annule si et seulement si $P$ et $Q$ ont une
+racine commune.\msk
+{\bf 3.} En d\'eduire une condition n\'ecessaire et suffisante pour que
+le polyn\^ome $P=X^3+pX+q$ admette une racine double.\msk
+{\bf 4.} Un nombre complexe $a$ est dit {\bf alg\'ebrique} s'il annule
+un polyn\^ome (non nul) \`a coefficients rationnels.\ssk\sect
+Montrer que la somme de deux nombres alg\'ebriques est alg\'ebrique.\ssk\sect
+Ecrire un polyn\^ome non nul de $\qmat[X]$, de plus petit degr\'e possible, admettant pour racine $i+j$.
+
+\msk
+{\it Source : Jean-Pierre ESCOFIER, Th\'eorie de Galois, \'Editions Masson},
+ISBN 2-225-82948-9.
+
+
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+
+
+
+{\bf 1.} Les polyn\^omes $P$ et $Q$ ont une racine commune si et seulement
+si leur pgcd $P\wedge Q$ est non constant, c'est-\`a-dire si et seulement si
+leur ppcm $P\vee Q$ est de degr\'e strictement inf\'erieur \`a $m+n$ (puisque les
+polyn\^omes $PQ$ et $(P\wedge Q)(P\vee Q)$ sont associ\'es). Cela \'equivaut \`a
+l'existence d'un multiple commun non nul de degr\'e $<m+n$, ou encore
+de deux polyn\^omes $U$ et $V$ non tous deux nuls tels que\vv
+$$UP-VQ=0\;,\quad\hbox{avec}\quad\deg U<n\quad\hbox{et}\quad\deg V<m\;.$$
+Une condition n\'ecessaire et suffisante est donc que la famille de polyn\^omes\vv
+$${\cal P}=(P,XP,\ldots,X^{n-1}P,Q,XQ,\ldots,X^{m-1}Q)$$
+soit li\'ee.
+
+\msk
+{\bf 2.} Il suffit de consid\'erer le d\'eterminant (d'ordre $m+n$) de la famille ${\cal P}$ dans la base
+canonique $(1,X,X^2,\ldots,X^{m+n-1})$ de $\cmat_{m+n-1}[X]$~:\vv
+$${\cal S}_X(P,Q)=\deter{a_0&0&\ldots&0&b_0&0&\ldots&\ldots&0\cr
+           a_1&\ddots&\ddots&\vdots&b_1&\ddots&\ddots&&\vdots\cr
+           \vrule&\ddots&\ddots&0&\vrule&\ddots&\ddots&\ddots&\vdots\cr
+           \vrule&&\ddots&a_0&\vrule&&\ddots&\ddots&0\cr
+           \vrule&&&a_1&b_n&&&\ddots&b_0\cr
+           a_m&&&\vrule&0&\ddots&&&b_1\cr
+           0&\ddots&&\vrule&\vdots&\ddots&\ddots&&\vrule\cr
+           \vdots&\ddots&\ddots&\vrule&\vdots&&\ddots&\ddots&\vrule\cr
+           0&\ldots&0&a_m&0&\ldots&\ldots&0&b_n}$$
+(les $n$ premi\`eres colonnes sont constitu\'ees des coefficients du polyn\^ome $P$,
+que l'on d\'ecale et les $m$ colonnes suivantes des coefficients du polyn\^ome $Q$,
+que l'on d\'ecale). ${\cal S}_X(P,Q)$ est le {\bf d\'eterminant de Sylvester} des polyn\^omes $P$
+et $Q$.
+\msk
+{\bf 3.} On cherche une condition pour que le polyn\^ome $P$ et sa d\'eriv\'ee $P'$
+aient une racine commune. Or,\vv
+\begin{eqnarray*}
+{\cal S}_X(P,P') & = & \deter{q&0&p&0&0\cr p&q&0&p&0\cr 0&p&3&0&p\cr 1&0&0&3&0\cr
+  0&1&0&0&3\cr}=\deter{0&0&p&-3q&0\cr 0&q&0&-2p&0\cr 0&0&3&0&-2p\cr 1&0&0&3&0\cr
+  0&1&0&0&3\cr}=-\deter{0&p&-3q&0\cr 0&0&-2p&-3q\cr 0&3&0&-2p\cr 1&0&0&3\cr}\\
+  & = & \deter{p&-3q&0\cr 0&-2p&-3q\cr 3&0&-2p\cr}=4p^3+27q^2
+\end{eqnarray*}
+({\it on a effectu\'e d'abord les op\'erations $L_1\srev L_1-qL_4$, $L_2\srev L_2-pL_4$,
+$L_3\srev L_3-pL_5$, puis un d\'eveloppement par rapport \`a la premi\`ere colonne et $L_2\srev L_2-qL_4$}). La condition cherch\'ee est donc $\;4p^3+27q^2=0$.
+
+\msk
+{\bf 4.} Soient $a$ et $b$ deux nombres alg\'ebriques, soient $P$ et $Q$
+deux polyn\^omes non nuls de $\qmat[X]$ tels que $P(a)=0$ et $Q(b)=0$. Les polyn\^omes
+$P(X)$ et $Q(a+b-X)$ ont une racine commune $a$, donc leur d\'eterminant
+de Sylvester ${\cal S}_X\big(P(X),Q(a+b-X)\big)$ est nul.\ssk\sect
+Posons $R(Y)={\cal S}_X\big(P(X),Q(Y-X)\big)$~: c'est un d\'eterminant dont les
+coefficients sont des polyn\^omes de $\qmat[Y]$, donc $R(Y)$ est un polyn\^ome
+de $\qmat[Y]$ admettant $a+b$ pour racine. Le nombre complexe $a+b$
+est donc alg\'ebrique.\msk\sect
+Avec $a=i$ et $b=j$, on peut choisir $P=X^2+1$ et $Q=X^2+X+1$ qui sont leurs polyn\^omes
+minimaux respectifs sur $\qmat$ (si $a\in\cmat$ est alg\'ebrique, l'ensemble
+$\{P\in\qmat[X]\;|\;P(a)=0\}$ est un id\'eal non nul de $\qmat[X]$ et le g\'en\'erateur
+normalis\'e de cet id\'eal est appel\'e {\bf polyn\^ome minimal} de $a$ sur $\qmat$).
+Un polyn\^ome de $\qmat[X]$ annulateur de $i+j$ est alors\vv
+\begin{eqnarray*}
+R(Y) & = & {\cal S}_X\big(X^2+1,(Y-X)^2+(Y-X)+1\big)\\ \nssk
+                & = & {\cal S}_X\big(X^2+1,X^2-(2Y+1)X+(Y^2+Y+1)\big)\\ \nssk
+                & = & \deter{1&0&Y^2+Y+1&0\cr 0&1&-(2Y+1)&Y^2+Y+1\cr
+                           1&0&1&-(2Y+1)\cr 0&1&0&1\cr}
+                   = Y^4+2Y^3+5Y^2+4Y+1\;.
+\end{eqnarray*}
+Montrons le caract\`ere minimal de ce polyn\^ome $R$. Supposons qu'il existe
+un polyn\^ome $S\in\qmat[Y]$, diviseur strict (normalis\'e) de $R$, tel que $S(i+j)=0$.
+Un tel polyn\^ome $S$ ne peut \^etre de degr\'e 1 car on aurait alors $i+j\in\qmat$~;
+il ne peut \^etre de degr\'e 3 car on aurait alors  $R=ST$ avec $T\in\qmat[Y]$
+de degr\'e un, et le polyn\^ome $R$ aurait une racine rationnelle (ce n'est pas le
+cas car le polyn\^ome $R$, par construction, admet pour racines tous les nombres
+que l'on peut \'ecrire comme somme d'une racine de $P$ et d'une racine de $Q$,
+\`a savoir les quatre nombres irrationnels distincts $\alpha=i+j$, $\beta=-i+j$,\break $\gamma=i+j^2$,
+$\delta=-i+j^2$ appel\'es {\bf conjugu\'es} de $i+j$ sur le corps $\qmat$ et
+ces quatre nombres sont donc ses seules racines).
+Enfin, si $S$ ‚tait de degr\'e deux, on aurait\break $S(Y)=(Y-\alpha)(Y-\ov{\alpha})=
+\big(Y-(i+j)\big)\big(Y-(-i+j^2)\big)=Y^2+Y+2+\sqrt{3}\;$ qui n'est pas \`a coefficients
+rationnels.\ssk\sect
+Le polyn\^ome minimal de $\alpha=i+j$ sur $\qmat$ est donc $\;R(Y)=
+Y^4+2Y^3+5Y^2+4Y+1$.
+
+\msk
+\cl{******************************}
+\msk
+
+Quelques compl\'ements sur ce ``d\'eterminant de Sylvester'' : on note les propri\'et\'es suivantes :\ssk
+$\bullet$ si $Q$ est un polyn\^ome constant ($Q=\lam$), alors ${\cal S}_X(P,Q)=\lam^{\deg(P¨)}$~;
+\ssk
+$\bullet$ on a $\;{\cal S}_X(Q,P)=(-1)^{\deg(P)\cdot\deg(Q)}\>{\cal S}_X(P,Q)$~: en effet, en reprenant les notations de la question {\bf 1.}, on voit que ${\cal S}_X(P,Q)$ est transform\'e en ${\cal S}_X(Q,P)$ si l'on fait op\'erer sur les colonnes de la matrice la permutation $\;\sigma=\pmatrix{1&2&\cdots &n&n+1&n+2&\cdots &n+m\cr
+m+1&m+2&\cdots &m+n&1&2&\cdots &n\cr}$ et cette permutation a pour signature $(-1)^{mn}$, on peut la d\'ecomposer en produit de $mn$ transpositions par exemple en \'echangeant l'\'el\'ement $n$ successivement avec les $m$ \'el\'ements qui le suivent, puis idem pour l'\'el\'ement $n-1$, et ainsi de suite jusqu'\`a l'\'el\'ement 1~;
+\ssk
+$\bullet$ si $m=\deg(P)\se n=\deg(Q)$ et si $R$ est le reste de la division euclidienne de $P$ par $Q$, on a\vv
+$${\cal S}_X(P,Q)=b_n^{\deg(P)-\deg(R)}\>{\cal S}_X(P,R)\;;$$
+en effet, notons $R_1$ le premier reste partiel dans la division euclidienne de $P$ par $Q$ ({\it le lecteur est vivement invit\'e \`a traiter un exemple}),
+en effectuant sur la matrice pr\'esent\'ee \`a la question {\bf 2.} les op\'erations sur les colonnes $C_j\srev C_j-{a_m\s b_n}C_{m+j}$ ($1\ie j\ie n$) et en d\'eveloppant par rapport \`a la derni\`ere ligne $\deg(P)-\deg(R_1)$ fois, on obtient l'\'egalit\'e ${\cal S}_X(P,Q)=b_n^{\deg(P)-\deg(R_1)}\>{\cal S}_X(P,R_1)$, il ne reste plus qu'\`a it\'erer.
+\msk
+Cela montre que l'on peut calculer le d\'eterminant de Sylvester de deux polyn\^omes de fa\c con r\'ecursive ({\it cf. proc\'edure ci-dessous}) et cela prouve aussi que ce d\'eterminant de Sylvester est la m\^eme chose que le {\bf r\'esultant} d\'efini dans l'exercice {\bf 5} de la semaine {\bf 1}.
+\ssk
+Proc\'edure de calcul r\'ecursive~:\msk
+$\begin{array}{lll}
+\mbox{\info>} & \mbox{\info result:=} & \mbox{\info proc(P,Q,X):}\\
+                  &  & \mbox{\info if (P=0) or (Q=0) then 0}\\
+                  &  & \mbox{\info \qquad elif degree(Q,X)=0 then lcoeff(Q,X)}\;\widehat{\;}\; \mbox{\info degree(P,X)}\\
+                  &  & \mbox{\info \qquad else (-1)}\;\widehat{\;}\;\mbox{\info degree(P,X)*degree(Q,X))*}\\
+                  &  & \qquad\qquad\qquad\mbox{\info lcoeff(Q,X)}\;\widehat{\;}\;\mbox{\info (degree(P,X)-degree(rem(P,Q,X),X)) *}\\
+                 &  &  \qquad\qquad\qquad\mbox{\info factor(result(Q,rem(P,Q,X),X))}\\
+                 &  & \mbox{\info   fi}\\
+                 &  \mbox{\info end;}&
+\end{array}$  
+
+
+
+
+
+
+
+\bsk\hrule
+\bsk
+
+
+{\bf EXERCICE 5 :}\msk
+Pour toute matrice $A=(a_{ij})\in\MR{n}$, on appelle {\bf permanent} de $A$ le r\'eel\vv
+$${\rm per}(A)=\sum_{\sigma\in{\cal S}_n}a_{\sigma(1),1}\cdots a_{\sigma(n),n}\;.$$
+\par
+{\bf 1.} D\'egager les propri\'et\'es \'el\'ementaires du permanent.\ssk
+{\bf 2. Th\'eor\`eme de Frobenius et K\"onig}
+\ssk Soit $A\in\MR{n}$ une matrice \`a coefficients positifs ou nuls. Montrer que son permanent est nul si et seulement si on peut extraire de $A$ une matrice nulle de 
+format $s\times (n+1-s)$, o\`u $s$ est un entier appartenant \`a $\[ent1,n\]ent$.\ssk
+{\bf 3. Lemme des mariages :}\ssk
+Soient $F$ et $G$ deux ensembles finis, soit $\Phi:G\vers{\cal P}(F)$ une application.\ssk
+D\'emontrer l'\'equivalence des assertions {\bf (1)} et {\bf (2)}~:\ssk\sect
+{\bf (1)} : il existe une injection $\ffi:G\vers F$ telle que $\;\a g\in G\quad \ffi(g)\in\Phi(g)$.
+\msk\sect
+{\bf (2)} : $\a\> G'\in{\cal P}(G)\quad \left|\bigcup_{g\in G'}\Phi(g)\right|\se|G'|$.
+
+\bsk
+{\it Source : Jean-Marie MONIER, Alg\`ebre Tome 2, \'Editions Dunod, ISBN 2-10-000006-3}
+
+
+\bsk\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\bsk
+
+{\bf 1.} Le permanent est une forme $n$-lin\'eaire sym\'etrique des $n$ lignes (ou des $n$ colonnes) de la matrice, il est donc invariant par toute permutation de lignes ou de colonnes.\ssk\sect
+On peut d\'evelopper le permanent par rapport \`a une ligne ou une colonne~: si on note $A_{ij}$ la matrice carr\'ee d'ordre $n-1$ obtenue en supprimant de $A$ la $i$-i\`eme ligne et la $j$-i\`eme colonne, on a\vv
+$${\rm per}(A)=\sum_{j=1}^na_{ij}\>{\rm per}(A_{ij})\qquad\hbox{pour tout}\quad i\in\[ent1,n\]ent\;;$$
+$${\rm per}(A)=\sum_{i=1}^na_{ij}\>{\rm per}(A_{ij})\qquad\hbox{pour tout}\quad j\in\[ent1,n\]ent\;.$$\sect
+On peut calculer des permanents par blocs : ${\rm per}\pmatrix{A&0\cr C&D\cr}={\rm per} (A)\times{\rm per}(D)$.\ssk\sect
+Enfin, on a $\;{\rm per}(\t A)={\rm per}(A)$.\ssk\sect
+{\it Les propri\'et\'es qui pr\'ec\`edent se d\'emontrent de fa\c con analogue aux propri\'et\'es correspondantes pour les d\'eterminants.}
+\msk\sect
+Par contre, si $A$ et $B$ sont deux matrices carr\'ees d'ordre $n$, alors ${\rm per}(AB)\not={\rm per}(A)\times{\rm per}(B)$ en g\'en\'eral,
+et on a m\^eme
+${\rm per}(AB)\not={\rm per}(BA)$ en g\'en\'eral, essayer avec $A=\pmatrix{1&1\cr
+1&1\cr}$ et $B=\pmatrix{1&2\cr 3&4\cr}$.
+
+\msk
+{\bf 2.} Notons ${\cal M}_n^+$ l'ensemble des matrices carr\'ees d'ordre $n$ \`a coefficients positifs ou nuls.\ssk\sect
+$\bullet$ Soit $A\in{\cal M}_n^+$, supposons que l'on puisse extraire de $A$ une matrice nulle de format\break $s\times (n+1-s)$ pour $s\in\[ent1,n\]ent$ donn\'e. Par des permutations de lignes et de colonnes (qui ne modifient pas le permanent), on peut transformer $A$ en une matrice $A'=\pmatrix{A_1&0_{s,n-s}\cr A_2&A_3\cr}$, avec $A_1$ carr\'ee d'ordre $s$ ayant sa derni\`ere colonne nulle (on en d\'eduit le format des autres matrices)~; en d\'eveloppant par rapport \`a cette derni\`ere colonne, on a ${\rm per}(A_1)=0$, puis ${\rm per}(A)={\rm per}(A')={\rm per}(A_1)\times{\rm per}(A_3)=0$.\msk\sect
+$\bullet$ Pour l'implication r\'eciproque, montrons par r\'ecurrence forte sur $n\in\net$ l'assertion\vv
+$$({\cal A}_n)\;:\quad\a A\in{\cal M}_n^+\qquad{\rm per}(A)=0\;\impl\;\e s\in\[ent1,n\]ent\quad
+  0_{s,n+1-s}\;\hbox{est extraite de}\;A\;.$$
+\new
+$\triangleright$ pour $n=1$, la propri\'et\'e est imm\'ediate.\ssk\new
+$\triangleright$ Soit $n\in\net$, supposons l'assertion v\'erifi\'ee pour les entiers 1, 2, $\cdots$, $n$ et soit $A\in{\cal M}_{n+1}^+$ telle que ${\rm per}(A)=0$ et $A\not=0$.\new
+Soit $a_{ij}$ un coefficient non nul (donc strictement positif) de la matrice $A$, on a alors\break ${\rm per}(A_{ij})=0$~: en effet, en d\'eveloppant par rapport \`a la i-i\`eme ligne, on a\break $0={\rm per}(A)=\sum_{k=1}^na_{ik}\>{\rm per}(A_{ik})$ et, tous les termes de cette somme \'etant positifs, ils sont donc tous nuls.\new
+D'apr\`es l'hypoth\`ese de r\'ecurrence, on peut extraire de la matrice $A_{ij}$ (donc de $A$) une matrice nulle de format $s\times(n+1-s)$ avec $1\ie s\ie n$ et des permutations sur les lignes et les colonnes permettent de transformer $A$ en une matrice $A'=\pmatrix{A_1& 0_{s,n+1-s}\cr A_2&A_3\cr}$,
+ o\`u $A_1$ et $A_3$ sont carr\'ees d'ordres $s$ et $n+1-s$ respectivement, et \`a coefficients positifs ou nuls . On a\vv
+$$0={\rm per}(A)={\rm per}(A')={\rm per}(A_1)\times{\rm per}(A_3)\;,$$
+donc ${\rm per}(A_1)=0$ ou ${\rm per}(A_3)=0$.\ssk\new
+Supposons ${\rm per}(A_1)=0$. En utilisant l'hypoth\`ese de r\'ecurrence, il existe un entier $t$\break ($1\ie t\ie s$) tel que l'on puisse extraire de $A_1$ une matrice nulle de format $t\times(s+1-t)$. En effectuant des permutations de lignes et de colonnes, on place cette matrice nulle dans ``le coin en haut \`a droite'' de la matrice $A_1$ et, en revenant \`a la forme diagonale par blocs $A'=\pmatrix{A_1& 0_{s,n+1-s}\cr A_2&A_3\cr}$, on voit que l'on peut extraire de $A$ un bloc nul de format\break $t\times ((s+1-t)+(n+1-s))$, c'est-\`a-dire $t\times (n+2-t)$, c'est bien ce qu'on voulait obtenir ({\it raisonnement analogue si} ${\rm per}(A_3)=0$).
+
+\msk
+{\bf 3.} Pour interpr\'eter la question pos\'ee, notons\ssk\sect
+$G=\{g_1,\ldots,g_m\}$ (``ensemble des gar\c cons'')\ssk\sect
+$F=\{f_1,\ldots,f_n\}$ (``ensemble des filles''\}\ssk\sect
+$\Phi$ : \`a chaque gar\c con $g\in G$, on associe un ensemble de filles $\Phi(g)$~;\ssk\sect
+{\bf (1)} : chaque gar\c con $g\in G$ peut choisir une fille $\ffi(g)$ dans l'ensemble $\Phi(g)$, de telle sorte que deux gar\c cons diff\'erents ne choisissent jamais la m\^eme fille~;\ssk\sect
+{\bf (2)} : si un sous-ensemble de gar\c cons a $k$ \'el\'ements, la r\'eunion des ensembles de filles dans lesquels ils peuvent choisir a au moins $k$ \'el\'ements.
+\bsk\sect
+Allons-y~:\msk\sect
+$\bullet$ {\bf (1)} $\impl$ {\bf (2)} est imm\'ediat~: si $\ffi$ est une injection, on a $|\ffi(G')|=|G'|$ pour toute partie $G'$ de $G$. Or, $\ffi(G')\subset\bigcup_{g\in G'}\Phi(g)$, donc $|G'|=|\ffi(G')|\ie\left|\bigcup_{g\in G'}\Phi(g)\right|$.
+\msk\sect
+$\bullet$ {\bf (2)} $\impl$ {\bf (1)}~: c'est un peu plus long...\ssk\new
+Avec $G'=G$, on voit que $\left|\bigcup_{g\in G}\Phi(g)\right|\se|G|$ donc, {\it a fortiori},
+$|F|\se |G|$ ou $n\se m$ (il y a au moins autant de filles que de gar\c cons).\ssk\new
+Construisons une matrice $A\in{\cal M}_n^+$ de la fa\c con suivante~:\ssk\new
+* sur les $m$ premi\`eres lignes, le coefficient $a_{ij}$ ($1\ie i\ie m$, $1\ie j\ie n$) vaut 1 si le $i$-i\`eme gar\c con peut choisir la $j$-i\`eme fille, c'est-\`a-dire si $f_j\in\Phi(g_i)$, et vaut 0 sinon~;\ssk\new
+* les coefficients des $n-m$ derni\`eres lignes valent tous 1.\msk\new
+Le permanent de la matrice $A$ est non nul~; en effet, si on avait ${\rm per}(A)=0$, on pourrait extraire de $A$ une matrice nulle de format $s\times (n+1-s)$ et cette matrice serait 
+n\'ecessairement extraite des $m$ premi\`eres lignes (donc $s\ie m$), notons $i_1<i_2<\ldots<i_s$ les indices de lignes et $j_1<j_2<\ldots <j_{n+1-s}$ les indices de colonnes de cette matrice nulle extraite~; on aurait alors\vv
+$$\bigcup_{k=1}^s\Phi(g_{i_k})\subset F\setminus\{f_{j_1},\ldots,f_{j_{n+1-s}}\}\;,$$
+donc $\left|\bigcup_{k=1}^s\Phi(g_{i_k})\right|\ie n-(n+1-s)=s-1<s$, ce qui contredit l'assertion {\bf (2)} avec $G'=\{g_{i_1},\ldots,g_{i_s}\}$.\msk\new
+Donc ${\rm per}(A)=\sum_{\sigma\in{\cal S}_n}a_{\sigma(1),1}\cdots a_{\sigma(n),n}\not=0$,
+donc il existe au moins une permutation $\sigma$ telle que $a_{\sigma(i),i}\not=0$ pour tout $i\in\[ent1,n\]ent$. Ainsi, pour tout $i\in\[ent1,m\]ent$, on a $a_{i,\sigma^{-1}(i)}\not=0$ et $f_{\sigma^{-1}(i)}\in\Phi(g_i)$. L'application $\ffi : G \vers F$, $g_i\mapsto f_{\sigma^{-1}(i)}$ ($1\ie i\ie m$) v\'erifie les conditions de l'assertion {\bf (1)}.
+
+
+\bsk
+\hrule
+\bsk
+
+
+{\bf EXERCICE 6 :}\msk
+Soit $E$ un $\kmat$-espace vectoriel de dimension finie $n\se1$.\ssk
+Un \'el\'ement $\tau$ de ${\cal L}(E)$ est une {\bf transvection} s'il existe un hyperplan $H$ tel que\vv
+$$\tau\big|_H=\id_H\qquad\hbox{et}\qquad\Im(\tau-\id_E)\subset H\;,$$
+c'est-\`a-dire $\;\Im(\tau-\id_E)\subset H\subset\Ker(\tau-\id_E)$.\msk
+On note ${\rm SL}(E)=\{u\in{\rm GL}(E)\;|\;\det u=1\}$ le {\bf groupe sp\'ecial lin\'eaire} de $E$.\msk
+{\bf 1.} Montrer que $\tau\in{\cal L}(E)$ est une transvection si et seulement si\vv
+$$\e\ffi\in E^*\quad\e a\in\Ker\ffi\quad\a x\in E\qquad\tau(x)=x+\ffi(x)\>a\;.$$\par
+{\bf 2.} Dans cette question, on suppose $\dim E\se 2$. Soient $x$ et $y$ deux vecteurs non nuls de $E$. Montrer qu'il existe $\tau$, transvection ou produit de deux transvections, tel que $\tau(x)=y$.\msk
+{\bf 3.} Soit $x$ un vecteur non nul de $E$, soient $H_1$ et $H_2$ deux hyperplans distincts tels que\break $x\not\in H_1\union H_2$. Montrer qu'il existe une transvection $\tau$ telle que\vv
+$$\tau(x)=x\qquad\hbox{et}\qquad\tau(H_1)=H_2\;.$$\par
+{\bf 4.} En d\'eduire que le groupe ${\rm SL}(E)$ est engendr\'e par les transvections.
+
+\msk
+{\it Source : Daniel PERRIN, Cours d'Alg\`ebre, \'Editions Ellipses, ISBN 2-7298-5552-1}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf 1.} Soit $\tau$ une transvection.\ssk\sect
+$\bullet$ Si $\tau=\id_E$, on peut choisir $\ffi=0$ et $a\in E$ quelconque.\ssk\sect
+$\bullet$ Si $\tau\not=\id_E$, alors $\Ker(\tau-\id_E)$ est un hyperplan $H$, et $\Im(\tau-\id_E)$ est une droite vectorielle $D$ contenue dans $H$, soit $a$ un vecteur directeur de $D$. Pour tout $x$ de $E$, notons $\ffi(x)$ l'unique scalaire tel que $\tau(x)-x=\ffi(x) a$. L'application $\ffi:E\vers\kmat$ est une forme lin\'eaire de noyau $H$, donc $a\in\Ker\ffi$.\bsk\sect
+R\'eciproquement, soit $\tau$ un endomorphisme de $E$ tel que $\tau(x)=x+\ffi(x) a$, avec $\ffi$ forme lin\'eaire sur $E$ et $a\in\Ker\ffi$.\ssk\sect
+$\bullet$ si $a=0$ ou $\ffi=0$, alors $\tau=\id_E$~: c'est une transvection~;\ssk\sect
+$\bullet$ sinon, $H=\Ker\ffi$ est un hyperplan, on a bien $\;\a x\in H\quad\tau(x)=x$ et\vv
+$$\a x\in E\qquad\tau(x)-x=\ffi(x) a\in H\;,$$
+donc $\tau$ est une transvection ``d'hyperplan $H$''.
+
+\bsk
+{\bf 2.} Supposons d'abord $x$ et $y$ non colin\'eaires, soit $a=y-x$ ($a\not=0$), soit $H$ un hyperplan vectoriel contenant $a$ mais pas $x$. Soit $\ffi$ {\bf la} forme lin\'eaire sur $E$ nulle sur $H$ et telle que $\ffi(x)=1$. La transvection $\tau : v\mapsto v+\ffi(v) a$ envoie $x$ sur $y$.\msk\sect
+Si $x$ et $y$ sont colin\'eaires, puisque $\dim E\se2$, il suffit de ``transiter'' par un vecteur $z$ non colin\'eaire \`a $x$ et $y$ pour trouver un produit de deux transvections qui envoie $x$ sur $y$.
+
+\bsk
+{\bf 3.} Le sous-espace $F=H_1\inter H_2$ est de dimension $n-2$, consid\'erons l'hyperplan $H=F\oplus\kmat x$. Soient $D_1$ et $D_2$ des droites telles que $H_1=F\oplus D_1$ et $H_2=F\oplus D_2$. On peut choisir des vecteurs directeurs $x_1$ et $x_2$ de $D_1$ et $D_2$ respectivement, de fa\c con que $x_1-x_2\in H$~: en effet, $(D_1\oplus D_2)\inter H\not=\{0\}$ pour des raisons de dimensions.\msk
+\sect
+Soit enfin $\tau$ l'unique endomorphisme de $E$ tel que $\tau\big|_H=\id_H$ et $\tau(x_1)=x_2$
+(on a $x_1\not\in H$ car, sinon, on aurait aussi $x_2\in H$, puis $H_1\subset H$, $H_2\subset H$ et finalement $H_1=H_2=H$ absurde). On v\'erifie imm\'ediatement que $\Im(\tau-\id_E)\subset H$, donc $\tau$ est bien une transvection ``d'hyperplan $H$''. Enfin, $\tau(x)=x$ puisque $x\in H$ et, comme $\tau\big|_F=\id_F$ et $\tau(x_1)=x_2$, on a $\tau(H_1)=H_2$.\ssk\sect
+Il existe donc une transvection laissant stable $x$ et envoyant $H_1$ sur $H_2$.
+
+\bsk
+{\bf 4.} V\'erifions d'abord que les transvections appatiennent \`a ${\rm SL}(E)$~: pour $\tau=\id_E$, c'est imm\'ediat, sinon si $\tau:x\mapsto x+\ffi(x) a$ avec $a\in H=\Ker\ffi$, construisons une base ${\cal B}=(e_1, \cdots, e_{n-1},e_n)$ de $E$ avec $e_{n-1}=a$, $(e_1,\cdots,e_{n-1})$ base de $H$ et $\ffi(e_n)=1$, alors $M_{{\cal B}}(\tau)=I_n+E_{n-1,n}$\break a pour d\'eterminant 1.\msk
+\sect
+D\'emontrons le lemme suivant~:\ssk\sect
+{\it Soit $E$ un $\kmat$-espace vectoriel de dimension $n\se2$, soit $u\in {\rm SL}(E)$. Soit $H$ un hyperplan de $E$, soit $x\in E\setminus H$. Alors il existe un \'el\'ement $v$ de ${\rm SL}(E)$ v\'erifiant $v(H)=H$ et $v(x)=x$ et tel que $u=\sigma v$ o\`u $\sigma$ est compos\'e d'un nombre fini de transvections.}
+\ssk\sect
+{\it Preuve du lemme}~:
+D'apr\`es la question {\bf 2.}, il existe $\tau$ (transvection, ou produit de deux transvections) tel que $\tau(x)=u(x)$, c'est-\`a-dire $\tau^{-1}u(x)=x$.\ssk\sect
+Soit l'hyperplan $H'=\tau^{-1}u(H)$~:\ssk\new
+$\triangleright$ si $H'=H$, on prend $v=\tau^{-1}u$~;\ssk\new
+$\triangleright$ si $H'\not=H$, on a $x\not\in H\union H'$, il existe donc (question {\bf 3.}) une transvection $\mu$ telle que $\mu(x)=x$ et $\mu(H)=H'$ et $v=\mu^{-1}\tau^{-1}u$ r\'epond \`a la question ({\it fin de la preuve du lemme}).
+\bsk\sect
+On montre alors que les transvections engendrent le groupe ${\rm SL}(E)$ par r\'ecurrence sur\break
+$n=\dim(E)$~:\ssk\sect
+$\bullet$ pour $n=1$, c'est clair puisque la seule transvection est $\id_E$ et ${\rm SL}(E)=\{\id_E\}$~;\ssk\sect
+$\bullet$ soit $n\se2$, supposons l'assertion vraie au rang $n-1$, soit $E$ de dimension $n$, soit $u\in{\rm SL}(E)$. Soit $H$ un hyperplan de $E$, soit $x\in E\setminus H$ (alors $E=H\oplus (\kmat x)$), on \'ecrit $u=\sigma_0 v$, o\`u $\sigma_0$ est un produit de transvections de $E$, et $v\in{\rm SL}(E)$ laisse stables $H$ et $x$ ({\it lemme}). On v\'erifie alors que $v\big|_H\in{\rm SL}(H)$ ({\it \'ecrire la matrice de $v$ dans une base adapt\'ee \`a la d\'ecomposition $E=H\oplus (\kmat x)$}), l'hypoth\`ese de r\'ecurrence permet d'\'ecrire $v\big|_H=\tau_1\cdots\tau_k$, o\`u les $\tau_i$ ($1\ie i\ie k$) sont des transvections de $H$~; on a alors $v=\sigma_1\cdots\sigma_k$, o\`u chaque $\sigma_i$ est l'endomorphisme de $E$ d\'efini par $\sigma_i\big|_H=\tau_i$ et $\sigma_i(x)=x$ (on v\'erifie facilement que $\sigma_i$ est une transvection de $E$). Finalement, $u=\sigma_0\sigma_1\cdots\sigma_k$ est un produit de transvections.
+
+
+
+
+\end{document}

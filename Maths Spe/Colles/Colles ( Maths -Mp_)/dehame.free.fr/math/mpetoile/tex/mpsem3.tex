@@ -1,0 +1,688 @@
+
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % ‚vite le textstyle en mode
+                                % math‚matique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math‚matiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de presentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% personnel Monasse
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'‚criture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% … l'int‚rieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d‚croissante),
+% \nondef (la fonction est non d‚finie)
+% si l'on termine la derniŠre ligne par \cr, un trait est tir‚ en dessous
+% sinon elle est laiss‚e sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   % MONASSE
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  % MONASSE
+\def\rmat{{\rm I\kern-0.6mm R}}  % MONASSE
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  % MONASSE
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  % MONASSE
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____def de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% AlgŠbre lin‚aire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________determinant_______
+\def\det{\mathop{\rm det}\nolimits}  % MONASSE
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  % MONASSE
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  % MONASSE
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}  % MONASSE
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos‚e ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  % MONASSE
+\def\MC#1{{\cal M}_{#1}(\cmat)}  % MONASSE
+\def\MK#1{{\cal M}_{#1}(\kmat)}  % MONASSE
+
+%________Complexes_________ % MONASSE
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   % CLENET
+\def\Arccos{\mathop{\rm Arccos}\nolimits}   % CLENET
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   % CLENET
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     % CLENET
+\def\Argch{\mathop{\rm Argch}\nolimits}     % CLENET
+\def\Argth{\mathop{\rm Argth}\nolimits}     % CLENET
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} %CLENET
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s‚ries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  % MONASSE
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  % MONASSE
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  % MONASSE
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  % MONASSE
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  % MONASSE
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr‚g‚es%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-…-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\catcode`@=12 % at signs are no longer letters
+
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+
+
+
+
+
+
+\overfullrule=0mm
+\cl{{\bf SEMAINE 3}}\msk
+\cl{{\bf R\'EDUCTION DES ENDOMORPHISMES (PREMI\`ERE PARTIE)}}
+\bsk
+
+
+{\bf EXERCICE 1 :}\msk\par
+
+Soit $\kmat$ un corps infini, soit $E$ un $\kmat$-espace vectoriel de dimension
+finie.\msk
+{\bf 1.} Montrer que $E$
+n'est pas la r\'eunion d'une famille finie de sous-espaces vectoriels stricts.
+\msk
+{\bf 2.} Soit $u$ un endomorphisme de $E$. Pour tout vecteur $x$ de $E$,
+soit $I_x=\{P\in \kmat[X]\;|\;P(u)(x)=0\}$ ({\bf id\'eal annulateur de} $u$ {\bf en} $x$).
+Montrer que $I_x$ est un id\'eal
+de $\kmat[X]$~; on notera $\mu_x$ le g\'en\'erateur normalis\'e de cet id\'eal.
+\msk
+{\bf 3.} Soit $\mu$ le polyn\^ome minimal de $u$. Montrer qu'il existe un vecteur
+$x$ de $E$ tel que $\mu=\mu_x$.\msk
+{\bf 4.} Un endomorphisme $u$ de $E$ est dit {\bf cyclique} s'il existe un vecteur
+$x$ de $E$ tel que l'ensemble\vv
+$$E_x=\{P(u)(x)\;;\;P\in \kmat[X]\}$$
+soit \'egal \`a $E$.
+Montrer que $u$ est cyclique si et seulement si son polyn\^ome minimal est \'egal
+(au signe pr\`es) \`a son polyn\^ome caract\'eristique (not\'e $\chi$).
+\msk
+{\bf 5.} On suppose $\kmat=\rmat$ ou $\cmat$. Montrer que l'ensemble des
+endomorphismes cycliques est un ouvert dense de ${\cal L}(E)$.\ssk\sect
+{\it On pourra, pour tout $x$ de $E$, consid\'erer l'application $\delta_x:{\cal L}(E)\vers \kmat$
+d\'efinie par\break $\delta_x(u)=\det_{{\cal B}}\big(x,u(x),\ldots,u^{n-1}(x)\big)$, o\`u
+${\cal B}$ est une quelconque base de $E$}, et $n=\dim E$.
+\msk
+{\it Source :}\ssk\sect
+$\bullet$ {\it Jacques CHEVALLET, Alg\`ebre MP/PSI, \'Editions Vuibert, ISBN 2-7117-2092-6}\ssk\sect
+$\bullet$ {\it Patrice TAUVEL, Exercices de math\'ematiques pour l'agr\'egation, Alg\`ebre 2, \'Editions Masson, ISBN 2-225-84441-0}
+
+
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\bsk
+
+{\bf 1.} Par r\'ecurrence sur $n=\dim E$.\ssk\sect
+$\bullet$ Pour $n=0$ ou $n=1$, c'est \'evident.\ssk\sect
+$\bullet$ Soit $n\se2$, supposons la propri\'et\'e d\'emontr\'ee pour tout
+$\kmat$-espace vectoriel de dimension $n-1$.\new
+Soit $E$ un $\kmat$-espace vectoriel de dimension $n$, supposons $E=F_1\union
+F_2\union\ldots\union F_p$ o\`u les $F_i$ sont des sous-espaces vectoriels
+stricts de $E$. Si $H$ est un hyperplan de $E$, on a alors\vv
+$$H=(H\inter F_1)\union(H\inter F_2)\union\ldots\union(H\inter F_p)\;.$$
+D'apr\`es l'hypoth\`ese de r\'ecurrence, on a $H\inter F_i=H$ pour un certain
+indice $i\in\[ent1,p\]ent$, c'est-\`a-dire $H\subset F_i$, soit encore
+$H=F_i$ puisque $F_i$ est un sous-espace strict de $E$.\ssk\new
+Tout hyperplan de $E$ est donc l'un des $F_i$ (c'est absurde, il y a dans $E$
+une infinit\'e d'hyperplans distincts).
+\msk
+{\bf 2.} V\'erifications imm\'ediates, laiss\'ees \`a l'\'eventuel lecteur. On a $I_x
+\not=\{0\}$ car $\mu\in I_x$.
+\msk
+{\bf 3.} Notons ${\cal D}$ l'ensemble des diviseurs stricts normalis\'es de $\mu$
+dans $\kmat[X]$~:\vv
+$${\cal D}=\{P\in \kmat[X]\;;\;P\;\hbox{normalis\'e}\;,\;P\divise\mu\;,\;P\not=\mu\}\;.$$
+L'ensemble ${\cal D}$ est fini. S'il n'existait pas de vecteur $x$ de $E$
+tel que $\mu=\mu_x$, alors tout $x$ de $E$ appartiendrait \`a un sous-espace
+$\Ker P(u)$ avec $P\in{\cal D}$, on aurait donc\vv
+$$E=\bigcup_{P\in{\cal D}}\Ker P(u)$$
+et $E$ serait une union finie de sous-espaces stricts (on a bien $\Ker P(u)
+\not=E$ pour tout $P\in{\cal D}$ en raison de la minimalit\'e de $\mu$), ce qui est
+absurde.
+\msk
+{\bf 3'.} {\it Montrons avec des arguments plus classiques l'existence d'un
+vecteur $x$ tel que $\mu_x=\mu$, m\^eme si $\kmat$ est un corps fini}~:\ssk\sect
+$\bullet$ si $x$ et $y$ sont deux vecteurs quelconques, on a $\;P(u)(x+y)=P(u)(x)+P(u)(y)\;$
+pour tout polyn"me $P$, d'o\`u $I_x\inter I_y\subset I_{x+y}$,
+soit $\mu_{x+y}\divise\mu_x\vee\mu_y$, ce qui entra\^\i ne
+$\mu_{x+y}\divise\mu_x\>\mu_y$.\ssk\sect
+$\bullet$ si les vecteurs $x$ et $y$ sont tels que $\mu_x\wedge\mu_y=1$, alors
+$\mu_{x+y}=\mu_x\>\mu_y$~: en effet, on sait d\'ej\`a que $\mu_{x+y}\divise
+\mu_x\>\mu_y$~; par ailleurs, $x=(x+y)+(-y)$, donc $\;\mu_x\divise
+\mu_{x+y}\>\mu_y$. Par le th\'eor\`eme de Gauss, on tire $\mu_x\divise
+\mu_{x+y}$. Par sym\'etrie, $\mu_y\divise\mu_{x+y}$. Donc $\mu_x\>\mu_y=
+\mu_x\wedge\mu_y\divise\mu_{x+y}$.\ssk\sect
+$\bullet$ Soit $\mu=\prod_{k=1}^pP_k^{r_k}$ la d\'ecomposition de $\mu$ en
+produit de facteurs irr\'eductibles dans $K[X]$. D'apr\`es le lemme des
+noyaux, on a $E=\bigoplus_{k=1}^pN_k\;$ avec $\;N_k=\Ker P_k^{r_k}(u)$.
+Pour tout $i\in\[ent1,p\]ent$, posons $Q_i=P_i^{r_i-1}\Big(\prod_{j\not=i}
+P_j^{r_j}\Big)$, on a ainsi $\mu=P_iQ_i$.\ssk\new
+Dans $N_i=\Ker P_i^{r_i}(u)$, il existe au moins un \'el\'ement $x_i$ tel
+que $\mu_{x_i}=P_i^{r_i}$~: en effet, sinon, on aurait $P_i^{r_i-1}(u)(x)=0$
+pour tout $x\in N_i$, donc $N_i=\Ker P_i^{r_i-1}(u)$ et le polyn\^ome $Q_i$
+annulerait alors $u$, ce qui contredirait la minimalit\'e de $\mu$.\ssk\new
+Les $P_i^{r_i}$ \'etant deux \`a deux premiers entre eux, le vecteur $x=\sum_{i=1}^p
+x_i$ v\'erifie $\mu_x=\prod_{i=1}^pP_i^{r_i}=\mu$.
+
+\msk
+{\bf 4.} Soit $u\in{\cal L}(E)$ quelconque, soit $x\in E$ non nul.
+L'ensemble $\;E_x=\{P(u)(x)\;;\;P\in \kmat[X]\}\;$ est
+un sous-espace vectoriel de $E$ ({\it \'evident, on l'appelle sous-espace
+$u$-monog\`ene engendr\'e par le vecteur $x$}). La dimension de $E_x$ est le degr\'e du
+polyn\^ome $\mu_x$~: $\dim E_x=\deg\mu_x$.\ssk\new
+En effet, soit $r$ le plus
+petit entier naturel non nul pour lequel la famille de vecteurs
+$\big(x,u(x),\ldots,u^r(x)\big)$ est li\'ee. Alors, la famille
+$\big(x,u(x),\ldots,u^{r-1}(x)\big)$ est libre, donc l'id\'eal annulateur
+$I_x$ ne contient aucun polyn\^ome de degr\'e inf\'erieur ou \'egal \`a $r-1$
+(sauf le polyn\^ome nul), mais $u^r(x)$ est combinaison lin\'eaire
+des vecteurs $x$, $u(x)$, $\ldots$, $u^{r-1}(x)$ donc il existe
+un polyn\^ome normalis\'e $P$ de degr\'e $r$ tel que $P(u)(x)=0$ et ce polyn\^ome
+est alors $\mu_x$, donc $\deg\mu_x=r$.\ssk\new
+Par ailleurs, $u^r(x)\in\Vect\big(x,u(x),\ldots,u^{r-1}(x)\big)$ et, par
+une r\'ecurrence imm\'ediate, on a $u^k(x)\in\Vect\big(x,u(x),\ldots,u^{r-1}(x)\big)$
+pour tout $k\in\nmat$, donc $E_x=\Vect\big(x,u(x),\ldots,u^{r-1}(x)\big)$ et
+cet espace est de dimension $r$ puisque la famille $(x,u(x),\ldots,u^{r-1}(x)\big)$
+est libre.
+\msk\sect
+$\bullet$ Si $u$ est cyclique, alors il existe $x$ tel que $E_x=E$, donc tel
+que $\deg\mu_x=n$. Comme $\mu_x\divise\mu$ et $\mu\divise\chi$ avec
+$\deg\chi=n$, on a donc $(-1)^n\chi=\mu=\mu_x$.\ssk\sect
+$\bullet$ Si $\chi=(-1)^n\mu$, on utilise l'existence d'un vecteur $x$
+tel que $\mu_x=\mu$~; pour un tel $x$, on a $\dim E_x=\deg\mu_x=n$,
+donc $E_x=E$ et $u$ est cyclique.
+
+\msk
+{\bf 5.} Soit $\Omega$ l'ensemble des endomorphismes cycliques de $E$.
+Soit ${\cal B}$ une base quelconque de $E$. Alors\vv
+$$u\in\Omega\iff\e x\in E\quad\det_{{\cal B}}\big(x,u(x),\ldots,u^{n-1}(x)\big)\not=0\;.$$\sect
+Pour tout $x\in E$, l'application $\delta_x:{\cal L}(E)\vers\kmat$ d\'efinie
+par $\delta_x(u)=\det_{{\cal B}}\big(x,u(x),\ldots,u^{n-1}(x)\big)$ est
+polynomiale (c'est un polyn\^ome en les coefficients de la matrice
+$M_{{\cal B}}(u)$), donc continue, donc $\;\Omega=\bigcup_{x\in E}
+\delta_x^{-1}(\kmat^*)\;$ est un ouvert de ${\cal L}(E)$.\sect
+Remarquons que l'application $\delta_x$ est ${n(n-1)\s2}$-homog\`ene (multilin\'earit\'e du d\'eterminant)~:\vv
+$$\a u\in{\cal L}(E)\quad\a t\in K\qquad \delta_x(tu)=t^{{}^{\sst n(n-1)\sur\sst2}}
+  \cdot\delta_x(u)\;.$$\sect
+Donnons-nous un endomorphisme cyclique $v_0$  fix‚ de $E$ (celui tel que
+$M_{{\cal B}}(v_0)=\diag(1,\ldots,n)$ par exemple~: {\it un endomorphisme diagonalisable est cyclique si et
+seulement si ses valeurs propres sont deux \`a deux distinctes}), soit donc $x$
+un vecteur tel que $\delta_x(v_0)\not=0$. Soit $u\in{\cal L}(E)$ quelconque,
+montrons que l'on peut approcher $u$ par des endomorphismes cycliques.
+Par continuit\'e, on a $\delta_x(v_0+tu)\not=0$ pour $|t|$ petit.
+Mais on a
+$\;\delta_x(u+tv_0)=t^{{}^{\sst n(n-1)\sur\sst2}}\cdot\delta_x
+  \lp v_0+{1\s t}u\rp$ pour tout $t\in \kmat^*$.
+L'application $\kmat\vers \kmat$, $t\mapsto\delta_x(u+tv_0)$, est polynomiale non
+identiquement nulle, soit $R$ l'ensemble (fini, \'eventuellement vide) de
+ses racines~; si $0\not\in R$, cela signifie que $u\in\Omega$ et,
+si $0\in R$, il existe un r\'eel $\alpha>0$ tel que 0 soit le seul \'el\'ement
+de $R$ de module strictement inf\'erieur \`a $\alpha$ et alors
+tous les endomorphismes $u+tv_0$, avec $0<|t|<\alpha$,
+sont cycliques.
+
+
+\bsk\hrule
+\bsk
+
+
+{\bf EXERCICE 2 :}\msk\par
+Pour toute matrice $A\in\MK{n}$,\ssk\par
+- on note $\gamma_A$ l'endomorphisme de $\MK{n}$ d\'efini par $\gamma_A(M)=[A,M]=AM-MA$~;\ssk\par
+- on note $\tau_A$ la forme lin\'eaire sur $\MK{n}$ d\'efinie par $\tau_A(M)=\tr(AM)$.
+\msk\par
+{\bf 1.} Montrer que l'application $\tau:A\mapsto \tau_A$ d\'efinit un isomorphisme
+de $\MK{n}$ sur son dual.\msk\par
+{\bf 2.} On suppose $A$ nilpotente. Comparer les sous-espaces $\Ker\gamma_A$
+et $\Ker\tau_A$.\msk\par
+{\bf 3.} Montrer que $A$ est nilpotente si et seulement si il existe $B\in\MK{n}$
+telle que $A=BA-AB$.\msk\par
+{\bf 4.} On suppose $\kmat=\rmat$ ou $\cmat$. Montrer qu'une matrice $A\in\MK{n}$
+est nilpotente si et seulement si les matrices $A$ et $2A$ sont semblables.
+\msk\par
+{\it Source : Merci \`a Jacques CHEVALLET}.
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} La lin\'earit\'e de $\tau:{\cal M}_n(K)\vers\big({\cal M}_n(K)\big)^*$
+est imm\'ediate. On v\'erifie que $\tau_A(E_{ij})=a_{ji}$ ({\it avec des
+notations \'evidentes}) donc $\tau_A=0$ si et seulement si $A=0$.
+L'application lin\'eaire $\tau$ est donc injective, c'est donc un isomorphisme
+puisque les espaces de d\'epart et d'arriv\'ee sont de m\^eme dimension.
+
+\msk
+{\bf 2.} Si $A$ est nilpotente et si $M$ est une matrice commutant avec $A$
+(c'est-\`a-dire $M\in\Ker\gamma_A$), alors $AM$ est nilpotente (puisque $(AM)^k=
+A^kM^k$ pour tout $k\in\nmat$), donc $\tr(AM)=0$. On a ainsi prouv\'e l'inclusion
+\vv
+$$\Ker\gamma_A\subset\Ker\tau_A\;.$$\eject
+
+{\bf 3.} $\bullet$ Si $A$ est nilpotente, l'inclusion $\;\Ker\gamma_A\subset\Ker\tau_A\;$
+d\'emontr\'ee ci-dessus permet de factoriser~: il existe une forme lin\'eaire $\lam$
+sur $\MK{n}$ telle que $\tau_A=\lam\circ\gamma_A$ ({\it cf. th\'eor\`eme
+de factorisation, semaine {\bf 2}, exercice} {\bf 1}, {\it question} {\bf a.}). D'apr\`es la question {\bf 1.}, on peut \'ecrire $\lam=\tau_B$,
+o\`u $B$ est une certaine matrice de $\MK{n}$, donc $\tau_A=\tau_B\circ\gamma_A$.
+Mais si $M$ est une matrice quelconque de $\MK{n}$, on a\vv
+\begin{eqnarray*}
+(\tau_B\circ\gamma_A)(M) & = & \tr\big(B(AM-MA)\big)=\tr(BAM)-\tr(BMA)=\tr(BAM) -\tr(ABM)\\
+                                    & =  & \tr\big([B,A]\>M\big)=\tau_{[B,A]}(M)\;,
+\end{eqnarray*}
+donc $\tau_B\circ\gamma_A=\tau_{[B,A]}$. On a ainsi prouv\'e l'existence
+d'une matrice $B$ telle que $\tau_A=\tau_{[B,A]}$. Par l'isomorphisme
+``canonique'' entre $\MK{n}$ et son dual, on d\'eduit\vvv
+$$A=[B,A]=BA-AB\;.$$
+\sect
+$\bullet$ Si $BA-AB=A$, alors $\;(BA-AB)A+A(BA-AB)=2A^2$, soit $\;BA^2-A^2B=2A^2\;$
+puis, par r\'ecurrence, on a $\;BA^k-A^kB=kA^k\;$ pour tout entier naturel $k$.
+Si la matrice $A$ n'\'etait pas nilpotente, alors l'endomorphisme $\gamma_B:M
+\mapsto BM-MB$ de $\MK{n}$ admettrait une infinit\'e de valeurs propres (tous les
+entiers naturels), ce qui est impossible. La matrice $A$ est donc nilpotente.
+\msk
+{\bf 4.} $\bullet$ Supposons $A$ nilpotente. Il existe une matrice $B$
+telle que $A=BA-AB$, ce que l'on peut \'ecrire $A(I+B)=BA$. Par une r\'ecurrence
+imm\'ediate, on en tire $\;A(I+B)^k=B^kA\;$ pour tout entier naturel $k$ puis,
+plus g\'en\'eralement, $A\cdot P(I+B)=P(B)\cdot A\;$ pour tout polyn\^ome
+$P\in\kmat[X]$. Soit $\lam\in\kmat$~; en consid\'erant la suite de polyn\^omes
+$(P_N)$ d\'efinie par $\;P_N(X)=\sum_{k=0}^N{\lam^kX^k\s k!}\;$ et en passant
+\`a la limite ({\it justifications imm\'ediates}), on obtient la relation\vv
+$$A\>e^{\lam(I+B)}=e^{\lam B}\>A\;,\qquad\hbox{soit encore}\qquad
+  e^{\lam}A=e^{\lam B}\>A\>e^{-\lam B}\;;$$
+les matrices $\;A\;$ et $\;e^{\lam}A\;$ sont donc semblables, il suffit alors de
+prendre $\lam=\ln 2$.\msk\sect
+$\bullet$ Si $A$ et $2A$ sont semblables, alors $2^kA$ est semblable \`a $A$
+pour tout $k\in\nmat$. Si $\lam$ est une valeur propre (complexe) de $A$, alors
+$2^k\lam$ est aussi valeur propre de $A$ pour tout $n$, cela impose $\lam=0$
+(sinon $A$ admettrait une infinit\'e de valeurs propres). Le polyn\^ome
+caract\'eristique de $A$ est donc $(-X)^n$, donc $A$ est nilpotente d'apr\`es
+Cayley-Hamilton.
+
+
+
+
+
+
+
+\eject
+
+
+
+{\bf EXERCICE 3 :}\msk
+
+Soit $E$ un $\cmat$-espace vectoriel de dimension finie $n$, soient $u$ et $v$ deux endomorphismes de $E$ tels que $uv-vu=u$.
+\msk
+{\bf 1.} Montrer que $u^kv-vu^k=k\>u^k$ pour tout $k\in\nmat$.
+\msk
+{\bf 2.} En d\'eduire que $u$ est nilpotent.
+\msk
+{\bf 3.} Montrer que $u$ et $v$ sont cotrigonalisables ({\it il existe une base de trigonalisation commune}).
+\msk
+{\bf 4.} Montrer que le r\'esultat de la question {\bf 3.} reste vrai si on suppose seulement que\vvv
+$$uv-vu\in\Vect(u,v)\;.$$
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\bsk
+
+{\bf 1.} C'est une r\'ecurrence imm\'ediate.\ssk\sect
+En notant $[u,v]=uv-vu$, on peut remarquer que $[uv,w]=[u,w]v+u[v,w]$. Si, au rang $k\se1$, on a $[u^k,v]=k\>u^k$, alors\vv
+$$[u^{k+1},v]=[uu^k,v]=[u,v]u^k+u[u^k,v]=u^{k+1}+k\>u^{k+1}=(k+1)u^{k+1}\;.$$
+
+{\bf 2.} Notons $\gamma_v$ l'endomorphisme de ${\cal L}(E)$ d\'efini par
+$\;\gamma_v(w)=[w,v]=wv-vw$ pour tout $w\in{\cal L}(E)$. On a $\gamma_v(u^k)=k\>u^k$ pour tout $k\in\nmat$ donc, si $u$ n'\'etait pas nilpotent, l'endomorphisme $\gamma_v$ de ${\cal L}(E)$ aurait une infinit\'e de valeurs propres (tous les entiers naturels), ce qui est impossible car ${\cal L}(E)$ est de dimension finie.
+\msk
+
+{\bf 3.} Montrons d'abord que $u$ et $v$ admettent un vecteur propre commun~: le sous-espace $\Ker u$ (non r\'eduit \`a $\{0\}$ car $u$ est nilpotent) est stable par $v$ (v\'erification imm\'ediate). Le corps de base \'etant $\cmat$, l'endomorphisme de $\Ker u$ induit par $v$ admet au moins un vecteur propre, et le tour est jou\'e.
+\msk\sect
+Raisonnons maintenant par r\'ecurrence sur $n=\dim E$~:\ssk\sect
+$\bullet$ pour $n=1$, c'est \'evident~;\ssk\sect
+$\bullet$ soit $n\se2$, supposons l'assertion vraie au rang $n-1$, soit $E$ de dimension $n$, soient $u$ et $v$ deux endomorphismes de $E$ tels que $[u,v]=u$. Soit $e_1$ un vecteur propre commun \`a $u$ et $v$ ({\it on vient d'en prouver l'existence})~: $u(e_1)=0$ (n\'ecessairement!) et $v(e_1)=\lam e_1$.\new
+Soit $H$ un hyperplan suppl\'ementaire de la droite $D=\cmat e_1$ dans $E$, notons $p$ le projecteur sur $H$ parall\`element \`a $D$~; dans une base ${\cal B}=(e_1,e_2,\cdots,e_n)$ de $E$ o\`u ${\cal B}'=(e_2,\cdots,e_n)$ est une base de $H$, on a $\; U=M_{{\cal B}}(u)=\pmatrix{0&L\cr 0&U'\cr}\;$ et $\; V=M_{{\cal B}}(v)=\pmatrix{\lam&L'\cr 0&V'\cr}\;$ avec $U'$ et $V'$ carr\'ees d'ordre $n-1$ (repr\'esentant dans ${\cal B}'$ les endomorphismes $u'$ et $v'$ de $H$ induits par $p\circ u$ et $p\circ v$ respectivement).\ssk\new
+ De $UV-VU=U$, un calcul par blocs donne $U'V'-V'U'=U'$, soit $[u',v']=u'$. On applique alors l'hypoth\`ese de r\'ecurrence aux endomorphismes $u'$ et $v'$ de $H$~: il existe une base ${\cal C}'=(\eps_2,\cdots,\eps_n)$ de $H$ dans laquelle $u'$ et $v'$ sont repr\'esent\'es par des matrices triangulaires sup\'erieures $T_1$ et $T_2$. Dans la base ${\cal C}=(e_1,\eps_2,\cdots,\eps_n)$ de $E$, les endomorphismes $u$ et $v$ sont repr\'esent\'es par des matrices de la forme $\pmatrix{0&X\cr 0&T_1}$ et $\pmatrix{\lam&Y\cr 0&T_2}$ qui sont encore triangulaires sup\'erieures ($X$ et $Y$ sont des matrices-lignes \`a $n-1$ coefficients). La r\'ecurrence est achev\'ee.
+\bsk
+{\bf 4.} Supposons maintenant $[u,v]=\alpha u+\beta v$.\ssk\sect
+$\bullet$ Si $\alpha\not=0$, en t\^atonnant un peu, on se ram\`ene \`a ce qui a \'et\'e \'etudi\'e~:
+posons $w={1\s\alpha}v$, on v\'erifie $[u,w]=u+\beta w$~; on pose ensuite $t=u+\beta w$ et on a $[t,w]=w$, donc $t$ et $w$ sont trigonalisables dans une m\^eme base, donc aussi $u=t-\beta w$ et $v=\alpha w$.\ssk\sect
+$\bullet$ Si $\beta\not=0$, on conclut itou en \'echangeant les r\^oles de $u$ et $v$.\ssk\sect
+$\bullet$ Si $(\alpha,\beta)=(0,0)$, alors $u$ et $v$ commutent, donc ont un vecteur propre commun ({\it tout sous-espace propre de $u$ est stable par $v$}) et on conclut par r\'ecurrence sur la dimension de $E$ comme dans la question {\bf 3.} ci-dessus.
+
+\bsk
+\hrule
+\bsk
+
+
+{\bf EXERCICE 4 : D\'ecomposition de Jordan}\msk
+{\bf 1.} Soit $E$ un $\kmat$-espace vectoriel de dimension finie $n$.\sect
+Soit $\nu$ un endomorphisme nilpotent de $E$, d'indice de nilpotence $r$ avec $0<r<n$~:\vvv
+$$\nu^{r-1}\not=0\quad\hbox{et}\qquad\nu^r=0\;.$$\sect
+Soit $a$ un vecteur de $E$ tel que $\nu^{r-1}(a)\not=0$, soit $H$ un hyperplan de $E$ ne contenant pas $\nu^{r-1}(a)$.\ssk\sect
+Montrer que $\;E=F\oplus G$, avec\vv
+$$F=\Vect\big(a,\nu(a),\cdots,\nu^{r-1}(a)\big)\quad\hbox{et}\qquad G=\bigcap_{k=0}^{r-1}(\nu^k)^{-1}(H)\;.$$\par
+{\bf 2.} Soit $f$ un endomorphisme d'un $\cmat$-espace vectoriel $E$ de dimension finie. Un sous-espace vectoriel $F$ de $E$, stable par $f$, est dit {\bf ind\'ecomposable} s'il n'existe pas de d\'ecomposition $F=F_1\oplus F_2$ avec $F_1$ et $F_2$ stables par $f$, $F_1\not=\{0\}$, $F_2\not=\{0\}$.\ssk\sect
+Soit $F$ un sous-espace stable ind\'ecomposable de dimension $n$, soit $g$ l'endomorphisme de $F$ induit par $f$. Montrer qu'il existe une base ${\cal C}$ de $F$ dans laquelle la matrice de $g$ est de la forme\vv
+$$M_{{\cal C}}(g)=J_n(\lam)=\pmatrix{\lam&1&0&\ldots&0\cr 0&\lam&1&\ddots&\vdots\cr \vdots&\ddots&\ddots&\ddots&0\cr \vdots&&\ddots&\ddots&1\cr 0&\ldots&\ldots&0&\lam\cr}\;,\quad\hbox{avec}\quad\lam\in\cmat\;.$$
+\ssk
+{\it Source : Denis MONASSE, Math\'ematiques MP, Cours complet avec CD-ROM, \'Editions Vuibert, ISBN 2-7117-8811-3}
+
+\eject
+
+{\bf 1.} La famille ${\cal F}=\big(a,\nu(a),\cdots,\nu^{r-1}(a)\big)$ est libre ({\it question classique}), donc $\dim F=r$.\sect
+Soit $\ffi$ une forme lin\'eaire sur $E$, de noyau $H$, alors $G=\bigcap_{k=0}^{r-1}\Ker(\ffi\circ \nu^k)$. Chaque $\ffi\circ \nu^k$ est une forme lin\'eaire sur $E$, non nulle car $\;(\ffi\circ \nu^k)\big(\nu^{r-1-k}(a)\big)=\ffi\big(\nu^{r-1}(a)\big)\not=0$ \'etant donn\'e que $\nu^{r-1}(a)\not\in H$. Le sous-espace $G$ est une intersection de $r$ hyperplans, il est donc de codimension au plus \'egale \`a $r$, c'est-\`a-dire $\dim G\se n-r$.\ssk\sect
+Montrons $F\inter G=\{0\}$~: si $x\in F\inter G$, alors $x=\lam_0a+\lam_1\nu(a)+\cdots+\lam_{r-1}\nu^{r-1}(a)$, mais $(\ffi\circ \nu^{r-1})(x)=0$ ce qui donne $\lam_0\ffi\big(\nu^{r-1}(a)\big)=0$ d'o\`u $\lam_0=0$.\new
+On applique ensuite $\ffi\circ \nu^{r-2}$ qui donne $\lam_1=0$, et ainsi de suite ({\it c'est la m\^eme id\'ee que pour montrer que la famille ${\cal F}$ est libre}), donc $x=0$.\ssk\sect
+Enfin, $\dim(F+G)=\dim(F\oplus G)=\dim F+\dim G\se n$, donc $F\oplus G=E$.\ssk\sect
+{\it Remarquons que $F$ et $G$ sont deux sous-espaces stables par $\nu$ et qu'ils ne sont pas r\'eduits \`a $\{0\}$, cela servira par la suite}.
+
+\msk
+{\bf 2.} Soit $\mu$ le polyn\^ome minimal de $g$. Il est irr\'eductible~: en effet, si on avait $\mu=\mu_1\mu_2$ avec $\mu_1$ et $\mu_2$ non constants et premiers entre eux, alors le th\'eor\`eme de d\'ecomposition des noyaux donnerait $F=F_1\oplus F_2$ avec $F_1=\Ker\mu_1(g)$ et $F_2=\Ker\mu_2(g)$ (sous-espaces stables par $g$ et non r\'eduits \`a $\{0\}$ en raison de la minimalit\'e de $\mu$), ce qui contredit l'ind\'ecomposabilit\'e de $F$ ({\it ce qui a \'et\'e fait jusqu'\`a pr\'esent est valable sur un corps quelconque~; maintenant, pla\c cons-nous sur $\cmat$}).\ssk\sect
+On a donc $\;\mu(X)=(X-\lam)^r$, avec $\lam\in\cmat$ et $r\in\net$.\ssk\sect
+Donc l'endomorphisme (de $F$)~: $\;\nu=g-\lam\id_F$ est nilpotent d'indice $r$. Si on avait $r<n$, d'apr\`es la question {\bf 1.}, on pourrait d\'ecomposer $F$ en $F=F'\oplus F''$ avec $F'$ et $F''$ stables par $\nu$ (donc par $g=\nu+\lam\id_F$) et non r\'eduits \`a $\{0\}$, ce qui est absurde.\ssk\sect
+On a donc $r=n$ ($\nu$ est un endomorphisme de $F$ nilpotent d'indice maximal) et en choisissant un vecteur $a$ de $F$ tel que $\nu^{n-1}(a)\not=0$, la matrice de $g=\nu+\lam\id_F$ dans la base\break ${\cal C}=\big(\nu^{n-1}(a),\nu^{n-2}(a),\cdots,\nu(a),a\big)$ de $F$ est celle propos\'e par l'\'enonc\'e.
+\msk
+{\it Achevons la d\'ecomposition de Jordan~: si $f$ est un endomorphisme quelconque d'un $\cmat$-espace vectoriel $E$ de dimension finie, il existe une d\'ecomposition de $E$ en somme directe de sous-espaces stables ind\'ecomposables (faire une r\'ecurrence forte sur la dimension de $E$)~:\break $E=\bigoplus_{i=1}^pE_i$ avec $\dim E_i=n_i$ ($1\ie i\ie p$). En concat\'enant les bases construites dans chaque $E_i$ comme \`a la question pr\'ec\'edente, on obtient une base ${\cal B}$ de $E$ dans laquelle la matrice de $f$ est diagonale par blocs, chaque bloc \'etant un ``bloc de Jordan''~:}\vv
+$$M_{{\cal B}}(f)=\diag\big(J_{n_1}(\lam_1),\cdots,J_{n_p}(\lam_p)\big)\;.$$
+
+
+
+\msk\hrule
+\ssk
+
+{\bf EXERCICE 5 :} \ssk
+Soit $E$ un $\cmat$-espace vectoriel de dimension finie $n$. Soient $u$ et $v$ deux endomorphismes de $E$ tels que $[u,v]=uv-vu$ commute avec $u$ et $v$. Montrer que $u$ et $v$ sont cotrigonalisables ({\it on pourra prouver que l'endomorphisme $w=[u,v]$ est nilpotent}).
+\ssk
+{\it Source : Cyril GRUNSPAN et Emmanuel LANZMANN, L'oral de math\'ematiques aux concours, Alg\`ebre, \'Editions Vuibert, ISBN 2-7117-8824-5}
+
+\eject
+
+Notons que l'hypoth\`ese peut s'\'ecrire $\;\big[[u,v],u\big]=\big[[u,v],v\big]=0\;$ ({\it ce qui nous fait une belle jambe...}).\msk
+On commence par prouver que $u$ et $v$ ont un vecteur propre commun, ce qui permet d'amorcer une r\'ecurrence.\msk
+Soit $\lam$ une valeur propre de $w=[u,v]$ ({\it il en existe au moins une car le corps de base est $\cmat$}), soit $F=E_{\lam}(w)$ le sous-espace propre associ\'e. Alors $F$ est stable par $u$ et par $v$, notons $u'$, $v'$, $w'$ les endomorphismes de $F$ induits. On a $[u',v']=w'=\lam\id_F$, donc\vv
+$$0=\tr(u'v'-v'u')=\lam\>\dim(F)\;,$$
+d'o\`u $\lam=0$. Il en r\'esulte que $w$ est nilpotent puisque sa seule valeur propre est 0 (son polyn\^ome caract\'eristique est donc $(-X)^n$ et on applique Cayley-Hamilton).\msk
+Avec les notations ci-dessus, on a donc $[u',v']=0$, ce qui signifie que $u'$ et $v'$ commutent, donc admettent un vecteur propre commun (si $G\subset F$ est un sous-espace propre de $u'$, alors il est stable par $v'$ et l'endomorphisme de $G$ induit par $v'$ admet au moins un vecteur propre), donc $u$ et $v$ ont un vecteur propre commun $e_1$.\msk
+Maintenant, on r\'ecurre~:\ssk
+$\bullet$ si $n=\dim E=1$, c'est \'evident~;\ssk
+$\bullet$ soit $n\se2$ fix\'e, si la propri\'et\'e est vraie pour $\dim E<n$, soit $E$ de dimension $n$, soit $e_1$ un vecteur propre commun \`a $u$ et $v$, soit $H$ un hyperplan suppl\'ementaire de la droite $D=\cmat e_1$, soit ${\cal B}=(e_1,e_2,\cdots,e_n)$ une base adapt\'ee \`a la d\'ecomposition $E=D\oplus H$~; on a $M_{{\cal B}}(u)=\pmatrix{\alpha&\cdots\cr 0&A\cr}$ et $M_{{\cal B}}(v)=\pmatrix{\beta&\cdots\cr 0&B\cr}$, o\`u $A$ et $B$ sont les matrices dans $(e_2,\cdots,e_n)$ des endomorphismes $\ov{u}$ et $\ov{v}$ de $H$ induits par $p\circ u$ et $p\circ v$ ($p$ \'etant le projecteur sur $H$ parall\`element \`a $D$). De $\;\big[[u,v],u\big]=\big[[u,v],v\big]=0\;$, on d\'eduit, par des produits par blocs, que $\;\big[[A,B],A\big]=\big[[A,B],B\big]=0$ ou $\;\big[[\ov{u},\ov{v}],\ov{u}\big]=\big[[\ov{u},\ov{v}],\ov{v}\big]=0$, ce qui permet de ``cotrigonaliser'' $\ov{u}$ et $\ov{v}$, dans une base $(\eps_2,\cdots,\eps_n)$ de $H$~; dans la base $(e_1,\eps_2,\cdots,\eps_n)$ de $E$, les matrices de $u$ et de $v$ sont triangulaires.
+
+
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 6 :}\msk
+Soit $A\in{\cal M}_n(\kmat)$ une matrice, soit $\tilde{A}=\t\> {\rm Com} A$ la transpos\'ee de la matrice des cofacteurs.\msk
+{\bf 1.} Montrer que tout vecteur propre de $A$ est vecteur propre de $\tilde{A}$.\ssk
+{\bf 2.} On suppose $A$ diagonalisable. Exprimer les valeurs propres de $\tilde{A}$ en fonction de celles de $A$.
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf 1.} Rappelons la relation $\;A\tilde{A}=\tilde{A}A=(\det A) I_n$.\msk\sect
+$\bullet$ Soit $X$ un vecteur propre de $A$ pour une valeur propre $A$ non nulle. 
+On a $AX=\lam X$, d'o\`u\vv
+$$\tilde{A}AX=\tilde{A}\lam X=\lam\tilde{A}X=(\det A)\cdot X$$
+et $\tilde{A}X={\det A\s\lam}X$, donc $X$ est vecteur propre de $\tilde{A}$ pour la valeur propre $\mu={\det A\s\lam}$.\msk\sect
+$\bullet$ Si $X$ est vecteur propre de $A$ pour la valeur propre 0 ($AX=0$), alors $A$ n'est pas inversible, donc $\rg A<n$~;\new
+$\triangleright$ si $\rg A\ie n-2$, alors $\tilde{A}=0$ (tous les mineurs d'ordre $n-1$ de la matrice $A$ sont nuls), donc $\tilde{A}X=0$~;\new
+$\triangleright$ si $\rg A=n-1$, alors $\Ker A$ est de dimension un, et de $AX=0$, on tire $A\tilde{A}X=\tilde{A}AX=0$, donc $\tilde{A}X\in\Ker A$ et $\tilde{A}X$ est colin\'eaire \`a $X$, ce qu'il fallait d\'emontrer.
+
+\bsk
+{\bf 2.} Soit $(X_1,\cdots,X_n)$ une base (de $\kmat^n$) constitu\'ee de vecteurs propres de $A$, associ\'es aux valeurs propres $\lam_1$, $\cdots$, $\lam_n$. On sait (question {\bf 1.}) que $X_1$, $\cdots$, $X_n$ sont des vecteurs propres de $\tilde{A}$.\msk\sect
+$\bullet$ Si $A$ est inversible (les $\lam_i$ tous non nuls),  alors $\tilde{A}X_i=\mu_iX_i$ avec\vv
+$$\mu_i={\det A\s\lam_i}=\prod_{j\not=i}\lam_j\;.$$
+\sect
+$\bullet$ Si $\rg A\ie n-2$, alors au moins deux des $\lam_i$ sont nuls et d'autre part $\tilde{A}=0$, donc $\Sp(\tilde{A})=\{0\}$.\ssk\sect
+$\bullet$ Si $\rg A=n-1$, un seul des $\lam_i$ (disons $\lam_n$) est nul et, pour tout $i\in\[ent1,n-1\]ent$, on a\break $\tilde{A}X_i={\det A\s\lam_i}X_i=0$ ({\it cf}. question {\bf 1.}), donc 0 est valeur propre de $\tilde{A}$ de multiplicit\'e au moins $n-1$ (et m\^eme exactement $n-1$ car $\tilde{A}$ est diagonalisable et $\tilde{A}\not=0$). La $n$-i\`eme valeur propre de $\tilde{A}$ est alors \'egale \`a sa trace, que nous allons calculer~:\ssk\new
+si on note $A_{ij}$ le mineur d'indice $(i,j)$ dans la matrice $A$, on a $\tr(\tilde{A})=\sum_{i=1}^nA_{ii}$, mais cette somme est aussi l'oppos\'e du coefficient de $X$ dans le d\'eveloppement du polyn\^ome caract\'eristique de $A$~; en effet, en notant $C_j$ le $j$-i\`eme vecteur-colonne de la matrice $A$ et $e_j=\t\pmatrix{0&\cdots&0&1&0&\cdots&0\cr}$ le $j$-i\`eme vecteur de la base canonique ${\cal B}_0$ de $\kmat^n$, on a\vv
+$$\chi_A(X)=\deter{a_{11}-X&a_{12}&\ldots&a_{1n}\cr a_{21}&a_{22}-X&\ldots&a_{2n}\cr \vdots&\vdots&\ddots&\vdots\cr a_{n1}&a_{n2}&\ldots&a_{nn}-X\cr}=\det_{{\cal B}_0}(C_1-Xe_1,C_2-Xe_2,\cdots,C_n-Xe_n)$$
+et un d\'eveloppement par multilin\'earit\'e montre que le coefficient de $X$ est\vv
+$$-\sum_{j=1}^n\det_{{\cal B}_0}(C_1,\cdots,C_{j-1},e_j,C_{j+1},\cdots,C_n)=-\sum_{j=1}^nA_{jj}\;.$$
+Mais le coefficient de $X$ dans $\chi_A(X)$ est aussi $-\sigma_{n-1}=-\sum_{i=1}^n\lp\prod_{j\not=i}\lam_j\rp=-\prod_{i=1}^{n-1}\lam_i$ puisque $\lam_n=0$. La $n$-i\`eme valeur propre de $\tilde{A}$ est donc $\mu_n=\prod_{i=1}^{n-1}\lam_i$.
+\msk\sect
+{\bf Conclusion.} Si $A$ est diagonalisable, de valeurs propres $\lam_1$, $\cdots$, $\lam_n$ (non n\'ecessairement distinctes), alors $\tilde{A}$ est diagonalisable (dans
+la m\^eme base) avec pour valeurs propres les\break $\mu_1$, $\cdots$, $\mu_n$, o\`u
+$\quad\a i\in\[ent1,n\]ent\qquad \mu_i=\prod_{j\not=i}\lam_j$.
+
+
+
+\end{document}

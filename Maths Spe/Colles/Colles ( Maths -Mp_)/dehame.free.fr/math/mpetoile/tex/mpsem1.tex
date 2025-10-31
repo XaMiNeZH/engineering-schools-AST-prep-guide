@@ -1,0 +1,890 @@
+\documentclass{article}
+\begin{document}
+\parindent=-8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % ‚vite le textstyle en mode
+                                % math‚matique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+\countdef\parno=11       %d‚finition d'un compteur d'exercices
+\parno=1
+\def\section{{\lbf \the\parno. }\global\advance\parno by 1
+\nobreak}
+
+\frenchspacing
+
+
+\let\ie=\leq
+\let\se=\geq
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math‚matiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de presentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% personnel Monasse
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'‚criture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% … l'int‚rieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d‚croissante),
+% \nondef (la fonction est non d‚finie)
+% si l'on termine la derniŠre ligne par \cr, un trait est tir‚ en dessous
+% sinon elle est laiss‚e sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   % MONASSE
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  % MONASSE
+\def\rmat{{\rm I\kern-0.6mm R}}  % MONASSE
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  % MONASSE
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  % MONASSE
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____def de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% AlgŠbre lin‚aire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________determinant_______
+\def\det{\mathop{\rm det}\nolimits}  % MONASSE
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  % MONASSE
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  % MONASSE
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}  % MONASSE
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos‚e ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  % MONASSE
+\def\MC#1{{\cal M}_{#1}(\cmat)}  % MONASSE
+\def\MK#1{{\cal M}_{#1}(\kmat)}  % MONASSE
+
+%________Complexes_________ % MONASSE
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   % CLENET
+\def\Arccos{\mathop{\rm Arccos}\nolimits}   % CLENET
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   % CLENET
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     % CLENET
+\def\Argch{\mathop{\rm Argch}\nolimits}     % CLENET
+\def\Argth{\mathop{\rm Argth}\nolimits}     % CLENET
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} %CLENET
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s‚ries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  % MONASSE
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  % MONASSE
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  % MONASSE
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  % MONASSE
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  % MONASSE
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr‚g‚es%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}}
+\def\msk{\vspace{6pt}}
+\def\ssk{\vspace{3pt}}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\par\bsk\noi}
+\def\pmn{\par\msk\noi}
+\def\psn{\par\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-…-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\catcode`@=12 % at signs are no longer letters
+\catcode`\‚=\active
+\def‚{\'e}
+\catcode`\Š=\active
+\defŠ{\`e}
+\catcode`\ˆ=\active
+\defˆ{\^e}
+\catcode`\…=\active
+\def…{\`a}
+\catcode`\—=\active
+\def—{\`u}
+\catcode`\–=\active
+\def–{\^u}
+\catcode`\ƒ=\active
+\defƒ{\^a}
+\catcode`\“=\active
+\def“{\^o}
+\catcode`\‰=\active
+\def‰{\"e}
+\catcode`\‹=\active
+\def‹{\"\i}
+\catcode`\=\active
+\def{\"u}
+\catcode`\‡=\active
+\def‡{\c c}
+\catcode`\Œ=\active
+\defŒ{\^\i}
+
+%\def\boxit#1#2{\vbox{\hrule\hbox{\vrule\vbox spread#1{\vfil\hbox spread #1
+%{\hfil#2\hfil}\vfil}\vrule}\hrule}}
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+
+
+
+
+\overfullrule=0mm
+\cl{{\bf SEMAINE 1}}\msk
+\cl{{\bf ALG\`EBRE G\'EN\'ERALE}}
+\bsk
+
+
+{\bf EXERCICE 1 :}\msk\par
+{\bf 1.} Soit $G$ un groupe fini, soient $x$ et $y$ deux \'el\'ements de $G$ qui commutent.
+On note $m=\omega(x)$, $n=\omega(y)$ les ordres respectifs des \'el\'ements $x$ et $y$.\sect
+{\bf a.} On suppose $m$ et $n$ premiers entre eux. Montrer que $\omega(xy)=mn$.\sect
+{\bf b.} On ne suppose plus $m$ et $n$ premiers entre eux. A-t-on $\omega(mn)=m\vee n$~?\ssk\par
+{\bf 2.} Soit $G$ un groupe commutatif fini. Montrer qu'il existe un \'el\'ement $z$
+de $G$ dont l'ordre est l'{\it exposant} du groupe $G$ (c'est-\`a-dire le p.p.c.m.
+des ordres des \'el\'ements de $G$).\ssk\par
+{\bf 3.} Soit $K$ un corps (commutatif), soit $G$ un sous-groupe fini du groupe
+multiplicatif $K^*$. Montrer que $G$ est cyclique.
+\msk\par
+{\it Sources : nombreuses (c'est archi-classique), parmi lesquelles Michel DEMAZURE,
+Cours d'Alg\`ebre, \'Editions Cassini}, ISBN 2-84225-000-1.
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\bsk
+
+{\bf 1.a.} Posons $z=xy$. On a $z^{mn}=(xy)^{mn}=(x^m)^n(y^n)^m=e$, donc $\omega(z)\divise mn$.\ssk\new
+D'autre part, comme $m\wedge n=1$, il existe deux entiers relatifs $u$ et $v$
+tels que $um+vn=1$ (relation de B\'ezout). Alors\vv
+$$z^{um}=x^{um}y^{um}=x^{um}y^{1-vn}=(x^m)^u\>y\>(y^n)^{-v}=eye=y$$
+et, de m\^eme, $z^{vn}=x$. Donc $x$ et $y$ appartiennent au sous-groupe $<\!\!z\!\!>$ engendr\'e
+par $z$, mais ce sous-groupe est cyclique d'ordre $\omega(z)$. On en d\'eduit
+que les ordres de $x$ et de $y$ divisent l'ordre de $z$, donc leur p.p.c.m.
+divise aussi l'ordre de $z$, soit $mn\divise \omega(z)$.\ssk\new
+Finalement, $\omega(z)=mn$.\msk
+\sect
+{\bf b.} Si $m\wedge n\not=1$, on n'a plus $\omega(xy)=m\vee n$ en g\'en\'eral.
+En effet, dans le groupe ${\cal U}_3=\{1,j,j^2\}$, on a $\omega(j)=\omega(j^2)=3$,
+mais $\omega(j\>j^2)=\omega(1)=1$.
+\bsk\par
+{\bf 2.} Soit $n$ l'exposant du groupe $G$. D\'ecomposons $n$ en produit de
+facteurs premiers~: $n=\prod_{i=1}^kp_i^{\alpha_i}$.\ssk\sect
+Alors, pour tout $i$, il existe dans $G$ un \'el\'ement $x_i$ d'ordre $p_i^{\alpha_i}$~:
+en effet, il existe au moins un \'el\'ement $y_i$ de $G$ tel que la $p_i$-valuation
+de $\omega(y_i)$ soit $\alpha_i$, c'est-\`a-dire $\omega(y_i)=p_i^{\alpha_i}m_i$
+avec $m_i\wedge p_i=1$. Alors $(y_i^{m_i})^{\raise 1.5mm\hbox{$p_i^{\alpha_i}$}}=e$.
+L'ordre de l'\'el\'ement $y_i^{m_i}$ divise $p_i^{\alpha_i}$, donc est de la forme
+$p_i^\beta$ avec $\beta\ie\alpha_i$~; si on avait $\beta<\alpha_i$, alors
+on aurait $(y_i^{m_i})^{\raise 1.5mm\hbox{$p_i^{\beta}$}}=y_i^{\raise 1mm\hbox{$p_i^{\beta}m_i$}}=e$,
+ce qui contredit $\omega(y_i)=p_i^{\alpha_i}m_i$. On a donc bien
+$\omega(y_i^{m_i})=p_i^{\alpha_i}$.\ssk\sect
+En utilisant la question {\bf 1.a.}, par une r\'ecurrence imm\'ediate sur $k$,
+on d\'eduit que l'\'el\'ement $y=\prod_{i=1}^ky_i^{m_i}$ est d'ordre $n$.
+\eject
+{\bf 3.} Soit $N$ l'ordre du groupe $G$, soit $n$ son exposant ({\it cf}.
+ci-dessus), soit $z$ un \'el\'ement de $G$ d'ordre $n$. Par le th\'eor\`eme
+de Lagrange, on a $n\divise N$.\ssk\sect
+Par ailleurs, le polyn\^ome $P=X^n-1$ de $K[X]$ admet au plus $n$ racines
+dans $K$ et, tout \'el\'ement de $G$ \'etant racine de $P$, on a $N\ie n$.\ssk\sect
+En conclusion, $n=N$, donc $G$ est cyclique ($G$ est engendr\'e par $z$).
+
+
+\bsk\hrule
+\bsk
+
+
+{\bf EXERCICE 2 :}\msk\par
+Soit $p$ un nombre premier, $p\se3$.\msk\par
+{\bf 1.} Combien y a-t-il de carr\'es dans le corps $K=\zz{p}$~?\msk\par
+{\bf 2.} Montrer qu'un \'el\'ement $x$ de $\lp\zz{p}\rp^*$ est un carr\'e si
+et seulement si $\;x^{{}^{\sst p-1\sur\sst2}}=\ov{1}$.\msk\par
+{\bf 3.} Quels sont les nombres premiers $p$ pour lesquels $-\ov{1}$ est
+un carr\'e dans $\zz{p}$~?\msk\par
+{\bf 4.} En d\'eduire qu'il existe une infinit\'e de nombres premiers
+de la forme $4k+1$, $k\in\nmat$.
+\bsk
+
+{\it Source : Daniel PERRIN, Cours d'Alg\`ebre, \'Editions Ellipses}, ISBN 2-7298-5552-1.
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf 1.} Soit $G=\lp\zz{p}\rp^*$ le groupe multiplicatif des \'el\'ements non nuls
+du corps $K=\zz{p}$. L'application $q:x\mapsto x^2$ est un endomorphisme de
+ce groupe $G$ et $\Ker q=\{-\ov{1},\ov{1}\}$~: en effet, $\{-\ov{1},\ov{1}\}
+\subset\Ker q$, $-\ov{1}\not=\ov{1}$ car $p>2$ et le polyn\^ome $X^2-\ov{1}$, \`a coefficients dans le corps
+$K$, admet au plus deux racines dans ce corps.\ssk\sect
+On a donc $|\Ker q|=2$, d'o— $|\Im q|={|G|\s|\Ker q|}={p-1\s2}$. En rajoutant
+l'\'el\'ement $\ov{0}$ qui est son propre carr\'e, on d\'enombre ${p+1\s2}$
+carr\'es dans $\zz{p}$.
+
+\msk
+{\bf 2.} Si $x=y^2$ avec $y\in G=\lp\zz{p}\rp^*$, alors
+$\;x^{{}^{\sst p-1\sur\sst2}}=y^{p-1}=\ov{1}$ car $|G|=p-1$ (th\'eor\`eme
+de Lagrange).\ssk\sect
+Les carr\'es de $G$ (qui sont au nombre de ${p-1\s2}$ d'apr\`es la question
+{\bf 1.}) sont racines de
+l'\'equation {\bf (E)}~: $\;x^{{}^{\sst p-1\sur\sst2}}-\ov{1}=\ov{0}$~;
+mais cette \'equation admet au plus ${p-1\s2}$ racines dans le corps $K$.
+L'\'equation {\bf (E)} admet donc exactement ${p-1\s2}$ racines dans $K$
+qui sont les carr\'es de $\lp\zz{p}\rp^*$.
+
+\msk
+{\bf 3.} \'Etant donn\'e que $p>2$ (donc $-\ov{1}\not=\ov{1}$ dans $\zz{p}$), on a
+les \'equivalences
+$$-\ov{1}\;\hbox{carr‚}\iff(-\ov{1})^{{}^{\sst p-1\sur\sst2}}=\ov{1}\iff
+  (-1)^{{}^{\sst p-1\sur\sst2}}=1\iff{p-1\s 2}\;\hbox{pair}
+  \iff p\equiv 1\;\hbox{modulo}\;4\;.$$
+
+\ssk
+{\bf 4.} Soit $n\in\net$, montrons qu'il existe des nombres premiers
+congrus \`a 1 modulo 4 qui sont plus grands que $n$.\ssk\sect
+Pour cela, posons $\;A=(n!)^2+1$.\ssk\sect
+Tout diviseur premier $p$ de $A$ v\'erifie $p>n$ (les nombres premiers $p$
+tels que $p\ie n$ divisent\break $(n!)^2=A-1$). Soit $p$ un tel diviseur
+(il en existe au moins un)~;
+on a $\;(n!)^2\equiv-1$ modulo $p$, donc $-\ov{1}$ est un carr\'e dans
+$\zz{p}$, donc $p\equiv 1$ modulo 4. CQFD
+
+\bsk\hrule
+\bsk
+
+
+
+{\bf EXERCICE 3 :}\msk
+
+{\bf 1.} Soit $A$ un anneau principal, soit $K$ son corps des fractions.
+Pour tout polyn\^ome $P$ non nul de $A[X]$, on note $c(P)$ -{\bf contenu} de
+$P$- le pgcd des coefficients du polyn\^ome $P$ (c'est un \'el\'ement de $A$
+d‚fini ``\`a association pr\`es", c'est-\`a-dire \`a multiplication pr\`es par un
+\'el\'ement inversible de l'anneau $A$). Le polyn\^ome $P$ de $A[X]$ est dit
+{\bf primitif} si $c(P)=1$ (ses coefficients sont premiers entre eux
+dans leur ensemble).\ssk\sect
+{\bf a.} Montrer que le produit de deux polyn\^omes primitifs de $A[X]$
+est primitif. Que vaut $c(PQ)$ si $P$ et $Q$ sont deux polyn\^omes non nuls
+de $A[X]$~?\ssk\sect
+{\bf b.} Soient $P$ et $Q$ deux polyn\^omes de $A[X]$, premiers entre eux
+dans $A[X]$ (leurs seuls diviseurs communs sont les \'el\'ements inversibles
+de l'anneau $A[X]$, c'est-\`a-dire...?). Montrer qu'ils sont premiers entre
+eux dans l'anneau $K[X]$.\msk
+
+{\bf 2.} Soient $P$ et $Q$ deux polyn\^omes de $\cmat[X,Y]=\cmat[X][Y]$,
+premiers entre eux dans $\cmat[X,Y]$.\ssk\sect
+{\bf a.} D\'emontrer l'existence d'un polyn\^ome D non nul de $\cmat[X]$ et
+de deux polyn\^omes $A$ et $B$ de $\cmat[X,Y]$ tels que\vv
+$$D(X)=A(X,Y)\>P(X,Y)+B(X,Y)\>Q(X,Y)\;.$$\sect
+{\bf b.} Montrer que le syst\`eme {\bf (S)}~:~$\;\system{&P(x,y)&=&&0\cr &Q(x,y)&=&&0\cr}$
+a un nombre fini de solutions dans $\cmat^2$.
+
+\msk
+{\it Sources :}\ssk
+
+$\bullet$ {\it Daniel PERRIN, Cours d'Alg\`ebre, \'Editions Ellipses,
+ISBN 2-7298-5552-1~;}
+
+\ssk
+$\bullet$ {\it FRANCINOU et GIANELLA, Exercices de Math\'ematiques pour
+l'Agr\'egation, Alg\`ebre 1, \'Editions Masson, ISBN 2-225-84366-X}.
+
+\ssk
+$\bullet$ {\it ENS Lyon/Cachan, \'epreuve du concours MP*, session 2000}.
+
+
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\bsk
+
+{\bf 1.a.} Posons $\;P=\sum_{i=0}^ma_iX^i\;$ et $\;Q=\sum_{j=0}^nb_jX^j$,
+supposons-les tous les deux primitifs. Si le produit $PQ$ n'\'etait pas primitif,
+il existerait un \'el\'ement irr\'eductible (ou ``premier") $p$ de l'anneau $A$
+divisant tous les coefficients de $PQ$, \`a savoir tous les $c_k=\sum_{i+j=k}
+a_ib_j$. Comme $p$ ne divise pas tous les coefficients de $A$, soit $i_0$
+le plus petit indice $i$ pour lequel $p$ ne divise pas $a_i$, soit de m\^eme
+$j_0=\min\{j\in\[ent1,n\]ent\;;\; b_j\not\in pA\}$. On a alors\vv
+$$c_{i_0+j_0}=\sum_{i+j=i_0+j_0}a_ib_j=a_{i_0}b_{j_0}+\sum_{i<i_0}a_ib_{i_0+j_0-i}
+  +\sum_{j<j_0}a_{i_0+j_0-j}b_j\;.$$
+L'\'el\'ement irr\'eductible $p$ divise les deux derni\`eres sommes et divise $c_{i_0+j_0}$,
+il divise donc aussi le produit $a_{i_0}b_{j_0}$, donc il divise l'un des
+facteurs, ce qui est absurde.\ssk\new
+{\it On a utilis\'e ici le lemme d'Euclide, valable dans tout anneau principal
+(ou, plus g\'en\'eralement, factoriel)~: si $p$ est irr\'eductible et $p\divise ab$,
+alors $p\divise a$ ou $p\divise b$.}
+\ssk\new
+Il est clair que, si $a\in A$ et $P\in A[X]$, alors $c(aP)=a\>c(P)$.\ssk\new
+Si $P$ et $Q$ sont deux polyn\^omes quelconques, on peut \'ecrire $P=c(P)\cdot
+P_0$ et $Q=c(Q)\cdot Q_0$, o\`u $P_0$ et $Q_0$ sont primitifs~; alors $P_0Q_0$
+est primitif et\vv
+$$c(PQ)=c\big(c(P)\>c(Q)\cdot P_0Q_0\big)=c(P)c(Q)\>c(P_0Q_0)=c(P)c(Q)\;.$$
+\msk\sect
+{\bf b.} Soient $P$ et $Q$ deux polyn\^omes de $A[X]$, premiers entre eux dans
+$A[X]$ (leurs seuls diviseurs communs dans $A[X]$ sont les \'el\'ements inversibles
+de l'anneau $A$). Il s'agit de montrer qu'ils sont premiers entre eux dans
+$K[X]$, c'est-\`a-dire que leurs seuls diviseurs communs dans $K[X]$ sont les
+constantes (\'el\'ements de $K$). \'Ecrivons $P=c(P)\cdot P_0$ et $Q=c(Q)\cdot Q_0$
+avec $P_0$ et $Q_0$ primitifs. Soit $D$ un diviseur commun \`a $P$ et $Q$
+dans $K[X]$~: il existe $R$ et $S$ dans $K[X]$ tels que $\system{
+&P&=&&DR\cr &Q&=&&DS\cr}${\bf (*)}.
+\ssk\new
+On peut \'ecrire $D={d_1\s d_2}D_0$ avec $d_1\in A$, $d_2\in A$ premiers entre
+eux, et $D_0\in A[X]$ primitif~: pour cela, on r\'eduit au m\^eme d\'enominateur
+les coefficients de $D$, ce qui donne $D={\Delta\s b}$ avec $\Delta\in A[X]$
+et $b\in A\setminus\{0\}$, puis $D={c(\Delta)\s b}\>D_0$ avec $D_0$ primitif, et
+on simplifie \'eventuellement la fraction ${c(\Delta)\s b}$~:
+\ssk\new
+{\baselineskip=18pt
+{\it Par exemple, avec $A=\zmat$ et $K=\qmat$, on a ${6\s7}+{3\s8}X+{15\s4}X^2=
+{3\s56}(16+7X+70X^2)$ et le polyn\^ome entre parenth\`eses est primitif dans
+$\zmat[X]$.}\par}
+\ssk\new
+De m\^eme, $R={r_1\s r_2}R_0$ et $S={s_1\s s_2}S_0$ avec $R_0$ et $S_0$
+dans $A[X]$, primitifs. Le syst\^eme {\bf (*)} se r\'e\'ecrit alors
+sous la forme d'\'egalit\'es dans $A[X]$~:\vv
+$$\system{&d_2r_2\>c(P)\cdot P_0&=&&d_1r_1\>D_0R_0\cr
+          &d_2s_2\>c(Q)\cdot Q_0&=&&d_1s_1\>D_0S_0\cr}\;.\qquad{\bf (**)}$$
+Les polyn\^omes $D_0R_0$ et $D_0S_0$ \'etant primitifs d'apr\`es {\bf a.}, en \'egalant
+les contenus dans {\bf (**)}, on obtient $\system{&u\>d_2r_2\>c(P)&=&&d_1r_1\cr
+&v\>d_2s_2\>c(Q)&=&&d_1s_1\cr}$, o— $u$ et $v$ sont deux ‚l‚ments inversibles
+de l'anneau $A$. En r\'einjectant dans {\bf (**)}, cela donne
+$\system{&P_0&=&&u\>D_0R_0\cr &Q_0&=&&v\>D_0S_0\cr}$, donc le polyn\^ome $D_0\in A[X]$
+divise, dans $A[X]$, les polyn\^omes $P_0$ et $Q_0$~; il divise donc aussi les
+polyn\^omes $P=c(P)\cdot P_0$ et $Q=c(Q)\cdot Q_0$, donc $D_0$ est une constante
+(inversible dans $A$) et $D={d_1\s d_2}D_0$ est une constante (\'el\'ement de $K$),
+ce qu'il fallait d\'emontrer.
+\ssk\new
+{\it Si $P$ et $Q$ sont deux polyn\^omes de $A[X]$, le lecteur montrera
+facilement (le plus dur a \'et\'e fait) l'\'equivalence entre les assertions~:\ssk\new
+{\rm (i)}\quad:\quad $P$ et $Q$ sont premiers entre eux dans $A[X]$~;\ssk\new
+{\rm (ii)} :\quad $\system{&c(P)\;{\rm et}\;c(Q)\;\hbox{sont premiers entre eux dans}\;A\cr
+                    &P\;{\rm et}\;Q\;\hbox{sont premiers entre eux dans}\;K[X]\cr}$ .}
+
+\msk
+{\bf 2.a.} Appliquons la question {\bf 1.b.} avec $A=\cmat[X]$ et
+$K=\cmat(X)$. Les polyn\^omes $P$ et $Q$, premiers entre eux dans
+$A[Y]=\cmat[X,Y]$, sont aussi premiers entre eux dans $K[Y]=\cmat(X)[Y]$.
+Comme $K=\cmat(X)$ est un corps, l'anneau $K[Y]$ est principal et
+on peut appliquer l'identit\'e de B\'ezout~:
+il existe des polyn\^omes $U$ et $V$ dans $\cmat(X)[Y]$ tels que
+$UP+VQ=1$. On peut \'ecrire\break $U(X,Y)=\sum_{i=0}^mU_i(X)Y^i\;$
+et $\;V(X,Y)=\sum_{j=0}^nV_j(X)Y^j$, les $U_i$ et les $V_j$ \'etant des
+\'el\'ements de $\cmat(X)$~; si on note $D(X)$ le ppcm des d\'enominateurs de ces
+fractions rationnelles $U_i$ et $V_j$, on peut \'ecrire $\;U(X,Y)={A(X,Y)\s
+D(X)}\;$ et $\;V(X,Y)={B(X,Y)\s D(X)}$, o\`u $A$ et $B$ sont des polyn\^omes
+de $\cmat[X,Y]$, et on a ainsi\vv
+$$A(X,Y)P(X,Y)+B(X,Y)Q(X,Y)=D(X)\;.$$
+\sect
+{\bf b.} Si le couple $(x,y)\in\cmat^2$ v\'erifie le syst\`eme {\bf (S)}, alors $x$
+est racine du polyn\^ome $D$ (il y en a un nombre fini). Les ind\'etermin\'ees
+$X$ et $Y$ jouant le m\^eme r\^ole, il y a aussi un nombre fini de valeurs possibles
+de $y$, donc de couples $(x,y)$.
+
+\bsk\hrule
+\bsk
+
+
+{\bf EXERCICE 4 :} {\bf Un th\'eor\`eme de Sylow}\msk
+
+Soit $G$ un groupe fini, d'ordre $n=p^{\alpha}m$ avec $p$ premier et
+$p\wedge m=1$.\ssk
+
+On note $X$ l'ensemble des parties de $G$ de cardinal $p^{\alpha}$, et $Y$
+l'ensemble des sous-groupes de $G$ d'ordre $p^{\alpha}$.\ssk
+Le but du jeu est de montrer que $Y\not=\emptyset$, et plus pr\'ecis\'ement que
+le nombre de sous-groupes de $G$ d'ordre $p^{\alpha}$ ({\it les $p$-Sylow
+de $G$}) est congru \`a 1 modulo $p$.\ssk
+
+Pour cela, on fait op\'erer $G$ sur $X$ par translation \`a gauche~: si $g\in G$
+et $E\in X$, on pose\vv
+$$g\cdot E=gE=\{ga\;;\;a\in E\}\;.$$
+
+{\bf 1.} Soit $E\in X$. Montrer que son stabilisateur ${\cal S}_E=\{g\in G\;|\;
+g\cdot E=E\}$ est de cardinal au plus \'egal \`a $p^{\alpha}$.\ssk
+
+{\bf 2.} Soit $E\in X$. Montrer que le cardinal du stabilisateur ${\cal S}_E$
+est \'egal \`a $p^{\alpha}$ si et seulement si $E$ est une classe \`a droite modulo
+un sous-groupe d'ordre $p^{\alpha}$ (c'est-\`a-dire $E=H\cdot x$ avec $x\in G$
+et $H\in Y$).\ssk
+
+{\bf 3.} Montrer que $|X|$ est congru \`a $\;m|Y|\;$ modulo $p$.\ssk
+
+{\bf 4.} Montrer que $|X|$ est congru \`a $m$ modulo $p$.\ssk
+
+{\bf 5.} Conclure.\msk
+
+{\it Source : Daniel PERRIN, Cours d'Alg\`ebre, \'Editions Ellipses}, ISBN 2-7298-5552-1.
+
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Les translations \'etant des permutations de $G$, si $E\in X$, on a
+bien $g\cdot E\in X$, c'est-\`a-dire\break $|g\cdot E|=|E|=p^{\alpha}$. De plus, avec
+$E\in X$, les \'egalit\'es $\;e\cdot E=E\;$ et $\;(gh)\cdot E=g\cdot(h\cdot E)\;$
+sont imm\'ediates, on a donc bien une action du groupe $G$ sur l'ensemble $X$.
+\ssk\sect
+Soit $E\in X$, soit $a\in E$ donn\'e~; si $g\in{\cal S}_E$, alors $ga\in g\cdot E=E$,
+donc $g\in E a^{-1}$. On a donc ${\cal S}_E\subset E a^{-1}$, o\`u $a$
+est un \'el\'ement quelconque de $E$, d'o\`u $|{\cal S}_E|\ie|E a^{-1}|=|E|=
+p^{\alpha}$.\ssk\sect
+{\it Rappelons que le stabilisateur ${\cal S}_E$ d'un \'el\'ement $E$ de $X$ est
+un sous-groupe de $G$ (v\'erification imm\'ediate)}.
+
+\msk
+{\bf 2.} $\bullet$ Si $E=Hx$ avec $H\in Y$, alors\vv
+$$g\in{\cal S}_E\iff gE=E\iff gHx=Hx\iff gH=H$$
+mais, $H$ \'etant un sous-groupe, cette derni\`ere condition \'equivaut \`a $g\in H$.
+On a alors ${\cal S}_E=H$, d'o\`u $|{\cal S}_E|=p^{\alpha}$.\ssk\sect
+$\bullet$ Si $|{\cal S}_E|=p^\alpha$, alors ${\cal S}_E$ est un sous-groupe
+d'ordre $p^\alpha$, posons $H={\cal S}_E\in Y$. Si on se donne $a\in E$, on
+a $H\subset Ea^{-1}$ d'apr\`es la question {\bf 1.}, d'o\`u $H=Ea^{-1}$ (\'egalit\'e
+des cardinaux), donc $E=Ha$~: $E$ est une classe \`a droite modulo $a$.
+
+\msk
+{\bf 3.} Les \'el\'ements de $X$ de la forme $Hx$ avec $H\in Y$ et $x\in G$ sont
+au nombre de $m|Y|$ : chaque sous-groupe d'ordre $p^\alpha$, s'il en existe,
+d\'efinit $m$ classes \`a droite distinctes et deux sous-groupes distincts ne peuvent
+engendrer une m\^eme classe \`a droite (supposons $H_1x_1=H_2x_2$, alors $x_1=ex_1\in H_2x_2$,
+donc $x_1x_2^{-1}\in H_2$ puis $x_2x_1^{-1}=(x_1x_2^{-1})^{-1}\in H_2$ et
+enfin $H_1=H_2x_2x_1^{-1}=H_2$).\ssk\sect
+Les autres \'el\'ements $E$ de $X$ ont un stabilisateur ${\cal S}_E$ dont le cardinal est strictement
+inf\'erieur \`a $p^\alpha$, mais divise $p^\alpha m$ (car les stabilisateurs sont
+des sous-groupes de $G$), donc $|{\cal S}_E|$ est de la forme $p^kd$, avec
+$0\ie k\ie\alpha-1$ et $d\divise m$. Ils ont donc une orbite dont le cardinal
+(qui est l'indice du stabilisateur), $[G:{\cal S}_E]=p^{\alpha-k}{m\s d}$,
+est multiple de $p$.\ssk\sect
+Les orbites de $X$ sous l'action de $G$ par translation \`a gauche \'etant deux
+\`a deux disjointes, on d\'eduit $|X|\equiv m|Y|$ modulo $p$.
+
+\msk
+{\bf 4.} Le cardinal de $X$ ne d\'epend que de l'ordre du groupe $G$ et non de
+sa structure~: c'est le nombre de parties \`a $p^\alpha$ \'el\'ements d'un ensemble
+\`a $n=p^\alpha m$ \'el\'ements. On peut donc supposer ici que $G=\zmat\bigm/\!\!{\raise -5pt \hbox{$n\zmat$}}$.
+Dans ce cas, $G$, cyclique d'ordre $p^\alpha m$, admet un unique sous-groupe
+d'ordre $p^\alpha$, donc $|Y|=1$ et $|X|\equiv m$ modulo $p$.\ssk\sect
+{\it Cette question est d'ordre purement combinatoire~: il s'agit de prouver
+que, pour $p$ premier, $\alpha\in\nmat$ et $m\wedge p=1$, on a
+$C_{p^\alpha m}^{p^\alpha}\equiv m$ modulo $p$. Si quelqu'un a une d\'emonstration
+\'el\'ementaire de ce r\'esultat, je suis preneur...}
+
+\msk
+{\bf 5.} On a $m|Y|\equiv m$ modulo $p$ d'apr\`es les questions {\bf 3.} et
+{\bf 4.} Comme $m$ et $p$ sont premiers entre eux, on peut simplifier cette
+congruence~: il reste $|Y|\equiv 1$ modulo $p$, ce que l'on voulait prouver
+et, en particulier, $|Y|\not=0$.
+
+\eject
+
+\def\res{{\rm Res}}
+{\bf EXERCICE 5 :}\msk
+
+Soient $A$ et $B$ deux polyn\^omes non nuls de $\cmat[X]$, d'\'ecriture
+factoris\'ee\vv
+$$A=a\;\prod_{i=1}^m(X-\alpha_i)\qquad;\qquad B=b\;\prod_{j=1}^n(X-\beta_j)\;.$$\par
+On appelle {\bf r\'esultant} des polyn\^omes $A$ et $B$ le nombre\vv
+$$\res(A,B)=a^n\>b^m\;\prod_{\sst{1\ie i\ie m}\atop\sst{1\ie j\ie n}}(\alpha_i-\beta_j)\;.$$
+\par
+Si $A=0$ ou $B=0$, on pose $\res(A,B)=0$.
+\msk
+
+{\bf 1.} On suppose $B\not=0$, soit $R$ le reste de la division euclidienne
+de $A$ par $B$. Montrer que\vv
+$$\res(A,B)=(-1)^{mn}\;b^{m-\deg(R)}\>\res(B,R)\;.$$\par
+{\bf 2.} Que vaut $\res(A,A')$~? Dans quel cas est-il nul~?\msk
+
+{\bf 3.} \'Ecrire une condition n\'ecessaire et suffisante pour que le polyn\^ome
+$A=X^5+pX+q$ (avec $p$ et $q$ r\'eels) admette trois racines r\'eelles distinctes.
+\msk
+
+{\it Source : Jean-Pierre ESCOFIER, Th\'eorie de Galois, \'Editions Masson},
+ISBN 2-225-82948-9.
+
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\bsk
+
+{\bf 1.} Notons d'abord que $\;\res(A,B)=(-1)^{mn}\>\res(B,A)=(-1)^{\deg(A)\cdot\deg(B)}\>\res(B,A)$,
+puis que $\;\res(B,A)=b^m\>a^n\>\prod_{\sst{1\ie i\ie m}\atop\sst{1\ie j\ie n}}
+(\beta_j-\alpha_i)=b^{\deg(A)}\cdot\prod_{j=1}^nA(\beta_j)$.
+Or, de $A=BQ+R$, on d\'eduit que $A(\beta_j)=R(\beta_j)$ pour tout $j\in\[ent1,
+n\]ent$, donc
+\begin{eqnarray*}
+  \res(A,B) & = & (-1)^{mn}\>\res(B,A)\\
+              & = & (-1)^{mn}\>b^{\deg(A)}\cdot\prod_{j=1}^nA(\beta_j)\\
+              & = & (-1)^{mn}\>b^{\deg(A)}\cdot\prod_{j=1}^nR(\beta_j)\\
+             & =  & (-1)^{mn}\>b^{\deg(A)-\deg(R)}\cdot\lc b^{\deg(R)}\cdot\prod_{j=1}^nR(\beta_j)\rc\\
+             & = & (-1)^{mn}\>b^{\deg(A)-\deg(R)}\cdot\res(B,R)\;.
+\end{eqnarray*}
+\sect
+{\it Le r\'esultant de deux polyn\^omes peut ainsi se calculer par l'algorithme
+d'Euclide~; c'est l'algorithme le plus efficace.}\ssk\sect
+{\it Remarque}. Si $B=\lam$ (constant), alors $\res(A,B)=\lam^m=\lam^{\deg(A)}$.
+
+\msk
+{\bf 2.} On a vu $\;\res(A,B)=(-1)^{\deg(A)\cdot\deg(B)}\res(B,A)=a^{\deg(B)}
+\>\prod_{i=1}^mB(\alpha_i)$, o\`u les $\alpha_i$ sont les racines de $A$.\break Ainsi,\vvvv
+$$\res(A,A')=a^{m-1}\cdot\prod_{i=1}^mA'(\alpha_i)\;.$$\sect
+Or, $A'=a\cdot\sum_{i=1}^m\biggl(\prod_{j\not=i}(X-\alpha_j)\biggl)\;$
+et, pour tout $i\in\[ent1,m\]ent$, $A'(\alpha_i)=a\cdot\prod_{j\not=i}
+(\alpha_i-\alpha_j)$, donc
+$$\res(A,A')=a^{2m-1}\;\prod_{i=1}^m\biggl(\prod_{j\not=i}(\alpha_i-\alpha_j)
+  \biggr)=(-1)^{{}^{\sst m(m-1)\sur\sst2}}\>a^{2m-1}\>\prod_{i<j}(\alpha_i-\alpha_j)^2\;.$$
+\sect
+Le r\'esultant de $A$ et $A'$ (aussi appel\'e {\bf discriminant} du polyn\^ome $A$)
+est nul si et seulement si $A$ admet une racine double, c'est-\`a-dire si et seulement
+si $A\wedge A'\not=1$.\ssk\sect
+{\it La d\'efinition exacte du discriminant du polyn\^ome $A$ est}\quad $D(A)={1\s a}
+\>(-1)^{{}^{\sst m(m-1)\sur\sst2}}\>\res(A,A')$.
+
+\msk
+{\bf 3.} On a $\;\res(A,A')=\prod_{i<j}(\alpha_i-\alpha_j)^2$, o\`u les
+$\alpha_i$ ($1\ie i\ie 5$) sont les racines de $A$.\ssk\sect
+D'autre part, $A'=5X^4+p$, le reste de la division euclidienne de
+$A$ par $A'$ est $R={4\s5}pX+q$, celui de la division de $A'$ par $R$ est
+une constante $\lam$ que l'on d\'etermine en posant $X=-{5q\s4p}$ dans
+l'identit‚ $A'=RQ+\lam$ donc $\lam=A'\lp-{5q\s4p}\rp={3125q^4+256p^5\s256p^4}$.
+Finalement,
+$$\res(A,A')  =  5^4\>\res(A',R)
+                        = 5^4\>\lp{4p\s5}\rp^4\>\res(R,\lam)
+                      = 5^4\>\lp{4p\s5}\rp^4\>\lam^{\deg(R)}
+                        = 256p^5+3125q^4\;.$$
+On en d\'eduit d\'ej\`a que $A$ admet une racine double si et seulement si\vv
+$$256\>p^5+3125\>q^4=0\;.$$\sect
+Par ailleurs,\ssk\new
+$\bullet$ si $A$ admet cinq racines r\'eelles (non n\'ecessairement distinctes),
+alors\vv
+$$\res(A,A')=\prod_{i<j}(\alpha_i-\alpha_j)^2\se0\;;$$
+\new
+$\bullet$ si $A$ admet une racine r\'eelle $a$ et deux couples $(b,\ov{b})$,
+$(c,\ov{c})$ de racines conjugu\'ees, alors\vv
+\begin{eqnarray*}
+\res(A,A') & = & (b-a)^2(\ov{b}-a)^2(c-a)^2(\ov{c}-a)^2(\ov{b}-b)^2
+                            (c-b)^2(\ov{c}-b)^2(c-\ov{b})^2(\ov{c}-\ov{b})^2
+                            (\ov{c}-c)^2\\
+               & = & 16\>(\Im b)^2\>(\Im c)^2\>|b-a|^4\>|c-a|^4\>
+                            |c-b|^4\>|\ov{c}-b|^4\se0\;.
+\end{eqnarray*}
+\new
+$\bullet$ si $A$ admet trois racines r\'eelles $a$, $b$, $c$ et un couple
+$(d,\ov{d})$ de racines conjugu\'ees, alors\vv
+\begin{eqnarray*}
+\res(A,A') & = & (b-a)^2(c-a)^2(d-a)^2(\ov{d}-a)^2(c-b)^2(d-b)^2
+                            (\ov{d}-b)^2(d-c)^2(\ov{d}-c)^2(\ov{d}-d)^2\\
+              & = & -4\>(\Im d)^2\>(b-a)^2\>(c-a)^2\>(d-a)^2\>
+                            |d-a|^4\>|d-b|^4\>|d-c|^4\ie0\;,
+\end{eqnarray*}
+l'in\'egalit\'e \'etant stricte lorsque les racines r\'eelles $a$, $b$, $c$
+sont distinctes.\msk\sect
+La condition recherch\'ee est donc\vv
+$$256\>p^5+3125\>q^4<0\;.$$
+
+
+
+\bsk\bsk
+\hrule
+\bsk\bsk
+
+
+
+
+{\bf EXERCICE 6 :}\msk
+
+{\it Dans cet exercice, on admet que, pour tout $p$ premier, le groupe
+multiplicatif $\lp\zz{p}\rp^*$ des
+\'el\'ements non nuls du corps $\zz{p}$
+est cyclique} ({\it cf. exercice} 1).\msk
+
+Soit $n$ un entier, $n\se 2$. On dira que $n$ v\'erifie la propri\'et\'e {\bf (F)}
+si, pour tout entier relatif $a$, $a^n$ est congru \`a $a$ modulo $n$.\ssk
+
+{\bf 1.} Montrer le {\bf petit th\'eor\`eme de Fermat}~: tout nombre premier $p$
+v\'erifie la propri\'et\'e {\bf (F)}.\ssk
+
+On appelle {\bf nombre de Carmichael} tout entier $n$ compos\'e
+v\'erifiant la propri\'et\'e {\bf (F)}.\ssk
+
+{\bf 2.} Soit $n$ un entier sans facteur carr\'e, $n\se2$. Soit $m$ un entier
+($m\se2$) tel
+que, pour tout diviseur premier $p$ de $n$, $p-1$ divise $m-1$. Montrer que
+$a^m$ est congru \`a $a$ modulo $n$ pour tout entier relatif $a$.
+\ssk
+
+{\bf 3.} Soit $n=p^2m$ avec $p$ premier et $m\in\net$~; v\'erifier $(1+p\>m)^n\equiv 1$ modulo $n$.
+\ssk
+
+{\bf 4.} Montrer qu'un entier $n\se2$ v\'erifie la propri\'et\'e {\bf (F)} si et
+seulement si $n$ est sans facteur carr\'e et $p-1$ divise $n-1$ pour tout
+diviseur premier $p$ de $n$.
+
+\bsk
+{\it Source : Michel DEMAZURE, Cours d'Alg\`ebre, \'Editions Cassini}, ISBN 2-84225-000-1.
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\bsk
+
+{\bf 1.} Si $a\in\zmat$ n'est pas multiple de $p$, alors sa classe de congruence
+modulo $p$ (notons-la $\ov{a}$) est un \'el\'ement du groupe multiplicatif
+$\lp\zz{p}\rp^*$ d'ordre $p-1$, donc $\ov{a}^{\>p-1}=\ov{1}$, c'est-\`a-dire
+$a^{p-1}\equiv 1$ modulo $p$, d'o\`u $a^p\equiv a$ modulo $p$.\ssk\sect
+Si $a$ est multiple de $p$, on a \'evidemment $a^p\equiv a\equiv 0$ modulo $p$.
+
+\msk
+{\bf 2.} Il faut montrer que $n\divise a^m-a$~; mais, par hypoth\`ese, $n$ est
+le produit de ses facteurs premiers, qui sont deux \`a deux premiers entre eux.
+Il suffit donc de prouver que tout diviseur premier $p$ de $n$ divise
+$a^m-a$ ($n$ est le p.p.c.m. de ses diviseurs premiers).\ssk\sect
+Soit donc $p$ un diviseur premier de $n$.\sect
+$\triangleright$ si $a$ est multiple de $p$, $a^m-a$ est multiple de $p$ (\'evident)\sect
+$\triangleright$ si $a$ n'est pas multiple de $p$, on a $a^{p-1}\equiv 1$
+modulo $p$ d'apr\`es la question {\bf 1.}. Comme $m-1=(p-1)k$ avec $k$
+entier naturel, $a^{m-1}=(a^{p-1})^k$ est aussi congru \`a 1 modulo $p$,
+donc $a^m\equiv a$ modulo $p$.\ssk\sect
+{\it Le lecteur en d\'eduira par exemple que $a^{13}\equiv a$ modulo $35$
+pour tout entier relatif $a$, et donc $a^{12}\equiv 1$ modulo $35$ pour tout
+entier $a$ premier avec $35$. L'exposant du groupe $\lp\zz{35}\rp^*$,
+d'ordre\break $\ffi(35)=24$, des
+\'el\'ements inversibles de l'anneau $\zz{35}$ est $12$, puisqu'on peut voir qu'il existe
+des \'el\'ements d'ordre $12$ exactement, par exemple la classe de $2$}.
+
+\msk
+{\bf 3.} Si $n=p^2m$, alors\vvvv
+$$(1+p\>m)^n=1+np\>m+\sum_{k=2}^nC_n^k(p\>m)^k\;.$$
+Chaque terme de cette derni\`ere somme est divisible par $p^2m^2$ donc
+{\it a fortiori} par $n=p^2m$, donc $(1+p\>m)^n\equiv 1$ modulo $n$.
+
+\msk
+{\bf 4.}
+$\bullet$ Supposons $n$ sans facteur carr\'e tel que $\;\a p\in
+{\cal P}_n\quad p-1\divise n-1\;$ (${\cal P}_n$~: support premier de $n$).
+Alors $n$ v\'erifie la propri\'et\'e {\bf (F)} d'apr\`es la question {\bf 2.}\ssk\sect
+$\bullet$ Soit $n$ v\'erifiant la propri\'et\'e {\bf (F)}.\ssk\new
+Alors $n$ est sans facteur carr\'e~: par l'absurde, si on avait $n=p^2m$
+avec $p$ premier, l'entier $a=1+p\>m$ v\'erifierait $a^n\equiv 1$ modulo $n$
+d'apr\`es la question {\bf 3.},
+ce qui contredit $a^n\equiv a$ modulo $n$.\ssk\new
+Ecrivons $n=p_1\ldots p_m$ (produit de nombres premiers distincts). Pour tout
+$i\in\[ent1,m\]ent$, soit $a_i$ un entier dont la classe modulo $p_i$ est un
+g\'en\'erateur du groupe cyclique $\lp\zz{p_i}\rp^*$. D'apr\`es le th\'eor\`eme chinois,
+il existe un entier $a$ tel que $a\equiv a_i$ modulo $p_i$ pour tout $i$.\break
+Par hypoth\`ese, $a^n\equiv a$ modulo $n$~; comme $a\wedge n=1$ ($a$ n'est divisible
+par aucun des $p_i$), on peut ``simplifier cette congruence par $a$" et
+$a^{n-1}\equiv 1$ modulo $n$ d'o\`u, {\it a fortiori}, $a^{n-1}\equiv 1$ modulo $p_i$
+pour tout $i$, donc $a_i^{n-1}\equiv 1$ modulo $p_i$.\new
+Cela implique que $n-1$ est multiple de l'ordre de $a_i$ modulo $p_i$, c'est-\`a-dire
+$p_i-1\divise n-1$, ce qu'il fallait d\'emontrer.
+
+
+\bsk\bsk
+\hrule
+\bsk
+\hrule
+
+
+
+
+\end{document}

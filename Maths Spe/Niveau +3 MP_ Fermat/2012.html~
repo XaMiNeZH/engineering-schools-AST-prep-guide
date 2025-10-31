@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>Exercices 2011-2012</TITLE>
+	<meta name="generator" content="Bluefish 2.0.1" >
+	<META NAME="CREATED" CONTENT="20061104;12272800">
+	<META NAME="CHANGEDBY" CONTENT="Michel Gonnord">
+	<META NAME="CHANGED" CONTENT="20120315;14520300">
+
+	<STYLE TYPE="text/css">
+	<!--
+		P { color: #000000 }
+		A:link { color: #000099 }
+		A:visited { color: #990099 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="fr-FR" TEXT="#000000" LINK="#000099" VLINK="#990099" BGCOLOR="#99ffff" DIR="LTR">
+<P><FONT COLOR="#cc0000"><FONT SIZE=5><B>Voici tous les exercices de
+l'ann&eacute;e 2011-2012 avec les solutions d&eacute;taill&eacute;es
+et les devoirs d&eacute;j&agrave; donn&eacute;s</B></FONT></FONT><BR><BR><FONT SIZE=5>Exercices
+de r&eacute;vision</FONT><BR><BR><FONT SIZE=4><A HREF="files/2012/HXCH1-Nombres%20complexes%20et%20geometrie%20elementaire-exo2.pdf">HXCH1-Nombres
+complexes et geometrie elementaire-exo2.pdf</A><BR><A HREF="files/2012/HXCH2-Fonctions%20usuelles%20et%20equa%20diff-exo2.pdf">HXCH2-Fonctions
+usuelles et equa diff-exo2.pdf</A><BR><A HREF="files/2012/HXCH3-Nombres%20reels,%20suites%20et%20fonctions-exo2.pdf">HXCH3-Nombres
+reels, suites et fonctions-exo2.pdf</A><BR><A HREF="files/2012/HXCH4.pdf">HXCH4-Calcul
+diff&eacute;rentiel et int&eacute;gral-exo2.pdf</A><BR><A HREF="files/2012/HXCH5-Fonctions%20de%202%20variables%20reelles-exo2.pdf">HXCH5-Fonctions
+de 2 variables reelles-exo2.pdf</A><BR><A HREF="files/2012/HXCH6-Nombres%20et%20structures%20algebriques%20elementaires-exo2.pdf">HXCH6-Nombres
+et structures algebriques elementaires-exo2.pdf</A><BR><A HREF="files/2012/HXCH7-Algebre%20lineaire%20et%20polynomes-exo2.pdf">HXCH7-Algebre
+lineaire et polynomes-exo2.pdf</A><BR><A HREF="files/2012/HXCH8-Espaces%20euclidiens%20et%20geometrie-exo2.pdf">HXCH8-Espaces
+euclidiens et geometrie-exo2.pdf</A><BR></FONT><BR><BR><FONT SIZE=5>Exercices
+de l'ann&eacute;e<BR><BR></FONT><FONT SIZE=4><A HREF="files/2012/XCH1%20Algebre%20generale-exo2.pdf">XCH1
+Algebre generale-exo2.pdf</A><BR><A HREF="files/2012/XCH2%20Algebre%20lineaire-exo2.pdf">XCH2
+Algebre lineaire-exo2.pdf</A><BR><A HREF="files/2012/XCH3%20Reduction%20des%20endomorphismes-exo2.pdf">XCH3
+Reduction des endomorphismes-exo2.pdf</A><BR><A HREF="files/2012/XCH4%20Espaces%20euclidiens%20et%20prehilbertiens-exo2.pdf">XCH4
+Espaces euclidiens et prehilbertiens-exo2.pdf</A><BR><A HREF="files/2012/XCH5%20Suites%20et%20fonctions-exo2.pdf">XCH5
+Suites et fonctions-exo2.pdf</A><BR><A HREF="files/2012/XCH6.pdf">XCH6
+Derivation et int&eacute;gration-exo2.pdf</A><BR><A HREF="files/2012/XCH7%20Series%20entieres,%20series%20de%20Fourier-exo2.pdf">XCH7
+Series entieres, series de Fourier-exo2.pdf</A><BR><A HREF="files/2012/XCH8%20Equations%20differentielles-exo2.pdf">XCH8
+Equations differentielles-exo2.pdf</A><BR><A HREF="files/2012/XCH9%20Fonctions%20de%20plusieurs%20variables-exo2.pdf">XCH9
+Fonctions de plusieurs variables-exo2.pdf</A></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT SIZE=5>Programmes de colle de l'ann&eacute;e</FONT></P>
+<P><FONT SIZE=4><A HREF="files/2012/Colle01.pdf">Semaine 1 du 19 au 23 septembre
+2011<BR></A><A HREF="files/2012/Colle02.pdf">Semaine 2 du 21 au 25 septembre
+2011<BR></A><A HREF="files/2012/Colle03.pdf">Semaine 3 du 28 septembre au 2
+octobre 2011<BR></A><A HREF="files/2012/Colle04.pdf">Semaine 4 du 5 au 9 octobre
+2011</A><BR><A HREF="files/2012/Colle05.pdf">Semaine 5 du 12 au 16 octobre
+2011<BR></A><A HREF="files/2012/Colle06.pdf">Semaine 6 du 19 au 23 octobre
+2011<BR></A><A HREF="files/2012/Colle07.pdf">Semaine 7 du 9 au 13 novembre
+2011<BR></A><A HREF="files/2012/Colle08.pdf">Semaine 8 du 16 au 20 novembre
+2011<BR></A><A HREF="files/2012/colle09.pdf">Semaine 9 du 23 au 27 novembre
+2011<BR></A><A HREF="files/2012/colle10.pdf">Semaine 10 du 30 novembre au 4
+d&eacute;cembre 2011<BR></A><A HREF="files/2012/Colle11.pdf">Semaine 11 du 7 au
+11 d&eacute;cembre 2011<BR></A><A HREF="files/2012/Colle13.pdf">Semaine 13 du 4
+au 8 janvier 2012<BR></A><A HREF="files/2012/Colle14.pdf">Semaine 14 du 11 au 15
+janvier 2012<BR></A><A HREF="files/2012/Colle15.pdf">Semaine 15 du 18 au 22
+janvier 2012<BR></A><A HREF="files/2012/Colle16.pdf">Semaine 16 du 25 au 29
+janvier 2012<BR></A><A HREF="files/2012/Colle17.pdf">Semaine 17 du 1 au 5
+f&eacute;vrier 2012<BR></A><A HREF="files/2012/Colle18.pdf">Semaine 18 du 8 au
+12 f&eacute;vrier 2012<BR></A><A HREF="files/2012/Colle19.pdf">Semaine 19 du 1
+au 5 mars 2012<BR></A><A HREF="files/2012/Colle20.pdf">Semaine 20 du 8 au 12
+mars 2012<BR></A><A HREF="files/2012/Colle21.pdf">Semaine 21 du 14 au 18 mars
+2012<BR></A><A HREF="files/2012/Colle22.pdf">Semaine 22 du 21 au 25 mars 2012</A></FONT></P>
+<P><FONT SIZE=5><BR>Devoirs de l'ann&eacute;e</FONT></P>
+<P><FONT SIZE=4><A HREF="files/2012/DL%20du%2014-09-2011.pdf">Devoir du
+14-09-2011-&eacute;nonc&eacute;.pdf</A><BR><A HREF="files/2012/DL%20du%2014-09-2011%20corrige.pdf">Devoir
+du 14-09-2011-solution.pdf</A></FONT></P>
+<P><FONT SIZE=4><A HREF="files/2012/DS%20du%2021-09-2011-enonce.pdf">Devoir
+surveill&eacute; du 21-09-2011-&eacute;nonc&eacute;.pdf</A> <BR><A HREF="files/2012/DS%20du%2021-09-2011-solution.pdf">Devoir
+surveill&eacute; du 21-09-2011-solution.pdf</A></FONT></P>
+<P><FONT SIZE=4><A HREF="files/2012/DL%20du%2005-10-2011-enonce.pdf">Devoir du
+05-10-2011-&eacute;nonc&eacute;.pdf</A><BR><A HREF="files/2012/DL%20du%2005-10-2011-solution.pdf">Devoir
+du 05-10-2011-solution.pdf</A><BR><BR><A HREF="files/2012/DL%20du%2012-10-2011-enonce.pdf">Devoir
+du 12-10-2011-&eacute;nonc&eacute;.pdf</A><BR><A HREF="files/2012/../Annee-2011-2012">Devoir
+du 12-10-2011-solution.pdf</A><BR><BR><A HREF="files/2012/DS%20du%2019-10-2011-enonce.pdf">Devoir
+surveill&eacute; du 19-10-2011-&eacute;nonc&eacute;.pdf</A><BR><A HREF="files/2012/DS%20du%2019-10-2011-solution.pdf">Devoir
+surveill&eacute; du 19-10-2011-solution.pdf</A></FONT></P>
+<P><FONT SIZE=4><A HREF="files/2012/DL%20du%2003-11-2011-enonce.pdf">Devoir du
+03-11-2011-&eacute;nonc&eacute;.pdf</A><BR><A HREF="files/2012/DL%20du%2003-11-2011-solution.pdf">Devoir
+du 03-11-2011-solution.pdf</A> </FONT>
+</P>
+<P><FONT SIZE=4><A HREF="files/2012/DL%20du%2009-11-2011-enonce.pdf">Devoir du
+09-11-2011-&eacute;nonc&eacute;.pdf</A><BR><A HREF="files/2012/DL%20du%2009-11-2011-solution.pdf">Devoir
+du 09-11-2011-solution.pdf</A> </FONT>
+</P>
+<P><FONT SIZE=4><A HREF="files/2012/DS%20du%2023-11-2011-enonce.pdf">Devoir
+surveill&eacute; du 23-11-2011-&eacute;nonc&eacute;.pdf</A><A HREF="files/2012/DL%20du%2021-10-2009-ENSAE%202003%20solution.pdf"><BR></A><A HREF="files/2012/DS%20du%2023-11-2011-solution.pdf">Devoir
+surveill&eacute; du 23-11-2011-solution.pdf</A><A HREF="files/2012/DL%20du%2021-10-2009-ENSAE%202003%20solution.pdf"><BR><BR></A><A HREF="files/2012/DL%20du%2030-11-2011-enonce.pdf">Devoir
+du 30-11-2011-&eacute;nonc&eacute;.pdf</A><A HREF="files/2012/DL%20du%2021-10-2009-ENSAE%202003%20solution.pdf"><BR></A><A HREF="files/2012/DL%20du%2030-11-2011-solution.pdf">Devoir
+du 30-11-2011-solution.pdf</A><BR><BR><A HREF="files/2012/DS%20du%2007-12-2011-enonce.pdf">Devoir
+surveill&eacute; du 07-12-2011-&eacute;nonc&eacute;.pdf</A><A HREF="files/2012/DL%20du%2021-10-2009-ENSAE%202003%20solution.pdf"><BR></A><A HREF="files/2012/DS%20du%2007-12-2011-solution.pdf">Devoir
+surveill&eacute; du 07-12-2011-solution.pdf</A> </FONT>
+</P>
+<P><FONT SIZE=4><A HREF="files/2012/DL%20du%2004-01-2012-enonce.pdf">Devoir du
+04-01-2012-&eacute;nonc&eacute;.pdf</A><A HREF="files/2012/DL%20du%2021-10-2009-ENSAE%202003%20solution.pdf"><BR></A><A HREF="files/2012/DL%20du%2004-01-2012-solution.pdf">Devoir
+du 04-01-2012-solution.pdf</A></FONT></P>
+<P><FONT SIZE=4><A HREF="files/2012/DL%20du%2014-09-2011.pdf">Devoir surveill&eacute;
+du 18-01-2012-&eacute;nonc&eacute;.pdf</A><A HREF="files/2012/DL%20du%2021-10-2009-ENSAE%202003%20solution.pdf"><BR></A><A HREF="files/2012/DL%20du%2014-09-2011%20corrige.pdf">Devoir
+surveill&eacute; du 18-01-2012-solution.pdf</A><BR><BR><A HREF="files/2012/DL%20du%2014-09-2011.pdf">Devoir
+du 25-01-2012-&eacute;nonc&eacute;.pdf</A><A HREF="files/2012/DL%20du%2021-10-2009-ENSAE%202003%20solution.pdf"><BR></A><A HREF="files/2012/DL%20du%2014-09-2011%20corrige.pdf">Devoir
+du 25-01-2012-solution.pdf</A></FONT></P>
+<P><FONT SIZE=4><A HREF="files/2012/DS%20du%2001-02-2012-enonce.pdf">Devoir
+surveill&eacute; du 01-02-2012-&eacute;nonc&eacute;.pdf</A><A HREF="files/2012/DL%20du%2021-10-2009-ENSAE%202003%20solution.pdf"><BR></A><A HREF="files/2012/DS%20du%2001-02-2012-solution.pdf">Devoir
+surveill&eacute; du 01-02-2012-solution.pdf</A><A HREF="files/2012/DL%20du%2003-02-2010-X%20math1%202009%20corrige.pdf"><BR></A><A HREF="files/2012/DL%20du%2027-02-2012-enonce.pdf">Devoir
+du 27-02-2012-&eacute;nonc&eacute;.pdf</A><BR><A HREF="files/2012/DL%20du%2027-02-2012-solution.pdf">Devoir
+du 27-02-2012-solution.pdf</A></FONT></P>
+<P><FONT SIZE=4><A HREF="files/2012/DL%20du%2003-02-2010-X%20math1%202009%20corrige.pdf"><BR></A><A HREF="files/2012/DS%20du%2029-02-2012-enonce.pdf">Devoir
+surveill&eacute; du 29-02-2012-&eacute;nonc&eacute;.pdf</A><A HREF="files/2012/DL%20du%2021-10-2009-ENSAE%202003%20solution.pdf"><BR></A><A HREF="files/2012/DS%20du%2029-02-2012-solution.pdf">Devoir
+surveill&eacute; du 29-02-2012-solution.pdf</A><A HREF="files/2012/DL%20du%2003-02-2010-X%20math1%202009%20corrige.pdf"><BR><BR></A><A HREF="files/2012/DL%20du%2007-03-2012-enonce.pdf">Devoir
+du 07-03-2012-&eacute;nonc&eacute;.pdf</A><A HREF="files/2012/DL%20du%2021-10-2009-ENSAE%202003%20solution.pdf"><BR></A><A HREF="files/2012/DL%20du%2007-03-2012-solution.pdf">Devoir
+du 07-03-2012-solution.pdf</A> </FONT>
+</P>
+<P><FONT SIZE=4><A HREF="files/2012/DL%20du%2014-03-2012-enonce.pdf">Devoir du
+14-03-2012-&eacute;nonc&eacute;.pdf</A><A HREF="files/2012/DL%20du%2021-10-2009-ENSAE%202003%20solution.pdf"><BR></A><A HREF="files/2012/DL%20du%2014-03-2012-solution.pdf">Devoir
+du 14-03-2012-solution.pdf</A> </FONT>
+</P>
+<P><FONT SIZE=4><A HREF="files/2012/DL%20du%2021-03-2012-enonce.pdf">Devoir du
+21-03-2012-&eacute;nonc&eacute;.pdf</A><A HREF="files/2012/DL%20du%2021-10-2009-ENSAE%202003%20solution.pdf"><BR></A><A HREF="files/2012/DL%20du%2021-03-2012-solution.pdf">Devoir
+du 21-03-2012-solution.pdf</A> </FONT>
+</P>
+<P><FONT SIZE=4><A HREF="files/2012/DL%20du%2028-03-2012-MAths%20A%20XULC.pdf">Devoir
+du 28-03-2012-&eacute;nonc&eacute;.pdf</A><A HREF="files/2012/DL%20du%2021-10-2009-ENSAE%202003%20solution.pdf"><BR></A><A HREF="files/2012/DL%20du%2028-03-2012-solution.pdf">Devoir
+du 28-03-2012-solution.pdf</A> </FONT>
+</P>
+<P><FONT SIZE=4><A HREF="files/2012/DL%20du%2014-09-2011.pdf">Devoir surveill&eacute;
+Mines-Centrale du 28-03-2012-&eacute;nonc&eacute;.pdf</A><A HREF="files/2012/DL%20du%2021-10-2009-ENSAE%202003%20solution.pdf"><BR></A><A HREF="files/2012/DL%20du%2014-09-2011%20corrige.pdf">Devoir
+surveill&eacute; Mines 1992 du 24-03-2012-solution.pdf</A><A HREF="files/2012/DL%20du%2003-02-2010-X%20math1%202009%20corrige.pdf"><BR><BR></A><A HREF="files/2012/DL%20du%2014-09-2011.pdf">Devoir
+surveill&eacute; X-ENS du 28-03-2012-&eacute;nonc&eacute;.pdf</A><A HREF="files/2012/DL%20du%2021-10-2009-ENSAE%202003%20solution.pdf"><BR></A><A HREF="files/2012/DL%20du%2014-09-2011%20corrige.pdf">Devoir
+surveill&eacute; X-ENS du 28-03-2012-solution.pdf</A><A HREF="files/2012/DL%20du%2003-02-2010-X%20math1%202009%20corrige.pdf"><BR></A></FONT><BR><BR>
+</P>
+<P><FONT SIZE=5>Quelques fichiers int&eacute;ressants</FONT></P>
+<P><A HREF="files/2012/Les-theoremes-importants.pdf"><FONT SIZE=4>Les theoremes
+importants.pdf</FONT></A></P>
+<P><A HREF="files/2012/Oral%202006.pdf"><FONT SIZE=4>Oral 2006.pdf</FONT></A><BR><A HREF="files/2012/Oral%202007.pdf"><FONT SIZE=4>Oral
+2007.pdf</FONT></A> <BR><A HREF="files/2012/Oral%202008.pdf"><FONT SIZE=4>Oral
+2008.pdf</FONT></A> <BR><FONT SIZE=4><A HREF="files/2012/Oral%202009.pdf">Oral
+2009.pdf</A><BR><A HREF="files/2012/Oral%202010.pdf">Oral 2010.pdf</A></FONT><BR><A HREF="files/2012/Oral%202011.pdf"><FONT SIZE=4>Oral
+2011.pdf</FONT></A> 
+</P>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,508 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % ‚vite le textstyle en mode
+                                % math‚matique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math‚matiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de presentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% personnel Monasse
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'‚criture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% … l'int‚rieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d‚croissante),
+% \nondef (la fonction est non d‚finie)
+% si l'on termine la derniŠre ligne par \cr, un trait est tir‚ en dessous
+% sinon elle est laiss‚e sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   % MONASSE
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  % MONASSE
+\def\rmat{{\rm I\kern-0.6mm R}}  % MONASSE
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  % MONASSE
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  % MONASSE
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____def de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% AlgŠbre lin‚aire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________determinant_______
+\def\det{\mathop{\rm det}\nolimits}  % MONASSE
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  % MONASSE
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  % MONASSE
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}  % MONASSE
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos‚e ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  % MONASSE
+\def\MC#1{{\cal M}_{#1}(\cmat)}  % MONASSE
+\def\MK#1{{\cal M}_{#1}(\kmat)}  % MONASSE
+
+%________Complexes_________ % MONASSE
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   % CLENET
+\def\Arccos{\mathop{\rm Arccos}\nolimits}   % CLENET
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   % CLENET
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     % CLENET
+\def\Argch{\mathop{\rm Argch}\nolimits}     % CLENET
+\def\Argth{\mathop{\rm Argth}\nolimits}     % CLENET
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} %CLENET
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s‚ries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  % MONASSE
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  % MONASSE
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  % MONASSE
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  % MONASSE
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  % MONASSE
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr‚g‚es%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-…-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\catcode`@=12 % at signs are no longer letters
+\catcode`\‚=\active
+\def‚{\'e}
+\catcode`\Š=\active
+\defŠ{\`e}
+\catcode`\ˆ=\active
+\defˆ{\^e}
+\catcode`\…=\active
+\def…{\`a}
+\catcode`\—=\active
+\def—{\`u}
+\catcode`\–=\active
+\def–{\^u}
+\catcode`\ƒ=\active
+\defƒ{\^a}
+\catcode`\"=\active
+\def"{\^o}
+\catcode`\‰=\active
+\def‰{\"e}
+\catcode`\‹=\active
+\def‹{\"\i}
+\catcode`\=\active
+\def{\"u}
+\catcode`\‡=\active
+\def‡{\c c}
+\catcode`\Œ=\active
+\defŒ{\^\i}
+
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+
+
+
+
+
+\overfullrule=0mm
+
+
+\cl{{\bf SEMAINE 9}}\msk
+\cl{{\bf S\'ERIES NUM\'ERIQUES}}
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+Soit $\gamma$ la {\bf constante d'Euler}~: $\gamma=\Lim{n}{\infty}\lp\sum_{k=1}^n{1\s k}-\ln n\rp$. D\'emontrer l'\'egalit\'e
+$$\sum_{n=1}^{\infty}(-1)^n{\ln n\s n}=\gamma\cdot\ln 2-{1\s2}(\ln 2)^2\;.$$
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+La s\'erie de terme g\'en\'eral $(-1)^n{\ln n\s n}$ est convergente car $\Lim{n}{\infty}{\ln n\s n}=0$ et la suite $\lp{\ln n\s n}\rp$ est d\'ecroissante... \`a partir du rang 3, notons $\;s_n=\sum_{k=1}^n(-1)^k{\ln k\s k}\;$ sa somme partielle d'ordre $n$. On peut faire appara\^\i tre les sommes partielles de la s\'erie harmonique en d\'ecomposant $s_{2n}$ de la fa\c con suivante~:\vvvv
+\begin{eqnarray*}
+s_{2n} & = & \sum_{k=1}^{2n}(-1)^k{\ln k\s k}=-\sum_{k=1}^{2n}{\ln k\s k}+2\>\sum_{k=1}^n{\ln(2k)\s2k}\\
+& = & -\sum_{k=1}^{2n}{\ln k\s k}+\lp\sum_{k=1}^n{1\s k}\rp\cdot\ln 2+\sum_{k=1}^n{\ln k\s k}\;.
+\end{eqnarray*}
+En posant $\;H_n=\sum_{k=1}^n{1\s k}\;$ et $\;S_n=\sum_{k=2}^n{\ln k\s k}$, on a donc
+$$s_{2n}=H_n\>\ln 2-\sum_{k=n+1}^{2n}{\ln k\s k}=H_n\>\ln 2+S_n-S_{2n}\;.$$ Le d\'eveloppement asymptotique $\;H_n=\ln n+\gamma+o(1)\;$ est connu ({\it isn't it~?}), l'exercice sera termin\'e si l'on trouve un d\'eveloppement asymptotique de $S_n$ \`a la pr\'ecision $o(1)$.\msk
+Par comparaison avec une int\'egrale, on obtient d\'ej\`a $\;S_n\sim{1\s2}(\ln n)^2$, mais cela ne suffit pas. Cherchons donc \`a estimer $\;S_n-{1\s2}(\ln n)^2$. Pour cela, \'ecrivons $\;S_n-{1\s2}(\ln n)^2=\sum_{k=2}^na_k$, avec\vv
+\begin{eqnarray*}
+a_k & = & {\ln k\s k}-{1\s 2}\big[(\ln k)^2-(\ln(k-1))^2\big]={\ln k\s k}+{1\s2}\ln\lp1-{1\s k}\rp\cdot\big(\ln k+\ln(k-1)\big)\\
+& = & {\ln k\s k}+{1\s 2}\lp-{1\s k}-{1\s 2k^2}+o\Big({1\s k^2}\Big)\rp\lp 2\ln k+O\Big({1\s k}\Big)\rp\\
+& = & -{\ln k\s 2k^2}+o\lp{\ln k\s k^2}\rp\;.
+\end{eqnarray*}
+De $a_k\sim-{\ln k\s 2k^2}$, on d\'eduit que la s\'erie de terme g\'en\'eral $a_k$ est convergente donc, en posant $\;l=\sum_{k=2}^{\ii}a_k$, on a le d\'eveloppement asymptotique $\;S_n={1\s2}(\ln n)^2+l+o(1)$, puis\vv
+\begin{eqnarray*}
+s_{2n} & = & (\ln n+\gamma)(\ln 2)+{1\s2}\big((\ln n)^2-(\ln(2n)^2)\big)+l-l+o(1)\\
+          & = & (\ln n+\gamma)(\ln 2)+{1\s2}\big((\ln n)^2-(\ln(n)^2+(\ln 2)^2+2\ln 2\cdot\ln n)\big)+o(1)\\
+          & = & \gamma\cdot\ln 2-{1\s2}(\ln 2)^2+o(1)\;.
+\end{eqnarray*}
+Comme $\;\sum_{n=1}^{\ii}(-1)^n\>{\ln n\s n}=\Lim{n}{\infty}s_{2n}$, on obtient le r\'esultat demand\'e.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 2 :}\msk
+{\bf 1.} Soient $(A_n)$ et $(B_n)$ deux suites complexes de limites $A$ et $B$ respectivement. Montrer que\vv
+$$\Lim{n}{\infty}{1\s n+1}\>\sum_{k=0}^nA_kB_{n-k}=AB\;.$$\par
+{\bf 2.} Soient $\sum_na_n$ et $\sum_nb_n$ deux s\'eries de nombres complexes, on note $\sum_nc_n$ leur produit de Cauchy~: $c_n=\sum_{k=0}^na_kb_{n-k}$. Montrer que, si les trois s\'eries $\sum_n a_n$, $\sum_n b_n$ et $\sum_n c_n$ sont convergentes, alors on a la relation\vv
+$$\sum_{n=0}^{\infty}c_n=\Big(\sum_{n=0}^{\infty}a_n\Big)\>\Big(\sum_{n=0}^{\infty}b_n\Big)\;.$$
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf 1.} Posons $C_n={1\s n+1}\>\sum_{k=0}^nA_kB_{n-k}$, alors
+$$C_n-AB={1\s n+1}\sum_{k=0}^n(A_kB_{n-k}-AB)={1\s n+1}\sum_{k=0}^n\big[(A_k-A)B_{n-k}+(B_{n-k}-B)A\Big]\;,$$
+donc\vv
+$$|C_n-AB|\ie|B_{n-k}|\>\Big({1\s n+1}\sum_{k=0}^n|A_k-A|\Big)+|A|\>\Big({1\s n+1}\sum_{k=0}^n|B_{n-k}-B|\Big)\;.$$
+Or, d'apr\`es Cesaro, ${1\s n+1}\sum_{k=0}^n|A_k-A|\;$ et $\;{1\s n+1}\sum_{k=0}^n|B_{n-k}-B|={1\s n+1}\sum_{k=0}^n|B_k-B|$\break tendent vers z\'ero et $|B_{n-k}|$ est major\'e puisque la suite $(B_n)$ est convergente, donc\break $\Lim{n}{\infty}(C_n-AB)=0$.
+
+\msk
+{\bf 2.} Pour tout $n$, posons $A_n=\sum_{k=0}^na_k$, $B_n=\sum_{k=0}^n b_k$, $C_n=\sum_{k=0}^nc_k\;$ et enfin, pour tout $N\in\nmat$, posons $\;\Gamma_N=\sum_{n=0}^NC_n$. On a alors
+$$\Gamma_N=\sum_{n=0}^N\Big(\sum_{k=0}^nc_k\Big)=(N+1)c_0+Nc_1+\cdots+2c_{N-1}+c_N=\sum_{n=0}^N(N+1-n)c_n\;.$$
+On remarque que c'est aussi $\;\sum_{k=0}^NA_kB_{N-k}$, en effet~:\vv
+\begin{eqnarray*}
+\sum_{k=0}^NA_kB_{N-k} & = & a_0(b_0+\cdots+b_{N-1}+b_N)+(a_0+a_1)(b_0+\cdots+b_ {N-1})+\cdots\cdots+(a_0+a_1+\cdots+a_N)b_0\\
+& = & (N+1) a_0b_0+N(a_0b_1+a_1b_0)+(N-1)(a_0b_2+a_1b_1+a_2b_0)+\cdots\cdots+(a_0b_N+\cdots+a_Nb_0)\\
+& = & \sum_{n=0}^N(N+1-n)c_n=\Gamma_N\;.
+\end{eqnarray*}
+Posons enfin $A=\sum_{n=0}^{\infty}a_n$, $B=\sum_{n=0}^{\infty}b_n$, $C=\sum_{n=0}^{\infty}c_n$. Comme $\Lim{n}{\infty}C_n=C$, du th\'eor\`eme de Cesaro, on d\'eduit que $\Lim{n}{\infty}{\Gamma_n\s n+1}=C$, c'est-\`a-dire $\Lim{n}{\infty}{1\s n+1}\sum_{k=0}^nA_kB_{n-k}=C\;$ mais, d'apr\`es la question {\bf 1.}, cette derni\`ere expression tend aussi vers $AB$, donc $C=AB$.
+
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 3 :}\msk
+Convergence et calcul de $\;\sum_{n=2}^{\ii}{(-1)^n\s n}\>E\big(\log_2(n)\big)$.
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+Posons $u_n={(-1)^n\s n}\>E\big(\log_2(n)\big)\;$ pour $n\se2$.\msk
+$\bullet$ Effectuons une sommation
+par paquets en regroupant les entiers $n$ pour lesquels l'expression
+$\;E\big(\log_2(n)\big)\;$ garde une valeur constante~:\msk\new
+pour tout $k\in\net$ donn\'e, on a $\;E\big(\log_2(n)\big)=k\iff 2^k\ie n<2^{k+1}$.
+\msk\sect
+Posons alors $A_k=\sum_{n=2^k}^{2^{k+1}-1}u_n=k\cdot\sum_{n=2^k}^{2^{k+1}-1}{(-1)^n\s n}$ pour $k\in\net$ et
+montrons la convergence de la s\'erie de terme g\'en\'eral $A_k$.\ssk\sect
+Pour cela, introduisons encore quelques notations~:\ssk\sect
+- pour $n\in\net$, soit $H_n=\sum_{k=1}^n{1\s k}$ (somme partielle de la s\'erie harmonique)~:\ssk\sect
+- pour $n\in\net$, soit $J_n=\sum_{k=1}^n{(-1)^k\s k}$ (somme partielle de la s\'erie harmonique altern\'ee)~:\ssk\sect
+- pour $k\in\net$, soit $S_k=H_{2^k-1}=\sum_{p=1}^{2^k-1}{1\s p}$~;\ssk\sect
+- pour $k\in\net$, soit $T_k=J_{2^k-1}=\sum_{p=1}^{2^k-1}{(-1)^p\s p}$~;\ssk\sect
+On a alors facilement $\;S_k+T_k=S_{k-1}\;$ pour tout $k\se1$ (on convient $S_0=0$),
+donc\break $T_k=S_{k-1}-S_k$, puis\vvvv
+$$A_k=k(T_{k+1}-T_k)=-k(S_{k+1}-2S_k+S_{k-1})\;.$$\sect
+Simplifions les sommes partielles~: pour tout $m\in\net$,
+\begin{eqnarray*}
+\sum_{k=1}^mA_k & = & -\sum_{k=1}^mk(S_{k+1}-2S_k+S_{k-1})\\
+                           & = & -\sum_{k=2}^{m+1}(k-1)S_k+2\sum_{k=1}^mkS_k-\sum_{k=0}^{m-1}(k+1)S_k\\
+                           & = & \sum_{k=2}^{m-1}\big[2k-(k-1)-(k+1)\big]S_k
+                                   -S_0-2S_1+2S_1+2mS_m-(m-1)S_m-mS_{m+1}\\
+                           & = & (m+1)S_m-mS_{m+1}\;.
+\end{eqnarray*}
+Du d\'eveloppement asymptotique classique~: $H_n=\ln n+\gamma+O\lp
+{1\s n}\rp$, o\`u $\gamma$ est la constante d'Euler, on tire\vv
+$$S_m=\ln(2^m-1)+\gamma+O\lp{1\s2^m-1}\rp=m\>\ln2+\gamma+O\lp{1\s2^m}\rp\;,$$
+puis\vv
+\begin{eqnarray*}
+\sum_{k=1}^mA_k & = & (m+1)\>\bigg[m\>\ln 2+\gamma+O\lp{1\s2^m}\rp\bigg]-
+                                       m\>\bigg[(m+1)\>\ln2+\gamma+O\lp{1\s2^{m+1}}\rp\bigg]\\
+                           & = & \gamma+O\lp{m\s2^m}\rp=\gamma+o(1)\;.
+\end{eqnarray*}
+La s\'erie de terme g‚n‚ral $A_k$ converge donc et $\;\sum_{k=1}^{\ii}A_k=\gamma$.\msk
+$\bullet$ La s\'erie $\sum_nu_n$ n'\'etant pas absolument convergente, on ne peut pas affirmer
+directement que\vv
+$$\sum_{n=2}^{\ii}u_n=\sum_{k=1}^{\ii}\lp\sum_{n=2^k}^{2^{k+1}-1}u_n\rp=\sum_{k=1}^{\ii}A_k$$
+(la convergence de la s\'erie $\sum_nu_n$ n'\'etant d'ailleurs pas encore prouv\'ee).\ssk\sect
+Majorons pour cela les sommes partielles dans les paquets~: si $n\se2$ est
+tel que $2^m\ie n<2^{m+1}$ avec $m\in\net$, alors\vv
+$$\left|\sum_{i=2^m}^nu_i\right|=m\>\left|\sum_{i=2^m}^n{(-1)^i\s i}\right|\ie
+  {m\s2^m}$$
+(majoration classique d'une somme partielle d'une s\'erie altern\'ee par la valeur absolue
+de son premier terme). Donc (toujours avec $2^m\ie n<2^{m+1}$), on a
+$\left|\sum_{i=2}^nu_i-\sum_{k=1}^{m-1}A_k\right|\ie{m\s2^m}$.\break Comme
+$\Lim{m}{\ii}{m\s2^m}=0$, on en d\'eduit la convergence de la s\'erie $\sum_nu_n$
+et le r\'esultat\break $\sum_{n=2}^{\ii}u_n=\gamma\;$~: si on se donne $\eps>0$, il
+existe un entier $M$ tel que, pour tout $m\se M$, on ait
+${m\s2^m}\ie{\eps\s2}$ et $\;\left|\sum_{k=1}^{m-1}A_k-\gamma\right|\ie{\eps\s2}$~;
+pour tout entier $n$ tel que $n\se2^M$, on a alors
+$\;\left|\sum_{i=2}^nu_i-\gamma\right|\ie\eps$.\msk
+$\bullet$ Conclusion~: $\;\sum_{n=2}^{\ii}{(-1)^n\s n}\>E\big(\log_2(n)\big)=\gamma$.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 4 :}\msk
+Soit $(u_n)$ une suite r\'eelle qui converge vers z\'ero.\msk
+Montrer qu'il existe une suite $(\eps_n)$, \`a valeurs dans$\{-1,1\}$, telle que la s\'erie $\sum_n\eps_nu_n$ soit convergente.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+Si $\sum_n u_n$ est convergente, alors c'est gagn\'e avec $\eps_n=1$.\msk
+Supposons $\sum_{n}u_n$ divergente, donc a fortiori $\sum_nv_n$ est divergente avec $v_n=|u_n|$. Essayons de construire par r\'ecurrence une suite $(\alpha_n)$, \`a valeurs dans $\{-1,1\}$, de fa\c con que les sommes partielles $s_n=\sum_{k=0}^n\alpha_kv_k$ aient une limite nulle, on aura ainsi $\sum_{n=0}^{\infty}\eps_nu_n=0$ avec, pour tout $n$, $\eps_n=\sgn(u_n)\alpha_n$. L'id\'ee pour cela est de toujours ``revenir'' vers z\'ero, c'est-\`a-dire ajouter le terme n\'egatif $\;-v_n\;$ \`a chaque fois que $s_n$ est positif, et le terme positif $\;v_n\;$ \`a chaque fois que $s_n$ est n\'egatif. Allez, on r\'edige~:
+\msk
+Posons d'abord $\alpha_0=1$, ainsi $s_0=v_0=|u_0|\se0$, ce qui am\`ene \`a poser $\alpha_1=-1$ et ainsi $s_1=v_0-v_1$, on posera ensuite $\alpha_2=+1$ si $s_1<0$ et $\alpha_2=-1$ si $s_1\se0$. Pour $n\in\net$ donn\'e, supposons $\alpha_0$, $\cdots$, $\alpha_n$ construits (\'el\'ements de $\{-1,1\}$), posons $s_n=\sum_{k=0}^n\alpha_kv_k$, puis\break $\alpha_{n+1}=\system{&+1\;&{\rm si}&\;s_n<0\cr &-1\;&{\rm si}&\;s_n\se0\cr}$. 
+Remarquons que, les r\'eels $s_n$ et $\alpha_{n+1}v_{n+1}$ \'etant de signes\break contraires, on a $\;|s_{n+1}|=|s_n+\alpha_{n+1}v_{n+1}|\ie\max\{|s_n|,v_{n+1}\}$.
+Montrons maintenant que $\Lim{n}{\infty}s_n=0$.\msk
+Soit $\eps>0$. Soit $N$ un entier tel que $n\se N\impl0\ie v_n\ie\eps$. Alors,\ssk\sect
+{\bf (i)} : si $|s_N|\ie\eps$, par une r\'ecurrence imm\'ediate, on a $|s_n|\ie\eps$ pour tout $n\se N$ et c'est gagn\'e~;\ssk\sect
+{\bf (ii)} : si $s_N>\eps$, la s\'erie $\sum_kv_k$ \'etant divergente, il existe un entier $p$ tel que $\sum_{k=N+1}^{N+p}v_k>s_N-\eps$. Pour le plus petit de ces entiers $p$, on aura plus pr\'ecis\'ement $\;s_N-\eps<\sum_{k=N+1}^{N+p}v_k\ie s_N$,\break ce qui am\`ene \`a poser $\alpha_{N+1}=\cdots=\alpha_{N+p}=-1$ et ainsi $\;0\ie s_{N+p}=s_N-\sum_{k=N+1}^{N+p}v_k\ie\eps$, ce qui nous ram\`ene au cas {\bf (i)}~;\ssk\sect
+{\bf (iii)} : si $s_N<-\eps$, raisonnement analogue \`a {\bf (ii)}.
+
+\bsk
+{\it On a ainsi prouv\'e que, si $(u_n)$ est une suite de limite nulle, mais telle que la s\'erie de terme g\'en\'eral $u_n$ ne soit pas absolument convergente, on peut trouver une suite de coefficients $(\eps_n)$ dans $\{-1,1\}$ telle que $\sum_{n=0}^{\infty}\eps_nu_n=0$. Il est alors imm\'ediat que, pour tout r\'eel $a$ donn\'e, on peut aussi trouver une suite $(\eps_n)\in\{-1,1\}^{\nmat}$ telle que $\sum_{n=0}^{\infty}\eps_nu_n=a$.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

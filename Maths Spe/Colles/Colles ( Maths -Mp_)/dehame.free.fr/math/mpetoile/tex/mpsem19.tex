@@ -1,0 +1,573 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % \'evite le textstyle en mode
+                                % math\'ematique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math\'ematiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de pr\'esentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% divers
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'\'ecriture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% \`a l'int\'erieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d\'ecroissante),
+% \nondef (la fonction est non d\'efinie)
+% si l'on termine la derni\`ere ligne par \cr, un trait est tir\'e en dessous
+% sinon elle est laiss\'ee sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  
+\def\rmat{{\rm I\kern-0.6mm R}}  
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____d\'ef de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% Alg\`ebre lin\'eaire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________d\'eterminant_______
+\def\det{\mathop{\rm det}\nolimits} 
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos\'ee ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  
+\def\MC#1{{\cal M}_{#1}(\cmat)}  
+\def\MK#1{{\cal M}_{#1}(\kmat)}  
+
+%________Complexes_________ 
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   
+\def\Arccos{\mathop{\rm Arccos}\nolimits}  
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     
+\def\Argch{\mathop{\rm Argch}\nolimits}     
+\def\Argth{\mathop{\rm Argth}\nolimits}     
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} 
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s\'eries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr\'eg\'ees%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-\`a-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+\def\cala{{\cal A}}
+\def\fhat{\widehat{f}}
+\let\wh=\widehat
+\def\ftilde{\tilde{f}}
+
+% ********************************************************************************************************************** %
+%                                                                                                                                                                                   %
+%                                                                    FIN   DES   MACROS                                                                              %
+%                                                                                                                                                                                   %
+% ********************************************************************************************************************** %
+
+
+
+
+
+
+
+
+
+
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+
+
+
+\overfullrule=0mm
+
+
+\cl{{\bf SEMAINE 19}}\msk
+\cl{{\bf FONCTIONS de PLUSIEURS VARIABLES}}
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+{\bf 1.} Soit $\alpha\in\rplus$. R\'esoudre, dans $\rpe$, l'\'equation diff\'erentielle\vv
+$$(E_{\alpha})\;:\qquad r^2\>u''(r)+r\>u'(r)-\alpha^2\>u(r)=0$$
+({\it on pourra chercher des solutions de la forme $u(r)=r^m$, avec $m\in\rmat$}).\msk
+Soit $f:\cmat\vers\cmat$ de classe ${\cal C}^2$ (consid\'er\'ee comme fonction de deux variables r\'eelles).\par On dit que $f$ est {\bf harmonique} lorsque son {\bf laplacien} $\Delta f$ est nul, soit $\;{\ddd^2 f\s\ddd x^2}+{\ddd^2f\s\ddd y^2}=0$.\par On rappelle l'expression du laplacien en coordonn\'ees polaires~: en posant $g(r,\theta)=f(re^{i\theta})$, on a, pour $r>0$,\vvv
+$$\Delta f(re^{i\theta})={\ddd^2g\s\ddd r^2}(r,\theta)+{1\s r}\>{\ddd g\s\ddd r}(r,\theta)+{1\s r^2}\>{\ddd^2g\s\ddd\theta^2}(r,\theta)\;.$$\par
+{\bf 2.} Soit $f:\cmat\vers\cmat$, de classe ${\cal C}^2$, harmonique. Montrer qu'il existe des coefficients $(a_n)_{n\in\nmat}$ et $(b_n)_{n\in\net}$, complexes, tels que\vvv
+$$\a z\in\cmat\qquad f(z)=\sum_{n=0}^{\ii}a_nz^n+\sum_{n=1}^{\ii}b_n\ov{z}^{\;n}\;.$$\par
+{\bf 3.} Montrer que toute fonction harmonique born\'ee sur $\cmat$ est constante.\msk
+{\bf 4.} En d\'eduire le th\'eor\`eme de d'Alembert-Gauss.
+
+\msk
+{\it Source : article d'\'Eric VAN DER OORD, Fonctions harmoniques dans $\rmat^2$, RMS (Revue de Math\'ematiques Sp\'eciales), janvier 1995}\msk 
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf 1.} On sait que l'ensemble des solutions de $(E_{\alpha})$ sur $\rpe$ est un plan vectoriel. 
+La fonction $r\mapsto r^m$ est solution de $(E_{\alpha})$ si et seulement si $m^2-\alpha^2=0$, d'o\`u la discussion~:\ssk\new
+$\bullet$ si $\alpha>0$, on a trouv\'e deux solutions lin\'eairement ind\'ependantes, donc\vv
+$$(E_{\alpha})\iff u(r)=A\>r^{\alpha}+B\>r^{-\alpha}\;,\qquad (A,B)\in\cmat^2\;.$$
+$\bullet$ si $\alpha=0$, $(E_0)\iff r\>u''(r)+u'(r)=0\iff u'(r)={A\s r}\iff u(r)=A\>\ln r+B$.
+\msk\sect
+{\it $(E_{\alpha})$ est une \'equation d'Euler~; on peut aussi la r\'esoudre sur $\rpe$ en utilisant le changement de variable $r=e^t$.}
+
+\msk
+{\bf 2.} Pour $n\in\zmat$ et $r\in\rplus$, posons $\;c_n(r)={1\s2\pi}\>\int_0^{2\pi}f(re^{i\theta})\>e^{-in\theta}\>d\theta$. Le nombre $c_n(r)$ est le $n$-i\`eme coefficient de Fourier de la fonction $\;g_r:\theta\mapsto g(r,\theta)=f(r\>e^{i\theta})$.\ssk\sect
+Comme $f$ est harmonique, on a (le caract\`ere ${\cal C}^2$ de la fonction $g$ sur $\rmat\times[0,2\pi]$ permet de d\'eriver sous le signe int\'egrale), pour $r>0$~:\vv
+\begin{eqnarray*}
+r^2\>c_n''(r)+r\>c_n'(r) & = & {r^2\s2\pi}\>\int_0^{2\pi}\lc{\ddd^2g\s\ddd r^2}(r,\theta)+{1\s r}\>{\ddd g\s\ddd r}(r,\theta)\rc\>e^{-in\theta}\>d\theta\\
+ & = & -{1\s2\pi}\>\int_0^{2\pi}{\ddd^2g\s\ddd \theta^2}(r,\theta)\>e^{-in\theta}\>d\theta\\
+ & = & -{1\s2\pi}\>\int_0^{2\pi}g_r''(\theta)\>e^{-in\theta}\>d\theta=n^2\>c_n(r)
+\end{eqnarray*}
+(en int\'egrant deux fois par parties).\msk\sect
+Pour tout $n\in\zmat$, la fonction $c_n$, de classe ${\cal C}^2$ sur $\rplus$, v\'erifie l'\'equation diff\'erentielle $(E_n)$ sur $\rpe$. Comme elle est born\'ee au voisinage de z\'ero, on a\vv
+$$\system{&c_0(r)&=&a_0\hfill\quad({\rm constante})\cr &c_n(r)&=&a_n\>r^n\quad{\rm pour}\;n\in\net\cr &c_{-n}(r)&=&b_n\>r^n\quad{\rm pour}\;n\in\net\cr}\;.$$\sect
+Pour tout $r\in\rplus$, la fonction $g_r$, $2\pi$-p\'eriodique et de classe ${\cal C}^2$, est somme de sa s\'erie de Fourier, donc\vv
+$$f(r\>e^{i\theta})=g(r,\theta)=a_0+\sum_{n=1}^{\ii}a_nr^ne^{in\theta}+\sum_{n=1}^{\ii}b_nr^ne^{-in\theta}\;,$$
+soit\vvvv
+$$f(z)=\sum_{n=0}^{\ii}a_nz^n+\sum_{n=1}^{\ii}b_n\ov{z}^{\;n}\;.$$
+\par
+{\bf 3.} Si $|f(z)|\ie M$ sur $\cmat$, alors, de la d\'efinition des $c_n(r)$, on d\'eduit $\;|c_n(r)|\ie M$ pour tout $r\in\rplus$ et tout $n\in\zmat$. Pour tout $n\in\net$, on a ainsi\vv
+$$\a r\in\rpe\qquad |a_n|\ie{M\s r^n}\quad{\rm et}\quad |b_n|\ie{M\s r^n}\;.$$
+Comme $\;\Lim{r}{\ii}{M\s r^n}=0$, on d\'eduit $\;a_n=b_n=0$ pour tout $n\in\net$, donc $f$ est constante.
+
+\msk
+{\bf 4.} Soit $P\in\cmat[X]$ un polyn\^ome. Alors la fonction polynomiale $P:\cmat\vers\cmat$ est harmonique. En effet,\vv
+$${\ddd\s\ddd x}(z^n)={\ddd\s\ddd x}\big((x+iy)^n\big)=n(x+iy)^{n-1}=n\>z^{n-1}\qquad{\rm et}\qquad{\ddd\s\ddd y}(z^n)=in\>z^{n-1}\;,$$
+donc\vvvv
+$$\Delta(z^n)={\ddd^2\s\ddd x^2}(z^n)+{\ddd^2\s\ddd y^2}(z^n)=n(n-1)\>z^{n-2}-n(n-1)\>z^{n-2}=0\;,$$
+donc $\Delta P=0$.\msk\sect
+Supposons que $P$ n'admette pas de racine dans $\cmat$. Alors la fonction ${1\s P}$ est harmonique sur $\cmat$. En effet,\vv
+$${\ddd\s\ddd x}\lp{1\s P}\rp=-{1\s P^2}\>{\ddd P\s\ddd x}\;,\quad{\rm puis}\quad{\ddd^2\s\ddd x^2}\lp{1\s P}\rp={2\s P^3}\>\lp{\ddd P\s\ddd x}\rp^2-{1\s P^2}\>{\ddd^2P\s\ddd x^2}$$
+et\vvvv
+$$\Delta\lp{1\s P}\rp={2\s P^3}\lc\lp{\ddd P\s\ddd x}\rp^2+\lp{\ddd P\s\ddd y}\rp^2\rc-{1\s P^2}\>\Delta P\;.$$
+Or, $\Delta P=0$ et le calcul fait ci-dessus montre que $\;{\ddd P\s\ddd x}=P'(z)\;$ et $\;{\ddd P\s\ddd y}=i P'(z)$, donc $\lp{\ddd P\s\ddd x}\rp^2+\lp{\ddd P\s\ddd y}\rp^2=0$.\msk\sect
+Si $P$ n'a pas de z\'ero, la fonction ${1\s P}$ est harmonique et born\'ee sur $\cmat$ (car $\Lim{|z|}{\ii}{1\s|P(z)|}=0$), donc est constante, et $P$ est un polyn\^ome constant. 
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 2 : Solution (int\'egrale de Poisson) du probl\`eme de Dirichlet}\msk
+On identifiera $\cmat$ \`a $\rmat^2$.  ${\cal U}$ est le cercle unit\'e, $D$ le disque unit\'e ouvert, $\ov{D}$ le disque unit\'e ferm\'e.\msk
+Si $\Omega$ est un ouvert de $\rmat^2$, une fonction $f:\Omega\vers\rmat$ est dite {\bf harmonique} si elle est de classe ${\cal C}^2$ sur $\Omega$ et de laplacien nul, c'est-\`a-dire\vv
+$$\Delta f={\ddd^2f\s\ddd x^2}+{\ddd^2f\s\ddd y^2}=0\;.$$\par
+Pour tout $t\in\rmat$ et $r\in[0,1[$, on pose\vv
+$$P_r(t)=\sum_{n=-\infty}^{\ii}r^{|n|}\>e^{int}\;.$$\par
+Soit $f:{\cal U}\vers\rmat$ une application continue.\ssk
+Montrer qu'il existe une unique application $F:\ov{D}\vers\rmat$, continue sur $\ov{D}$, harmonique sur $D$ et co\"\i ncidant avec $f$ sur ${\cal U}$. On v\'erifiera, pour $r<1$ et $\theta\in\rmat$, la relation\vv
+$$F(r\>e^{i\theta})={1\s 2\pi}\>\int_{-\pi}^{\pi}P_r(\theta-t)\>f(e^{it})\>{\rm d}t\;.\eqno\hbox{\bf (*)}$$
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+$\bullet$ Pour $r\in[0,1[$ et $t\in\rmat$, calculons\vv
+$$P_r(t)=\sum_{n=-\infty}^{\ii}r^{|n|}\>e^{int}={1\s1-r\>e^{it}}+{r\>e^{-it}\s1-r\>e^{-it}}={1-r^2\s1-2r\>\cos t+r^2}\;.$$\sect
+La famille de fonctions $\Big({1\s2\pi}\>P_r\Big)$, appel\'ee {\bf noyau de Poisson}, est une approximation de l'unit\'e $2\pi$-p\'eriodique lorsque $r\vers 1^-$ ({\it cf}. semaine 13, exercice 4), c'est-\`a-dire que\ssk\sect
+$\triangleright$ les fonctions $P_r$ sont \`a valeurs positives ou nulles~;\ssk\sect
+$\triangleright$ pour tout $r\in[0,1[$, $\;\int_{-\pi}^{\pi}P_r(t)\>{\rm d}t=\sum_{n=-\infty}^{\ii}r^{|n|}\>\int_{-\pi}^{\pi}e^{int}\>{\rm d}t=2\pi\;$ car la s\'erie de fonctions converge normalement sur $[-\pi,\pi]$~;\ssk\sect
+$\triangleright$ pour tout $\alpha\in]0,\pi[$, la famille de fonctions $(P_r)$ converge uniform\'ement vers la fonction nulle sur $[-\pi,-\alpha]\cup[\alpha,\pi]$ lorsque $r\vers1^-$.
+Sur ces intervalles, on a effectivement\vv
+$$0\ie P_r(t)\ie{1-r^2\s1-2r\>\cos\alpha+r^2}\;,\quad{\rm et}\qquad\Lim{r}{1^-}{1-r^2\s1-2r\>\cos\alpha+r^2}=0\;.$$\ssk
+$\bullet$ Consid\'erons la fonction $F_0:\ov{D}\vers\rmat$ d\'efinie par $F_0=f$ sur ${\cal U}$ et, si $z=re^{i\theta}\in D$, alors $F_0(z)={1\s 2\pi}\>\int_{-\pi}^{\pi}P_r(\theta-t)\>f(e^{it})\>{\rm d}t$.\msk
+$\bullet$ La fonction $F_0$ est continue en tout point de ${\cal U}$~: en effet, soit $z_0=e^{i\theta_0}\in{\cal U}$. Si $r<1$ et $\theta\in\rmat$, posons\vv
+$$\delta=F_0(r\>e^{i\theta})-F_0(z_0)=F_0(r\>e^{i\theta})-f(z_0)={1\s2\pi}\>\int_{-\pi}^{\pi}P_r(\theta-t)\>\Big(f(e^{it})-f(e^{i\theta_0})\Big)\>{\rm d}t\;.$$
+Soit $\eps>0$, comme $f$ est continue sur ${\cal U}$, il existe $\eta>0$ tel que\vv
+$$|\theta_0-t|\ie\eta\impl|f(e^{it})-f(e^{i\theta_0})|\ie{\eps\s2}\;.$$\sect
+Alors, le nombre $\delta$ ci-dessus \'etant d\'efini par une int\'egrale sur $[-\pi,\pi]$ ou sur $[\theta_0-\pi,\theta_0+\pi]$,\vv
+\begin{eqnarray*}
+|\delta| & \ie & {\eps\s4\pi}\>\int_{|\theta_0-t|\ie\eta}P_r(\theta-t)\>{\rm d}t+{2\|f\|_{\infty}\s2\pi}\int_{|\theta_0-t|\se\eta}P_r(\theta-t)\>{\rm d}t\\ \nssk
+& \ie & {\eps\s2}+{\|f\|_{\infty}\s\pi}\>\int_{|\theta_0-t|\se\eta}P_r(\theta-t)\>{\rm d}t\;.
+\end{eqnarray*}\sect
+Or, si $|\theta-\theta_0|\ie{\eta\s2}$, on a $\;|\theta_0-t|\se\eta\impl|\theta-t|\se|\theta_0-t|-|\theta-\theta_0|\se{\eta\s2}$, donc $\big(P_r(\theta-t)\big)$ converge uniform\'ement vers 0 lorsque $r\vers1^-$ pour $|\theta_0-t|\se\eta$, et $\;\Lim{r}{1^-}\int_{|\theta_0-t|\se\eta}P_r(\theta-t)\>{\rm d}t=0$. On peut donc trouver $r_0<1$ tel que\vv
+$$r_0\ie r<1\impl\int_{|\theta_0-t|\se\eta}P_r(\theta-t)\>{\rm d}t\ie{\pi\s\|f\|_{\infty}}\>{\eps\s2}\;,$$
+et on a ainsi $\;|\delta|\ie\eps$ d\`es que $\system{&|\theta-\theta_0|&\ie&{\eta\s2}\cr &r_0\ie\; r&<&1\cr}$. Cela prouve que, pour tout $z_0\in{\cal U}$, on a $\;\lim_{z\vers z_0,|z|<1}F_0(z)=f(z_0)=F_0(z_0)$. La continuit\'e de $f$ sur ${\cal U}$ ach\`eve de prouver que $F_0$ est continue sur ${\cal U}$.\msk
+$\bullet$ La fonction $F_0$ est harmonique sur $D$~: si $z=r\>e^{i\theta}\in D$, on a\vvv\vvv
+\begin{eqnarray*}
+F_0(z) & = & {1\s2\pi}\>\int_{-\pi}^{\pi}\lp\sum_{n=-\infty}^{\ii}r^{|n|}\>e^{in(\theta-t)}\>f(e^{it})\rp\>{\rm d}t\\
+& = & {1\s2\pi}\>\sum_{n=-\infty}^{\ii}\lp\int_{-\pi}^{\pi}e^{-int}\>f(e^{it})\>{\rm d}t\rp\>r^{|n|}\>e^{in\theta}\\
+& = & {1\s2\pi}\>\sum_{n=-\infty}^{\ii}c_n\>r^{|n|}\>e^{in\theta}
+ =  {1\s2\pi}\>\lp\sum_{n=0}^{\ii}c_nz^n+\sum_{n=1}^{\ii}c_{-n}\>\ov{z}^{\;n}\rp\;,
+\end{eqnarray*}
+les $c_n$ \'etant les coefficients de Fourier de la fonction $2\pi$-p\'eriodique $t\mapsto f(e^{it})$ (l'interversion s\'erie-int\'egrale est justifi\'ee par la convergence normale de la s\'erie de fonctions sur $[-\pi,\pi]$). La fonction $F_0$ est donc somme de deux s\'eries enti\`eres (en $z$ et en $\ov{z}$ respectivement) de rayon de convergence au moins \'egal \`a 1 car $|c_n|\ie2\pi\|f\|_{\infty}$, ce qui permet de d\'eriver terme \`a terme dans $D$ par rapport \`a chacune des deux variables $x$ et $y$ ({\it pour employer des arguments plus conformes au programme, on peut v\'erifier que\vv $${\ddd^{k+l}\s\ddd x^k\>\ddd y^l}\>(z^n)=\system{&i^l{n!\s (n-k-l)!}\>z^{n-k-l}\;&\;{\rm  si}\;&\;k+l\ie n\cr &\hfill 0\hfill &\;{\rm si}\;&k+l>n\cr}$$
+et un calcul semblable pour ${\ddd^{k+l}\s\ddd x^k\>\ddd y^l}\>(\ov{z}^{\;n})$,
+ce qui entra\^\i ne la convergence normale sur tout compact de $D$ de toutes les s\'eries d\'eriv\'ees, donc $F_0$ est de classe $\ceinf$ sur $D$ et on peut d\'eriver terme \`a terme}). En particulier,\vv
+$${\ddd^2\s\ddd x^2}(z^n)={\ddd^2\s\ddd x^2}\big((x+iy)^n\big)=n(n-1)(x+iy)^{n-2}=n(n-1)z^{n-2}=-{\ddd^2\s\ddd y^2}(z^n)$$
+et ${\ddd^2\s\ddd x^2}(\ov{z}^{\;n})=n(n-1)\ov{z}^{\;n-2}=-{\ddd^2\s\ddd y^2}(\ov{z}^{\;n})$, donc $\Delta F_0=0$~: $F_0$ est harmonique sur $D$.
+\msk
+$\bullet$ La fonction $F_0$ est l'unique solution du probl\`eme pos\'e (appel\'e {\bf probl\`eme de Dirichlet})~: il suffit pour cela de montrer que, si une fonction $g:\ov{D}\vers\rmat$ est continue sur $\ov{D}$, harmonique sur $D$ et nulle sur ${\cal U}$, alors $g=0$.\ssk\sect
+Soit donc $g:\ov{D}\vers\rmat$ v\'erifiant ces hypoth\`eses, et soit $\eps>0$. Pour tout $z\in\ov{D}$, posons $\;g_{\eps}(z)=g(z)+\eps x^2=g(z)+\eps\>\Re(z)^2$. On a alors $\Delta g_{\eps}=2\eps>0$ sur $D$, la fonction $g_{\eps}$ ne peut alors admettre de maximum local en aucun point de $D$ (en un tel point, les d\'eriv\'ees secondes partielles de $g_{\eps}$ seraient n\'ecessairement n\'egatives ou nulles, donc $\Delta g_{\eps}\ie0$, ce qui est contradictoire). Comme $g_{\eps}$ atteint un maximum sur le compact $\ov{D}$, celui est atteint en un point de ${\cal U}$, d'o\`u $\a z\in\ov{D}\quad g_{\eps}(z)\ie\eps$ et, a fortiori, $\a z\in\ov{D}\quad g(z)\ie\eps$. Ceci \'etant vrai pour tout $\eps>0$, on a $g(z)\ie0$ sur $\ov{D}$. Le m\^eme raisonnement appliqu\'e \`a $-g$ donne finalement $g=0$ sur $\ov{D}$.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 3 :}\msk
+Soit $E$ un espace euclidien. Soit $F$ un ferm\'e non vide de $E$. Pour tout $x\in E$, on pose\vvv
+$$f(x)=d(x,F)\;.$$\par
+{\bf 1.} Montrer que\vv
+$$\a x\in E\quad\e y\in F\qquad f(x)=\|x-y\|\;.$$\par
+{\bf 2.} Soit $x$ un point de $E\setminus F$. On suppose que $f$ est diff\'erentiable au point $x$.\ssk\sect Montrer que le point $y$ de la question {\bf 1.} est unique ({\it on essaiera d'exprimer le vecteur $\grad f(x)$ \`a l'aide de $x$ et $y$}).
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf 1.} Soit $x\in E$. L'application $\;g:\;\system{&F&\vers&\rplus\hfill&\cr &y&\mapsto&\|y-x\|\cr}$ est 1-lipschitzienne, donc continue sur $F$. Soit $d=d(x,F)$. Alors $d=\inf_Fg=\inf_Kg$, o\`u $K$ est le compact $F\cap\ov{B}(x,d+1)$, donc cette borne est atteinte.
+\msk
+{\bf 2.} L'application $f$ est 1-lipschitzienne~: en effet, soient $x_1$ et $x_2$ deux points de $E\setminus F$, soient $y_1$ et $y_2$ dans $F$ tels que $f(x_1)=\|x_1-y_1\|$ et $f(x_2)=\|x_2-y_2\|$. On a alors\vv
+$$f(x_1)-f(x_2)=\|x_1-y_1\|-\|x_2-y_2\|\ie\|x_1-y_2\|-\|x_2-y_2\|\ie\|x_1-x_2\|$$
+et la m\^eme majoration pour $f(x_2)-f(x_1)$.\ssk\sect
+Il en r\'esulte que, en tout point $x$ o\`u $f$ est diff\'erentiable, on a $\|\grad f(x)\|\ie1$. En effet, posons $u=\grad f(x)$. On a, pour tout $h\in E$,\vv
+$${\rm d}f(x)(h)=(u|h)=\Lim{t}{0^+}{f(x+th)-f(x)\s t}\;,$$
+mais $|f(x+th)-f(x)|\ie t\>\|h\|$, donc $|(u|h)|\ie\|h\|$ pour tout $h$ et, en particulier,\break $|(u|u)|=\|u\|^2\ie\|u\|$, d'o\`u $\|u\|\ie1$.\msk\sect
+Soit $x\in E\setminus F$, soit $y\in F$ tel que $f(x)=d(x,F)=\|x-y\|$. Alors, pour tout point $z$ du segment $[x,y]$, on a $f(z)=d(z,F)=\|z-y\|$~: en effet, posons $z=x+t(y-x)=(1-t)x+ty$ avec $t\in[0,1]$~; alors $\|y-x\|=\|y-z\|+\|z-x\|$, donc $\;f(z)=d(z,F)\ie\|z-y\|=f(x)-\|z-x\|$, soit $f(x)-f(z)\se\|z-x\|$ mais, $f$ \'etant 1-lipschitzienne, c'est une \'egalit\'e, donc\break $f(z)=\|z-y\|=f(x)-\|z-x\|$.
+\msk\sect
+Soit $x\in E\setminus F$ un point o\`u $f$ est suppos\'ee diff\'erentiable, soit $y$ un point de $F$ tel que\break $d(x,F)=\|y-x\|$, soit $u=\grad f(x)$. Avec $h=\vect{xy}=y-x$, on a\vv
+$$\a t\in[0,1]\qquad f(x+th)-f(x)=-\|t\>h\|=-t\>\|y-x\|$$
+car le point $x+th$ appartient au segment $[x,y]$. Donc, en faisant tendre $h$ vers $0^+$, on obtient ${\rm d}f(x)(h)=(u|h)=(u|y-x)=-\|y-x\|$, ou encore $\;(u|x-y)=\|x-y\|$ ce qui, avec $\|u\|\ie1$ et $x-y\not=0$, entra\^\i ne que $\|u\|=1$, puis que les vecteurs $u$ et $x-y$ sont positivement li\'es (\'egalit\'e dans Cauchy-Schwarz), donc\vv
+$$u=\grad f(x)={x-y\s\|x-y\|}={x-y\s f(x)}\;.$$
+En particulier, cela d\'etermine enti\`erement le point $y$, d'o\`u l'unicit\'e de ce dernier.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 4 :}\msk
+L'espace $E={\cal M}_n(\rmat)$ est muni d'une norme d'alg\`ebre, c'est-\`a-dire une norme telle que\break $\|AB\|\ie\|A\|\>\|B\|$ pour toutes matrices $A$ et $B$ ({\it consid\'erer par exemple la norme\break subordonn\'ee \`a une quelconque norme sur $\rmat^n$}).\msk
+{\bf 1.} Soit $A\in E$ telle que $\|A\|<1$. Montrer que la matrice $I-A$ est inversible, et donner une expression de $(I-A)^{-1}$.\msk
+{\bf 2.} En d\'eduire que $U={\rm GL}_n(\rmat)$ est un ouvert de $E$.\msk
+{\bf 3.} On note $f$ l'application $M\mapsto M^{-1}$ de $U$ dans $U$. Montrer que $f$ est diff\'erentiable sur $U$ et exprimer ${\rm d}f(M)$ pour $M\in U$.
+
+\msk
+
+{\it Source : Fran\c cois ROUVI\`ERE, Petit guide de calcul diff\'erentiel, \'Editions Cassini, ISBN 2-84225-008-7}
+
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} De $\|A^k\|\ie\|A\|^k$, on d\'eduit que la s\'erie de terme g\'en\'eral $A^k$ est absolument convergente ($\sum_k\|A^k\|$ converge), donc convergente puisque $E$, de dimension finie, est complet. Pour tout $n\in\nmat$, on a l'identit\'e\vv
+$$(I-A)\cdot\sum_{k=0}^nA^k=I-A^{n+1}\;.$$
+En passant \`a la limite ({\it continuit\'e de l'application bilin\'eaire $(A,B)\mapsto AB$}), on obtient\vv
+$$(I-A)\cdot\sum_{k=0}^{\ii}A^k=I\;,$$
+donc $I-A$ est inversible et $\;(I-A)^{-1}=\sum_{k=0}^{\ii}A^k$.
+
+\msk
+{\bf 2.} On vient de prouver que $U={\rm GL}_n(\rmat)$ contient la boule ouverte de centre $I$ et de rayon 1. Plus g\'en\'eralement, soit $A$ une matrice inversible~; alors $A+H=A\big(I-(-A^{-1}H)\big)$ est inversible d\`es que $\|A^{-1}H\|<1$ et cette condition est r\'ealis\'ee d\`es que $\|H\|<{1\s\|A^{-1}\|}$. Si $A\in U$, alors $U$ contient la boule ouverte de centre $A$ et de rayon ${1\s\|A^{-1}\|}$. L'ensemble $U$ est donc un ouvert de $E$.
+
+\msk
+{\bf 3.} \'Etudions d'abord le cas $M=I$. Si $H$ est une matrice telle que $\|H\|<1$, alors\vv
+$$f(I+H)=(I+H)^{-1}=I-H+\sum_{k=2}^{\ii}(-1)^kH^k\;.$$
+Or, $\left\|\sum_{k=2}^{\ii}(-1)^kH^k\right\|\ie\sum_{k=2}^{\ii}\|H\|^k={\|H\|^2\s1-\|H\|}=O(\|H\|^2)\;$ lorsque $\|H\|$ tend vers z\'ero. On a donc $f(I+H)=I-H+o(\|H\|)$, ce qui signifie que la fonction $f$ est diff\'erentiable au point $I$ avec $\;{\rm d}f(I)(H)=-H$, c'est-\`a-dire ${\rm d}f(I)=-\id_E$.\msk\sect
+Soit $M\in U$ quelconque. On a, pour tout $H$ tel que $\|H\|<{1\s\|M^{-1}\|}$,\vv
+\begin{eqnarray*}
+f(M+H) & = & (M+H)^{-1}=\big(M(I+M^{-1}H)\big)^{-1}=(I+M^{-1}H)^{-1}\>M^{-1}\\
+           & = & \big(I-M^{-1}H+o(\|H\|)\big)\>M^{-1}=f(M)-M^{-1}HM^{-1}+o(\|H\|)\;,
+\end{eqnarray*}
+donc $f$ est diff\'erentiable au point $M$ avec\vv
+$$\a H\in E\qquad {\rm d}f(M)(H)=-M^{-1}HM^{-1}\;.$$
+
+\bsk
+\hrule
+\eject
+
+{\bf EXERCICE 5 :}\msk
+Soit $U$ un ouvert convexe de $\rmat^n$. Une application $f:U\vers\rmat$ est dite {\bf convexe} si\vv
+$$\a (x,y)\in U^2\quad \a t\in[0,1]\qquad f\big((1-t)x+ty\big)\ie(1-t)\>f(x)+t\>f(y)\;.$$\par
+{\bf 1.} On suppose $f$ diff\'erentiable sur $U$. Montrer que $f$ est convexe si et seulement si\vv
+$$\a (x,y)\in U^2\qquad f(y)-f(x)\se{\rm d}f(x)(y-x)\;.\eqno\hbox{\bf (*)}$$
+\par
+{\bf 2.} On suppose $f$ de classe ${\cal C}^2$ sur $U$. Montrer que $f$ est convexe si et seulement si, pour tout point $x$ de $U$, la matrice {\bf hessienne} $H(x)=\lp{\ddd^2f\s\ddd x_i\ddd x_j}(x)\rp$ est positive.
+
+\ssk
+
+{\it Source : Fran\c cois ROUVI\`ERE, Petit guide de calcul diff\'erentiel, \'Editions Cassini, ISBN 2-84225-008-7}
+
+
+\ssk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf 1.} Supposons $f$ convexe. Soient $x\in U$, $y\in U$. Pour tout $t\in[0,1]$, posons\vv
+$$\psi(t)=(1-t)\>f(x)+t\>f(y)-f\big((1-t)x+ty\big)\;.$$
+Par hypoth\`ese, on a $\psi(t)\se0$ pour tout $t\in[0,1]$. Comme $\psi(0)=0$ et que la fonction $\psi$ est d\'erivable sur $[0,1]$, on en d\'eduit que $\psi'(0)\se0$. En tout point $t\in[0,1]$, on a\vv
+$$\psi'(t)=f(y)-f(x)-{\rm d}f\big((1-t)x+ty\big)(y-x)\;,$$
+donc $\psi'(0)=f(y)-f(x)-{\rm d}f(x)(y-x)\se0$, ce qu'il fallait d\'emontrer.
+\msk\sect
+R\'eciproquement, supposons {\bf (*)} v\'erifi\'ee. Fixons $(x,y)\in U^2$ et consid\'erons l'application\break $\ffi:[0,1]\vers\rmat$ d\'efinie par\vv
+$$\a t\in[0,1]\qquad \ffi(t)=f\big((1-t)x+ty\big)=f\big(x+t(y-x)\big)\;.$$
+Il suffit de montrer que $\ffi$ est convexe car\vvvv
+$$\a t\in[0,1]\qquad f\big((1-t)x+ty\big)\ie(1-t)\>f(x)+t\>f(y)\iff\ffi(t)\ie(1-t)\>\ffi(0)+t\>\ffi(1)\;.$$
+Nous allons montrer pour cela que $\ffi'$ est croissante. L'application $\ffi$ est d\'erivable sur $[0,1]$ avec $\ffi'(t)={\rm d}f\big(x+t(y-x)\big)(y-x)$. Si $0\ie t_1<t_2\ie1$, l'in\'egalit\'e {\bf (*)} appliqu\'ee \`a $\;z_1=x+t_1(y-x)\;$ et $\;z_2=x+t_2(y-x)\;$ donne\vv
+$$f\big(x+t_2(y-x)\big)-f\big(x+t_1(y-x)\big)\se{\rm d}f\big(x+t_1(y-x)\big)\big((t_2-t_1)(y-x)\big)\;;$$
+$$f\big(x+t_1(y-x)\big)-f\big(x+t_2(y-x)\big)\se{\rm d}f\big(x+t_2(y-x)\big)\big((t_1-t_2)(y-x)\big)\;.$$
+En ajoutant membre \`a membre, on obtient\vv
+$$(t_2-t_1)\Big[{\rm d}f\big(x+t_2(y-x)\big)(y-x)-{\rm d}f\big(x+t_1(y-x)\big)(y-x)\Big]\se0\;,$$
+soit $\ffi'(t_2)\se\ffi'(t_1)$. Ainsi, $\ffi$ est d\'erivable et $\ffi'$ est croissante sur $[0,1]$, donc $\ffi$ est convexe, ce qu'il fallait d\'emontrer.
+
+\msk
+{\bf 2.} Si $f$ est de classe ${\cal C}^2$ alors, pour tout $(x,y)\in U^2$ fix\'e, l'application $\ffi$ utilis\'ee ci-dessus est de classe ${\cal C}^2$ et\vvvv
+$$\ffi'(t)={\rm d}f\big(x+t(y-x)\big)(y-x)=\sum_{i=1}^n(y_i-x_i)\>{\ddd f\s\ddd x_i}\big(x+t(y-x)\big)\;;$$\vvv
+\begin{eqnarray*}
+\ffi''(t) & = & \sum_{i=1}^n\>\sum_{j=1}^n(y_i-x_i)(y_j-x_j)\>{\ddd^2f\s\ddd x_j\>\ddd x_i}\big(x+t(y-x)\big)\\
+& = & \t\>(Y-X)\cdot H\big(x+t(y-x)\big)\cdot(Y-X)\;.
+\end{eqnarray*}\sect
+Si la matrice hessienne $H$ (qui est sym\'etrique d'apr\`es le th\'eor\`eme de Schwarz) est positive en tout point, alors $\ffi''(t)\se0$, donc $\ffi$ est convexe, donc $f$ est convexe ({\it cf}. question {\bf 1.}).\msk\sect
+Si $f$ est convexe sur $U$ alors, pour tout couple $(x,y)\in U^2$ donn\'e, l'application $\ffi$ est convexe, donc notamment $\ffi''(0)\se0$, donc $\;\t\>(Y-X)\cdot H(x)\cdot(Y-X)\se0$. Ceci \'etant vrai pour tout $Y$ (ou $y$) de U, la matrice sym\'etrique $H(x)$ est positive ({\it l'ensemble $U$ \'etant ouvert, le vecteur $\vect{xy}=Y-X$ peut prendre toutes les directions dans l'espace}).
+
+
+
+
+
+
+\end{document}

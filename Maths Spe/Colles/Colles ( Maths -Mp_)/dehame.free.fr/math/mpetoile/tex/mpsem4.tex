@@ -1,0 +1,661 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % ‚vite le textstyle en mode
+                                % math‚matique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math‚matiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de presentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% personnel Monasse
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'‚criture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% … l'int‚rieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d‚croissante),
+% \nondef (la fonction est non d‚finie)
+% si l'on termine la derniŠre ligne par \cr, un trait est tir‚ en dessous
+% sinon elle est laiss‚e sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   % MONASSE
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  % MONASSE
+\def\rmat{{\rm I\kern-0.6mm R}}  % MONASSE
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  % MONASSE
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  % MONASSE
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____def de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% AlgŠbre lin‚aire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________determinant_______
+\def\det{\mathop{\rm det}\nolimits}  % MONASSE
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  % MONASSE
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  % MONASSE
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}  % MONASSE
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos‚e ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  % MONASSE
+\def\MC#1{{\cal M}_{#1}(\cmat)}  % MONASSE
+\def\MK#1{{\cal M}_{#1}(\kmat)}  % MONASSE
+
+%________Complexes_________ % MONASSE
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   % CLENET
+\def\Arccos{\mathop{\rm Arccos}\nolimits}   % CLENET
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   % CLENET
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     % CLENET
+\def\Argch{\mathop{\rm Argch}\nolimits}     % CLENET
+\def\Argth{\mathop{\rm Argth}\nolimits}     % CLENET
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} %CLENET
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s‚ries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  % MONASSE
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  % MONASSE
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  % MONASSE
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  % MONASSE
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  % MONASSE
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr‚g‚es%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-…-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\catcode`@=12 % at signs are no longer letters
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+
+
+
+
+
+\overfullrule=0mm
+\cl{{\bf SEMAINE 4}}\msk
+\cl{{\bf R\'EDUCTION DES ENDOMORPHISMES (DEUXI\`EME PARTIE)}}
+\bsk
+
+
+
+
+
+
+{\bf EXERCICE 1 :}\msk
+Une matrice $A=(a_{ij})\in{\cal M}_n(\rmat)$ est dite {\bf stochastique} lorsqu'elle v\'erifie les deux conditions suivantes~:\ssk\sect
+{\bf (i)}\qquad $\;\a i\in\[ent1,n\]ent\;\a j\in\[ent1,n\]ent\quad a_{ij}\in[0,1]$~;\ssk\sect
+{\bf (ii)}\qquad $\a i\in\[ent1,n\]ent\quad \sum_{j=1}^na_{ij}=1$\quad (la somme des \'el\'ements de chaque ligne vaut 1).\msk
+Elle est dite {\bf stochastique stricte} si, de plus, les coefficients $a_{ij}$ sont tous strictement positifs.\msk
+On notera ${\cal S}_n$ l'ensemble des matrices stochastiques de ${\cal M}_n(\rmat)$, et ${\cal S}_n^*$ celui des matrices stochastiques strictes.\msk
+{\bf 1.} Montrer que les ensembles ${\cal S}_n$ et ${\cal S}_n^*$ sont stables par produit.\msk
+{\bf 2.} Si $A\in{\cal S}_n$, montrer que 1 est valeur propre de $A$.\msk
+{\bf 3.} Si $A\in{\cal S}_n^*$, montrer que $\Ker(A-I_n)$ est de dimension un.\msk
+{\bf 4.} Montrer que les valeurs propres d'une matrice stochastique sont toutes de module inf\'erieur ou \'egal \`a 1, et que les valeurs propres autres que 1 d'une matrice stochastique stricte sont de module strictement inf\'erieur \`a 1.\msk
+{\bf 5.} Soit $A\in{\cal S}_n$, soit $\lam$ une valeur propre de $A$. Montrer qu'il existe $i\in\[ent1,n\]ent$ tel que\vvv
+$$|\lam-a_{ii}|\ie1-a_{ii}\;.$$
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf 1.} Soient $A=(a_{ij})$ et $B=(b_{ij})$ stochastiques. On a $AB=(c_{ik})$, o\`u $c_{ik}=\sum_{j=1}^na_{ij}b_{jk}$.\ssk\sect
+$\bullet$ Il est clair que $c_{ik}\se0$ pour tout couple d'indices $(i,k)$, l'in\'egalit\'e \'etant stricte si $A$ et $B$ sont dans ${\cal S}_n^*$.\ssk\sect
+$\bullet$ On a $b_{jk}\ie1$ pour tout $(j,k)$, donc $c_{ik}=\sum_{j=1}^na_{ij}b_{jk}\ie\sum_{j=1}^na_{ij}=1$ pour tout couple $(i,k)$.\ssk\sect
+$\bullet$ Enfin,\vvv\vvv
+$$\sum_{k=1}^nc_{ik}=\sum_{k=1}^n\lp\sum_{j=1}^na_{ij}b_{jk}\rp=\sum_{j=1}^n\lp a_{ij}\>\sum_{k=1}^nb_{jk}\rp=\sum_{j=1}^na_{ij}=1\;.$$
+{\it On peut aussi remarquer qu'une matrice $A$ v\'erifie la propri\'et\'e} {\bf (ii)} {\it si et seulement si $AJ=J$,\break o\`u $J$ est la matrice dont tous les coefficients valent 1. Il est alors imm\'ediat que cette propri\'et\'e} {\bf (ii)} {\it est ``stable par produit''}.
+
+\bsk
+{\bf 2.} Si $A\in{\cal S}_n$, alors $AX=X$, o\`u $X$ est le vecteur dont toutes les coordonn\'ees valent 1, donc 1 est valeur propre de $A$.
+
+\bsk
+{\bf 3.} Soit $B=A-I_n$, soit $C$ la matrice carr\'ee d'ordre $n-1$ extraite de $B$ en \^otant la derni\`ere ligne et la derni\`ere colonne~:\vv
+$$C=\pmatrix{a_{11}-1&a_{12}&\ldots&a_{1,n-1}\cr a_{21}&a_{22}-1&\ldots&a_{2,n-1}\cr \ldots&\ldots&\ldots&\ldots\cr a_{n-1,1}&a_{n-1,2}&\ldots&a_{n-1,n-1}-1\cr}\;.$$
+Montrons que $C$ est inversible. Cela repose sur le fait que $C=(c_{ij})$ est {\bf \`a diagonale strictement dominante}, c'est-\`a-dire que, pour tout $i\in\[ent1,n-1\]ent$, on a $|c_{ii}|>\sum_{j\not=i}|c_{ij}|$~: en effet,\vv
+$$|c_{ii}|\;-\build{\sum_{1\ie j\ie n-1}}_{j\not=i}^{}|c_{ij}|\;=\;|a_{ii}-1|\;-\build{\sum_{1\ie j\ie n-    1}}_{i\not=j}^{}a_{ij}\;=\;1-\sum_{j=1}^{n-1}a_{ij}=a_{in}>0\;.$$
+Soit donc $X=(x_1,\cdots,x_{n-1})\in\Ker C$, suppos\'e non nul~; on a, pour tout $i\in\[ent1,n-1\]ent$, $\sum_{j=1}^{n-1}c_{ij}x_j=0$. Soit $i_0\in\[ent1,n-1\]ent$ tel que $|x_{i_0}|=\max_{1\ie i\ie n-1}|x_i|$, on a alors, pour $i=i_0$, $c_{i_0i_0}x_{i_0}=-\sum_{j\not=i_0}c_{i_0j}x_j$, mais c'est impossible car
+$$\left|\sum_{j\not=i_0}c_{i_0j}x_j\right|\ie\sum_{j\not=i_0}|c_{i_0j}||x_j|\ie|x_{i_0}|\lp\sum_{j\not=i_0}|c_{i_0j}|\rp<|x_{i_0}||c_{i_0i_0}|\;.$$
+La matrice $C$ est donc inversible,c'est-\`a-dire de rang $n-1$, donc $B=A-I_n$ est de rang au moins \'egal \`a $n-1$, donc exactement $n-1$ puisqu'on sait que 1 est valeur propre de $A$, et donc $\dim\Ker(A-I_n)=1$.\msk
+\sect
+{\it On a ainsi prouv\'e le} {\bf th\'eor\`eme d'Hadamard} ({\it moi, froid ? jamais...})~: {\it toute matrice \`a diagonale strictement dominante est inversible}.
+
+\msk
+{\bf 4.} Soit $A\in{\cal S}_n$, soit $\lam\in\cmat$ tel que $|\lam|>1$~; alors la matrice $B=A-\lam I_n=(b_{ij})$ est \`a diagonale strictement dominante~: en effet,\vv
+$$|b_{ii}|=|a_{ii}-\lam|\se\big||a_{ii}|-|\lam|\big|=|\lam|-a_{ii}>1-a_{ii}=\sum_{j\not=i}a_{ij}=\sum_{j\not=i}|b_{ij}|\;.$$
+La matrice $B$ est donc inversible, et $\lam\not\in\Sp(A)$.
+\msk\sect
+De m\^eme, si $A\in{\cal S}_n^*$ et si $|\lam|=1$ avec $\lam\not=1$, alors la matrice $B=A-\lam I_n$ est encore \`a diagonale strictement dominante, puisque\vv
+$$|b_{ii}|=|a_{ii}-\lam|>\big||a_{ii}|-|\lam|\big|=1-a_{ii}=\sum_{j\not=i}a_{ij}=\sum_{j\not=i}|b_{ij}|$$
+(l'in\'egalit\'e est stricte puisque l'\'egalit\'e $\big||u|-|v|\big|=|u-v|$ a lieu si et seulement si les complexes $u$ et $v$ sont ``colin\'eaires de m\^eme sens'', c'est-\`a-dire l'un des deux nuls ou ${v\s u}\in\rpe$ et ce n'est pas le cas ici~: $\lam\not\in\rplus$). Donc $B=A-\lam I_n$ est inversible, et $\lam$ n'est pas valeur propre de $A$.
+
+\msk
+{\bf 5.} Par contraposition, c'est toujours le m\^eme raisonnement~: si on avait $\;\a i\in\[ent1,n\]ent\quad|\lam-a_{ii}|>1-a_{ii}$, la matrice $B=A-\lam I_n$ serait \`a diagonale strictement dominante, donc inversible, et $\lam$ ne serait pas valeur propre de $A$.\msk\sect
+{\it On a ainsi obtenu une localisation des valeurs propres~: si $A$ est une matrice stochastique,\vvv
+$$\Sp(A)\subset\bigcup_{i=1}^n D(a_{ii},1-a_{ii})\qquad\qquad(D=\hbox{disque ferm\'e})\;.$$
+En fait, cette derni\`ere question se g\'en\'eralise facilement \`a une matrice $A=(a_{ij})\in{\cal M}_n(\cmat)$ quelconque~; avec les m\^emes m\'ethodes, on montre, que si on pose $r_i=\sum_{j\not=i}|a_{ij}|$ pour tout $i\in\[ent1,n\]ent$, on a}\vvvv
+$$\Sp(A)\subset\bigcup_{i=1}^n D(a_{ii},r_i)\;.$$
+
+
+
+
+
+
+
+
+
+\bsk\hrule\bsk\bsk
+
+{\bf EXERCICE 2 :}\msk
+Soit $E$ un $\cmat$-espace vectoriel de dimension $n$, soit ${\cal F}$ un ensemble d'endomorphismes de $E$ qui commutent deux \`a deux.\ssk
+Montrer l'existence d'une ``d\'ecomposition de Dunford simultan\'ee'', c'est-\`a-dire d'une liste d'entiers naturels non nuls $n_1$, $\cdots$, $n_p$ avec $\sum_{i=1}^pn_i=n$ et d'une base ${\cal B}$ de $E$ tels que, dans la base ${\cal B}$, tout \'el\'ement $f$ de ${\cal F}$ soit repr\'esent\'e par une matrice diagonale par blocs de la forme $M_{{\cal B}}(f)=\diag(\lam_1I_{n_1}+N_1,\cdots,\lam_pI_{n_p}+N_p)$, les $\lam_i$ \'etant des nombres complexes et chaque matrice $N_i\in{\cal M}_{n_i}(\cmat)$ \'etant triangulaire sup\'erieure avec des z\'eros sur la diagonale.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf Premi\`ere m\'ethode :}\msk
+Introduisons la notion suivante~: un sous-espace vectoriel $V$ de $E$ sera dit ${\cal F}${\bf -ind\'ecomposable} s'il est ${\cal F}$-stable (c'est-\`a-dire stable par chaque \'el\'ement de ${\cal F}$) et si on ne peut pas le d\'ecomposer en $V=V_1\oplus V_2$, avec $V_1$ et $V_2$ tous deux ${\cal F}$-stables et non r\'eduits \`a $\{0\}$.\msk
+Si ${\cal F}$ est une partie quelconque de ${\cal L}(E)$, on montre (par r\'ecurrence forte sur la dimension de $E$) qu'il existe au moins une d\'ecomposition de $E$ en somme directe de sous-espaces\break ${\cal F}$-ind\'ecomposables~: $E=\bigoplus_{i=1}^p E_i$. Si les \'el\'ements de ${\cal F}$ commutent deux \`a deux, il en est de m\^eme des endomorphismes qu'ils induisent sur chaque $E_i$ ($1\ie i\ie p$).\msk
+Pour terminer l'exercice, il reste alors \`a prouver le lemme suivant~:\msk
+{\it Lemme : si $E$ est ${\cal F}$-ind\'ecomposable, alors il existe une base de $E$ dans laquelle les \'el\'ements de ${\cal F}$ ont tous des matrices de la forme $\pmatrix{\lam&&(X)\cr &\ddots&\cr (0)&&\lam\cr}$, c'est-\`a-dire $\lam I+N$ avec $\lam\in\cmat$ et $N$ triangulaire sup\'erieure avec des z\'eros sur la diagonale.}
+\msk
+({\it D\'emonstration du lemme})~: Soit $f\in{\cal F}$, notons $\mu$ son polyn\^ome minimal.\ssk\new
+Supposons $\mu=\mu_1\mu_2$ avec $\mu_1$ et $\mu_2$ premiers entre eux et non constants. De $\mu(f)=0$, on d\'eduit ({\it lemme des noyaux}) $E=E_1\oplus E_2$ avec $E_1=\Ker\mu_1(f)$ et $E_2=\Ker\mu_2(f)$. Tout \'el\'ement $g$ de ${\cal F}$ commute avec $f$, donc laisse stables $E_1$ et $E_2$. L'espace $E$ \'etant suppos\'e ${\cal F}$-ind\'ecomposable, l'un des sous-espaces $E_i$ est r\'eduit \`a $\{0\}$. Mais si l'on suppose par exemple $E_1=\{0\}$, alors $E=E_2$ donc $\mu_2(f)=0$ ce qui contredit la minimalit\'e de $\mu$.\ssk\new
+On a ainsi prouv\'e que tout \'el\'ement $f$ de ${\cal F}$ a un polyn\^ome minimal de la forme $(X-\lam)^m$, donc est de la forme $\lam\id_E+\nu$ avec $\nu$ nilpotent.\ssk\new
+Les endomorphismes de ${\cal F}$ commutent deux \`a deux, donc sont cotrigonalisables ({\it exercice classique~: on montre d'abord, par r\'ecurrence sur la dimension de $E$, l'existence d'un vecteur propre commun, puis on fait une nouvelle r\'ecurrence sur $\dim E$, comme dans l'exercice {\bf 3} question {\bf 3} de la semaine {\bf 3}, pour construire une base de trigonalisation commune}). Chacun admettant une seule valeur propre, dans une base de trigonalisation commune, leurs matrices sont de la forme indiqu\'ee. ({\it fin de la d\'em. du lemme})
+\msk
+Pour terminer l'exercice, il suffit de partir d'une d\'ecomposition $E=\bigoplus_{i=1}^p$ de $E$ en sous-espaces ${\cal F}$-ind\'ecomposables, de construire une base ${\cal B}_i$ dans chaque $E_i$ qui trigonalise tous les endomorphismes induits, et de concat\'ener ces diff\'erentes bases.
+
+\bsk
+{\bf Deuxi\`eme m\'ethode} {\it propos\'ee par Charles-Antoine GOFFIN, \'etudiant en MP*}~:\msk
+Admettons toujours comme ``classique'' le fait qu'une famille d'endomorphismes commutant deux \`a deux dans un $\cmat$-espace vectoriel de dimension finie est cotrigonalisable, et raisonnons par r\'ecurrence forte sur $n=\dim E$~:\msk
+$\bullet$ pour $n=1$, c'est \'evident~;\msk
+$\bullet$ soit $n\se2$, si c'est vrai pour tout $k<n$, soit ${\cal F}$ une famille d'endomorphismes d'un $\cmat$-espace vectoriel $E$ de dimension $n$ qui commutent deux \`a deux.\ssk\sect
+$\triangleright$ si chacun des endomorphismes de la famille ${\cal F}$ a une seule valeur propre, c'est-\`a-dire est de la forme $\lam\id_E+\nu$ avec $\nu$ nilpotent, comme ils sont cotrigonalisables, il existe bien une base dans laquelle ils ont tous une matrice de la forme $\lam I_n+N$, avec $N$ triangulaire sup\'erieure avec des z\'eros sur la diagonale, et c'est termin\'e~;\ssk\sect
+$\triangleright$ sinon, au moins un des endomorphismes $u$ de la famille ${\cal F}$ a plusieurs valeurs propres distinctes, soit $\lam$ une de ces valeurs propres, soit $V$ le sous-espace caract\'eristique associ\'e, soit $W$ la somme de tous les autres sous-espaces caract\'eristiques de $u$. On a $E=V\oplus W$. Les sous-espaces $V$ et $W$ sont laiss\'es stables par tous les endomorphismes de la famille ${\cal F}$ puisque $V$ est le noyau d'un polyn\^ome en $u$ (et $W$ une somme de...{\it idem}). Les endomorphismes de $V$ et de $W$ induits par les \'el\'ements de ${\cal F}$ commutent deux \`a deux et on peut leur appliquer l'hypoth\`ese de r\'ecurrence puisque $\dim V<n$ et $\dim W<n$. Il ne reste plus qu'\`a concat\'ener les bases de $V$ et de $W$ ainsi construites et c'est fini.
+
+
+
+
+
+
+\eject
+
+
+
+
+{\bf EXERCICE 3 :}\msk
+
+{\bf 1.} Soit $A\in{\cal M}_n(\cmat)$ une matrice inversible. Montrer
+l'existence d'un polyn\^ome $P$ de $\cmat[X]$ tel que $P(A)^2=A$.\msk
+{\bf 2.} Montrer qu'une matrice $A\in\GLC{n}$ est semblable \`a son inverse
+si et seulement si elle est le produit de deux involutions.\ssk\sect
+{\it Indication~: si $A^{-1}=P^{-1}AP$, on v\'erifiera que $P^2$ commute avec $A$, puis
+on introduira une matrice $Q\in\cmat[P^2]$ telle que $Q^2=P^2$}.
+
+
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.a.} Etudions d'abord le cas o\`u $A$ admet une seule valeur propre $\lam\in\cet$.
+Dans ce cas, $A=\lam I+N$ avec $N$ nilpotente, disons d'indice $p$
+($N^p=0$ et $N^{p-1}\not=0$).\msk\new
+Supposons d'abord $\lam=1$. Soit\vv
+$$\sqrt{1+x}=1+a_1x+\ldots+a_{p-1}x^{p-1}+o(x^{p-1})=S(x)+o(x^{p-1})$$
+le d\'eveloppement limit\'e \`a l'ordre $p-1$ de la fonction $]-1,\ii[\vers\rmat$,
+$x\mapsto\sqrt{1+x}$ en z\'ero (sa partie r\'eguli\`ere $S$ est un polyn\^me de
+$\rmat[X]$ de degr\'e inf\'erieur ou \'egal \`a $p-1$). On a alors, au voisinage
+de z\'ero (pour une variable $x$ r\'eelle)~:\vv
+$$(\sqrt{1+x})^2=1+x=Q(x)+o(x^{p-1})\;,$$
+o\`u $Q$ est le polyn\^ome $S^2$ tronqu\'e \`a l'ordre $p-1$~:
+donc $\;1+x=S(x)^2+o(x^{p-1})\;$ et cette relation entre fonctions
+polynomiales, avec l'unicit\'e du d\'eveloppement limit\'e, montre que,
+dans $\rmat[X]$
+ou $\cmat[X]$, $S^2$ est congru \`a $1+X$ modulo $X^p$, notons $S(X)^2=1+X+X^pR(X)$
+avec $R\in\rmat[X]$.\ssk\new
+On a donc $\;S(N)^2=I+N+N^pR(N)=I+N=A$, soit $P(A)^2=A$ o\`u $P$ est le polyn\^ome
+d\'efini par $P(X)=S(X-1)$.\msk\new
+Si $\lam\not=1$, on ‚crit $A=\lam I+N=\lam B$, avec
+$\;B=I+{1\s\lam}N={1\s\lam}A\;$ et il existe un polyn\^ome $Q$ de $\cmat[X]$ tel que
+$Q(B)^2=B$, donc $\;\lam\> Q\!\lp{1\s\lam} A\rp^2=A$. En notant $\mu$ une racine carr\'ee
+complexe de $\lam$ et en posant $P(X)=\mu\> Q\!\lp{X\s \lam}\rp$, on a
+$P(A)^2=A$.
+
+\bsk
+{\bf 1.b.} Si $A$ est une matrice inversible quelconque,
+notons $u$ l'endomorphisme de $\cmat^n$ canoniquement associ\'e~: on d\'ecompose
+suivant les sous-espaces caract\'eristiques~: si $\mu=\prod_{k=1}^m(X-\lam_k)^{\beta_k}$
+est le polyn\^ome minimal de $u$ (les $\lam_k$ \'etant distincts non nuls), d'apr\`es le
+lemme des noyaux, on a $\cmat^n=\bigoplus_{k=1}^mF_k$, avec $F_k=\Ker(u-\lam_k\id_{{\bf C}^n})^{\beta_k}$,
+la restriction $v_k$ de $u$ \`a $F_k$ admettant $(X-\lam_k)^{\beta_k}$ comme polyn\^ome annulateur
+(et m\^eme plus pr\'ecis\'ement comme polyn\^ome minimal), ce qui signifie que
+$v_k=\lam_k\id_{F_k}+\nu_k$, o\`u $\nu_k$ est un endomorphisme nilpotent de $F_k$.
+Traduction matricielle~: la matrice $A$ est semblable \`a une matrice $D$ diagonale
+par blocs~: $D=\diag(J_1,\ldots,J_m)$ avec, pour tout $k$, $J_k=\lam_k I_{\alpha_k}
++N_k$, la matrice $N_k$ \'etant nilpotente d'indice $\beta_k$ ($\alpha_k$ est
+la dimension du sous-espace caract\'eristique $F_k$, c'est aussi la multiplicit\'e de
+la valeur propre $\lam_k$ dans le polyn\^ome caract\'eristique).\ssk\new
+Bref, pour tout $k\in\[ent1,m\]ent$, il existe un polyn\^ome $P_k$ tel que
+$P_k(J_k)^2=J_k$ d'apr\`es la partie {\bf 1.a.} Il reste \`a montrer l'existence
+d'un polyn\^ome $P$ (ind\'ependant de $k$) tel que\vv
+$$\a k\in\[ent1,m\]ent\qquad P(J_k)=P_k(J_k)\;.\eqno\hbox{\bf (*)}$$
+Mais cette condition {\bf (*)} \'equivaut \`a\vv
+$$\a k\in\[ent1,m\]ent\qquad\mu_k\mid P-P_k\;,$$
+o\`u $\mu_k=(X-\lam_k)^{\beta_k}$ est le polyn\^ome minimal de $J_k$.
+Les polyn\^omes $\mu_k$ \'etant premiers entre eux deux \`a deux, l'existence d'un
+tel polyn\^ome $P$ r\'esulte du th\'eor\`eme chinois~: le syst\`eme de congruences\vv
+$$P\equiv P_k\quad[\mu_k]\qquad (1\ie k\ie m)$$
+admet pour ensemble de solutions dans $\cmat[X]$ une classe de congruence
+modulo $\mu=\prod_{k=1}^m\mu_k$.
+\ssk\sect
+{\it D\'emonstration par r\'ecurrence sur $m$ : si $\mu_1$ et $\mu_2$ sont premiers entre eux,
+d'apr\`es B\'ezout, il existe des polyn\^omes $U_1$ et $U_2$ tels que $P_1-P_2=
+V_2\mu_2-V_1\mu_1$. Le polyn\^ome $P_0=P_1+V_1\mu_1=P_2+V_2\mu_2$
+est une ``solution particuli\`ere'' du
+syst\`eme de congruences $\system{&P&\equiv&P_1&\;&[\mu_1]\cr
+&P&\equiv&P_2&\;&[\mu_2]\cr}$. Un polyn\^ome quelconque $P$ v\'erifie
+alors ce syst\`eme si et seulement si
+$\system{&P&\equiv&P_0&\;&[\mu_1]\cr &P&\equiv&P_0&\;&[\mu_2]\cr}$,
+ce qui \'equivaut \`a $\system{&\mu_1&\mid&P-P_0\cr &\mu_2&\mid&P-P_0\cr}$, soit
+… $\mu_1\mu_2\mid P-P_0$, donc … $P\equiv P_0\;[\mu_1\mu_2]$. Voil\`a qui
+amorce la r\'ecurrence, je laisse le lecteur courageux poursuivre ces
+chinoiseries}.\msk\sect
+Soit donc $P$ un polyn\^ome v\'erifiant {\bf (*)}~: on a alors $P(D)^2=D$ et,
+puisque $A=SDS^{-1}$ avec $S$ inversible,\vv
+$$P(A)^2=P(SDS^{-1})^2=\big(S\>P(D)\>S^{-1}\big)^2=S\>P(D)^2\>S^{-1}
+  =SDS^{-1}=A\;.$$
+
+\msk
+{\bf 2.} $\bullet$ Si $A$ est le produit de deux involutions ($A=UV$ avec $
+U^2=V^2=I$), alors $A$ est inversible et\vvv
+$$A^{-1}=V^{-1}U^{-1}=VU=V(UV)V^{-1}=VAV^{-1}\;,$$
+donc $A$ et $A^{-1}$ sont semblables.\msk\sect
+$\bullet$ Si $A$ est inversible et si $A^{-1}=P^{-1}AP$ avec $P$ inversible, alors
+$P=APA$ puis\vv
+$$P^2A=(APA)^2A=APA^2PA^2=APA(APA)A=APAPA$$
+et\vv
+$$AP^2=A(APA)^2=A^2PA^2PA=A(APA)APA=APAPA\;,$$
+donc $A$ et $P^2$ commutent. D'apr\`es la question {\bf 1.}, il existe un polyn\^ome
+$F\in\cmat[X]$ tel que $F(P^2)^2=P^2$. Posons $Q=F(P^2)$, ainsi $Q^2=P^2$.\ssk\sect
+La matrice $Q$ est un polyn\^ome en $P^2$, donc un polyn\^ome en $P$~; elle
+commute donc avec $P$ et avec $P^{-1}$. En posant $U=QP^{-1}$, on a alors\vv
+$$U^2=(QP^{-1})^2=QP^{-1}QP^{-1}=Q^2(P^{-1})^2=Q^2(P^2)^{-1}=I\;:$$
+$U$ est une involution.\ssk\sect
+Posons enfin $V=U^{-1}A=PQ^{-1}A$~; ainsi, $A=UV$, il reste \`a prouver que $V$
+est une involution~:\vv
+\begin{eqnarray*}
+V^2 & =  & PQ^{-1}APQ^{-1}A=QP^{-1}APQ^{-1}A\qquad\qquad\hbox{\it (*)}\\
+               & = & P^{-1}QAQ^{-1}PA\qquad\qquad\hbox{\it (**)}\\
+               & = & P^{-1}APA\qquad\qquad\hbox{\it (***)}\\
+               & = & A^{-1}A=I\qquad\qquad\hbox{\it cqfd}\;.
+\end{eqnarray*}
+\sect
+{\it (*)}~: car $PQ^{-1}=(QP^{-1})^{-1}=U^{-1}=U=QP^{-1}$~;\ssk\sect
+{\it (**)}~: car $P$ et $Q$ commutent~;\ssk\sect
+{\it (***)}~: car $A$ commute avec $P^2$, donc aussi avec $Q$ qui est un polyn\^ome en $P^2$.
+
+
+
+
+
+
+
+\bsk\hrule\bsk\bsk
+
+
+
+
+
+
+
+
+
+
+
+
+{\bf EXERCICE 4 :}\msk
+
+{\bf 1.} Soit $N\in{\cal M}_n(\cmat)$ une matrice nilpotente. Montrer l'existence
+d'une matrice $M\in{\cal M}_n(\cmat)$ telle que $\;\exp(M)=I_n+N$.
+\msk
+{\bf 2.} Montrer que l'application $\;\exp:{\cal M}_n(\cmat)\vers{\rm GL}_n(\cmat)$
+est surjective.
+
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\bsk
+
+{\bf 1.} Soit $r$ l'indice de nilpotence de $N$ ($N^{r-1}\not=0$ et $N^r=0$).
+Soit le polyn\^ome $P$, partie r\'eguli\`ere du d\'eveloppement limit\'e \`a l'ordre
+$r-1$ de la fonction $f:x\mapsto\ln(1+x)$ en z\'ero~:\vv
+$$P(X)=X-{X^2\s2}+\ldots+(-1)^r{X^{r-1}\s r-1}=\sum_{k=1}^{r-1}(-1)^{k+1}{X^k\s k}\;.$$\sect
+Soit le polyn\^ome $Q$, partie r\'eguli\`ere du d\'eveloppement limit\'e \`a l'ordre
+$r-1$ de la fonction $g:x\mapsto e^x$ en z\'ero~:\vvvv
+$$Q(X)=1+X+{X^2\s2!}+\ldots+{X^{r-1}\s (r-1)!}=\sum_{k=0}^{r-1}{X^k\s k!}\;.$$\sect
+La troncature \`a l'ordre $r-1$ du polyn\^ome compos\'e $Q\circ P$ est la partie
+r\'eguli\`ere du d\'eveloppement limit\'e \`a l'ordre $r-1$ en z\'ero de la fonction
+compos\'ee $g\circ f:x\mapsto 1+x$ ({\it cours de MPSI sur les d\'eveloppements
+limit\'es}), le polyn\^ome $(Q\circ P)(X)-(1+X)$ a donc une valuation au moins
+\'egale \`a $r$~:\vv
+$$(Q\circ P)(X)=1+X+X^r\>R(X)\;,\quad\hbox{avec}\quad R\in\cmat[X]\;.$$\sect
+Ainsi, $(Q\circ P)(N)=Q\big(P(N)\big)=I_n+N\;$ puisque $N^r=0$. Mais, le polyn\^ome
+$P$ \'etant de valuation un, on a $P(N)=NA=AN$, o\`u $A$ est un polyn\^ome en $N$~:
+$A=\sum_{k=1}^{r-1}{(-1)^{k+1}\s k}N^{k-1}$. Donc $\big(P(N)\big)^r
+=N^rA^r$ (puisque $A$ et $N$ commutent), soit $\big(P(N)\big)^r=0$. Finalement,
+\vv
+$$\exp\big(P(N)\big)=\sum_{k=0}^{\infty}{\big(P(N)\big)^k\s k!}=\sum_{k=0}^{r-1}{\big(P(N)\big)^k\s k!}=
+  Q\big(P(N)\big)=I_n+N\;.$$
+
+\msk
+
+{\bf 2.} Toute matrice de la forme $\lam I_n+N$ avec $\lam\in\cet$ et $N$
+nilpotente, admet ``un logarithme''~: en effet,
+$\lam I_n+N=\lam(I_n+N')$ avec $N'={1\s\lam} N$ nilpotente.
+Si $M'\in{\cal M}_n(\cmat)$ v\'erifie\break $\exp(M')=I_n+N'$ et si $\alpha$ est un
+nombre complexe tel que $e^{\alpha}=\lam$, alors la matrice $M=\alpha I_n+M'$
+v\'erifie $\exp(M)=\lam I_n+N$.\msk\sect
+Si $A\in{\rm GL}_n(\cmat)$, on peut trouver une matrice inversible $P\in
+{\rm GL}_n(\cmat)$ telle que $J=P^{-1}AP$ soit diagonale par blocs, de la forme\vv
+$$J=\diag(\lam_1 I_{n_1}+N_1,\ldots,\lam_pI_{n_p}+N_p)\;,\quad{\rm avec}$$
+$\lam_1$, $\ldots$, $\lam_p$ nombres complexes non nuls ;\new
+$n_1$, $\ldots$, $n_p$ entiers naturels non nuls tels que $n_1+\ldots+n_p=n$~;\new
+$N_i\in{\cal M}_{n_i}(\cmat)$ nilpotente\new
+(d\'ecomposition suivant les sous-espaces caract\'eristiques, {\it cf}. d\'etails dans l'exercice {\bf 3.}, question {\bf 1.b.}).\ssk\new
+Pour tout $i\in\[ent1,p\]ent$, il existe une matrice $M_i\in{\cal M}_{n_i}
+(\cmat)$ telle que $\exp(M_i)=\lam_iI_{n_i}+N_i$. Soit la matrice diagonale
+par blocs\vv
+$$M=\diag(M_1,\ldots,M_p)\in{\cal M}_n(\cmat)\;.$$
+On a $\exp(M)=J$, puis $\;\exp(PMP^{-1})=PJP^{-1}=A$.
+
+
+\eject
+
+
+{\bf  EXERCICE 5 :}\msk
+Soit $\kmat$ un corps de caract\'eristique nulle. Soit $A\in{\cal M}_n(\kmat)$ une matrice, on note\vvv
+$$\chi_A(X)=a_nX^n+a_{n-1}X^{n-1}+\cdots+a_1X+a_0$$
+son polyn\^ome caract\'eristique. La matrice $C(X)=\t\>{\rm Com}(A-XI_n)$ peut \^etre consid\'er\'ee comme une matrice \`a coefficients dans $\kmat_{n-1}[X]$ (le justifier) et peut aussi s'\'ecrire comme ``polyn\^ome \`a coefficients matriciels''~:\vv
+$$C(X)=\t\>{\rm Com}(A-XI_n)=C_{n-1}+XC_{n-2}+\cdots+X^{n-2}C_1+X^{n-1}C_0
+  =\sum_{k=0}^{n-1}X^kC_{n-1-k}\;.$$\par
+{\bf 1.} Montrer que, pour tout $k\in\[ent0,n-1\]ent$, on a $\;\tr(C_{n-1-k})=-(k+1) a_{k+1}$.\msk
+{\bf 2.} Expliciter $C_0$. Exprimer $C_k$ en fonction de $C_{k-1}$ pour $k\in\[ent1,n-1\]ent$. En d\'eduire un algorithme de calcul des coefficients du polyn\^ome caract\'eristique.
+\msk
+{\it Source~: solution emprunt\'ee \`a Yvan GOZARD, dans la RMS (Revue de Math\'ematiques Sp\'eciales) 9/10 de mai-juin 1994.}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+Les coefficients de la matrice des cofacteurs de $A-XI_n$, ou de sa transpos\'ee $C(X)$, sont des d\'eterminants de matrices carr\'ees d'ordre $n-1$ extraites de $A-XI_n$, ce sont donc des polyn\^omes de degr\'e inf\'erieur ou \'egal \`a $n-1$.
+\ssk
+{\bf 1.} On a $\chi_A(X)=\det(A-XI_n)$. Si l'on note $\Gamma_j(X)$ le $j$-i\`eme ``vecteur-colonne'' de la matrice $A-XI_n$, les r\`egles de d\'erivation d'un d\'eterminant donnent\vvvv
+\begin{eqnarray*}
+\chi'_A(X) & = & \sum_{j=1}^n\det\big(\Gamma_1(X),\cdots,\Gamma_{j-                          1}(X),\Gamma'_j(X),\Gamma_{j+1}(X),\cdots,\Gamma_n(X)\big)\\
+               & = & - \sum_{j=1}^n M_{jj}(X) =-\tr\big(C(X)\big)=-\tr\lp\sum_{k=0}^{n-1}X^kC_{n-1-k}\rp
+\end{eqnarray*}
+en notant $M_{jj}(X)$ le mineur d'indices $(j,j)$ de la matrice $A-XI_n$, qui est le coefficient d'indices $(j,j)$ de la matrice $C(X)$.\ssk\sect
+On a donc $\;\chi'_A(X)=-\sum_{k=0}^{n-1}\big(\tr C_{n-1-k}\big)X^k$. En identifiant avec $\;\chi'_A(X)=\sum_{k=0}^{n-1}(k+1)a_{k+1}X^k$, on obtient\vv
+$$\a k\in\[ent0,n-1\]ent\qquad \tr(C_{n-1-k})=-(k+1)\>a_{k+1}\;.$$
+\ssk
+{\bf 2.} On a $(A-XI_n)\>C(X)=\chi_A(X)\>I_n$, soit\vv
+$$(A-XI_n)\lp\sum_{k=0}^{n-1}X^kC_{n-1-k}\rp=\sum_{k=0}^na_kX^kI_n\;.$$
+En identifiant les ``coefficients'' (matriciels) dans cette identit\'e polynomiale, on obtient les relations
+$$ \begin{array}{lrclr}
+{\bf (1) :}\qquad & A\>C_{n-1} & = & a_0\>I_n & \\\nssk
+{\bf (2) :}         & A\>C_{n-k-1}-C_{n-k} & = & a_k\>I_n & \qquad (1\ie k\ie n-1)\\\nssk
+{\bf (3) :}         & -C_0    & = & a_n\>I_n&
+\end{array} $$\sect
+On a ainsi, d'apr\`es {\bf (3)}, $C_0=-a_n\>I_n=(-1)^{n-1}I_n$.\ssk\sect
+Pour $k\in\[ent1,n-1\]ent$, la relation {\bf (2)} donne $\;C_{n-k}=A\>C_{n-k-1}+{1\s k}\>\tr(C_{n-k})\>I_n\;$ gr\^ace \`a la relation obtenue \`a la question {\bf 1.} et aussi 
+$\;\tr(A\>C_{n-k-1})-\tr(C_{n-k})=n\>a_k=-{n\s k}\>\tr(C_{n-k})$,\break on en d\'eduit $\;\tr(C_{n-k})={k\s k-n}\>\tr(A\>C_{n-k-1})$, puis enfin\vv
+$$C_{n-k}=A\>C_{n-k-1}-{1\s n-k}\>\tr(A\>C_{n-k-1})\>I_n\;.$$\sect
+En r\'esum\'e, les matrices $C_k$ ($0\ie k\ie n-1$) peuvent \^etre calcul\'ees de proche en proche par les relations\vv
+$$\system{&C_0&=&&(-1)^{n-1}I_n\cr
+              &C_k&=&&A\>C_{k-1}-{1\s k}\>\tr(A\>C_{k-1})\>I_n\qquad\hbox{pour}\quad 1\ie k\ie n-1\;.\cr}$$\sect
+On en d\'eduit les coefficients du polyn\^ome caract\'eristique puisque $\;a_k=-{1\s k}\>\tr(C_{n-k})\;$ si $1\ie k\ie n-1$, et $a_0={1\s n}\>\tr(A\>C_{n-1})$ d'apr\`es la relation {\bf (1)} non encore exploit\'ee.
+\bsk\sect
+{\it Il s'agit de la} {\bf m\'ethode de Faddeev} {\it qui donne lieu, pour des ``grosses'' matrices, \`a	 des calculs num\'eriques plus rapides que le calcul du polyn\^ome caract\'eristique comme d\'eterminant}.
+\msk\sect
+{\it Une autre fa\c con de retrouver cet algorithme de calcul des coefficients du polyn\^ome caract\'eristique est d'utiliser les formules de Newton, qui permettent de relier les susdits coefficients (fonctions sym\'etriques \'el\'ementaires des valeurs propres $\lam_i$ de $A$ si on se place dans une cl\^oture alg\'ebrique de $\kmat$) aux nombres $\;\sum_{i=1}^n\lam_i^k=\tr(A^k)$, voir par exemple Jean-Marie ARNAUDI\`ES et Henri FRAYSSE, Tome 1, Alg\`ebre, exercice XV.4.7, ISBN 2-04-016450-2}.
+
+
+
+
+
+
+
+\end{document}

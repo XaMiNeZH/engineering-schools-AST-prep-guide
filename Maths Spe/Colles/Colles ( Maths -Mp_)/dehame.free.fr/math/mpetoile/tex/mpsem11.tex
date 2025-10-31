@@ -1,0 +1,672 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % Çvite le textstyle en mode
+                                % mathÇmatique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses mathÇmatiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de presentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% personnel Monasse
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'Çcriture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% Ö l'intÇrieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est dÇcroissante),
+% \nondef (la fonction est non dÇfinie)
+% si l'on termine la derniäre ligne par \cr, un trait est tirÇ en dessous
+% sinon elle est laissÇe sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   % MONASSE
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  % MONASSE
+\def\rmat{{\rm I\kern-0.6mm R}}  % MONASSE
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  % MONASSE
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  % MONASSE
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____def de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% Algäbre linÇaire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________determinant_______
+\def\det{\mathop{\rm det}\nolimits}  % MONASSE
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  % MONASSE
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  % MONASSE
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}  % MONASSE
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transposÇe ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  % MONASSE
+\def\MC#1{{\cal M}_{#1}(\cmat)}  % MONASSE
+\def\MK#1{{\cal M}_{#1}(\kmat)}  % MONASSE
+
+%________Complexes_________ % MONASSE
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   % CLENET
+\def\Arccos{\mathop{\rm Arccos}\nolimits}   % CLENET
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   % CLENET
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     % CLENET
+\def\Argch{\mathop{\rm Argch}\nolimits}     % CLENET
+\def\Argth{\mathop{\rm Argth}\nolimits}     % CLENET
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} %CLENET
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et sÇries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  % MONASSE
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  % MONASSE
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  % MONASSE
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  % MONASSE
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  % MONASSE
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abrÇgÇes%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-Ö-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\catcode`@=12 % at signs are no longer letters
+\catcode`\Ç=\active
+\defÇ{\'e}
+\catcode`\ä=\active
+\defä{\`e}
+\catcode`\à=\active
+\defà{\^e}
+\catcode`\Ö=\active
+\defÖ{\`a}
+\catcode`\ó=\active
+\defó{\`u}
+\catcode`\ñ=\active
+\defñ{\^u}
+\catcode`\É=\active
+\defÉ{\^a}
+\catcode`\"=\active
+\def"{\^o}
+\catcode`\â=\active
+\defâ{\"e}
+\catcode`\ã=\active
+\defã{\"\i}
+\catcode`\Å=\active
+\defÅ{\"u}
+\catcode`\á=\active
+\defá{\c c}
+\catcode`\å=\active
+\defå{\^\i}
+
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+
+
+
+
+
+\overfullrule=0mm
+
+
+\cl{{\bf SEMAINE 10}}\msk
+\cl{{\bf INT\'EGRALE SUR UN SEGMENT. FONCTIONS INT\'EGRABLES}}
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+Soit $x=(x_n)_{n\in\net}$ une suite \`a valeurs dans $[0,1]$. Pour tout
+ entier naturel non nul $n$ et toute partie $A$ de $[0,1]$, on note $N(A,n)$
+ le nombre d'indices $k\in\[ent1,n\]ent$ tels que $x_k\in A$.\ssk
+ On dit que la suite $x$ est {\bf \'equir\'epartie} si, pour tous r\'eels $a$
+ et $b$  v\'erifiant $0\le a<b\le 1$, on a\vv
+ $$\Lim{n}{\ii}{N\big(]a,b[,n\big)\s n}=b-a\;.$$\par
+ Montrer que la suite $x$ est \'equir\'epartie si et seulement si, pour toute
+ fonction $f:[0,1]\vers\rmat$ continue par morceaux (c.p.m.), on a\vv
+ $$\Lim{n}{\ii}{1\s n}\sum_{k=1}^nf(x_k)=\int_0^1f\;.\eqno\hbox{\bf (*)}$$
+ 
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+ 
+Remarquons d'abord que, pour tout $n\in\net$ et pour toute partie $A$ de
+$[0,1]$, on a\break $N(A,n)=\sum_{k=1}^n\chi_A(x_k)$, o\`u $\chi_A$ est la
+fonction caract\'eristique de $A$.\par
+Pour tout entier naturel non nul $n$ et toute fonction $f$ continue par morceaux sur
+$[0,1]$, posons $\;S_n(f)={1\s n}\>\sum_{k=1}^nf(x_k)$.
+\ssk
+$\bullet$ Supposons la relation {\bf (*)} vraie pour toute fonction $f$
+continue par morceaux sur $[0,1]$~; avec $f=\chi_{]a,b[}$ (fonction en
+escalier), on obtient\vv
+$$\Lim{n}{\ii}S_n(f)=\Lim{n}{\ii}{N\big(]a,b[,n\big)\s n}=
+  \int_0^1\chi_{]a,b[}=b-a\;,$$
+d'o\`u la propri\'et\'e d'\'equir\'epartition.
+\msk
+$\bullet$ R\'eciproquement, supposons la suite \'equir\'epartie.\pn
+Soit d'abord $f:[0,1]\vers\rmat$ en escalier, soit $(0=a_0,a_1,\cdots,a_m=1)$
+une subdivision de $[0,1]$ subordonn\'ee \`a $f$, soit $\lam_j$ la valeur
+ (constante) de $f$ sur $]a_j,a_{j+1}[\;$ ($0\le j\le m-1$). On a alors\vv
+ $$\int_0^1f=\sum_{j=0}^{m-1}(a_{j+1}-a_j)\>\lam_j$$
+ et, comme $f=\sum_{j=0}^{m-1}\lam_j\>\chi_{]a_j,a_{j+1}[}+\sum_{j=0}^m
+ f(a_j)\>\chi_{\{a_j\}}$, on a
+ $$S_n(f)=\sum_{j=0}^{m-1}\lam_j\>{N\big(]a_j,a_{j+1}[,
+   n\big)\s n}+\sum_{j=0}^mf(a_j)\>{N\big(\{a_j\},n\big)\s n}\;.$$
+ Or, par hypoth\`ese, $\Lim{n}{\ii}{N\big(]a_j,a_{j+1}[,n\big)\s n}=a_{j+1}
+ -a_j$ pour tout $j\in\[ent0,m-1\]ent$.\pn
+ Il reste \`a prouver que, pour tout
+ $a\in[0,1]$, $\Lim{n}{\ii}{N\big(\{a\},n\big)\s n}=0$.
+ Pour cela, il suffit de constater que, si $a\in\;]0,1[$ ,\vv
+ $$N\big(\{a\},n\big)=N\big(]0,1[,n\big)-N\big(]0,a[,n\big)-N\big(]a,1[,n
+   \big)$$
+ et, pour $a=0$ et $a=1$,\vv
+ $$0\le N\big(\{0\},n\big)+N\big(\{1\},n\big)=n-N\big(]0,1[,n\big)\;.$$
+ Soit maintenant $f:[0,1]\vers\rmat$, continue par morceaux. On sait que $f$
+ est limite uniforme d'une suite de fonctions en escalier sur $[0,1]$.
+ Donc, si on se donne $\eps>0$, on peut trouver $g:[0,1]\vers\rmat$ en
+ escalier telle que $\|f-g\|_{\infty}\le{\eps\s3}$. D'apr\`es ce qui pr\'ec\`ede, on peut
+ trouver un entier $N$ tel que, pour tout $n\ge N$, on ait
+ $\;\left|S_n(g)-\int_0^1g\right|\le{\eps\s3}$. Or, pour tout $n$,
+ $$\left|S_n(f)-\int_0^1f\right|\le|S_n(f)-S_n(g)|+
+   \left|S_n(g)-\int_0^1g\right|+\left|\int_0^1g-\int_0^1f\right|\;.$$
+ De $\|f-g\|_{\infty}\le{\eps\s3}$, on dÇduit que $\;\left|\int_0^1g-
+ \int_0^1f\right|\le\int_0^1|g-f|\le{\eps\s3}\;$ et
+ $$|S_n(f)-S_n(g)|={1\s n}\left|\sum_{k=1}^n\big(f(x_k)-g(x_k)\big)\right|
+   \le{1\s n}\cdot n\cdot{\eps\s3}={\eps\s3}\;,$$
+ donc, pour $n\ge N$, on a $\;\left|S_n(f)-\int_0^1f\right|\le\eps$, ce
+ qui prouve que $\Lim{n}{\ii}S_n(f)=\int_0^1f$.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 2 :}\msk
+Soit $f$ une bijection continue et strictement croissante de $\rplus$ vers
+ lui-m\^eme.\msk
+{\bf  a.} Montrer que, pour tout $a\in\rplus$, $\;\int_0^af+\int_0^{f(a)}f^{-1}=
+   a\>f(a)$.\ssk
+   {\it On commencera par traiter le cas o\`u $f$ est de classe $\ceun$. Dans
+   le cas g\'en\'eral, on montrera la d\'erivabilit\'e de la fonction $\ffi:a
+   \mapsto\int_0^{f(a)}f^{-1}-a\>f(a)$.}\msk
+{\bf  b.} Montrer que, pour tous $(a,b)\in\rplus^2$, $\;\int_0^af+\int_0^bf^{-1}\ge
+   ab$.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+
+{\bf a.} Si $f$ est suppos\'ee de classe $\ceun$, une simple d\'erivation par
+rapport \`a la variable $a$ permet de conclure.\ssk\sect
+ Dans le cas g\'en\'eral, essayons aussi de d\'eriver par rapport \`a la variable $a$.
+ Le terme $\int_0^af$ est d\'erivable, de d\'eriv\'ee $f(a)$. Les termes
+ $\int_0^{f(a)}f^{-1}$ et $af(a)$, pris s\'epar\'ement,
+ ne sont pas, en g\'en\'eral, d\'erivables, mais \'etudions leur diff\'erence
+ $\ffi(a)$ ({\it cf.} \'enonc\'e) et formons un taux
+ d'accroissement.\vv
+ $$\ffi(a+h)-\ffi(a)=\int_{f(a)}^{f(a+h)}f^{-1}-(a+h)\>f(a+h)+a\>f(a)\;.$$\sect
+ Pour $h>0$, il est facile d'\'ecrire un encadrement de l'int\'egrale~:\vv
+ $$a\>\big(f(a+h)-f(a)\big)\le\int_{f(a)}^{f(a+h)}f^{-1}\le
+   (a+h)\>\big(f(a+h)-f(a)\big)\;,$$
+ d'o\`u l'on tire sans difficult\'e\vv
+ $$-f(a+h)\le{\ffi(a+h)-\ffi(a)\s h}\le-f(a)\;,\quad\hbox{donc}\quad
+   \Lim{h}{0^+}{\ffi(a+h)-\ffi(a)\s h}=-f(a)$$
+ car $f$ est continue au point $a$. On obtient de m\^eme, pour $h<0$,\vv
+ $$-f(a)\le{\ffi(a+h)-\ffi(a)\s h}\le-f(a+h)\;,\quad\hbox{donc}\quad
+   \Lim{h}{0^-}{\ffi(a+h)-\ffi(a)\s h}=-f(a).$$\sect
+ Finalement, $\ffi$ est d\'erivable sur $\rplus$, de d\'eriv\'ee $-f$, donc
+ la fonction \break $g:a\mapsto\int_0^af+\int_0^{f(a)}f^{-1}-a\>f(a)\;$
+ est d\'erivable, de d\'eriv\'ee nulle. Elle est donc cons\-tante sur $\rplus$, et
+ $g(0)=0$, ce qui r\'epond \`a la question.
+
+\msk
+ {\bf b.} Fixons $a\ge0$. Pour tout $b\in\rplus$, posons
+ $\;\psi(b)=\int_0^af+\int_0^bf^{-1}-ab$. La fonction $\psi$ est
+ d\'erivable, de d\'eriv\'ee $\psi'(b)=f^{-1}(b)-a$. La croissance
+ stricte des fonctions $f$ et $f^{-1}$ permet d'affirmer que\vv
+ $$\psi'(b)>0\iff b>f(a)\;.$$
+ On en d\'eduit sans peine que $\psi(b)$ est minimal lorsque
+ $b=f(a)$ et sa valeur est alors $\psi\big(f(a)\big)=g(a)=0$ d'apr\`es le
+ {\bf a.}, ce qui prouve l'in\'egalit\'e \`a d\'emontrer.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 3 :}\msk
+Pour tout $f\in {\cal E}=\ce\big([a,b],\rmat\big)$ et tout r\'eel non nul $p$, on pose $\;\mu_p(f)=\lp{1\s b-a}\>\int_a^b|f|^p\rp^{\sst1\sur\sst p}\;$~:
+{\bf moyenne d'ordre} $p$ de la fonction $|f|$ sur $[a,b]$.\msk
+{\bf 1.} Calculer $\Lim{p}{\ii}\mu_p(f)$.\msk
+{\bf 2.} Montrer que, si $f\in {\cal E}=\ce\big([a,b],\rmat\big)$ ne s'annule
+ pas sur $[a,b]$, alors\vv
+ $$\Lim{p}{0}\mu_p(f)=\exp\lp{1\s b-a}\>\int_a^b\ln |f(x)|\;dx\rp\;.$$
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk 
+
+{\bf 1.} Si $f=0$, alors $\mu_p(f)=0$ pour tout $p$. Excluons d\'esormais ce cas.
+\msk\sect
+Soit $\;M=\max_{[a,b]}|f|>0$.
+Soit $\eps>0$. Alors, par continuit\'e, il existe un segment $[\alpha,\beta]$ de longueur non nulle sur lequel $\;|f|\ge(1-\eps)M$.\ssk\new
+Alors, pour tout $p>0$,\vv
+$$ \int_a^b|f|^p\ge(\beta-\alpha)\cdot
+   (1-\eps)^p\>M^p\;,\quad\hbox{d'o\`u}\quad \mu_p(f)\ge
+   \Big({\beta-\alpha\s b-a}\Big)^{\sst1\sur\sst p}\>(1-\eps)\>M\;.$$
+ Or, $\Lim{p}{\ii}\Big({\beta-\alpha\s b-a}\Big)^{\sst1\sur\sst p}=1$, donc
+ $$\e P\in\rpe\quad\a p\in\rmat\qquad p\ge P\impl
+   \mu_p(f)\ge(1-\eps)^2\>M\;.$$
+Pour $p\ge P$, on a alors $\;(1-\eps)^2\>M\le \mu_p(f)\le M$. On en d\'eduit que\vv
+ $$\Lim{p}{\ii}\mu_p(f)=M=\max_{[a,b]}|f|=N_{\infty}(f)\;.$$
+
+\msk
+{\bf b.} Il s'agit de montrer que $\Lim{p}{0}\mu_p(f)=e^J$, o\`u
+ $J={1\s b-a}\int_a^b\ffi$, avec $\ffi=\ln|f|$. La fonction $|f|$ est continue et strictement
+positive sur le segment $[a	,b]$, donc $\ffi$ est born\'ee  sur $[a,b]$~: $|\ffi(x)|\ie k$ sur $[a,b]$. La fonction $\;u\mapsto{e^u-1-u\s u^2}$ \'etant prolongeable par continuit\'e en z\'ero, il existe un r\'eel positif $M$ tel que $\;\a y\in
+\ffi\big([a,b]\big)\quad\left|{e^y-1-y\s y^2}\right|\le M$.
+\msk\sect
+Alors, pour  $|p|\le1$, on a\vv
+$$\left|\big(\mu_p(f)\big)^p-1-p\,J\right|={1\s b-a}\>\left|\int_a^b\lp
+   e^{p\ffi}-1-p\,\ffi\rp\right|\le {M\>p^2\s b-a}\lp\int_a^b\ffi^2\rp\ie Mk^2p^2\;.$$
+On peut donc \'ecrire $\;\mu_p(f)^p=e^{p\>\ln\mu_p(f)}=1+J p+O(p^2)$, d'o\`u $\;p\>\ln\mu_p(f)=Jp+O(p^2)$, donc $\Lim{p}{0}\ln\mu_p(f)=J\;$ et enfin $\Lim{p}{0}\mu_p(f)=e^J$, ce qu'il fallait d\'emontrer.
+\msk
+{\it Le nombre $\mu_0(f)=\Lim{p}{0}\mu_p(f)$ est la} {\bf moyenne g\'eom\'etrique} {\it de $|f|$ sur $[a,b]$}.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 4 :}\msk
+Soit $f:\rmat\vers\rmat$ une fonction de classe ${\cal C}^2$ telle que $\;\a t\in\rmat\quad f''(t)\se m$, o\`u $m$ est un r\'eel strictement positif.\msk
+Montrer qu'il existe une constante $C$ ``universelle'' (c'est-\`a-dire ind\'ependante de $m$ et de la fonction $f$) telle que\vv
+$$\a (a,b)\in\rmat^2\qquad\left|\int_a^be^{if(t)}\>dt\right|\ie{C\s\sqrt{m}}\;.$$
+\ssk
+{\it On pourra commencer par prouver que $f$ admet un minimum en un point $t_0$ et on majorera $\left|\int_{t_0}^{t_1}e^{if(t)}\>dt\right|$ ind\'ependamment du r\'eel $t_1$.}
+
+\msk
+{\it Source : Antoine CHAMBERT-LOIR, St\'efane FERMIGIER, Vincent MAILLOT, Exercices de math\'ematiques pour l'Agr\'egation, Analyse 1, \'Editions Masson, ISBN 2-225-84692-8}
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+Soit $a$ un r\'eel. D'apr\`es le th\'eor\`eme des accroissements finis, on a, pour tout r\'eel $t$,\vv
+$$f'(t)=f'(a)+(t-a)\>f''(c)\;,\qquad{\rm avec}\quad c\in[t,a]\;{\rm ou}\;[a,t]\;.$$\par
+Donc,\ssk\sect
+$\bullet$ pour $t\se a$, on a $f'(t)\se f'(a)+m(t-a)$~;\ssk\sect
+$\bullet$ pour $t\ie a$, on a $f'(t)\ie f'(a)+m(t-a)$.\ssk
+Il en r\'esulte que $\lim_{-\infty}f'=-\infty$ et $\lim_{\ii}f'=\ii$. Comme $f'$ est continue et strictement croissante, il existe un unique point $t_0$ tel que $f'(t_0)=0$ et il est clair que c'est le minimum global de la fonction $f$.\ssk
+Quitte \`a translater $f$, on peut supposer que $t_0=0$ et chercher \`a majorer $\left|\int_0^ae^{if(t)}\>dt\right|$ ind\'ependamment du r\'eel $a$.
+\msk
+$\bullet$ Supposons $a>0$. Posons $\;I=\int_0^a e^{if(t)}\>dt$. Pour tout $\eps>0$, on peut \'ecrire, en int\'egrant par parties~:\vvvv
+\begin{eqnarray*}
+I & = & \int_0^{\eps}e^{if(t)}\>dt+\int_{\eps}^ae^{if(t)}\>dt\\
+   & = & \int_0^{\eps}e^{if(t)}\>dt+ \int_{\eps}^a{1\s i\>f'(t)}\>\Big(i\>f'(t)\>e^{if(t)}\Big)\>dt\\
+   & = & \int_0^{\eps}e^{if(t)}\>dt+{e^{if(a)}\s i\>f'(a)}-{e^{if(\eps)}\s i\>f'(\eps)}-i\>\int_{\eps}^ae^{if(t)}\>{f''(t)\s f'(t)^2}\>dt\;.
+\end{eqnarray*}
+Pour $\eps\se a$, on a bien s\^ur $\;|I|\ie\int_0^a|e^{if(t)}|\>dt= a\ie\eps\;$ et, si $\eps>a$, on a\vv
+\begin{eqnarray*}
+|I| & \ie & \eps+{1\s f'(a)}+{1\s f'(\eps)}+\int_{\eps}^a{f''(t)\s f'(t)^2}\>dt\\
+     & =  & \eps+{1\s f'(a)}+{1\s f'(\eps)}-\Big[{1\s f'(t)}\Big]_{\eps}^a=\eps+{2\s f'(\eps)}\;.
+\end{eqnarray*}
+On a donc $\;|I|\ie\eps+{2\s f'(\eps)}\;$ pour tout $\eps>0$, mais $f'(\eps)\se m\eps$, donc $\;\a\eps>0\quad |I|\ie\eps+{2\s m\eps}$, puis $|I|\ie\min_{\eps>0}\Big(\eps+{2\s m\eps}\Big)$. Recherchons donc ce minimum~: une petite \'etude de fonction, laiss\'ee au lecteur, montre qu'il est atteint pour $\eps=\sqrt{2\s m}$ et vaut ${2\sqrt{2}\s\sqrt{m}}$. On a ainsi obtenu la majoration\vv
+$$\a a\in\rplus\qquad\left|\int_0^a e^{if(t)}\>dt\right|\ie{2\sqrt{2}\s\sqrt{m}}\;.$$\par
+$\bullet$ Si $a<0$, on applique ce qui pr\'ec\`ede \`a la fonction $\;g:t\mapsto g(t)=f(-t)\;$ qui v\'erifie aussi $g''\se m$ et $g'(0)=0$, donc\vv
+$$\left|\int_0^ae^{if(t)}\>dt\right|=\left|\int_0^{-a}e^{ig(u)}\>du\right|\ie{2\sqrt{2}\s\sqrt{m}}\;.$$\par
+$\bullet$ Pour tous $a$ et $b$ r\'eels, on a alors\vv
+$$\left|\int_a^be^{if(t)}\>dt\right|\ie\left|\int_0^ae^{if(t)}\>dt\right|+\left|\int_0^be^{if(t)}\>dt\right|\ie{4\sqrt{2}\s\sqrt{m}}\;,$$
+d'o\`u le r\'esultat demand\'e avec $C={4\s\sqrt{2}}$.
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 5 :}\msk
+Soit ${\cal E}$ l'ensemble des fonctions $f:\rmat\vers\rmat$, de classe
+ $\ceun$, telles que les fonctions $f'$ et $\;g:t\mapsto t f(t)\;$ soient de
+ carr\'e int\'egrable sur $\rmat$.\msk
+{\bf  a.} V\'erifier que ${\cal E}$ est un espace vectoriel.\msk
+{\bf  b.} Soit $f\in {\cal E}$. Montrer que $f$ est de carr\'e int\'egrable et que\vv
+ $$\int_{\rmat}f^2\le 2\;\lp\int_{\rmat}f'^2\rp^{1\sur2}\>
+   \lp\int_{\rmat}g^2\rp^{1\sur2}\;.$$\par
+{\bf  c.} \'Etudier les cas d'\'egalit\'e.
+ 
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+
+{\bf a.} Une fonction $f$ appartient \`a ${\cal E}$ si et seulement si les
+ fonctions $f'$ et $g:t\mapsto t f(t)$ (qui d\'ependent lin\'eairement de $f$)
+ appartiennent \`a l'espace vectoriel ${\rm L}^2(\rmat)$, donc ${\cal E}$
+ est un s.e.v. de l'espace $\ceun(\rmat,\rmat)$.
+
+\msk
+{\bf b.} L'in\'egalit\'e $\;f(t)^2\le g(t)^2$, vraie pour $|t|\ge1$, montre
+ que $f\in{\rm L}^2(\rmat)$.\psn
+ Posons $\;I=\int_{\rmat}f'^2\;$ et
+ $\;J=\int_{\rmat}g^2$. La fonction
+ $\;t\mapsto t\>f(t)\>f'(t)\;$ est int\'egrable sur $\rmat$ comme produit de
+ deux fonctions de carr\'e int\'egrable et l'in\'egalit\'e de Cauchy-Schwarz montre
+ que\vv
+ $$(f'|g)=\left|\int_{-\infty}^{\ii}t\>f(t)\>f'(t)\;dt\right|\le\sqrt{IJ}
+   =N_2(f')\cdot N_2(g)\;.\eqno\hbox{\bf (*)}$$
+ Or, une int\'egration par parties montre que, pour tous r\'eels $A$ et $B$,\vv
+ $$\int_A^B f(t)^2\;dt=\big[t\>f(t)^2\big]_A^B\>-2\>\int_A^B t\>f(t)\>f'(t)\;dt\;.\eqno\hbox{\bf (**)}
+   $$
+ Les fonctions $f^2$ et $\;t\mapsto t\>f(t)\>f'(t)\;$ \'etant int\'egrables sur
+ $\rmat$, l'expression $t\>f(t)^2\;$ admet une limite finie $l$ lorsque $t$
+ tend vers $\ii$. Si on avait $l\not=0$, alors $\;g(t)^2=t^2\>f(t)^2\;$
+ aurait une limite infinie en $\ii$, ce qui contredit l'int\'egrabilit\'e de
+ $g^2$ sur $\rmat$.\pn
+ On a donc $\;\Lim{t}{\ii}t\>f(t)^2=0\;$ et, de m\^eme, $\;\Lim{t}{-\infty}t\>
+ f(t)^2=0$.\pn
+ De {\bf (**)}, on d\'eduit alors que $\;\int_{\rmat} f^2=-2\int_{-\infty}^{\ii}
+ t\>f(t)\>f'(t)\;dt$, d'o\`u, en vertu de {\bf (*)}, l'in\'egalit\'e demand\'ee.
+
+ \msk
+ {\bf c.} L'\'egalit\'e a lieu si et seulement s'il y a \'egalit\'e ci-dessus dans
+ {\bf (*)} (Cauchy-Schwarz), c'est-\`a-dire si et seulement si les fonctions
+ $f'$ et $g$ sont li\'ees, donc si $f'=0$ ($f$ constante) ou si $f$ est solution
+ d'une \'equation diff\'erentielle de la forme\vv
+ $$\lam x'+tx=0\eqno\hbox{\bf (E)}$$
+ ($t$ : variable, $x$ : fonction inconnue).\pn
+ Les fonctions constantes autres que la fonction nulle sont \`a exclure.
+ Les solutions de {\bf (E)} sont les fonctions de la forme $t\mapsto C
+ \cdot e^{{}^{-{\sst t^2\sur\sst2\lam}}}\;$ ($C\in\rmat$). On ne conservera
+ que les valeurs strictement positives de $\lam$ (sinon, la fonction $f$
+ n'appartient pas \`a ${\cal E}$). On obtient donc les fonctions\vv
+ $$f:t\mapsto C\cdot e^{-\alpha t^2}\qquad\qquad(\alpha\in\rpe\;,\;C\in\rmat)
+   \;.$$
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 6 :}\msk
+Dans cet exercice, on admettra le lemme suivant ({\bf th\'eor\`eme de Hardy})~: {\it si $\sum_nu_n$ est une s\'erie convergente \`a termes positifs, alors la s\'erie de terme g\'en\'eral $v_n=\root n\of{u_0u_1\cdots u_{n-1}}$ est convergente}.\msk
+Soit $f:\rplus\vers\rpe$ une fonction continue. On suppose que la fonction ${1\s f}$ est int\'egrable sur $\rplus$.\ssk Pour tout $x\in\rplus$, on pose $F(x)=\int_0^xf(t)\>dt$. On d\'efinit enfin $g$ par
+$$g(0)={1\s f(0)}\qquad{\rm et}\qquad\a x\in\rpe\quad g(x)={x\s F(x)}\;.$$\par
+{\bf 1.} Pour tout $n\in\nmat$, on pose $\;a_n=F(n+1)-F(n)$. D\'emontrer l'in\'egalit\'e $\;{1\s a_n}\ie\int_n^{n+1}{dt\s f(t)}$. Cons\'equence pour la s\'erie $\sum_n{1\s a_n}$~?\msk
+{\bf 2.} Montrer que la s\'erie $\sum_ng(n)$ est convergente.\msk
+{\bf 3.} En d\'eduire que la fonction $g$ est int\'egrable sur $\rplus$.\msk
+{\bf 4.} S'il reste du temps... d\'emontrer le th\'eor\`eme de Hardy~: {\it pour cela, on pourra \'ecrire\break $\prod_{k=0}^{n-1}u_k={1\s (n+1)^n}\>\prod_{k=0}^{n-1}\lp{(k+2)^{k+1}\s(k+1)^k}\;u_k\rp$}.
+
+\msk
+{\it Source : Jean-Marie ARNAUDI\`ES, L'int\'egrale de Lebesgue sur la droite, \'Editions Vuibert, ISBN 2-7117-8904-7}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} On a $a_n=\int_n^{n+1}f(t)\>dt$\quad ($a_n$ est strictement positif) et l'in\'egalit\'e de Cauchy-Schwarz donne
+$$a_n\lp\int_n^{n+1}{dt\s f(t)}\rp=\lp\int_n^{n+1}f(t)\>dt\rp\lp\int_n^{n+1}{dt\s f(t)}\rp\se\lp\int_n^{n+1}dt\rp^2=1\;,$$
+d'o\`u l'in\'egalit\'e voulue. La fonction ${1\s f}$ \'etant int\'egrable sur $[0,\ii[$, la s\'erie de terme g\'en\'eral $\;\int_n^{n+1}{dt\s f(t)}\;$ converge, il en est donc de m\^eme de la s\'erie $\sum_n{1\s a_n}$.
+
+\msk
+{\bf 2.} On a $F(x)>0$ pour $x>0$, donc $g$ est bien d\'efinie sur $\rplus$, elle est par ailleurs d\'erivable sur $\rpe$ et continue en z\'ero. Par l'in\'egalit\'e arithm\'etico-g\'eom\'etrique, on a, pour tout entier naturel $n$ non nul,\vv
+$${1\s g(n)}={F(n)\s n}={1\s n}\sum_{k=0}^{n-1}a_k\se\Big(\prod_{k=0}^{n-1}a_k\Big)^{{}^{\sst 1\sur\sst n}}\;,$$
+donc $\;g(n)\ie\lp\prod_{k=0}^{n-1}{1\s a_k}\rp^{\!\!{\sst 1\sur\sst n}}\;$ et, d'apr\`es le th\'eor\`eme de Hardy, la s\'erie de terme g\'en\'eral $g(n)$ est convergente.
+
+\msk
+{\bf 3.} La fonction $g$ \'etant \`a valeurs positives, l'int\'egrabilit\'e de $g$ sur $\rplus$ \'equivaut \`a la convergence de la s\'erie de terme g\'en\'eral $\;c_n=\int_n^{n+1}g(t)\>dt$.
+Or, la fonction $g$ est de classe ${\cal C}^1$ sur $[1,\ii[$ et, si on prouve que sa d\'eriv\'ee $g'$ est int\'egrable sur $[1,\ii[$, la s\'erie $\sum_nc_n$ sera de m\^eme nature que la s\'erie $\sum_ng(n)$, donc convergente ({\it eh oui, c'est un th\'eor\`eme au programme!}). On a $\;g'(x)={1\s F(x)}-{x\>f(x)\s F(x)^2}\;$ sur $\rpe$.\msk\sect
+Posons $I=\int_0^{\ii}{dx\s f(x)}>0$. Pour tout r\'eel $x$ strictement positif, l'in\'egalit\'e de Cauchy-Schwarz donne\vv
+$$\lp\int_0^x{dt\s f(t)}\rp\lp\int_0^x f(t)\>dt\rp\se\lp\int_0^x dt\rp^2=x^2\;,$$
+d'o\`u $F(x)\se{x^2\s I}$. On a donc ${1\s F(x)}\ie{I\s x^2}$ et la fonction ${1\s F}$ est int\'egrable sur $[1,\ii[$. Par ailleurs, une int\'egration par parties (\'ecrite ici sur des int\'egrales ind\'efinies) donne\break $\int{x\>f(x)\s F(x)^2}\>dx=-{x\s F(x)}+\int{dx\s F(x)}$~; on a $\Lim{x}{\ii}{x\s F(x)}=0$ et la fonction ${1\s F}$ est int\'egrable sur $[1,\ii[$, il en r\'esulte que la fonction $x\mapsto{x\>f(x)\s F(x)^2}\;$ (\`a valeurs positives) est int\'egrable sur $[1,\ii[$. On a ainsi prouv\'e l'int\'egrabilit\'e sur $[1,\ii[$ de la fonction $g'$, c.q.f.d.
+\msk
+{\bf 4.} On v\'erifie l'\'egalit\'e propos\'ee par l'\'enonc\'e. On a donc\vv
+$$\Big(\prod_{k=0}^{n-1}u_k\Big)^{\sst1\sur\sst n}={1\s n+1}\cdot\prod_{k=0}^{n-1}\lp{(k+2)^{k+1}\s (k+1)^k}\;u_k\rp^{\sst1\sur\sst n}\ie{1\s n(n+1)}\cdot\sum_{k=0}^{n-1}{(k+2)^{k+1}\s (k+1)^k}\;u_k$$
+par l'in\'egalit\'e arithm\'etico-g\'eom\'etrique. Posons alors $\;w_n=\sum_{k=0}^{n-1}{(k+2)^{k+1}\s(k+1)^k}\;u_k\;$ et\break $v_n=\Big(\prod_{k=0}^{n-1}u_k\Big)^{1\s n}$. Alors, pour tout $N\in\net$,\vv
+\begin{eqnarray*}
+\sum_{n=1}^Nv_n & \ie & \sum_{n=1}^N{1\s n(n+1)}\;w_n=\sum_{n=1}^N\lp{1\s n}-{1\s n+1}\rp w_n=\sum_{n=1}^N{w_n\s n}-\sum_{n=2}^{N+1}{w_{n-1}\s n}\\
+ & = & \sum_{n=2}^N{w_n-w_{n-1}\s n}+w_1-{w_N\s N+1}\\
+ & \ie & \sum_{n=2}^N\Big(1+{1\s n}\Big)^n u_{n-1}+2u_0\ie e\>\sum_{n=0}^{N-1}u_n\;.
+\end{eqnarray*}
+car $\;\Big(1+{1\s n}\Big)^n\ie e\;$ pour tout $n\in\net$.\msk\sect
+Ainsi, la convergence de $\sum_nu_n$ entra\^\i ne la convergence de $\sum_n v_n$, et on a, plus pr\'ecis\'ement, la majoration $\;\sum_{n=1}^{\infty}v_n\ie e\>\sum_{n=0}^{\infty}u_n\;$
+({\bf in\'egalit\'e de Carleman}).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

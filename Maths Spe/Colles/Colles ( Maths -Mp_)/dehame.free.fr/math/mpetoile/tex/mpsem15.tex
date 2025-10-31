@@ -1,0 +1,646 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % \'evite le textstyle en mode
+                                % math\'ematique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math\'ematiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de pr\'esentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% divers
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'\'ecriture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% \`a l'int\'erieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d\'ecroissante),
+% \nondef (la fonction est non d\'efinie)
+% si l'on termine la derni\`ere ligne par \cr, un trait est tir\'e en dessous
+% sinon elle est laiss\'ee sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  
+\def\rmat{{\rm I\kern-0.6mm R}}  
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____d\'ef de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% Alg\`ebre lin\'eaire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________d\'eterminant_______
+\def\det{\mathop{\rm det}\nolimits} 
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos\'ee ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  
+\def\MC#1{{\cal M}_{#1}(\cmat)}  
+\def\MK#1{{\cal M}_{#1}(\kmat)}  
+
+%________Complexes_________ 
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   
+\def\Arccos{\mathop{\rm Arccos}\nolimits}  
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     
+\def\Argch{\mathop{\rm Argch}\nolimits}     
+\def\Argth{\mathop{\rm Argth}\nolimits}     
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} 
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s\'eries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr\'eg\'ees%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-\`a-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+\def\cala{{\cal A}}
+\def\fhat{\widehat{f}}
+\let\wh=\widehat
+\def\ftilde{\tilde{f}}
+
+% ********************************************************************************************************************** %
+%                                                                                                                                                                                   %
+%                                                                    FIN   DES   MACROS                                                                              %
+%                                                                                                                                                                                   %
+% ********************************************************************************************************************** %
+
+
+
+
+
+
+
+
+
+
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+
+
+
+\overfullrule=0mm
+
+
+\cl{{\bf SEMAINE 15}}\msk
+\cl{{\bf FORMES QUADRATIQUES}}
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+$K$ est un corps de caract\'eristique nulle.\ssk
+Soit $E$ un $K$-espace vectoriel de dimension finie, soit $q$ une forme quadratique
+sur $E$, de forme polaire $b$.\ssk
+On appelle SETI ({\bf sous-espace totalement isotrope}) tout sous-espace
+vectoriel $F$ de $E$ dont tous les vecteurs sont isotropes~:\vv
+$$\a x\in F\qquad q(x)=0\;.$$\par
+On appelle SETIM tout SETI maximal pour l'inclusion (c'est-\`a-dire qui n'est inclus
+strictement dans aucun SETI).\msk
+{\bf 1.} Soient $U$ et $V$ deux SETI. Montrer que, pour tout $x\in U\inter V^\perp$,
+le sous-espace $W=V+Kx$ est un SETI.\msk
+{\bf 2.} Soient $U$ et $V$ deux SETI, soient $M$ et $N$ des suppl\'ementaires
+de $U\inter V$ dans $U$ et dans $V$ respectivement. Prouver l'inclusion\vv
+$$M\inter N^\perp\subset\; U\inter V^\perp\;.$$\par
+{\bf 3.} Soient $F$ et $G$ deux sous-espaces vectoriels de $E$, de dimensions
+$r$ et $s$. Prouver que\vvv
+$$\dim(F\inter G^\perp)\se r-s\;.$$\par
+{\bf 4.} Montrer que tout SETI est contenu dans au moins un SETIM, puis que
+tous les SETIM ont m\^eme dimension.
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf 1.} Soit $w=v+kx\in V+Kx$. Alors\vv
+$$q(w)=q(v)+2k\>b(v,x)+k^2\>q(x)\;.$$
+Or, $v\in V$ donc $q(v)=0$~; $x\in U$ donc $q(x)=0$~; enfin, $x\in V^\perp$
+donc $b(v,x)=0$. Donc $q(w)=0$ et le sous-espace $W=V+Kx$ est totalement
+isotrope.
+
+\msk
+{\bf 2.} {\it Remarquons d'abord que, si $U$ est un SETI alors $b(u,u')=0$
+pour tous vecteurs $u$ et $u'$ de $U$ (la forme bilin\'eaire induite par $b$ sur $U$ est nulle)~: cela r\'esulte des identit\'es de
+polarisation $\;b(u,u')={1\s4}\big(q(u+u')-q(u-u')\big)$}.\msk\sect
+Soit $x\in M\inter N^\perp$.\ssk\sect
+$\bullet$ Comme $M\subset U$, on a $x\in U$.\ssk\sect
+$\bullet$ Soit $v\in V$, d\'ecomposons-le en $v=u+n$ avec $u\in U\inter V$
+  et $n\in N$. Alors\break $b(x,v)=b(x,u)+b(x,n)$ mais chaque terme est nul
+  (le premier car $x$ et $u$ appartiennent \`a $U$ qui est un SETI, {\it cf}.
+  la remarque faite au d\'ebut de cette question ; le deuxi\`eme car $x\in N^\perp$
+  et $n\in N$). On a donc $b(x,v)=0$ pour tout $v\in V$, donc $x\in V^\perp$.\msk
+  \sect
+Finalement, $x\in U\inter V^\perp$.
+
+\msk
+{\bf 3.} Soit $(g_1,\ldots,g_s)$ une base de $G$. L'application\vv
+$$\system{&\ffi\;: & F & \vers &K^s\cr
+          &        & x & \mapsto & \big(b(x,g_1),\ldots,b(x,g_s)\big)\cr}$$
+est lin\'eaire, et $\Ker\ffi=F\inter G^\perp$. Comme $\Im\ffi\subset K^s$,
+on a $\dim\Im\ffi\ie s$. Le th\'eor\`eme du rang donne alors\vv
+$$\dim(F\inter G^\perp)=\dim(\Ker\ffi)=\dim F-\dim(\Im \ffi)\se r-s\;.$$
+
+\par
+{\bf 4.} Il existe des SETI : $\{0\}$ en est un.\ssk\sect
+Soit $V=V_0$ un SETI~; si ce n'est pas un SETIM, il existe un SETI, $V_1$,
+contenant strictement $V_0$. Si $V_1$ n'est pas un SETIM, il existe un SETI,
+$V_2$, contenant strictement $V_1$. Si $V$ n'\'etait contenu dans aucun SETIM,
+on pourrait construire une suite $(V_n)$ de SETI, strictement croissante
+pour l'inclusion, mais les dimensions de ces sous-espaces iraient aussi en
+croissant strictement, ce qui est impossible dans un espace vectoriel $E$
+de dimension finie. Tout SETI est donc contenu dans au moins un SETIM.
+\msk\sect
+D'apr\`es ce qui pr\'ec\`ede, il existe donc au moins un SETIM dans $E$. Soient
+$U$ et $V$ deux SETIM, supposons $\dim U>\dim V$. Introduisons deux sous-espaces
+$M$ et $N$ tels que\break\new $\system{&U&=&(U\inter V)&\;\oplus&M\cr
+&V&=&(U\inter V)&\;\oplus&N\cr}$. Alors $\dim M>\dim N$, donc (question {\bf 3.})~:
+$$\dim(M\inter N^\perp)\se\dim M-\dim N>0\qquad{\rm et}\qquad M\inter N^\perp
+  \not=\{0\}\;.$$\sect
+Soit $x$ un vecteur non nul de $M\inter N^\perp$. Alors $x\in U\inter V^\perp$
+(question {\bf 2.}), donc $W=V+Kx$ est un SETI (question {\bf 1.}).
+Mais $x\not\in V$ (si on avait $x\in V$, alors $x\in U\inter V$ et $x\in M$,
+donc $x=0$ puisque les sous-espaces sont suppl\'ementaires), donc $W$ contient
+strictement $V$, ce qui est absurde.\ssk\sect
+Il en r\'esulte que les SETIM ont tous la m\^eme dimension, appel\'ee {\bf indice} de la forme $b$ ({\it l'exercice 2 donne un moyen de calculer l'indice d'une forme non d\'eg\'en\'er\'ee}).
+
+
+\bsk
+\hrule
+\bsk
+
+
+{\bf EXERCICE 2 :}\msk
+Soit $E$ un $\rmat$-espace vectoriel de dimension $n$, soit $b$ une forme bilin\'eaire sym\'etrique sur $E$.\ssk On dit qu'un sous-espace vectoriel $F$ de $E$ est {\bf totalement isotrope} (en abr\'eg\'e, un SETI) lorsque $F\subset F^\perp$, c'est-\`a-dire lorsque la forme bilin\'eaire induite par $b$ sur $F$ est la forme nulle.\ssk
+On appelle {\bf base de Witt} pour $b$ toute base ${\cal B}=(u_1,\cdots,u_r,v_1,\cdots,v_r,w_1,\cdots,w_k)$ de $E$, avec $2r+k=n$, dans laquelle la matrice de $b$ est de la forme\vv
+$$W=\pmatrix{0&I_r&0\cr I_r&0&0\cr 0&0&\eps I_k\cr}\;,$$
+avec $\eps\in\{-1,1\}$.
+\bsk
+{\bf 1.} On suppose $b$ non d\'eg\'en\'er\'ee. Montrer que $b$ admet une base de Witt.
+\bsk
+{\bf 2.} On suppose que $b$ admet une base de Witt 
+${\cal B}=(u_1,\cdots,u_r,v_1,\cdots,v_r,w_1,\cdots,w_k)$ et on pose\vv
+$$F=\Vect(u_1,\cdots,u_r)\;,\qquad G=\Vect(v_1,\cdots,v_r)\quad{\rm et}\qquad H=\Vect(w_1,\cdots,w_k)\;.$$
+\sect
+{\bf a.} Montrer que $b$ est non d\'eg\'en\'er\'ee.\ssk\sect
+{\bf b.} D\'eterminer, en fonction des entiers $r$ et $k$, la signature $(p,q)$ de la forme $b$.\ssk\sect
+{\bf c.} D\'eterminer $F^\perp$ et $G^\perp$. Montrer que $G\cap F^\perp=\{0\}$ et $H=(F+G)^\perp$.\ssk\sect
+{\bf d.} Montrer que $F$ et $G$ sont des sous-espaces totalement isotropes, maximaux au sens de l'inclusion.
+
+\msk
+
+{\it Source : J. RIVAUD, Alg\`ebre lin\'eaire, tome 2, \'Editions Vuibert, ISBN 2-7117-2151-5}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\bsk
+
+On notera $f$ la forme quadratique associ\'ee \`a $b$.\msk
+{\bf 1.} Soit $(p,q)$ la signature de la forme $b$. On sait qu'il existe une base $b$-orthogonale $(e_1,\cdots,e_p,e'_1,\cdots,e'_q)$ avec $f(e_i)=+1$ pour $i\in\[ent1,p\]ent$ et $f(e'_j)=-1$ pour  $j\in\[ent 1,q\]ent$.\msk\sect
+Supposons $p\se q$. Posons $\;u_i={1\s\sqrt{2}}\>(e_i+e'_i)\;$ et $\;v_i={1\s\sqrt{2}}\>(e_i-e'_i)\;$ pour $i\in\[ent1,q\]ent$, puis $\;w_i=e_{q+i}\;$ pour $i\in\[ent1,p-q\]ent$. Ces $n$ vecteurs forment \'evidemment une base ${\cal B}$ de $E$.\ssk\new
+On v\'erifie les relations\ssk\new
+$\bullet$ $b(u_i,u_j)=b(v_i,v_j)=0$ pour $(i,j)\in\[ent1,q\]ent^2$, y compris si $i=j$~;\ssk\new
+$\bullet$ $b(u_i,v_i)=1$ pour tout $i\in\[ent1,q\]ent$~;\ssk\new
+$\bullet$ $b(u_i,v_j)=0$ si $i\not=j$~;\ssk\new
+$\bullet$ $f(w_i)=b(w_i,w_i)=1$ pour tout $i\in\[ent1,p-q\]ent$~;\ssk\new
+$\bullet$ pour $i\in\[ent1,p-q\]ent$, $w_i$ est $b$-orthogonal \`a tous les autres vecteurs de la base ${\cal B}$.\msk\new
+La matrice de la forme $b$ dans la base ${\cal B}$ est donc $\;W=\pmatrix{0&I_q&0\cr I_q&0&0\cr 0&0&I_{p-q}\cr}$, donc ${\cal B}$ est une base de Witt pour la forme $b$, avec $r=q$ et $k=p-q$.\msk\sect
+On proc\`ede de m\^eme si $p<q$, avec $W=\pmatrix{0&I_p&0\cr I_p&0&0\cr 0&0&- I_{q-p}\cr}$.\msk\sect
+Dans les deux cas, on obtient une base de Witt pour $b$, avec $r=\min\{p,q\}$ et $k=|p-q|$.
+
+\msk
+
+{\bf 2.a.} La matrice de Witt $W$ est inversible, donc $b$ est non d\'eg\'en\'er\'ee.\msk\sect
+{\bf b.} C'est la question ``inverse'' de la question {\bf 1.}, puisqu'il s'agit, \`a partir de la base de Witt ${\cal B}$, de construire une base $b$-orthogonale. Posons donc $\;e_i={1\s\sqrt{2}}\>(u_i+v_i)\;$ et $\;e'_i={1\s\sqrt{2}}\>(u_i-v_i)\;$ pour $i\in\[ent1,r\]ent$, puis $\;e''_i=w_i\;$ pour $i\in\[ent1,k\]ent$. Je laisse l'improbable lecteur v\'erifier que la base ${\cal B}'=(e_1,\cdots,e_r,e'_1,\cdots,e'_r,e''_1,\cdots,e''_k)$ est $b$-orthogonale, avec $f(e_i)=+1$, $f(e'_i)=-1$ et $f(e''_i)=\eps$. En cons\'equence, la signature de la forme $b$ est $\system{&(r+k,r)&\;&{\rm si}&\;&\eps=+1\cr
+&(r,r+k)&\;&{\rm si}&\;&\eps=-1\cr}$.
+\msk\sect
+{\bf c.} Tout d'abord, rappelons que, si $b$ est non d\'eg\'en\'er\'ee, on a, pour tout sous-espace vectoriel $V$ de $E$, la relation\vv
+$$\dim V+\dim V^\perp=\dim E\;.\qquad\quad\hbox{\bf (*)}$$
+En effet, pour tout $x$ de $E$, consid\'erons la forme lin\'eaire $\beta_x:y\mapsto b(x,y)$. Si $b$ est non d\'eg\'en\'er\'ee, l'application lin\'eaire $\beta:x\mapsto\beta_x$ est injective (donc est un isomorphisme de $E$ sur $E^*$). Si $(x_1,\cdots,x_p)$ est une base de $V$, les $p$ formes lin\'eaires $\beta_{x_1}$, $\cdots$, $\beta_{x_p}$ sont ind\'ependantes et $V^\perp=\bigcap_{i=1}^p\Ker\beta_{x_i}$ est de dimension $n-p$. 
+\msk\new
+De l'allure de la matrice $W$, on d\'eduit que $F+H\subset F^\perp$~; comme ces deux sous-espaces ont m\^eme dimension d'apr\`es {\bf (*)}, on a $F^\perp=F+H$. De m\^eme, $G^\perp=G+H$. Comme $E=F\oplus G\oplus H$, on en d\'eduit $F\cap G^\perp=G\cap F^\perp=\{0\}$.\msk\new
+Enfin, $H\subset F^\perp\cap G^\perp=(F+G)^\perp\;$ et$\;\dim H=n-\dim(F+G)=\dim(F+G)^\perp$, donc $\;(F+G)^\perp=H$.
+\msk\sect
+{\bf d.} On a $F\subset F^\perp$, donc $F$ est totalement isotrope ($F$ est un SETI).\ssk\new
+Montrons qu'il est maximal pour l'inclusion~: si $V$ est un SETI contenant $F$, alors\break $V\subset V^\perp\subset F^\perp=F+H$. Un \'el\'ement de $V$ est donc de la forme $x=y+z$ avec $y\in F$ et $z\in H$. Mais $x$ est isotrope, donc\vv
+$$0=f(x)=f(y)+f(z)+b(y,z)=f(z)$$
+car $y\in F$ est isotrope et $z\in H\subset F^\perp$, donc $f(z)=0$~: $z$ est donc nul puisque la restriction de la forme $b$ au sous-espace $H$ est d\'efinie (positive ou n\'egative selon la valeur de $\eps$). Finalement, $x\in F$, ce qui prouve que $V=F$.
+
+\msk
+{\it Les sous-espaces $F$ et $G$ sont des SETIM pour la forme $b$, cf. exercice 1 et leur dimension commune $r$ est donc l'indice de la forme $b$. La question} {\bf 1.} {\it donne donc la valeur de l'indice en fonction de la signature, dans le cas d'une forme non d\'eg\'en\'er\'ee}.  
+
+
+\bsk
+\hrule
+\bsk
+
+
+Soit $E$ un $\rmat$-espace vectoriel de dimension finie $n$, soit $q$ une forme quadratique non d\'eg\'en\'ere\'e sur $E$, de forme polaire $b$. On note $O(q)$ le {\bf groupe orthogonal} pour la forme $q$, c'est-\`a-dire\vv
+$$O(q)=\{u\in{\rm GL}(E)\;|\;\a (x,y)\in E^2\quad b\big(u(x),u(y)\big)=b(x,y)\}\;.$$
+On note $C(q)$ le {\bf c\^one isotrope} de $q$~:\vv
+$$C(q)=\{x\in E\;|\; q(x)=0\}\;.$$\par
+{\bf 1.} Pour tout vecteur $a$ non isotrope ($a\not\in C(q)$), on d\'efinit l'endomorphisme $s_a$ de $E$ par la relation\vv
+$$\a x\in E\qquad s_a(x)=x-{2\>b(x,a)\s q(a)}\;a\;.$$
+Montrer que $s_a\in O(q)$. Interpr\'eter g\'eom\'etriquement $s_a$.\msk
+{\bf 2.} Soient $x$ et $y$ deux vecteurs de $E$ tels que $q(x)=q(y)\not=0$. Montrer qu'il existe un vecteur $a$ non isotrope tel que $s_a(y)=x$ ou $s_a(y)=-x$.\msk
+{\bf 3.} Montrer que le groupe $O(q)$ est engendr\'e par les $s_a$, avec $a\in E\setminus C(q)$.
+
+\msk
+{\it Source : Jacques CHEVALLET, Alg\`ebre MP/PSI, Collection Vuibert Sup\'erieur, ISBN 2-7117-2092-6}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf 1.} $\bullet$ Tout d'abord, $s_a$ est un automorphisme de l'espace vectoriel $E$ puisque, si $s_a(x)=0$, alors $x$ est colin\'eaire \`a $a$, soit $x=\lam a$, d'o\`u $s_a(x)=\lam a-2\lam a=-\lam a$, puis $x=0$.\ssk\sect
+$\bullet$ Si $x$ et $y$ sont dans $E$, alors\vv
+$$b\big(s_a(x),s_a(y)\big)=b\Big(x-{2b(a,x)\s q(a)}\>a\;,\;y-{2b(a,y)\s q(a)}\>a\Big)=b(x,y)\;,$$
+donc $s_a\in O(q)$.\ssk\sect
+$\bullet$ Soit $H=(\rmat a)^\perp$~: on a alors $E=H\oplus(\rmat a)$. En effet, $H\cap(\rmat a)=\{0\}$ car $a$ est non isotrope et, la forme $b$ \'etant non d\'eg\'en\'er\'ee, la forme lin\'eaire $\ffi:x\mapsto b(x,a)$ n'est pas nulle, donc son noyau $H$ est un hyperplan de $E$. Comme $a\not\in H$, on a bien $H\oplus(\rmat a)=E$. Notons aussi que $H^\perp=\rmat a$~: en effet, $H^\perp=\big((\rmat a)^\perp)^\perp$ contient $\rmat a$ et $\dim H^\perp=n-\dim H=1$ car la forme $b$ est non d\'eg\'en\'er\'ee ({\it cf}. exercice 2, question {\bf 2.c.}). {\it En fait, quand une forme bilin\'eaire sym\'etrique $b$ sur $E$ est non d\'eg\'en\'er\'ee, on a $(V^\perp)^\perp=V$ pour tout sous-espace vectoriel $V$ de $E$}. 
+\ssk\sect
+$\bullet$ $s_a$ est la r\'eflexion d'hyperplan (non isotrope) $H$, c'est-\`a-dire la sym\'etrie par rapport \`a $H$ et parall\`element \`a $H^\perp=\rmat a$~: en effet, $s_a(a)=-a$ et, pour tout $x$ appartenant \`a $H$, $s_a(x)=x$.
+
+\msk
+{\bf 2.} Les vecteurs $x+y$ et $x-y$ ne peuvent \^etre tous deux isotropes car, en ajoutant les relations $q(x+y)=0$ et $q(x-y)=0$, il viendrait $q(x)+q(y)=2q(x)=0$, contraire \`a l'hypoth\`ese.\ssk\sect
+Supposons $x+y$ non isotrope, notons $H$ l'hyperplan $\big(\rmat(x+y)\big)^\perp$~; alors $b(x+y,x-y)=0$, donc $s_{x+y}(y)=-x$ puisque $y-x\in H$ et $y+x\in\rmat(x+y)=H^\perp$.\ssk\new
+{\it Rappelons que, si $E=F\oplus G$, un vecteur $Y$ de $E$ est image du vecteur $X$ par la sym\'etrie par rapport \`a $F$ et parall\`element \`a $G$ si et seulement si $\system{&X+Y&\in&F\cr &X-Y&\in&G\cr}$.}\ssk\sect
+Si $x-y$ est non isotrope, on v\'erifie de m\^eme $s_{x-y}(y)=x$.
+
+\msk
+{\bf 3.} Prouvons-le par r\'ecurrence sur $n=\dim E$.\msk\sect
+C'est \'evident pour $n=1$~: alors $O(q)=\{\id_E,-\id_E\}$ et, si $a\not=0$, $s_a=-\id_E$.\ssk\sect
+Soit $n\se2$, supposons l'assertion vraie en dimension $n-1$, et soit $E$ un $\rmat$-espace vectoriel de dimension $n$, soit $q$ une forme quadratique non d\'eg\'en\'er\'ee sur $E$, de forme polaire $b$. Soit $u\in O(q)$. Soit $a$ un vecteur de $E$, non isotrope, on a alors $q\big(u(a)\big)=q(a)\not=0$, donc il existe un vecteur $c$ non isotrope de $E$ tel que $s_c\big(u(a)\big)=\eps a$, avec $\eps\in\{-1,1\}$.\ssk\new
+Soit l'hyperplan $H=(\rmat a)^\perp$, soit $q'$ la forme induite par $q$ sur $H$.\ssk\sect
+$\bullet$ La forme $q'$ est non d\'eg\'en\'er\'ee~: notons $b'$ sa forme polaire~; si $x\in\Ker b'$, alors $b'(x,y)=b(x,y)=0$ pour tout vecteur $y$ de $H$ mais on a aussi $b(x,a)=0$ car $H=(\rmat a)^\perp$, donc $x\in\Ker b$ et $x=0$.\ssk\sect
+$\bullet$ $H$ est stable par $s_c\circ u$~: si $x\in H$, alors $b(x,a)=0$, donc\vv
+$$b\big(s_c\circ u(x),a\big)=\eps\; b\big(s_c\circ u(x)\;,\;s_c\circ u(a)\big)=\eps\; b(x,a)=0$$
+car $s_c\circ u\in O(q)$~; donc $s_c\circ u(x)\in(\rmat a)^\perp=H$.\ssk\new
+Notons $v'$ l'endomorphisme de $H$ induit par $s_c\circ u$.\ssk\sect
+$\bullet$ $v'\in O(q')$~: il est clair que $\;b'\big(s_c\circ u(x)\;,\;s_c\circ u(y)\big)=b'(x,y)\;$ pour tout $x$ et $y$ de $H$~; enfin, $s_c\circ u$ est un automorphisme de $E$ laissant stable $H$, donc $v'(H)=(s_c\circ u)(H)$ est un sous-espace de $H$ de m\^eme dimension que $H$, donc $v'(H)=H$ et $v'\in{\rm GL}(H)$.\ssk\sect
+$\bullet$ Par l'hypoth\` ese de r\'ecurrence, on peut \'ecrire $v'=s'_{a_1}\circ\cdots\circ s'_{a_k}$ o\`u les vecteurs $a_i$ ($1\ie i\ie k$) de $H$ sont non isotropes pour $q'$ (ou pour $q$, ce qui revient au m\^eme), $s'_{a_i}$ \'etant (dans $H$) la r\'eflexion d'hyperplan l'orthogonal de $\rmat a_i$ dans $H$, c'est-\`a-dire $H\cap(\rmat a_i)^\perp$. Pour tout $i\in\[ent1,k\]ent$, soit $s_{a_i}$ la r\'eflexion (dans $E$) d'hyperplan $(\rmat a_i)^\perp$~: c'est l'unique endomorphisme de $E$ qui co\"\i ncide avec $s'_{a_i}$ sur $H$ et qui v\'erifie $s_{a_i}(a)=a$. Posons alors $\;v=s_{a_1}\circ\cdots\circ s_{a_k}$. \ssk\sect\quad
+Alors\ssk\new
+$\triangleright$ si $x\in H$, on a $\;s_c\circ v(x)=s_c\big(v'(x)\big)=s_c\Big(s_c\big(u(x)\big)\Big)=u(x)$~;\ssk\new
+$\triangleright$ $s_c\circ v(a)=s_c(a)=s_c\Big(\eps\>s_c\big(u(a)\big)\Big)=\eps\>u(a)$.\ssk\sect\quad
+Donc~:\ssk\new
+$\triangleright$ si $\eps=+1$, on a $\;u=s_c\circ v=s_c\circ s_{a_1}\circ\cdots\circ s_{a_k}$~;\ssk\new
+$\triangleright$ si $\eps=-1$, on a $\;u=s_{u(a)}\circ s_c\circ v\;$ puisque, pour $x\in H$, $s_{u(a)}\big(u(x)\big)=u(x)\;$ du fait que $\;b\big(u(x),u(a)\big)=b(x,a)=0\;$ et $\;s_{u(a)}\big(-u(a)\big)=u(a)$~: les deux endomorphismes $u$ et $s_{u(a)}\circ s_c\circ v$ co\"\i ncident donc sur $H$ et sur $\rmat a$.
+\msk\sect
+Dans les deux cas, on a prouv\'e que $u$ est produit d'un nombre fini de r\'eflexions par rapport \`a des hyperplans non isotropes. 
+
+  
+\bsk
+\hrule
+\bsk
+
+Soit $E$ un $\rmat$-espace vectoriel de dimension finie $n$, soit ${\cal B}=(e_1,\cdots,e_n)$ une base de $E$. On note $F$ et $G$ deux formes quadratiques sur $E$, de matrices $A=(a_{ij})$ et $B=(b_{ij})$ dans la base ${\cal B}$.\ssk
+On note $Q$ et $R$ les formes quadratiques sur $E$ dont les matrices relativement \`a la base ${\cal B}$ sont respectivement\vv
+$$M_{{\cal B}}(Q)=C=(a_{ij}b_{ij})\quad;\qquad M_{{\cal B}}(R)=D=\big(e^{a_{ij}}\big)\;.$$
+\par
+{\bf 1.} Montrer que, si $F$ et $G$ sont positives, alors $Q$ l'est aussi. Que peut-on dire si $F$ et $G$ sont d\'efinies positives~?\ssk
+{\bf 2.} Que dire de la forme $R$ si $F$ est positive? d\'efinie positive~?
+
+\msk
+{\it Source : Patrice TAUVEL, Exercices de Math\'ematiques pour l'Agr\'egation, \'Editions Masson, ISBN 2-225-84441-0}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Si $F$ est positive de rang $p$, donc de signature $(p,0)$, elle est somme des carr\'es de $p$ formes lin\'eaires ind\'ependantes $\ffi_1$, $\cdots$, $\ffi_p$. De m\^eme, si $G$ est positive de rang $q$, elle est somme des carr\'es de $q$ formes lin\'eaires ind\'ependantes $\psi_1$, $\cdots$, $\psi_q$~:\vv
+$$F=\sum_{k=1}^p(\ffi_k)^2\quad;\qquad G=\sum_{l=1}^q(\psi_l)^2\;.$$
+Pour tout $k\in\[ent1,p\]ent$, notons $\Phi_k=\pmatrix{\alpha_1^{(k)}&\cdots&\alpha_n^{(k)}\cr}$ la matrice de la forme lin\'eaire $\ffi_k$ dans la base ${\cal B}$. Posons de m\^eme $\Psi_l=M_{{\cal B}}(\psi_l)=\pmatrix{\beta_1^{(l)}&\cdots&\beta_n^{(l)}\cr}$ pour $l\in\[ent1,q\]ent$. On a alors $\;A=\sum_{k=1}^p\t\;\Phi_k\Phi_k\;$ et $\;B=\sum_{l=1}^q\t\;\Psi_l\Psi_l$, c'est-\`a-dire\vv
+$$\a(i,j)\in\[ent1,n\]ent^2\qquad a_{ij}=\sum_{k=1}^p\alpha_i^{(k)}\alpha_j^{(k)}\quad{\rm et}\quad b_{ij}=\sum_{l=1}^q\beta_i^{(l)}\beta_j^{(l)}\;.$$
+Donc, si $x=x_1e_1+\cdots+x_ne_n$, on a\vv
+\begin{eqnarray*}
+Q(x) & = & \sum_{i,j}a_{ij}b_{ij}x_ix_j\;=\;\sum_{i=1}^n\sum_{j=1}^n\Big(\sum_{k=1}^p\alpha_i^{(k)}\alpha_j^{(k)}\Big)\>\Big(\sum_{l=1}^q\beta_i^{(l)}\beta_j^{(l)}\Big)\>x_ix_j\\ \noalign{\ssk}
+& = & \sum_{k=1}^p\sum_{l=1}^q\Big(\sum_{i=1}^n\alpha_i^{(k)}\beta_i^{(l)}x_i\Big)\Big(\sum_{j=1}^n\alpha_j^{(k)}\beta_j^{(l)}x_j\Big)\\ \noalign{\ssk}
+& = & \sum_{k=1}^p\sum_{l=1}^q\Big(\sum_{i=1}^n\alpha_i^{(k)}\beta_i^{(l)}x_i\Big)^2\;,
+\end{eqnarray*}
+donc $Q(x)\se0$~: la forme $Q$ est positive.\msk\sect
+Supposons $F$ et $G$ d\'efinies positives (alors $p=q=n$). Si $Q(x)=0$, alors chaque terme de la somme est nulle, soit $\;\sum_{i=1}^n\alpha_i^{(k)}\beta_i^{(l)}x_i=0\;$ pour tout $(k,l)\in\[ent1,n\]ent^2$. Pour tout $l\in\[ent1,n\]ent$, notons $y_l$ le vecteur de coordonn\'ees $(\beta_1^{(l)}x_1,\cdots,\beta_n^{(l)}x_n)$ dans la base ${\cal B}$. On a $\ffi_k(y_l)=0$ pour tout $k\in\[ent1,n\]ent$, soit $y_l\in\bigcap_{k=1}^n\Ker\ffi_k$ donc $y_l=0$ puisque les formes lin\'eaires $\ffi_k$ sont ind\'ependantes. On en d\'eduit que, pour tout $l\in\[ent1,n\]ent$, $\psi_l(x)=\sum_{i=1}^n\beta_i^{(l)}x_i=0$ donc $x\in\bigcap_{l=1}^n\Ker\psi_l$, donc $x=0$ puisque les formes lin\'eaires $\psi_l$ sont ind\'ependantes. La forme $Q$ est donc d\'efinie positive.
+
+\msk
+{\bf 2.} Pour tout $p\in\nmat$, notons $A_p$ la matrice de coefficients $(a_{ij}^p)$ (par convention, $A_0$ est la matrice dont tous les coefficients sont \'egaux \`a 1). La forme quadratique de matrice $A_0$ dans la base ${\cal B}$ est positive, plus pr\'ecis\'ement de signature $(1,0)$ puisque\vv
+$$\t\>XA_0X=\sum_{i,j=1}^nx_ix_j=\Big(\sum_{i=1}^nx_i\Big)^2\;.$$
+Si la forme $F$ est positive alors, d'apr\`es la question {\bf 1.}, la forme $F_p$ d\'efinie par\break $F_p(x)=\t\>XA_pX$ est positive pour tout $p\in\net$ donc\vv
+$$R(x)=\t\>XDX=\sum_{i,j}x_ie^{a_{ij}}x_j=\sum_{i,j}x_i\Big(\sum_{p=0}^{\infty}{a_{ij}^p\s p!}\Big)x_j=\sum_{p=0}^{\infty}\Big(\sum_{i,j}{x_ia_{ij}^px_j\s p!}\Big)=\sum_{p=0}^{\infty}{\t\>XA_pX\s p!}\;.$$
+Chaque terme \'etant positif, on a $R(x)\se0$, donc la forme quadratique $R$ est positive.\msk\sect
+Si $F$ est d\'efinie positive, si $R(x)=0$, alors chaque terme doit \^etre nul, et en particulier\break $\t\>XAX=F(x)=0$, donc $x=0$~: la forme $R$ est d\'efinie positive.
+
+
+\bsk
+\hrule
+\bsk
+
+Soit $q$ la forme quadratique sur $\rmat^3$ d\'efinie par\vv
+$$\a \>\vect{X}=(x,y,z)\in\rmat^3\qquad q(\vect{X})=x^2+4z^2+2xy+2yz+4zx\;.$$\par
+D\'eterminer tous les plans $P$ de $\rmat^3$ tels que la restriction de $q$ \`a $P$ soit d\'efinie positive.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+Commen\c cons par une r\'eduction de Gauss~:\vv
+$$q(\vect{X}) =  (x+y+2z)^2-y^2+2yz-4yz =  (x+y+2z)^2+z^2-(y+z)^2$$
+(les trois formes lin\'eaires sont ind\'ependantes), $q$ est donc de signature $(2,1)$.
+\msk
+Si $P$ est un plan tel que $q|_P$ soit d\'efinie positive, alors $P^\perp$ est une droite suppl\'ementaire de $P$ ({\it en effet, lorsqu'une forme quadratique est non d\'eg\'en\'er\'ee, on a $\dim V+\dim V^\perp=\dim E$ et $(V^\perp)^\perp=V$ pour tout sous-espace vectoriel $V$ de $E$, cf. exercice 2, question {\bf 2.c.}~; de plus, si le sous-espace $V$ est non isotrope, c'est-\`a-dire si $V\cap V^\perp=\{0\}$, alors il est \'evident que $V\oplus V^\perp=E$}), notons $P^\perp=\rmat\vect{u}$~; on a alors $q(\vect{u})<0$ par le th\'eor\`eme d'inertie de Sylvester.\msk
+R\'eciproquement, si un plan $P$ admet un vecteur $q$-orthogonal $\vect{u}$ tel que $q(\vect{u})<0$, alors\break $P^\perp=\rmat\vect{u}$, puis $(\rmat\vect{u})^\perp=P$ et $P\oplus\rmat\vect{u}=\rmat^3$ car le vecteur $\vect{u}$ est non isotrope. De la loi d'inertie de Sylvester, il r\'esulte que $q|_P$ est d\'efinie positive.\bsk
+Nous cherchons donc les plans $P$ tels qu'un vecteur $\vect{u}$, $q$-orthogonal \`a ce plan, v\'erifie $q(\vect{u})<0$. La forme polaire $f$ de $q$ est d\'efinie par\vv
+$$f(\vect{X},\vect{X'})=xx'+4zz'+2xz'+2zx'+xy'+yx'+yz'+zy'$$
+donc, si $\vect{u}=(a,b,c)$ est un vecteur non nul, le plan $P=(\rmat\vect{u})^\perp$ ({\it qui n'est pas toujours un suppl\'ementaire de $\rmat\vect{u}$}) admet pour \'equation cart\'esienne $\alpha x+\beta y+\gamma z=0$, avec $\system{&\alpha&=&a&+&b&+&2c\cr &\beta&=&a&&&+&c\cr &\gamma&=&2a&+&b&+&4c\cr}$. En ``inversant le point de vue'' (et le syst\`eme), un plan P d'\'equation cart\'esienne $\alpha x+\beta y+\gamma z=0$
+avec $(\alpha,\beta,\gamma)\not=(0,0,0)$ admet pour vecteur $q$-orthogonal $\vect{u}=(a,b,c)$ avec $\system{&a&=&\alpha&+&2\beta&-&\gamma\cr &b&=&2\alpha&&&-&\gamma\cr &c&=&-\alpha&-&\beta&+&\gamma\cr}$. La forme $q|_P$ est d\'efinie positive si et seulement si $q(\vect{u})<0$, c'est-\`a-dire si et seulement si ({\it apr\`es calculs})\vv
+$$\alpha^2+\gamma^2+4\alpha\beta-2\alpha\gamma-2\beta\gamma<0\;.$$
+
+\bsk
+\hrule
+\bsk
+
+Soit $K$ un corps fini, de caract\'eristique diff\'erente de 2.\msk
+{\bf 1.} D\'emontrer l'assertion~: $\;\a(a,b)\in(K^*)^2\quad\e(x,y)\in K^2\qquad ax^2+by^2=1$.
+\msk
+{\bf 2.} Soit $\alpha$ un \'el\'ement de $K$ qui n'est pas un carr\'e dans $K$. Soit $E$ un $K$-espace vectoriel de dimension $n$. Montrer que, pour toute forme quadratique $q$ non d\'eg\'en\'er\'ee sur $E$, il existe une base ${\cal B}$ de $E$ dans laquelle la matrice de $q$ est, soit la matrice -unit\'e $I_n$, soit la matrice diagonale $D=\diag(1,1,\cdots,1,\alpha)$.
+
+\msk
+
+{\it Source : Cyril GRUNSPAN et Emmanuel LANZMANN, L'oral de math\'ematiques aux concours, Alg\`ebre, Collection Vuibert Sup\'erieur, ISBN 2-7117-8824-5}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf 1.} Soit $N=|K|$ le cardinal de $K$. Alors $K^*$ est un groupe de cardinal $N-1$ et l'application $\gamma:x\mapsto x^2$ est un endomorphisme de ce groupe, de noyau $\{-1,1\}$ (ces deux \'el\'ements, {\it distincts}, appartiennent \`a $\Ker\gamma$ et l'\'equation $x^2-1=0$ ne peut avoir plus de deux solutions dans le corps $K$). Donc $\Im\gamma$ (ensemble des carr\'es de $K^*$) est de cardinal ${N-1\s2}$. Comme 0 est un carr\'e dans $K$, l'ensemble $\Gamma$ des carr\'es dans $K$ est de cardinal ${N+1\s2}$.\msk\sect
+Consid\'erons maintenant les ensembles $A\;=\{ax^2\;;\;x\in K\}\;$ et $\;B=\{1-by^2\;;\;y\in K\}$. Ils sont tous deux de cardinal ${N+1\s2}$, donc $|A|+|B|>|K|$ et $A\cap B\not=\emptyset$, ce qui d\'emontre l'assertion.
+\msk\sect
+{\it On d\'emontre de fa\c con analogue que tout \'el\'ement $a$ de $K$ est somme de deux carr\'es, en consid\'erant les ensembles $\;\{x^2\;;\;x\in K\}=\Gamma\;$ et $\;\{a-y^2\;;\;y\in K\}$.}
+
+\msk
+{\bf 2.} Proc\'edons par r\'ecurrence sur $n=\dim E$.\ssk\sect
+$\bullet$ Pour $n=1$, $E=Ka$ avec $a$ vecteur non nul de $E$.\ssk\new
+$\triangleright$ si $q(a)\in\Gamma$, alors $q(a)=\lam^2$ (avec $\lam\in K^*$ car $q$ est non d\'eg\'en\'er\'ee) et $q\lp{a\s\lam}\rp=1$, donc la matrice de $q$ dans la base ${\cal B}=\lp{a\s\lam}\rp$ est $I_1=(1)$~;\ssk\new
+$\triangleright$ si $q(a)\not\in\Gamma$, alors il existe $\lam\in K^*$ tel que $\lam^2 q(a)=\alpha$~: en effet, l'application\break $\Ker\gamma=\Gamma\setminus\{0\}\vers K\setminus\Gamma$, $z\mapsto q(a) z$, est injective, donc surjective car les ensembles de d\'epart et d'arriv\'ee ont le m\^eme cardinal ${N-1\s2}$. Donc $q(\lam a)=\alpha$ et la matrice de $q$ dans la base ${\cal B}=(\lam a)$ est $(\alpha)$.\msk\sect
+$\bullet$ Soit $n\se2$, supposons l'assertion vraie en dimension $n-1$, soit $q$ une forme non d\'eg\'en\'er\'ee sur $E$ de dimension $n$. Il existe une base orthogonale ${\cal B}=(e_1,\cdots,e_n)$ de vecteurs non isotropes, c'est-\`a-dire avec $q(e_i)\not=0$ pour tout $i\in\[ent1,n\]ent$. Posons $a=q(e_1)$ et $b=q(e_2)$. D'apr\`es la question {\bf 1.}, on peut trouver deux scalaires $x$ et $y$ tels que $ax^2+by^2=1$, donc le vecteur $u=xe_1+ye_2$ v\'erifie $q(u)=1$. Ce vecteur $u$ \'etant non isotrope, on a $E=(Ku)\oplus H$, o\`u $H=(Ku)^\perp$. La forme $q'$ induite par $q$ sur $H$ \'etant non d\'eg\'en\'er\'ee (v\'erification imm\'ediate), on peut lui appliquer l'hypoth\`ese de r\'ecurrence~: il existe une base $(f_1,\cdots,f_{n-1})$ de $H$ dans laquelle la forme $q'$ admet pour matrice $I_{n-1}$ ou $\diag(1\$ (n-2),\alpha)$. La matrice de $q$ dans la base $(u,f_1,\cdots,f_{n-1})$ de $E$ est alors $I_n$ ou $\diag(1\$ (n-1),\alpha)$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

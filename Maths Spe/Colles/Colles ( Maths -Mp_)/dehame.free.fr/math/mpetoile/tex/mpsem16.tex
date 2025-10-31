@@ -1,0 +1,673 @@
+\documentclass{article}
+\begin{document}
+
+\parindent=-8mm\leftskip=8mm
+\def\new{\par\hskip 8.3mm}
+\def\sect{\par\quad}
+\hsize=147mm  \vsize=230mm
+\hoffset=-10mm\voffset=0mm
+
+\everymath{\displaystyle}       % \'evite le textstyle en mode
+                                % math\'ematique
+
+\font\itbf=cmbxti10
+
+\let\dis=\displaystyle          %raccourci
+\let\eps=\varepsilon            %raccourci
+\let\vs=\vskip                  %raccourci
+
+
+\frenchspacing
+
+\let\ie=\leq
+\let\se=\geq
+
+
+
+\font\pc=cmcsc10 % petites capitales (aussi cmtcsc10)
+
+\def\tp{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}%
+
+
+
+\font\info=cmtt10
+
+
+
+
+%%%%%%%%%%%%%%%%% polices grasses math\'ematiques %%%%%%%%%%%%
+\font\tenbi=cmmib10 % bold math italic
+\font\sevenbi=cmmi7% scaled 700
+\font\fivebi=cmmi5 %scaled 500
+\font\tenbsy=cmbsy10 % bold math symbols
+\font\sevenbsy=cmsy7% scaled 700
+\font\fivebsy=cmsy5% scaled 500
+%%%%%%%%%%%%%%% polices de pr\'esentation %%%%%%%%%%%%%%%%%
+\font\titlefont=cmbx10 at 20.73pt
+\font\chapfont=cmbx12
+\font\secfont=cmbx12
+\font\headfont=cmr7
+\font\itheadfont=cmti7% at 6.66pt
+
+
+
+% divers
+\def\euler{\cal}
+\def\goth{\cal}
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%  tableaux de variations %%%%%%%%%%%%%%%%%%%%%%%
+% petite macro d'\'ecriture de tableaux de variations
+% syntaxe:
+%         \variations{t    && ... & ... & .......\cr
+%                     f(t) && ... & ... & ...... \cr
+%
+%etc...........}
+% \`a l'int\'erieur de cette macro on peut utiliser les macros
+% \croit (la fonction est croissante),
+% \decroit (la fonction est d\'ecroissante),
+% \nondef (la fonction est non d\'efinie)
+% si l'on termine la derni\`ere ligne par \cr, un trait est tir\'e en dessous
+% sinon elle est laiss\'ee sans trait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\variations#1{\par\medskip\centerline{\vbox{{\offinterlineskip
+            \def\decroit{\searrow}
+    \def\croit{\nearrow}
+    \def\nondef{\parallel}
+    \def\tableskip{\omit& height 4pt & \omit \endline}
+    % \everycr={\noalign{\hrule}}
+            \def\cr{\endline\tableskip\noalign{\hrule}\tableskip}
+    \halign{
+             \tabskip=.7em plus 1em
+             \hfil\strut $##$\hfil &\vrule ##
+              && \hfil $##$ \hfil \endline
+              #1\crcr
+           }
+ }}}\medskip}   
+
+%%%%%%%%%%%%%%%%%%%%%%%% NRZCQ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nmat{{\rm I\kern-0.5mm N}}  
+\def\rmat{{\rm I\kern-0.6mm R}}  
+\def\cmat{{\rm C\kern-1.7mm\vrule height 6.2pt depth 0pt\enskip}}  
+\def\zmat{\mathop{\raise 0.1mm\hbox{\bf Z}}\nolimits}
+\def\qmat{{\rm Q\kern-1.8mm\vrule height 6.5pt depth 0pt\enskip}}  
+\def\dmat{{\rm I\kern-0.6mm D}}
+\def\lmat{{\rm I\kern-0.6mm L}}
+\def\kmat{{\rm I\kern-0.7mm K}}
+
+%___________intervalles d'entiers______________
+\def\[ent{[\hskip -1.5pt [}
+\def\]ent{]\hskip -1.5pt ]}
+\def\rent{{\bf ]}\hskip -2pt {\bf ]}}
+\def\lent{{\bf [}\hskip -2pt {\bf [}}
+
+%_____d\'ef de combinaison
+\def\comb{\mathop{\hbox{\large C}}\nolimits}
+
+%%%%%%%%%%%%%%%%%%%%%%% Alg\`ebre lin\'eaire %%%%%%%%%%%%%%%%%%%%%
+%________image_______
+\def\im{\mathop{\rm Im}\nolimits}
+%________d\'eterminant_______
+\def\det{\mathop{\rm det}\nolimits} 
+\def\Det{\mathop{\rm Det}\nolimits}
+\def\diag{\mathop{\rm diag}\nolimits}
+%________rang_______
+\def\rg{\mathop{\rm rg}\nolimits}
+%________id_______
+\def\id{\mathop{\rm id}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+\def\Id{\mathop{\rm Id}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\bary{\mathop{\rm bar}\nolimits}
+\def\card{\mathop{\rm card}\nolimits}
+\def\Card{\mathop{\rm Card}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
+\def\Vect{\mathop{\rm Vect}\nolimits}
+\def\Log{\mathop{\rm Log}\nolimits}
+
+%________GL_______
+\def\GLR#1{{\rm GL}_{#1}(\rmat)}  
+\def\GLC#1{{\rm GL}_{#1}(\cmat)}  
+\def\GLK#1#2{{\rm GL}_{#1}(#2)}
+\def\SO{\mathop{\rm SO}\nolimits}
+\def\SDP#1{{\cal S}_{#1}^{++}}
+%________spectre_______
+\def\Sp{\mathop{\rm Sp}\nolimits}
+%_________ transpos\'ee ________
+%\def\t{\raise .2em\hbox{${}^{\hbox{\seveni t}}\!$}}
+\def\t{\,{}^t\!\!}
+
+%_______M gothL_______
+\def\MR#1{{\cal M}_{#1}(\rmat)}  
+\def\MC#1{{\cal M}_{#1}(\cmat)}  
+\def\MK#1{{\cal M}_{#1}(\kmat)}  
+
+%________Complexes_________ 
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+%_______cal L_______
+\def\L{{\euler L}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fonctions classiques %%%%%%%%%%%%%%%%%%%%%%
+%________cotg_______
+\def\cotan{\mathop{\rm cotan}\nolimits}
+\def\cotg{\mathop{\rm cotg}\nolimits}
+\def\tg{\mathop{\rm tg}\nolimits}
+%________th_______
+\def\tanh{\mathop{\rm th}\nolimits}
+\def\th{\mathop{\rm th}\nolimits}
+%________sh_______
+\def\sinh{\mathop{\rm sh}\nolimits}
+\def\sh{\mathop{\rm sh}\nolimits}
+%________ch_______
+\def\cosh{\mathop{\rm ch}\nolimits}
+\def\ch{\mathop{\rm ch}\nolimits}
+%________log_______
+\def\log{\mathop{\rm log}\nolimits}
+\def\sgn{\mathop{\rm sgn}\nolimits}
+
+\def\Arcsin{\mathop{\rm Arcsin}\nolimits}   
+\def\Arccos{\mathop{\rm Arccos}\nolimits}  
+\def\Arctan{\mathop{\rm Arctan}\nolimits}   
+\def\Argsh{\mathop{\rm Argsh}\nolimits}     
+\def\Argch{\mathop{\rm Argch}\nolimits}     
+\def\Argth{\mathop{\rm Argth}\nolimits}     
+\def\Arccotan{\mathop{\rm Arccotan}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+\def\Argcoth{\mathop{\rm Argcoth}\nolimits}
+\def\E{\mathop{\rm E}\nolimits}
+\def\C{\mathop{\rm C}\nolimits}
+
+\def\build#1_#2^#3{\mathrel{\mathop{\kern 0pt#1}\limits_{#2}^{#3}}} 
+
+%________classe C_________
+\def\C{{\cal C}}
+%____________suites et s\'eries_____________________
+\def\suiteN #1#2{(#1 _#2)_{#2\in \nmat }}  
+\def\suite #1#2#3{(#1 _#2)_{#2\ge#3 }}  
+\def\serieN #1#2{\sum_{#2\in \nmat } #1_#2}  
+\def\serie #1#2#3{\sum_{#2\ge #3} #1_#2}  
+
+%___________norme_________________________
+\def\norme#1{\|{#1}\|}  
+\def\bignorme#1{\left|\hskip-0.9pt\left|{#1}\right|\hskip-0.9pt\right|}
+
+%____________vide (perso)_________________
+\def\vide{\hbox{\O }}
+%____________partie
+\def\P{{\cal P}}
+
+%%%%%%%%%%%%commandes abr\'eg\'ees%%%%%%%%%%%%%%%%%%%%%%%
+\let\lam=\lambda
+\let\ddd=\partial
+\def\bsk{\vspace{12pt}\par}
+\def\msk{\vspace{6pt}\par}
+\def\ssk{\vspace{3pt}\par}
+\let\noi=\noindent
+\let\eps=\varepsilon
+\let\ffi=\varphi
+\let\vers=\rightarrow
+\let\srev=\leftarrow
+\let\impl=\Longrightarrow
+\let\tst=\textstyle
+\let\dst=\displaystyle
+\let\sst=\scriptstyle
+\let\ssst=\scriptscriptstyle
+\let\divise=\mid
+\let\a=\forall
+\let\e=\exists
+\let\s=\over
+\def\vect#1{\overrightarrow{\vphantom{b}#1}}
+\let\ov=\overline
+\def\eu{\e !}
+\def\pn{\par\noi}
+\def\pss{\par\ssk}
+\def\pms{\par\msk}
+\def\pbs{\par\bsk}
+\def\pbn{\bsk\noi}
+\def\pmn{\msk\noi}
+\def\psn{\ssk\noi}
+\def\nmsk{\noalign{\msk}}
+\def\nssk{\noalign{\ssk}}
+\def\equi_#1{\build\sim_#1^{}}
+\def\lp{\left(}
+\def\rp{\right)}
+\def\lc{\left[}
+\def\rc{\right]}
+\def\lci{\left]}
+\def\rci{\right[}
+\def\Lim#1#2{\lim_{#1\vers#2}}
+\def\Equi#1#2{\equi_{#1\vers#2}}
+\def\Vers#1#2{\quad\build\longrightarrow_{#1\vers#2}^{}\quad}
+\def\Limg#1#2{\lim_{#1\vers#2\atop#1<#2}}
+\def\Limd#1#2{\lim_{#1\vers#2\atop#1>#2}}
+\def\lims#1{\Lim{n}{+\infty}#1_n}
+\def\cl#1{\par\centerline{#1}}
+\def\cls#1{\pss\centerline{#1}}
+\def\clm#1{\pms\centerline{#1}}
+\def\clb#1{\pbs\centerline{#1}}
+\def\cad{\rm c'est-\`a-dire}
+\def\ssi{\it si et seulement si}
+\def\lac{\left\{}
+\def\rac{\right\}}
+\def\ii{+\infty}
+\def\eg{\rm par exemple}
+\def\vv{\vskip -2mm}
+\def\vvv{\vskip -3mm}
+\def\vvvv{\vskip -4mm}
+\def\union{\;\cup\;}
+\def\inter{\;\cap\;}
+\def\sur{\above .2pt}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\vrule height 8pt depth 5pt width 1pt}
+\def\rplus{\rmat_+}
+\def\rpe{\rmat_+^*}
+\def\rdeux{\rmat^2}
+\def\rtrois{\rmat^3}
+\def\net{\nmat^*}
+\def\ret{\rmat^*}
+\def\cet{\cmat^*}
+\def\rbar{\ov{\rmat}}
+\def\deter#1{\left|\matrix{#1}\right|}
+\def\intd{\int\!\!\!\int}
+\def\intt{\int\!\!\!\int\!\!\!\int}
+\def\ce{{\cal C}}
+\def\ceun{{\cal C}^1}
+\def\cedeux{{\cal C}^2}
+\def\ceinf{{\cal C}^{\infty}}
+\def\zz#1{\;{\raise 1mm\hbox{$\zmat$}}\!\!\Bigm/{\raise -2mm\hbox{$\!\!\!\!#1\zmat$}}}
+\def\interieur#1{{\buildrel\circ\over #1}}
+%%%%%%%%%%%% c'est la fin %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+
+
+\catcode`\@=11
+\def\system#1{\left\{\null\,\vcenter{\openup1\jot\m@th
+\ialign{\strut\hfil$##$&$##$\hfil&&\enspace$##$\enspace&
+\hfil$##$&$##$\hfil\crcr#1\crcr}}\right.}
+\catcode`\@=12
+\pagestyle{empty}
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+\def\cala{{\cal A}}
+\def\fhat{\widehat{f}}
+\let\wh=\widehat
+\def\ftilde{\tilde{f}}
+
+% ********************************************************************************************************************** %
+%                                                                                                                                                                                   %
+%                                                                    FIN   DES   MACROS                                                                              %
+%                                                                                                                                                                                   %
+% ********************************************************************************************************************** %
+
+
+
+
+
+
+
+
+
+
+\def\lap#1{{\cal L}[#1]}
+\def\DP#1#2{{\partial#1\s\partial#2}}
+
+
+
+\overfullrule=0mm
+
+
+\cl{{\bf SEMAINE 16}}\msk
+\cl{{\bf ESPACES EUCLIDIENS}}
+\bsk
+
+{\bf EXERCICE 1 :}\msk
+Soit $C$ une partie convexe d'un $\rmat$-espace vectoriel $E$. Un point $x$ de $C$ est dit {\bf extr\'emal} si\vv
+$$\Big(x={y+z\s2}\quad{\rm avec}\quad y\in C\;,\;z\in C\Big)\;\impl\;(y=z=x)\;.$$
+\par
+Soit $E$ un espace euclidien. On note\vv
+$$C=\{u\in{\cal L}(E)\;|\;\a x\in E\quad\|u(x)\|\ie\|x\|\}\;.$$\par
+Montrer que $C$ est une partie convexe de ${\cal L}(E)$ et que l'ensemble de ses points extr\'emaux est exactement le groupe orthogonal $O(E)$.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+$\bullet$ La partie $C$ est la boule unit\'e ferm\'ee de ${\cal L}(E)$ muni de la norme subordonn\'ee \`a la norme euclidienne de $E$, et il est imm\'ediat de v\'erifier ({\it gr\^ace \`a l'in\'egalit\'e triangulaire}) qu'une boule dans un espace vectoriel norm\'e est toujours convexe.
+\msk
+$\bullet$ Soit $f\in O(E)$, on a alors $f\in C$. Supposons $f={u+v\s2}$ avec $u\in C$, $v\in C$. Pour tout vecteur $x$ non nul de $E$, on a\vv
+$$\|x\|=\|f(x)\|={1\s2}\>\|u(x)+v(x)\|\ie{1\s2}\>\big(\|u(x)\|+\|v(x)\|\big)\ie{1\s2}\>\big(\|x\|+\|x\|\big)=\|x\|\;.$$
+On en d\'eduit $\;\|u(x)\|+\|v(x)\|=2\|x\|$ et, chacun des deux termes \'etant inf\'erieur ou \'egal \`a $\|x\|$, cela entra\^\i ne $\;\|u(x)\|=\|v(x)\|=\|x\|$. Enfin, $\|u(x)+v(x)\|=\|u(x)\|+\|v(x)\|$ implique que les vecteurs $u(x)$ et $v(x)$ sont colin\'eaires et de m\^eme sens, donc finalement \'egaux. Donc $u=v=f$.
+\msk
+$\bullet$ Soit $f\in C$, suppos\'e non orthogonal. Utilisons la d\'ecomposition polaire~: il existe $\omega\in O(E)$ et $s\in{\cal L}(E)$ auto-adjoint d\'efini positif tels que $f=\omega s$. L'endomorphisme $s$ est diagonalisable dans une base orthonormale ${\cal B}$ de $E$, soit $M_{{\cal B}}(s)=\diag(\lam_1,\cdots,\lam_n)$. Les $\lam_i$ sont des r\'eels appartenant \`a $]0,1]$. Ils ne sont pas tous \'egaux \`a 1, sinon on aurait $s=\id_E$ et $f\in O(E)$. Supposons par exemple $\lam_1\in]0,1[$. Consid\'erons alors les endomorphismes $u$ et $v$, de matrices $\diag(1,\lam_2,\cdots,\lam_n)$ et $\diag(2\lam_1-1,\lam_2,\cdots,\lam_n)$ respectivement dans la base ${\cal B}$, puis $g=\omega u$ et $h=\omega v$. Comme $|2\lam_1-1|\ie1$, les endomorphismes $g$ et $h$ appartiennent \`a $C$~; ils sont tous deux distincts de $f$, et $f={g+h\s2}$, donc $f$ n'est pas un \'el\'ement extr\'emal de $C$.
+\msk
+{\bf Rappel sur la d\'ecomposition polaire~:}\ssk
+{\bf Soit $f$ un automorphisme d'un espace euclidien $E$. Alors il existe un unique couple $(\omega,s)$, avec $\omega\in O(E)$ et $s\in{\cal L}(E)$ auto-adjoint d\'efini positif, tel que $f=\omega s$.}\ssk
+{\it Preuve~: Commen\c cons par d\'emontrer que tout endomorphisme auto-adjoint d\'efini positif $s$ admet une unique racine carr\'ee $\sigma$ auto-adjointe d\'efinie positive~: en effet, dans une certaine base orthonormale ${\cal B}$ de $E$, la matrice de $s$ est $\diag(\lam_1,\cdots,\lam_n)$ avec les $\lam_i$ srictement positifs~; l'endomorphisme $\sigma$ dont la matrice dans la base ${\cal B}$ est $\diag(\sqrt{\lam_1},\cdots,\sqrt{\lam_n})$ est auto-adjoint d\'efini positif et v\'erifie $\sigma^2=\sigma^*\sigma=s$, d'o\`u l'existence.\new
+Pour l'unicit\'e, si $\sigma$ est un endomorphisme auto-adjoint d\'efini positif v\'erifiant $\sigma^2=s$, alors $\sigma$ et $s$ commutent~; les sous-espaces propres $E_1$, $\ldots$, $E_m$ de $s$ associ\'es aux valeurs propres $\lam_1$, $\ldots$, $\lam_m$ ({\it ici suppos\'ees deux \`a deux distinctes}) sont donc stables par $\sigma$. Comme l'endomorphisme $\sigma$ est diagonalisable, sa restriction $\sigma_i$ au sous-espace $E_i$ l'est aussi~: si $\mu$ est une valeur propre de $\sigma_i$ et $x$ un vecteur propre associ\'e, on a $\;\sigma(x)=\mu x\;$ d'o\`u $\;s(x)=\mu^2x$, mais $s(x)=\lam_ix$, donc $\mu^2=\lam_i$ et $\mu=\sqrt{\lam_i}$ puisque $\sigma$ est positif. La restriction $\sigma_i$ de $\sigma$ au sous-espace $E_i$ est donc $\sqrt{\lam_i}\>\id_{E_i}$, ce qui d\'etermine enti\`erement $\sigma$.\ssk\sect
+Soit maintenant $f\in{\rm GL}(E)$, l'endomorphisme $f^*f$ est auto-adjoint d\'efini positif, donc admet une racine carr\'ee auto-adjointe d\'efinie positive $s$~; il reste \`a v\'erifier que $\omega=fs^{-1}$ est orthogonal, ce qui est une pure formalit\'e, d'o\`u l'existence. Enfin, si $f=\omega s$, alors $f^*f=s^2$ donc $s$ est n\'ecessairement la racine carr\'ee auto-adjointe d\'efinie positive de $f^*f$ et $\omega=fs^{-1}$, d'o\`u l'unicit\'e.
+\msk
+D\'emontrons maintenant le r\'esultat suivant~:\ssk
+{\bf Soit $f$ un endomorphisme d'un espace euclidien $E$. Alors il existe au moins un couple $(\omega,s)$, avec $\omega\in O(E)$ et $s\in{\cal L}(E)$ auto-adjoint positif, tel que $f=\omega s$.}\ssk
+{\it Preuve~: L'ensemble ${\rm GL}(E)$ des automorphismes de $E$ est un ouvert dense de ${\cal L}(E)$. Si\break $f\in{\cal L}(E)$, il existe donc une suite $(f_p)$ d'automorphismes de $E$ qui tend vers $f$. Pour tout $p$, soit $f_p=\omega_p s_p$ la d\'ecomposition polaire de $f_p$. Comme $O(E)$ est compact, il existe une suite extraite $(\omega_{\ffi(p)})$ qui converge vers un automorphisme $\omega$ de $O(E)$. L'application $\;\Phi:\system{&{\rm GL}(E)\times{\cal L}(E)&\vers&{\cal L}(E)\cr &\hfill (u,f)\hfill&\mapsto&\hfill u^{-1}f\hfill\cr}\;$ \'etant continue, on a $\Lim{p}{\infty}\omega_{\ffi(p)}^{-1}f_{\ffi(p)}=\omega^{-1}f$ et, en notant $s=\omega^{-1}f$, l'endomorphisme $s$ appartient \`a l'adh\'erence de l'ensemble des endomorphismes auto-adjoints d\'efinis positifs, c'est-\`a-dire est sym\'etrique positif, et $f=\omega s$, ce qu'il fallait prouver.}
+\ssk\sect
+{\it Remarquons que l'unicit\'e de cette d\'ecomposition n'est plus garantie~: si, par exemple, $f=0$, alors $s=0$ et $\omega\in O(E)$ est quelconque.}}
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 2 :}\msk
+Soient $A_1$, $\cdots$, $A_p$ des matrices sym\'etriques positives d'ordre $n$. Montrer que\vv
+$$\big(\det(A_1\cdots A_p)\big)^{{}^{\sst1\sur\sst p}}\ie\det\lp{A_1+\cdots+A_p\s p}\rp\;.$$
+\ssk
+{\it Source : RMS (Revue des Math\'ematiques de l'Enseignement Sup\'erieur), janvier 2000, \'Editions Vuibert, solution emprunt\'ee \`a Moubinool OMARJEE}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+La matrice $S={1\s p}(A_1+\cdots+A_p)$ est sym\'etrique positive, donc de d\'eterminant positif ou nul. L'in\'egalit\'e \`a d\'emontrer est donc triviale si l'une des matrices $A_i$ est de d\'eterminant nul. On peut donc supposer d\'esormais que toutes les matrices $A_i$ sont sym\'etriques d\'efinies positives. 
+\msk
+Notons ${\cal S}_n^{++}$ l'ensemble des matrices sym\'etriques d\'efinies positives d'ordre $n$. C'est une partie convexe de ${\cal M}_n(\rmat)$. L'in\'egalit\'e \`a d\'emontrer se ram\`ene \`a\vv
+$${1\s p}\>\sum_{i=1}^p\ln(\det A_i)\ie\ln\lp\det\Big({1\s p}\>\sum_{i=1}^p A_i\Big)\rp$$
+et, pour cela, il suffit de prouver la concavit\'e de l'application $f:\system{&{\cal S}_n^{++}&\vers&\rmat\hfill\cr &\hfill S&\mapsto&\ln(\det S)\cr}$.\ssk
+Soient donc $A$ et $B$ deux matrices sym\'etriques d\'efinies positives. Il est possible de les r\'eduire simultan\'ement, c'est-\`a-dire il existe $P\in{\rm GL}_n(\rmat)$ et $D$ diagonale telle que $A=\t\>PP$ et $B=\t\>PDP$. Rappelons une d\'emonstration de ce r\'esultat important~:\ssk\new
+{\it Soient $A$ sym\'etrique d\'efinie positive et $B$ sym\'etrique (ces hypoth\`eses sont suffisantes). La matrice $A$ admet une racine carr\'ee sym\'etrique d\'efinie positive $M$ (si $A=U\Delta U^{-1}=U\Delta\t\;U$\break avec $U$ orthogonale et $\Delta=\diag(\lam_1,\cdots,\lam_n)$, poser $\;M=U\delta\> U^{-1}=U\delta\t\>U\;$ avec\break $\delta=\diag(\sqrt{\lam_1},\cdots,\sqrt{\lam_n})$~: $A=M^2=\t\>MM$).
+ La matrice $C=\t\>M^{-1}BM^{-1}$ est alors sym\'etrique (v\'erification imm\'ediate), donc on peut \'ecrire $C=QD\t\;Q$ avec $D$ diagonale et\break $Q$ orthogonale~; on a alors\vvv 
+$$A=\t\>MM=\t\>MQ\t\>QM=\t\>PP\quad{\rm et}\qquad B=\t\>MCM=\t\>MQD\t\>QM=\t\>PDP$$
+en posant $P=\t\>QM$.}
+
+\msk
+Soit alors $t\in[0,1]$. Posons $D=\diag(\lam_1,\cdots,\lam_n)$, les $\lam_i$ \'etant strictement positifs puisque $B\in{\cal S}_n^{++}$. Alors $(1-t)A+tB=\t\>P\Delta P$ avec $\Delta=\diag\big((1-t)+t\lam_1,\cdots,(1-t)+t\lam_n\big)$, donc\vvvv
+$$f\big((1-t)A+tB\big)=2\ln|\det P|+\sum_{i=1}^n\ln\big((1-t)+t\lam_i\big)\;.$$\vv\sect
+Par ailleurs,\vvvv
+\begin{eqnarray*}
+(1-t)f(A)+tf(B) & = & (1-t)\>\ln\big(\det(\t\>PP)\big)+t\>\ln\big(\det(\t\>PDP)\big)\\
+                     & = & (1-t)\>(2\ln|\det P|)+t\>\big(2\ln|\det P|+\sum_{i=1}^n\ln\lam_i\big)\\
+                     & = & 2\ln|\det P|+t\sum_{i=1}^n\ln\lam_i\;.
+\end{eqnarray*}
+Or, $\lam_i^t=\lam_i^{(1-t)0+t1}\ie(1-t)\lam_i^0+t\lam_i^1=(1-t)+t\lam_i\;$ car la fonction $x\mapsto\lam_i^x$ est convexe, et cela permet de conclure. 
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 3 :}\msk
+Soit $A=(a_{ij})\in{\cal M}_n(\rmat)$ une matrice sym\'etrique positive, telle que\vv
+$$\a(i,j)\in\[ent1,n\]ent^2\qquad a_ {ij}\not=0\;.$$\par
+Soit la matrice $B=(b_{ij})$, avec $b_{ij}={1\s a_{ij}}$.\ssk
+On suppose que la matrice $B$ (qui est bien s\^ur sym\'etrique), est aussi positive.\ssk
+Montrer qu'il existe une matrice-colonne $V$ (\`a coefficients tous non nuls) telle que $A=V\t\; V$.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+La matrice $A$ admet une racine carr\'ee sym\'etrique positive~: il existe $P\in O(n)$ et $D$ diagonale, $D=\diag(\lam_1,\cdots,\lam_n)$ avec les $\lam_i\se0$, tels que $A=PDP^{-1}=PD\t\>P$~; en posant\break $\Delta=\diag(\sqrt{\lam_1},\cdots,\sqrt{\lam_n})$ et $M=P\Delta P^{-1}=P\Delta \t\>P$, la matrice $M$ est sym\'etrique positive et $M^2=\t\>MM=A$.
+\msk
+En notant $(\cdot|\cdot)$ le produit scalaire canonique sur $\rmat^n$, et en notant $(e_1,\cdots,e_n)$ la base canonique de $\rmat^n$, on a, pour tout $(i,j)$,\vv
+$$a_{ij}=(Ae_i|e_j)=(\t\>MMe_i|e_j)=(Me_i|Me_j)\;,$$
+donc, par Cauchy-Schwarz,\vv
+$$a_{ij}^2=(Me_i|Me_j)^2\ie\|Me_i\|^2\|Me_j\|^2=a_{ii}a_{jj}\;.$$
+Si $B$ est aussi positive, on a aussi $b_{ij}^2\ie b_{ii}b_{jj}$, soit ${1\s a_{ij}^2}\ie{1\s a_{ii}a_{jj}}$. \msk
+Finalement, $a_{ij}^2=a_{ii}a_{jj}$ pour tout couple $(i,j)\in\[ent1,n\]ent^2$, c'est-\`a-dire $(Me_i|Me_j)^2=\|Me_i\|^2\|Me_j\|^2$ (cas d'\'egalit\'e dans Cauchy-Schwarz), les vecteurs $Me_i$ ($1\ie i\ie n$) sont donc tous colin\'eaires, d'o\`u $\rg(M)\ie1$ et m\^eme $\rg(M)=1$ puisque $M\not=0$. Si $C$ est une colonne non nulle de la matrice $M$ alors, pour tout $i\in\[ent1,n\]ent$, il existe $\lam_i$ tel que la $i$-i\`eme colonne de $M$ soit $C_i=\lam_i C$~: en notant $L$ la matrice-ligne $L=\pmatrix{\lam_1&\cdots&\lam_n\cr}$, on a $M=CL$. Ensuite, $A=\t\>MM=\t\>L(\t\>CC)L$, mais $\t\> CC$ est un scalaire strictement positif $r$ (c'est la somme des carr\'es des \'el\'ements de la colonne $C$), donc $A=r\>\t\>LL$. En posant $V=\sqrt{r}\>\t\>L$, on a bien $A=V\t\;V$, donc $A=(v_iv_j)$ en notant $V=\t\>\pmatrix{v_1&\cdots&v_n\cr}$. Les coefficients de $A$ \'etant non nuls, aucun coefficient de $V$ ne peut \^etre nul.
+
+\msk
+{\it R\'eciproquement, si $V=\t\>\pmatrix{v_1&\cdots&v_n\cr}$ est une matrice-colonne \`a coefficients tous non nuls, alors la matrice $A=V\t\;V=(a_{ij})=(v_iv_j)$ est sym\'etrique positive \`a coefficients tous non nuls, et la matrice $B$ de coefficient g\'en\'erique $b_{ij}={1\s a_{ij}}$ est aussi sym\'etrique positive, puisque $B=W\t\;W$ avec $W=\t\>\pmatrix{{1\s v_1}&\cdots&{1\s v_n}\cr}$.}
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 4 :}\msk
+On note ${\cal S}_n$ le sous-espace vectoriel de $\MR{n}$ form\'e des matrices
+sym\'etriques, et $\SDP{n}$ le sous-ensemble des matrices sym\'etriques
+d\'efinies positives.\msk
+{\bf 1.} Soit $S\in\SDP{n}$. Montrer qu'il existe une unique matrice
+sym\'etrique $A$ telle que $e^A=S$.\break On notera $A=\Log S$.
+\msk
+{\bf 2.} Soient $S_1\in\SDP{n}$, $S_2\in\SDP{n}$ telles que $S_1S_2=S_2S_1$.
+Montrer que\vv
+$$\Log(S_1S_2)=\Log(S_1)+\Log(S_2)\;.$$\par
+{\bf 3.} Soit $S\in{\cal S}_n$ dont toutes les valeurs propres appartiennent
+\`a l'intervalle $]-1,1[$. Montrer que $I_n+S\in\SDP{n}$ et prouver la relation\vv
+$$\Log(I_n+S)=\sum_{k=1}^{\infty}{(-1)^{k-1}\s k}\>S^k\;.$$
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} $\bullet$ Pour l'existence de $A$, on diagonalise $S$ \`a l'aide d'une matrice
+de passage orthogonale~: $S=PDP^{-1}=PD\t P$.
+On a $D=\diag(\lam_1,\ldots,\lam_n)$ o\`u les $\lam_i$ sont des r\'eels
+strictement positifs. Posons $\Delta=\diag(\ln\lam_1,\ldots,\ln\lam_n)$ et
+$A=P\Delta P^{-1}$. Alors, $A=P\Delta \t P$ est sym\'etrique et,
+par un calcul classique,\vv
+$$e^A=e^{P\Delta P^{-1}}=P\>e^{\Delta}\>P^{-1}=PDP^{-1}=S\;.$$\sect
+$\bullet$ Pour l'unicit\'e, on proc\`ede comme pour d\'emontrer l'unicit\'e de la
+racine carr\'ee sym\'etrique d\'efinie positive d'une matrice du m\^eme m\'etal ({\it
+utile pour prouver l'unicit\'e de la d\'ecomposition polaire d'une matrice inversible,
+cf. exercice 1}). Si $A$ est une matrice sym\'etrique v\'erifiant $e^A=S$, alors $A$ et
+$S$ commutent~; les sous-espaces propres $E_1$, $\ldots$, $E_m$ de $S$
+associ\'es aux valeurs propres $\lam_1$, $\ldots$, $\lam_m$ ({\it ici suppos\'ees
+deux \`a deux distinctes}) sont donc stables par $A$ ({\it enfin, par l'endomorphisme
+$a$ de $\rmat^n$ canoniquement associ\'e}). Comme l'endomorphisme $a$ est
+diagonalisable, sa restriction $a_i$ au sous-espace $E_i$ l'est aussi~: si $\mu$
+est une valeur propre de $a_i$ et $X$ un vecteur propre associ\'e, on a
+$\;AX=\mu X\;$ d'o\`u $\;SX=e^A\>X=e^{\mu}X$, mais $SX=\lam_iX$, donc $\mu=\ln\lam_i$~;
+la restriction $a_i$ de $a$ au sous-espace $E_i$ ($1\ie i\ie m$) est donc
+$\;a_i=\ln(\lam_i)\>\id_{E_i}$, ce qui garantit l'unicit\'e de $a$.
+\msk\sect
+{\it Remarque}~: Il est imm\'ediat par ailleurs que l'exponentielle d'une matrice
+sym\'etrique est une matrice sym\'etrique d\'efinie positive (si $A=PDP^{-1}$ avec
+$P$ orthogonale et $D$ diagonale, alors $e^A=P\>e^D\>P^{-1}\in\SDP{n}$).
+L'application exponentielle r\'ealise donc une bijection de ${\cal S}_n$
+sur $\SDP{n}$.
+
+\msk
+{\bf 2.} Posons $A_1=\Log S_1$ et $A_2=\Log S_2$. Si $A_1$ et $A_2$ commutent,
+alors $A_1+A_2$ est sym\'etrique et $\;e^{A_1+A_2}=e^{A_1}e^{A_2}=S_1S_2$. 
+Prouvons donc que $A_1$ et $A_2$
+commutent, ce qui nous conduit au\ssk\sect
+{\bf Lemme. Deux endomorphismes sym\'etriques (de $E$ euclidien)
+qui commutent sont diagonalisables dans une m\^eme base orthonormale.}\ssk\sect
+{\it D\'emonstration du lemme~: notons $u$ et $v$ ces deux endomorphismes, $E$
+est la somme directe orthogonale des sous-espaces propres de $u$, notons
+$E=\build{\oplus}_{\lam\in\Sp(u)}^{\perp}E_{\lam}(u)$. Pour tout $\lam\in\Sp(u)$,
+le sous-espace propre $E_{\lam}(u)$ est stable par $v$~; la restriction $\tilde{v}$
+de $v$ \`a $E_{\lam}(u)$ est un endomorphisme sym\'etrique (auto-adjoint), donc
+diagonalisable dans une base orthonormale ${\cal B}_{\lam}$ de $E_{\lam}(u)$.
+Il ne reste plus qu'\`a construire une base ${\cal B}$ de $E$ par concat\'enation
+des ${\cal B}_{\lam}$ pour obtenir une base orthonormale de $E$ dans laquelle
+$u$ et $v$ sont repr\'esent\'es par des matrices diagonales.}\msk\sect
+Revenons \`a la question pos\'ee~: les matrices sym\'etriques d\'efinies positives
+$S_1$ et $S_2$ commutent, donc le produit $S_1S_2$ est sym\'etrique, et $S_1$ et $S_2$ se diagonalisent \`a l'aide d'une m\^eme matrice de
+passage orthogonale $P$ (on d\'eduit au passage que $S_1S_2$ est aussi d\'efinie positive)~; la construction des ``logarithmes'' $A_1$ et $A_2$ des matrices
+$S_1$ et $S_2$, explicit\'ee dans la question {\bf 1.}, montre que ces deux
+matrices peuvent aussi \^etre diagonalis\'ees gr\^ace \`a la m\^eme matrice de
+passage $P$, donc elles commutent, ce qu'il fallait d\'emontrer.
+
+\msk
+{\bf 3.} La matrice $I+S$ est sym\'etrique et ses valeurs propres sont les
+$1+\lam_i$ (o\`u les $\lam_i$ sont les valeurs propres de $S$), elles
+sont donc toutes strictement positives et $I+S\in\SDP{n}$.\ssk\sect
+Posons $S=PDP^{-1}=PD\t P$ avec $D=\diag(\lam_1,\ldots,\lam_n)$ et
+$P\in{\rm O}(n)$.\ssk\sect Alors $I+S=P(I+D)P^{-1}$~; posons
+$\Delta=\diag\big(\ln(1+\lam_1),\ldots,\ln(1+\lam_n)\big)$.\ssk\sect
+Comme $|\lam_i|<1$, on a $\;\ln(1+\lam_i)=\sum_{k=1}^{\infty}{(-1)^{k-1}\s k}
+\>\lam_i^k\;$ pour tout $i\in\[ent1,n\]ent$, donc\break $\Delta=\sum_{k=1}^{\infty}
+{(-1)^{k-1}\s k}\>D^k$, puis\vv
+\begin{eqnarray*}
+\Log(I+S) & = & P\Delta P^{-1}=P\>\lp\sum_{k=1}^{\infty}{(-1)^{k-1}\s k}\>D^k\rp\>P^{-1}\\
+                     & = & \sum_{k=1}^{\infty}{(-1)^{k-1}\s k}\>(P D^k P^{-1})
+                       =\sum_{k=1}^{\infty}{(-1)^{k-1}\s k}\>S^k\;.
+\end{eqnarray*}
+
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 5 :}\msk
+Soit $E$ un espace pr\'ehilbertien r\'eel. Une famille $(x_1,\cdots,x_p)$ de vecteurs de $E$ est dite {\bf obtusangle} si\vv
+$$i\not=j\impl (x_i|x_j)<0\;.$$\par
+{\bf 1.} Soit $(x_1,\cdots,x_p)$ une famille obtusangle. D\'emontrer l'in\'egalit\'e\vv
+$$\left\|\sum_{i=1}^p|\lam_i|x_i\right\|\ie\left\|\sum_{i=1}^p\lam_ix_i\right\|\;.$$\par
+{\bf 2.} Dans un espace euclidien de dimension $n$, montrer qu'une famille obtusangle a au plus $n+1$ \'el\'ements.\msk
+{\bf 3.} Soit $E$ un espace euclidien de dimension $n$. Montrer que l'on peut construire une famille $(u_1,\cdots,u_{n+1})$ de vecteurs unitaires de $E$ v\'erifiant $(u_i|u_j)=-{1\s n}$ pour $i\not=j$.
+\msk
+{\bf 4.} Soit $E$ euclidien de dimension $n$. Montrer que le seul r\'eel $\alpha$ diff\'erent de 1 pour lequel il existe une famille $(u_1,\cdots,u_{n+1})$ de vecteurs unitaires telle que $(u_i|u_j)=\alpha$ pour tout couple $(i,j)$ avec $i\not=j$, est $\alpha=-{1\s n}$.
+
+\msk
+
+{\it Source : Jacques CHEVALLET, Alg\`ebre MP/PSI, collection Vuibert Sup\'erieur, ISBN 2-7117-2092-6}
+
+\bsk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\bsk
+
+{\bf 1.} Posons $\;u=\sum_{i=1}^p\lam_ix_i\;$ et $\;v=\sum_{i=1}^p|\lam_i|x_i$. Alors\vv
+$$\|u\|^2=\sum_{i=1}^p\lam_i^2\|x_i\|^2+2\>\sum_{i<j}\lam_i\lam_j(x_i|x_j)\qquad{\rm et}\quad
+\|v\|^2=\sum_{i=1}^p\lam_i^2\|x_i\|^2+2\>\sum_{i<j}|\lam_i\lam_j|(x_i|x_j)\;,$$
+donc $\;\|v\|^2-\|u\|^2=2\>\sum_{i<j}\big(|\lam_i\lam_j|-\lam_i\lam_j\big)\>(x_i|x_j)\;$ et chaque terme de cette somme est n\'egatif ou nul, donc $\|v\|^2-\|u\|^2\ie0$, ce qu'il fallait d\'emontrer.
+
+\msk
+{\bf 2.} Nous allons d'abord d\'emontrer que toute famille obtusangle de cardinal $p$ dans un espace pr\'ehilbertien r\'eel $E$ est de rang au moins \'egal \`a $p-1$~: soit ${\cal X}=(x_1,\cdots,x_p)$ une telle famille. Si on avait $\rg{\cal X}\ie p-2$, alors la sous-famille $(x_1,\cdots,x_{p-1})$ serait li\'ee~: il existerait donc $p-1$ r\'eels $\lam_1$, $\cdots$, $\lam_{p-1}$, non tous nuls, tels que $\sum_{i=1}^{p-1}\lam_ix_i=0_E$. Mais, d'apr\`es la question {\bf 1.}, une telle relation entra\^\i ne $\sum_{i=1}^{p-1}|\lam_i|x_i=0_E$, d'o\`u $\sum_{i=1}^{p-1}|\lam_i| (x_i|x_p)=0$. Dans cette derni\`ere somme, tous les termes sont n\'egatifs ou nuls, ils sont donc tous nuls, donc les $\lam_i$ sont tous nuls, ce qui est b\^ete.
+\ssk\sect
+Dans un espace euclidien $E$ de dimension $n$, une famille obtusangle est donc de cardinal au plus $n+1$. La question suivante prouvera qu'il existe effectivement des familles obtusangles de cardinal $n+1$ dans $E$.
+
+
+\msk
+{\bf 3.}
+Proc\'edons par r\'ecurrence sur $n=\dim E$.\ssk\sect
+$\bullet$ pour $n=1$, c'est imm\'ediat (prendre les deux vecteurs unitaires oppos\'es)~;\ssk\sect
+$\bullet$ soit $n\se2$, supposons la propri\'et\'e vraie en dimension $n-1$, soit $E$ euclidien de dimension $n$. Soit $x$ un vecteur unitaire de $E$, soit $H=(\rmat x)^\perp$ l'hyperplan orthogonal \`a $x$. Par hypoth\`ese, dans $H$, il existe une famille $(v_1,\cdots,v_n)$ de 
+vecteurs unitaires tels que $(v_i|v_j)=-{1\s n-1}$ pour $i\not=j$.
+Soit, dans $E$, une famille de vecteurs ${\cal U}=(u_1,\cdots,u_n,u_{n+1})$
+avec $u_{n+1}=x$ et $u_i={v_i+\lam_i x\s\sqrt{1+\lam_i^2}}$ pour tout $i\in\[ent1,n\]ent$. 
+Pour que la famille ${\cal U}$ (dont les vecteurs sont unitaires) v\'erifie les conditions impos\'ees, il faut et il suffit que\ssk\new
+\quad - pour tout $i\in\[ent1,n\]ent\quad (x|u_i)=-{1\s n}$, ce qui est r\'ealis\'e si et seulement si $\;\lam_i=-{1\s\sqrt{n^2-1}}$~;\ssk\new
+\quad - pour tout couple $(i,j)$ avec $i\not=j$, $(u_i|u_j)=-{1\s n}$ et on v\'erifie que cette condition est\break\new\qquad bien r\'ealis\'ee si $\lam_i=\lam_j=-{1\s\sqrt{n^2-1}}$. \msk\sect
+La famille ${\cal U}=(u_1,\cdots,u_b,u_{n+1})$, avec $u_{n+1}=x$ et $\;u_i={1\s n}\big(\sqrt{n^2-1}\>v_i-x\big)$ pour tout $i\in\[ent1,n\]ent$, satisfait aux conditions de l'\'enonc\'e.
+\msk\sect
+{\it Une famille $(u_1,\cdots,u_{n+1})$ satisfaisant \`a ces conditions dans un espace euclidien de dimension $n$ est appel\'ee un {\bf simplexe r\'egulier}. On peut v\'erifier (c'est facile) que $\sum_{k=1}^{n+1}u_k=0_E$ et que, si $i\not=j$, on a $\;\|u_i-u_j\|=\sqrt{2(n+1)\s n}$.}
+\msk
+{\bf 4.} Soit ${\cal U}=(u_1,\cdots,u_p)$ une famille \'equiangulaire de vecteurs unitaires (c'est-\`a-dire telle que les produits scalaires $(u_i|u_j)$ avec $i\not=j$, aient une valeur commune $\alpha$). Soit $G$ la matrice de Gram de cette famille, \`a savoir la matrice carr\'ee d'ordre $p$ de coefficient g\'en\'erique $g_{ij}=(u_i|u_j)$. On v\'erifie facilement que, si ${\cal B}$ est une base orthonormale de $E$, on a $G=\t\;UU$, o\`u $U\in{\cal M}_{n,p}(\rmat)$ est la matrice de la famille de vecteurs ${\cal U}$ relativement \`a la base ${\cal B}$. On a donc $\rg({\cal U})=\rg(U)=\rg(G)$ puisque les matrices $U$ et $\t\>UU$ ({\it ou les applications lin\'eaires canoniquement associ\'ees}) ont le m\^eme noyau. Ici, on a $G=\pmatrix{1&\alpha&\ldots&\alpha\cr \alpha&1&\ddots&\vdots\cr \vdots&\ddots&\ddots&\alpha\cr \alpha&\ldots&\alpha&1\cr}$ et $\det G=\big(1+(p-1)\alpha\big)(1-\alpha)^{p-1}$. La famille ${\cal U}$ est donc libre sauf pour $\alpha=1$ (auquel cas tous les vecteurs sont \'egaux) et pour $\alpha=-{1\s p-1}$. Pour que $n+1$ tels vecteurs existent en dimension $n$, la famille doit \^etre li\'ee, donc n\'ecessairement $\;\alpha=-{1\s n}$. 
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 6 :}\msk
+Notations~: soit $n$ un entier naturel non nul~; on note\ssk\new
+$O(n)$ le groupe orthogonal d'ordre $n$~;\ssk\new
+${\cal S}_n^+$ l'ensemble des matrices sym\'etriques positives d'ordre $n$~;\ssk\new
+${\cal S}_n^{++}$ l'ensemble des matrices sym\'etriques d\'efinies positives d'ordre $n$~;\ssk\new
+si $E$ est un espace euclidien et ${\cal X}=(x_1,\cdots,x_p)$ une famille finie de vecteurs de $E$, on note $G({\cal X})$ la matrice de Gram de la famille ${\cal X}$, c'est-\`a-dire la matrice sym\'etrique d'ordre $p$, de coefficient g\'en\'erique $g_{ij}=(x_i|x_j)$.
+\msk
+{\bf 1.} Soit $A\in{\cal M}_n(\rmat)$. Montrer l'existence d'une matrice $\Omega\in O(n)$ et d'une matrice $S\in{\cal S}_n$ telles que $A=\Omega S$ ({\it on pourra commencer par supposer $A$ inversible, puis conclure en invoquant la compacit\'e de $O(n)$}).\msk
+{\bf 2.} Soit $E$ un espace euclidien, soit ${\cal B}$ une base de $E$, soit $f$ un endomorphisme de $E$, de matrice $M$ relativement \`a la base ${\cal B}$. Montrer que $f$ est un automorphisme orthogonal de $E$ si et seulement si $\;\t\>M\>G({\cal B})\>M=G({\cal B})$.\msk
+{\bf 3.} Soit $E$ un espace euclidien de dimension $2n$, soient $F$ et $G$ deux sous-espaces suppl\'ementaires, chacun de dimension $n$. Montrer qu'il existe une sym\'etrie orthogonale \'echangeant $F$ et $G$.
+
+\msk
+{\it Source : Jean-Marie ARNAUDI\`ES et Henri FRAYSSE, Alg\`ebre bilin\'eaire et g\'eom\'etrie, \'Editions Dunod, ISBN 2-04-016550-9}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+\msk
+
+{\bf 1.} Lorsque $A$ est inversible, il s'agit de la {\bf d\'ecomposition polaire}~: la matrice $\t AA$ est sym\'etrique d\'efinie positive, donc admet une racine carr\'ee $S$ elle aussi dans ${\cal S}_n^{++}$ ({\it \'evident en diago\-na\-lisant $\t AA$ en base orthonormale}). En posant $\Omega=AS^{-1}$, il suffit de v\'erifier que $\Omega$ est orthogonale.\ssk\sect
+{\it Dans le cas o\`u $A$ est inversible, on peut d\'emontrer l'unicit\'e du couple $(\Omega,S)$, mais ce n'est pas utile ici, cf. exercice 1}.\msk\sect
+L'ensemble ${\rm GL}(n,\rmat)$ des matrices inversibles est un ouvert dense de ${\cal M}_n(\rmat)$. Si $A$ est une matrice de ${\cal M}_n(\rmat)$, il existe donc une suite $(A_p)$ de matrices inversibles qui tend vers $A$. Pour tout $p$, soit $A_p=\Omega_p S_p$ la d\'ecomposition polaire de $A_p$. Comme $O(n)$ est compact, il existe une suite extraite $(\Omega_{\ffi(p)})$ qui converge vers une matrice $\Omega$ de $O(n)$. L'application $\;\Phi:\system{&{\rm GL}_n(\rmat)\times{\cal M}_n(\rmat)&\vers&{\cal M}_n(\rmat)\cr &\hfill (U,M)\hfill&\mapsto&\hfill U^{-1}M\hfill\cr}\;$ \'etant continue, on a $\Lim{p}{\infty}\Omega_{\ffi(p)}^{-1}A_{\ffi(p)}=\Omega^{-1}A$ et, en notant $S=\Omega^{-1}A$, la matrice $S$ appartient \`a l'adh\'erence de ${\cal S}_n^{++}$, c'est-\`a-dire \`a ${\cal S}_n^+$, et $A=\Omega S$, ce qu'il fallait prouver.
+\ssk\sect
+{\it Remarquons que l'unicit\'e de cette d\'ecomposition n'est plus garantie~: si, par exemple, $A$ est la matrice nulle, alors $S=0$ et $\Omega\in O(n)$ est quelconque.}
+
+\msk
+{\bf 2.} Manipulons un peu les matrices de Gram~: soit $E$ un espace euclidien de dimension $n$.
+\ssk\sect
+$\bullet$ Si ${\cal B}_0$ est une base orthonormale de $E$, si ${\cal F}=(x_1,\cdots,x_p)$ est une famille de $p$ vecteurs de $E$ de matrice $F=M_{{\cal B}_0}({\cal F})\in{\cal M}_{n,p}(\rmat)$ relativement \`a la base ${\cal B}_0$, alors $G({\cal F})=\t\>FF\in{\cal M}_p(\rmat)$.\ssk\sect
+$\bullet$ Si ${\cal B}=(e_1,\cdots,e_n)$ et ${\cal B}'=(e'_1,\cdots,e'_n)$ sont deux bases de $E$, si $P=P_{{\cal B},{\cal B}'}=M_{{\cal B}}({\cal B}')$ est la matrice de passage de ${\cal B}$ vers ${\cal B}'$, on a $\;B':\>=M_{{\cal B}_0}({\cal B}')=P_{{\cal B}_0,{\cal B}'}=P_{{\cal B}_0,{\cal B}}P_{{\cal B},{\cal B}'}=BP$ avec $B=M_{{\cal B}_0}({\cal B})$, donc\vv
+$$G({\cal B}')=\t\>B'B'=\t\>(BP)(BP)=\t\>P\t\>BBP=\t\>P\> G({\cal B})\>P$$
+(cela sera utile pour la question suivante).
+\ssk\sect
+$\bullet$ Si maintenant ${\cal B}=(e_1,\cdots,e_n)$ est une base quelconque de $E$, si $x=\sum_{i=1}^nx_ie_i$ et $y=\sum_{j=1}^ny_je_j$ sont deux vecteurs de $E$, on a $(x|y)=\sum_{i,j}x_iy_j(e_i|e_j)=\t\>X\>G({\cal B})\>Y$, en notant $X=M_{{\cal B}}(x)$ et $Y=M_{{\cal B}}(y)$ les matrices-colonnes constitu\'ees des coordonn\'ees des vecteurs $x$ et $y$ dans la base ${\cal B}$.\ssk\sect
+De cette derni\`ere remarque, on d\'eduit que, si $f$ est un endomorphisme de $E$ de matrice $M$ relativement \`a la base ${\cal B}$, on a\vv
+\begin{eqnarray*}
+f\in O(E) & \iff & \a(x,y)\in E^2\quad \big(f(x)|f(y)\big)=(x|y)\\
+             & \iff & \a(X,Y)\in\big({\cal M}_{n,1}(\rmat)\big)^2\quad \t\>(MX)\>G({\cal B})\>(MY)=\t\>X\>G({\cal B})\>Y\\
+             & \iff & \t\>M\>G({\cal B})\>M=G({\cal B})\;.
+\end{eqnarray*}
+\ssk
+{\bf 3.} Soit $E$ euclidien de dimension $2n$, soient $F$ et $G$ suppl\'ementaires de dimension $n$. Consid\'erons une base ${\cal B}=({\cal B}_1,{\cal B}_2)$ de $E$ obtenue par concat\'enation d'une base orthonormale\break ${\cal B}_1=(e_1,\cdots,e_n)$ de $F$ et d'une base orthonormale ${\cal B}_2=(e_{n+1},\cdots,e_{2n})$ de $G$. On a alors $G({\cal B})=\pmatrix{I&A\cr \t\>A&I}$, en notant $I=I_n$ la matrice-unit\'e d'ordre $n$ et avec $A\in{\cal M}_n(\rmat)$, de coefficient g\'en\'erique $a_{ij}=(e_i|e_{n+j})$.\ssk\sect
+D'apr\`es la question {\bf 1.}, il existe $\Omega\in O(n)$ et $S\in{\cal S}_n^+$ telles que $A=\Omega S$, donc $S=\Omega^{-1}A=\t\;\Omega A$ et aussi $S=\t\>S=\t\>A\Omega$. Posons $P=\pmatrix{\Omega&0\cr 0&I\cr}$. Alors $P\in O(2n)$ et
+$$P^{-1}=\t\>P=\pmatrix{\t\>\Omega&0\cr 0&I\cr}=\pmatrix{\Omega^{-1}&0\cr 0&I\cr}\;.$$
+Soit ${\cal B}'=({\cal B}'_1,{\cal B}_2)$ la base de $E$ telle que $P=P_{{\cal B},{\cal B}'}$ (alors ${\cal B}'_1=(e'_1,\cdots,e'_n)$ est encore une base orthonormale de $F$). On a\vv
+$$G({\cal B}')=\t\>P\>G({\cal B})\>P=\pmatrix{\t\>\Omega\Omega&\t\>\Omega A\cr \t\>A\Omega& I\cr}=\pmatrix{I&S\cr S&I\cr}\;.$$
+Soit maintenant $f$ l'endomorphisme de $E$ tel que $M_{{\cal B}'}(f)=M=\pmatrix{0&I\cr I&0\cr}$. De $M^2=I_{2n}$, on d\'eduit que $f$ est une sym\'etrie. Il est clair que $f(F)=G$ et $f(G)=F$. Enfin,\vv
+$$\t\>M\>G({\cal B}')\>M=\pmatrix{0&I\cr I&0\cr}\pmatrix{I&S\cr S&I\cr}\pmatrix{0&I\cr I&0\cr}=\pmatrix{I&S\cr S&I\cr}=G({\cal B}')\;,$$
+donc $f\in O(E)$ par la question {\bf 2.}
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 7 :}\msk
+Soient $p$ et $q$ deux projecteurs orthogonaux dans un espace euclidien $E$, soit l'endomorphisme $f=pq$.\ssk
+{\bf a.} Montrer que les valeurs propres de $f$ appartiennent au segment $[0,1]$.\ssk
+{\bf b.} Montrer que $f$ est diagonalisable. {\it On pourra introduire l'endomorphisme $g=pqp$.}
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf a.} Un projecteur orthogonal v\'erifie les propri\'et\'es\vv
+$$\a(y,z)\in E^2\qquad\big(p(y)|p(z)\big)=\big(p(y)|z\big)\;;\eqno\hbox{\bf (1)}$$
+$$\a y\in E\qquad\|p(y)\|\ie\|y\|\;.\eqno\hbox{\bf (2)}$$
+Donc, si $\lam\in\Sp(f)$ est non nul et si $x$ est un vecteur propre associ\'e, on a\vv
+$$\|pq(x)\|^2=\big(pq(x)|pq(x)\big)=\big(pq(x)|q(x)\big)=\lam\>\big(x|q(x)\big)=\lam\>\|q(x)\|^2$$
+avec $q(x)\not=0$, donc $\lam={\|pq(x)\|^2\s\|q(x)\|^2}\in\>]0,1]$. Tenant compte de l'\'eventuelle valeur propre 0, on a $\;\Sp(f)\subset[0,1]$.\msk
+{\bf b.} L'endomorphisme $g=pqp$ est autoadjoint (car $p^*=p$ et $q^*=q$), donc diagonalisable. On a donc $\;\sum_{\lam\in\Sp(g)}\dim E_{\lam}(g)=\dim E$. Nous allons montrer que $\Sp(f)=\Sp(g)$ et que $\;\a \lam\in\Sp(f)\quad\dim E_{\lam}(f)=\dim E_{\lam}(g)$, d'o\`u il r\'esultera que $\;\sum_{\lam\in\Sp(f)}\dim E_{\lam}(f)=\dim E$\break et que $f$ est diagonalisable.\ssk\sect
+$\bullet$ Soit d'abord $\lam$ une valeur propre {\bf non nulle} de $g$.\ssk\new
+Si $x\in E_{\lam}(g)$, alors $pqp(x)=\lam x$ et, en appliquant $p$, on a $pqp(x)=\lam p(x)$, on en d\'eduit $p(x)=x$ ({\it car $\lam\not=0$}), donc $f(x)=pq(x)=pqp(x)=\lam x$ et $x\in E_{\lam}(f)$~; on a ainsi l'inclusion $E_{\lam}(g)\subset E_{\lam}(f)$.\ssk\new
+Si $x\in E_{\lam}(f)$, alors $pq(x)=\lam x$ et, toujours en appliquant $p$, on a $\;pq(x)=\lam p(x)$ donc $p(x)=x$, donc $g(x)=pqp(x)=pq(x)=\lam x$ et $x\in E_{\lam}(g)$, d'o\`u l'autre inclusion.\ssk\new
+On a ainsi montr\'e $\; E_{\lam}(f)=E_{\lam}(g)$.\ssk\sect
+$\bullet$ On v\'erifie facilement que, pour tout endomorphisme $u$ de $E$, on a $\Ker(u^*u)=\Ker(u)$. On a $pq=(qp)^*$, donc les endomorphismes $pq$ et $qp$ ont le m\^eme rang, et $\dim\Ker(pq)=\dim\Ker(qp)$. Mais $\;\Ker(qp)=\Ker\big((qp)^*(qp)\big)=\Ker(pqp)=\Ker(g)$. Ainsi, les sous-espaces propres $E_0(f)=\Ker(pq)$ et $E_0(g)=\Ker(pqp)$ ont la m\^eme dimension, ce qui ach\`eve la d\'emonstration.
+
+
+\bsk
+\hrule
+\bsk
+
+{\bf EXERCICE 8 :}\msk
+{\bf 1.} Soit $u$ un endomorphisme autoadjoint positif dans un espace euclidien $E$. Montrer l'\'equivalence\vv
+$$\a x\in E\qquad \big(u(x)|x\big)=0\iff x\in\Ker u\;.$$\par
+{\bf 2.} Soient $a$ et $b$ deux endomorphismes autoadjoints positifs dans un espace euclidien $E$.\ssk\sect
+{\bf a.} Montrer l'existence d'un endomorphisme autoadjoint positif $h$ tel que $h^2=b$.\ssk\sect
+{\bf b.} Montrer que l'endomorphisme $f=ab$ est diagonalisable. {\it On pourra consid\'erer l'endomorphisme $g=hah$}.
+
+\msk
+\cl{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -}
+\msk
+
+{\bf 1.} Notons $\lam_1$, $\cdots$, $\lam_m$ les valeur propres distinctes et strictement positives de $u$. On a alors, d'apr\`es le th\'eor\`eme spectral, $E=\bigoplus_{0\ie i\ie m}^{\perp}E_i$ avec $E_0=\Ker(u)$ (\'eventuellement r\'eduit \`a $\{0\}$) et $E_i=E_{\lam_i}(u)=\Ker(u-\lam_i\>\id_E)$ pour $i\in\[ent1,m\]ent$. Soit $x=x_0+\sum_{i=1}^mx_i\in E$, alors $u(x)=\sum_{i=1}^m\lam_ix_i$ et $\;\big(u(x)|x\big)=\sum_{i=1}^m\lam_i\|x_i\|^2$~; cette derni\`ere somme, dont tous les termes sont positifs, est nulle si et seulement si tous les termes sont nuls, soit {\bf ssi} $\;\a i\in\[ent1,m\]ent\quad x_i=0$, donc {\bf ssi} $x\in E_0=\Ker(u)$.\msk
+{\bf 2.a.} Question classique~: avec les notations de la question pr\'ec\'edente (et en posant $\lam_0=0$), on prend pour $h$ l'endomorphisme co\"\i ncidant avec l'homoth\'etie de rapport $\sqrt{\lam_i}$ sur chaque sous-espace $E_i$. {\it On peut prouver l'unicit\'e de $h$, mais ce n'est pas demand\'e, cf.exercice 1}.\ssk\sect
+{\bf b.} On a $\;f=ab=ah^2=(ah)h\;$ et $\;g=h(ah)$. L'endomorphisme $g=hah$ est autoadjoint, donc diagonalisable, donc $\;\sum_{\lam\in\Sp(g)}\dim E_{\lam}(g)=\dim E$. Comme dans l'exercice pr\'ec\'edent, nous allons montrer que $f$ et $g$ ont les m\^emes valeurs propres, avec des sous-espaces propres associ\'es de m\^eme dimension.\ssk\new
+{\it Lemme~: Soient $u$ et $v$ deux endomorphismes d'un $\kmat$-espace vectoriel $E$ de dimension finie. Alors toute valeur propre $\lam$ non nulle de $uv$ est aussi valeur propre de $vu$ et on a $\dim E_{\lam}(vu)=\dim E_{\lam}(uv)$.}\ssk\new
+{\it D\'emonstration du lemme~: si $x$ est un vecteur propre (donc non nul) de $uv$ pour la valeur propre non nulle $\lam$, on a $uv(x)=\lam x$, d'o\`u $vuv(x)=\lam v(x)$. Mais $v(x)\not=0$ (sinon on aurait $uv(x)=0$ donc $\lam x=0$, ce qui est absurde), donc $v(x)$ est un vecteur propre de $vu$ pour la valeur propre $\lam$, ainsi $\lam\in\Sp(vu)$. On a aussi prouv\'e que $\;v\big(E_{\lam}(uv)\big)\subset E_{\lam}(vu)$, mais la restriction de $v$ \`a $E_{\lam}(uv)$ est injective donc $\;\dim v\big(E_{\lam}(uv)\big)=\dim E_{\lam}(uv)$. L'inclusion obtenue ci-dessus montre alors que $\dim E_{\lam}(uv)\ie\dim E_{\lam}(vu)$. Les endomorphismes $u$ et $v$ jouant le m\^eme r\^ole, il y a \'egalit\'e des dimensions.}\ssk\new
+En appliquant le lemme avec $u=ah$ et $v=h$, on voit que toute valeur propre non nulle de $g=hah$ est aussi valeur propre de $f=ab=ah^2$ (et r\'eciproquement), les sous-espaces propres ayant m\^eme dimension.\ssk\new
+Par ailleurs, on a $\Ker(ah)=\Ker(hah)$~: l'inclusion directe est imm\'ediate et, si\break $x\in\Ker(hah)$, alors $\;0=\big(hah(x)|x\big)=\big(ah(x)|h(x)\big)$ donc $h(x)\in\Ker a$ d'apr\`es la question {\bf 1.} et $x\in\Ker(ah)$. Enfin, $\rg(f)=\rg(ah^2)\ie\rg(ah)$, donc\vv
+$$\dim\Ker(f)=\dim\Ker(ah^2)\se\dim\Ker(ah)=\dim\Ker(hah)=\dim\Ker(g)\;.$$
+On a finalement prouv\'e que $\Sp(g)=\Sp(f)$ et $\;\sum_{\lam\in\Sp(f)}\dim E_{\lam}(f)\se \dim E$ (in\'egalit\'e qui est forc\'ement une \'egalit\'e), et $f$ est diagonalisable.
+
+
+\end{document}
