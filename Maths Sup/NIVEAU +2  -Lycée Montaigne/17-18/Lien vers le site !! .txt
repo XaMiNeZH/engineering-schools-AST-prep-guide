@@ -1,0 +1,7 @@
+Allez sur le site : https://mpsi.tuxfamily.org
+
+Pour avoir les fichiers des années 17-18 et 16-17 modifiez l'url
+exemple: 
+https://mpsi.tuxfamily.org/fichiers/dm01-1819.pdf 
+==> 
+https://mpsi.tuxfamily.org/fichiers/dm01-1718.pdf
